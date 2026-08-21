@@ -1,6 +1,4 @@
-import dynamic from "next/dynamic";
-
-const AtlasMap = dynamic(() => import("@/components/AtlasMap"), { ssr: false });
+import AtlasMap from "@/components/AtlasMap";
 
 export default function Home() {
   return <AtlasMap />;
