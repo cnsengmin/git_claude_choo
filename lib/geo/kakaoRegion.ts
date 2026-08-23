@@ -73,6 +73,12 @@ export async function resolveLegalRegionsForCircle(center: GeoPoint, radiusM: nu
   return [...deduped.values()];
 }
 
+export async function resolveCenterAdministrativeRegion(center: GeoPoint): Promise<AtlasRegion | undefined> {
+  const documents = await lookupRegion(center);
+  const administrative = documents.find((document) => document.region_type === "H" && document.region_3depth_name);
+  return administrative ? toAtlasRegion(administrative) : undefined;
+}
+
 export async function resolveCenterRegion(center: GeoPoint): Promise<AtlasRegion | undefined> {
   const documents = await lookupRegion(center);
   const legal = documents.find((document) => document.region_type === "B");
