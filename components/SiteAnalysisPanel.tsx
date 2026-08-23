@@ -9,24 +9,46 @@ import {
 } from "@/lib/site-analysis/catalog";
 
 type Center = { lng: number; lat: number };
+type OsmCounts = { building: number; road: number; landuse: number; "green-water": number };
+
+export type OpenContextState = {
+  loading: boolean;
+  error?: string;
+  counts?: OsmCounts;
+  radius?: number;
+  retrievedAt?: string;
+  warning?: string;
+};
 
 type Props = {
   center: Center;
   radius: number;
   onRadiusChange: (radius: number) => void;
   onExploreLayer: (layerId: string) => void;
+  onSelectionChange: (layerIds: string[]) => void;
+  onLoadOpenContext: () => void;
+  openContext: OpenContextState;
 };
 
-const DEFAULT_LAYERS = SITE_PRESETS.neighborhood.layerIds;
+export const DEFAULT_SITE_LAYERS = SITE_PRESETS.neighborhood.layerIds;
+const OSM_LAYER_IDS = new Set(["buildings", "roads", "green-water", "land-use"]);
 
 const statusLabel = (status: SiteLayerStatus) => {
   if (status === "available") return "연결됨";
-  if (status === "partial") return "POI 보완";
+  if (status === "partial") return "보완";
   return "다음";
 };
 
-export default function SiteAnalysisPanel({ center, radius, onRadiusChange, onExploreLayer }: Props) {
-  const [selected, setSelected] = useState<string[]>(DEFAULT_LAYERS);
+export default function SiteAnalysisPanel({
+  center,
+  radius,
+  onRadiusChange,
+  onExploreLayer,
+  onSelectionChange,
+  onLoadOpenContext,
+  openContext,
+}: Props) {
+  const [selected, setSelected] = useState<string[]>(DEFAULT_SITE_LAYERS);
   const [snapshotAt, setSnapshotAt] = useState<string | null>(null);
 
   const selectedDefinitions = useMemo(
@@ -37,18 +59,23 @@ export default function SiteAnalysisPanel({ center, radius, onRadiusChange, onEx
   const availableCount = selectedDefinitions.filter((layer) => layer.status === "available").length;
   const partialCount = selectedDefinitions.filter((layer) => layer.status === "partial").length;
   const plannedCount = selectedDefinitions.filter((layer) => layer.status === "planned").length;
-  const explorable = selectedDefinitions.find((layer) => layer.status !== "planned");
+  const explorable = selectedDefinitions.find((layer) => ["live-poi", "medical", "food-cafe", "convenience", "culture"].includes(layer.id));
+  const hasOsmLayer = selected.some((id) => OSM_LAYER_IDS.has(id));
+
+  function commitSelection(next: string[]) {
+    setSelected(next);
+    onSelectionChange(next);
+    setSnapshotAt(null);
+  }
 
   function toggleLayer(id: string) {
-    setSelected((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
-    setSnapshotAt(null);
+    commitSelection(selected.includes(id) ? selected.filter((item) => item !== id) : [...selected, id]);
   }
 
   function applyPreset(key: string) {
     const preset = SITE_PRESETS[key];
     if (!preset) return;
-    setSelected(preset.layerIds);
-    setSnapshotAt(null);
+    commitSelection(preset.layerIds);
   }
 
   return (
@@ -83,9 +110,34 @@ export default function SiteAnalysisPanel({ center, radius, onRadiusChange, onEx
       <div className="analysis-summary">
         <div><b>{selected.length}</b><span>선택 레이어</span></div>
         <div><b>{availableCount}</b><span>API 연결</span></div>
-        <div><b>{partialCount}</b><span>POI 보완</span></div>
+        <div><b>{partialCount}</b><span>오픈/POI 보완</span></div>
         <div><b>{plannedCount}</b><span>다음 구현</span></div>
       </div>
+
+      <section className="open-context-card">
+        <div className="open-context-heading">
+          <div>
+            <strong>Open-source context</strong>
+            <small>OSM Overpass로 건물·도로·토지이용·녹지/수계를 즉시 확인합니다.</small>
+          </div>
+          <span>ODbL</span>
+        </div>
+        <button type="button" onClick={onLoadOpenContext} disabled={!hasOsmLayer || openContext.loading}>
+          {openContext.loading ? "OSM 불러오는 중…" : "선택 지역 OSM 컨텍스트 불러오기"}
+        </button>
+        {!hasOsmLayer && <small className="open-context-note">건물·도로·녹지/하천·토지이용 중 하나를 선택하면 사용할 수 있습니다.</small>}
+        {openContext.error && <div className="error compact">{openContext.error}</div>}
+        {openContext.counts && (
+          <div className="osm-counts">
+            <span>건물 <b>{openContext.counts.building}</b></span>
+            <span>도로 <b>{openContext.counts.road}</b></span>
+            <span>토지이용 <b>{openContext.counts.landuse}</b></span>
+            <span>녹지·수계 <b>{openContext.counts["green-water"]}</b></span>
+          </div>
+        )}
+        {openContext.retrievedAt && <small className="open-context-note">© OpenStreetMap contributors · 조회 {new Date(openContext.retrievedAt).toLocaleString("ko-KR")}</small>}
+        {openContext.warning && <small className="open-context-note">{openContext.warning}</small>}
+      </section>
 
       <div className="layer-groups">
         {SITE_LAYER_GROUPS.map((group) => {
@@ -129,9 +181,9 @@ export default function SiteAnalysisPanel({ center, radius, onRadiusChange, onEx
           type="button"
           disabled={!explorable}
           onClick={() => explorable && onExploreLayer(explorable.id)}
-          title={explorable ? `${explorable.label} 실제 조회 화면으로 이동` : "현재 선택한 레이어는 아직 데이터 연결 전입니다."}
+          title={explorable ? `${explorable.label} 실제 조회 화면으로 이동` : "선택한 Places 레이어 중 연결 가능한 데이터가 없습니다."}
         >
-          연결 데이터 확인
+          POI/공식 데이터 확인
         </button>
       </div>
 
@@ -141,7 +193,7 @@ export default function SiteAnalysisPanel({ center, radius, onRadiusChange, onEx
           <p>
             반경 {radius >= 1000 ? `${radius / 1000}km` : `${radius}m`} · {selected.length}개 레이어 · {new Date(snapshotAt).toLocaleString("ko-KR")}
           </p>
-          <small>현재 단계에서는 범위와 레이어 카탈로그를 확정합니다. 실제 데이터가 연결되는 순서대로 동일한 구성에 지도·통계·다이어그램 결과가 채워집니다.</small>
+          <small>OSM은 즉시 맥락 확인용 보완 레이어이며, 건물대장·지적·도시계획·SGIS 등 공식 데이터가 연결되는 순서대로 동일한 구성에 분석 결과가 채워집니다.</small>
         </div>
       )}
     </div>
