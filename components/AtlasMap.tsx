@@ -3,8 +3,9 @@
 import maplibregl, { type GeoJSONSource, type Map as MapLibreMap, type Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import SiteAnalysisPanel from "@/components/SiteAnalysisPanel";
+import SiteAnalysisPanel, { DEFAULT_SITE_LAYERS, type OpenContextState } from "@/components/SiteAnalysisPanel";
 import type { AtlasPoi, PoiSearchResponse } from "@/lib/poi/types";
+import type { OsmContextResponse } from "@/lib/site-analysis/osm";
 
 type Provider = "kakao" | "naver" | "google" | "hira";
 type ProviderStatus = { configured: boolean; requires: string[]; note?: string };
@@ -28,6 +29,11 @@ const INITIAL_CENTER: MapCenter = { lng: 126.9568, lat: 37.3943 };
 const ANALYSIS_SOURCE = "atlas-site-analysis-area";
 const ANALYSIS_FILL = "atlas-site-analysis-fill";
 const ANALYSIS_LINE = "atlas-site-analysis-line";
+const OSM_SOURCE = "atlas-osm-context";
+const OSM_BUILDINGS = "atlas-osm-buildings";
+const OSM_ROADS = "atlas-osm-roads";
+const OSM_LANDUSE = "atlas-osm-landuse";
+const OSM_GREEN_WATER = "atlas-osm-green-water";
 
 const googleTypesFromQuery = (query: string): string[] | undefined => {
   if (query.includes("편의점")) return ["convenience_store"];
@@ -69,6 +75,10 @@ function circleFeature(center: MapCenter, radiusM: number, steps = 96): CircleFe
   };
 }
 
+function setLayerVisibility(map: MapLibreMap, layerId: string, visible: boolean) {
+  if (map.getLayer(layerId)) map.setLayoutProperty(layerId, "visibility", visible ? "visible" : "none");
+}
+
 export default function AtlasMap() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -79,6 +89,8 @@ export default function AtlasMap() {
   const [provider, setProvider] = useState<Provider>("kakao");
   const [radius, setRadius] = useState(1200);
   const [siteRadius, setSiteRadius] = useState(1000);
+  const [siteLayerIds, setSiteLayerIds] = useState<string[]>(DEFAULT_SITE_LAYERS);
+  const [openContext, setOpenContext] = useState<OpenContextState>({ loading: false });
   const [data, setData] = useState<PoiSearchResponse | null>(null);
   const [providerStatus, setProviderStatus] = useState<StatusResponse["providers"] | null>(null);
   const [loading, setLoading] = useState(false);
@@ -150,14 +162,31 @@ export default function AtlasMap() {
         source.setData(feature);
       }
 
-      const visibility = mode === "site" ? "visible" : "none";
-      if (map.getLayer(ANALYSIS_FILL)) map.setLayoutProperty(ANALYSIS_FILL, "visibility", visibility);
-      if (map.getLayer(ANALYSIS_LINE)) map.setLayoutProperty(ANALYSIS_LINE, "visibility", visibility);
+      const visibility = mode === "site";
+      setLayerVisibility(map, ANALYSIS_FILL, visibility);
+      setLayerVisibility(map, ANALYSIS_LINE, visibility);
     };
 
     if (map.isStyleLoaded()) updateArea();
     else map.once("load", updateArea);
   }, [mapCenter, mode, siteRadius]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const siteVisible = mode === "site";
+    setLayerVisibility(map, OSM_BUILDINGS, siteVisible && siteLayerIds.includes("buildings"));
+    setLayerVisibility(map, OSM_ROADS, siteVisible && siteLayerIds.includes("roads"));
+    setLayerVisibility(map, OSM_LANDUSE, siteVisible && siteLayerIds.includes("land-use"));
+    setLayerVisibility(map, OSM_GREEN_WATER, siteVisible && siteLayerIds.includes("green-water"));
+  }, [mode, siteLayerIds]);
+
+  useEffect(() => {
+    setOpenContext({ loading: false });
+    const map = mapRef.current;
+    const source = map?.getSource(OSM_SOURCE) as GeoJSONSource | undefined;
+    if (source) source.setData({ type: "FeatureCollection", features: [] });
+  }, [mapCenter, siteRadius]);
 
   useEffect(() => {
     markersRef.current.forEach((marker) => marker.remove());
@@ -209,6 +238,78 @@ export default function AtlasMap() {
     else if (layerId === "culture") setQuery("영화관");
     else if (layerId === "food-cafe") setQuery("카페");
     else setQuery("카페");
+  }
+
+  async function loadOpenContext() {
+    const map = mapRef.current;
+    if (!map) return;
+    setOpenContext({ loading: true });
+
+    try {
+      const params = new URLSearchParams({
+        x: String(mapCenter.lng),
+        y: String(mapCenter.lat),
+        radius: String(siteRadius),
+      });
+      const response = await fetch(`/api/site/osm?${params}`);
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || `OSM request failed: ${response.status}`);
+      const osm = payload as OsmContextResponse;
+
+      const apply = () => {
+        const source = map.getSource(OSM_SOURCE) as GeoJSONSource | undefined;
+        if (source) source.setData(osm.featureCollection);
+        else {
+          map.addSource(OSM_SOURCE, { type: "geojson", data: osm.featureCollection });
+          map.addLayer({
+            id: OSM_LANDUSE,
+            type: "fill",
+            source: OSM_SOURCE,
+            filter: ["==", ["get", "kind"], "landuse"],
+            paint: { "fill-color": "#c7cbd1", "fill-opacity": 0.22 },
+          });
+          map.addLayer({
+            id: OSM_GREEN_WATER,
+            type: "fill",
+            source: OSM_SOURCE,
+            filter: ["==", ["get", "kind"], "green-water"],
+            paint: { "fill-color": "#7fa68a", "fill-opacity": 0.35 },
+          });
+          map.addLayer({
+            id: OSM_BUILDINGS,
+            type: "fill",
+            source: OSM_SOURCE,
+            filter: ["==", ["get", "kind"], "building"],
+            paint: { "fill-color": "#5f6670", "fill-opacity": 0.42, "fill-outline-color": "#444b55" },
+          });
+          map.addLayer({
+            id: OSM_ROADS,
+            type: "line",
+            source: OSM_SOURCE,
+            filter: ["==", ["get", "kind"], "road"],
+            paint: { "line-color": "#4f5661", "line-width": 1.25, "line-opacity": 0.72 },
+          });
+        }
+
+        setLayerVisibility(map, OSM_BUILDINGS, mode === "site" && siteLayerIds.includes("buildings"));
+        setLayerVisibility(map, OSM_ROADS, mode === "site" && siteLayerIds.includes("roads"));
+        setLayerVisibility(map, OSM_LANDUSE, mode === "site" && siteLayerIds.includes("land-use"));
+        setLayerVisibility(map, OSM_GREEN_WATER, mode === "site" && siteLayerIds.includes("green-water"));
+      };
+
+      if (map.isStyleLoaded()) apply();
+      else map.once("load", apply);
+
+      setOpenContext({
+        loading: false,
+        counts: osm.counts,
+        radius: osm.radius,
+        retrievedAt: osm.retrievedAt,
+        warning: osm.warning,
+      });
+    } catch (err) {
+      setOpenContext({ loading: false, error: err instanceof Error ? err.message : "OSM 컨텍스트 조회 중 오류가 발생했습니다." });
+    }
   }
 
   async function runSearch(event?: FormEvent) {
@@ -289,6 +390,9 @@ export default function AtlasMap() {
             radius={siteRadius}
             onRadiusChange={setSiteRadius}
             onExploreLayer={openExplorableLayer}
+            onSelectionChange={setSiteLayerIds}
+            onLoadOpenContext={loadOpenContext}
+            openContext={openContext}
           />
         ) : (
           <>
