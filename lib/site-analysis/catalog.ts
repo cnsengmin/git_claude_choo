@@ -31,19 +31,19 @@ export const SITE_LAYER_GROUPS: SiteLayerGroup[] = [
 ];
 
 export const SITE_LAYERS: SiteLayerDefinition[] = [
-  { id: "buildings", group: "physical", label: "건물", description: "건물 footprint와 건축물 기본 형상", status: "planned", source: "건축물 공간정보 / VWorld" },
+  { id: "buildings", group: "physical", label: "건물", description: "건물 footprint와 건축물 기본 형상", status: "partial", source: "OSM 즉시 보기 + 건축물 공간정보(예정)" },
   { id: "building-use", group: "physical", label: "건물 용도", description: "주용도 및 건축물 용도 분포", status: "planned", source: "건축물대장" },
   { id: "building-age", group: "physical", label: "건축 연대", description: "사용승인일 기반 건축연대", status: "planned", source: "건축물대장" },
   { id: "building-height", group: "physical", label: "높이·층수", description: "고층/저층 및 2.5D extrusion", status: "planned", source: "건축물대장 / VWorld" },
-  { id: "roads", group: "physical", label: "도로", description: "도로 및 가로망 구조", status: "planned", source: "국가공간정보 / OSM 보완" },
-  { id: "green-water", group: "physical", label: "녹지·하천", description: "공원·녹지·하천 및 오픈스페이스", status: "planned", source: "토지피복 / 공공공간정보" },
+  { id: "roads", group: "physical", label: "도로", description: "도로 및 가로망 구조", status: "partial", source: "OSM 즉시 보기 + 국가공간정보(예정)" },
+  { id: "green-water", group: "physical", label: "녹지·하천", description: "공원·녹지·하천 및 오픈스페이스", status: "partial", source: "OSM 즉시 보기 + 토지피복/공공자료(예정)" },
   { id: "terrain", group: "physical", label: "지형·등고선", description: "DEM 기반 지형과 등고선", status: "planned", source: "국토정보플랫폼 DEM" },
   { id: "cadastral", group: "physical", label: "지적", description: "필지 경계와 토지 단위", status: "planned", source: "연속지적도" },
 
   { id: "zoning", group: "planning", label: "용도지역", description: "도시계획 용도지역·지구·구역", status: "planned", source: "국토부 / VWorld / 토지이음" },
   { id: "district-plan", group: "planning", label: "지구단위계획", description: "지구단위계획 구역과 계획정보", status: "planned", source: "도시계획정보 / UPIS" },
   { id: "planned-facilities", group: "planning", label: "도시계획시설", description: "도로·공원 등 도시계획시설 결정", status: "planned", source: "국토부 도시계획시설정보" },
-  { id: "land-use", group: "planning", label: "토지이용", description: "현재 토지이용 및 피복 맥락", status: "planned", source: "토지피복지도 / OSM 보완" },
+  { id: "land-use", group: "planning", label: "토지이용", description: "현재 토지이용 및 피복 맥락", status: "partial", source: "OSM 즉시 보기 + 공식 토지피복지도(예정)" },
 
   { id: "transit", group: "mobility", label: "지하철·버스", description: "역·정류장 및 대중교통 시설", status: "planned", source: "국가/지자체 교통 OpenAPI" },
   { id: "walk-access", group: "mobility", label: "보행 접근성", description: "생활시설까지의 보행 네트워크 접근성", status: "planned", source: "도로망 + Network analysis" },
