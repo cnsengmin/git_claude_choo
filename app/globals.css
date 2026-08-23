@@ -135,6 +135,7 @@ button, input, select { font: inherit; }
 .badge { border-radius:999px; background:#f0f2f4; padding:3px 7px; font-size:11px; }
 .warning { margin: 12px 0; padding:10px; background:#fff8e6; border-radius:10px; font-size:12px; line-height:1.4; }
 .error { color:#b42318; font-size:12px; margin:10px 0; padding: 9px 10px; background: #fff2f0; border-radius: 10px; line-height: 1.45; }
+.error.compact { margin: 8px 0 0; font-size: 10px; }
 
 .site-panel { display: grid; gap: 12px; }
 .site-intro {
@@ -194,6 +195,45 @@ button, input, select { font: inherit; }
 }
 .analysis-summary b { display: block; font-size: 16px; }
 .analysis-summary span { display: block; margin-top: 2px; color: #7c838d; font-size: 9px; }
+
+.open-context-card {
+  padding: 11px;
+  border: 1px solid #dfe6e2;
+  border-radius: 13px;
+  background: #f8fbf9;
+}
+.open-context-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 9px;
+}
+.open-context-heading > div { display: grid; gap: 2px; min-width: 0; }
+.open-context-heading strong { font-size: 12px; }
+.open-context-heading small { color: #718078; font-size: 9px; line-height: 1.4; }
+.open-context-heading > span { flex: 0 0 auto; border-radius: 999px; padding: 3px 6px; background: #e6f2e9; color: #386246; font-size: 9px; font-weight: 800; }
+.open-context-card > button {
+  width: 100%;
+  min-height: 37px;
+  border: 1px solid #cad8ce;
+  border-radius: 9px;
+  background: #fff;
+  color: #284d34;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 800;
+}
+.open-context-card > button:disabled { cursor: not-allowed; opacity: .48; }
+.open-context-note { display: block; margin-top: 7px; color: #77827b; font-size: 9px; line-height: 1.4; }
+.osm-counts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin-top: 8px;
+}
+.osm-counts span { padding: 6px 7px; border-radius: 8px; background: #fff; color: #6d7770; font-size: 9px; }
+.osm-counts b { float: right; color: #26372c; font-size: 10px; }
 
 .layer-groups { display: grid; gap: 10px; }
 .layer-group {
