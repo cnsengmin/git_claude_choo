@@ -5,7 +5,14 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import type { AtlasPoi, PoiSearchResponse } from "@/lib/poi/types";
 
-type Provider = "kakao" | "naver" | "google";
+type Provider = "kakao" | "naver" | "google" | "hira";
+
+const PROVIDERS: { id: Provider; label: string; description: string }[] = [
+  { id: "kakao", label: "Kakao", description: "현재 지도 주변 POI" },
+  { id: "naver", label: "Naver", description: "국내 상호·장소 검색" },
+  { id: "google", label: "Google", description: "글로벌 POI·평점" },
+  { id: "hira", label: "HIRA 공식", description: "심평원 의료기관" },
+];
 
 const googleTypesFromQuery = (query: string): string[] | undefined => {
   if (query.includes("편의점")) return ["convenience_store"];
@@ -17,12 +24,17 @@ const googleTypesFromQuery = (query: string): string[] | undefined => {
   return undefined;
 };
 
+const isMedicalQuery = (query: string) => /병원|의원|의료|클리닉|내과|외과|치과|한의/u.test(query);
+
+const formatRadius = (radius: number) => radius >= 1000 ? `${(radius / 1000).toFixed(1)}km` : `${radius}m`;
+
 export default function AtlasMap() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const markersRef = useRef<Marker[]>([]);
   const [query, setQuery] = useState("카페");
   const [provider, setProvider] = useState<Provider>("kakao");
+  const [radius, setRadius] = useState(1200);
   const [data, setData] = useState<PoiSearchResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -62,13 +74,21 @@ export default function AtlasMap() {
     });
 
     if (points.length > 1) {
+      const first = points[0];
       const bounds = points.reduce(
         (acc, item) => acc.extend([item.lng as number, item.lat as number]),
-        new maplibregl.LngLatBounds([points[0].lng as number, points[0].lat as number], [points[0].lng as number, points[0].lat as number]),
+        new maplibregl.LngLatBounds([first.lng as number, first.lat as number], [first.lng as number, first.lat as number]),
       );
       map.fitBounds(bounds, { padding: 70, maxZoom: 16 });
     }
   }, [data]);
+
+  function selectProvider(next: Provider) {
+    setProvider(next);
+    setData(null);
+    setError(null);
+    if (next === "hira" && !isMedicalQuery(query)) setQuery("병원");
+  }
 
   async function runSearch(event?: FormEvent) {
     event?.preventDefault();
@@ -86,13 +106,21 @@ export default function AtlasMap() {
           query: query.trim(),
           x: String(center.lng),
           y: String(center.lat),
-          radius: "1200",
+          radius: String(radius),
           sort: "distance",
         });
         response = await fetch(`/api/poi/kakao?${params}`);
       } else if (provider === "naver") {
         const params = new URLSearchParams({ query: query.trim(), sort: "comment" });
         response = await fetch(`/api/poi/naver?${params}`);
+      } else if (provider === "hira") {
+        const params = new URLSearchParams({
+          query: query.trim(),
+          x: String(center.lng),
+          y: String(center.lat),
+          radius: String(radius),
+        });
+        response = await fetch(`/api/poi/hira?${params}`);
       } else {
         response = await fetch("/api/poi/google", {
           method: "POST",
@@ -100,7 +128,7 @@ export default function AtlasMap() {
           body: JSON.stringify({
             lat: center.lat,
             lng: center.lng,
-            radius: 1200,
+            radius,
             includedTypes: googleTypesFromQuery(query),
             maxResultCount: 15,
           }),
@@ -118,6 +146,8 @@ export default function AtlasMap() {
   }
 
   const mappedCount = data?.items.filter((item) => item.lat !== undefined && item.lng !== undefined).length ?? 0;
+  const official = data?.sourceKind === "official" || data?.provider === "hira";
+  const providerInfo = PROVIDERS.find((item) => item.id === provider);
 
   return (
     <main className="atlas-shell">
@@ -126,22 +156,53 @@ export default function AtlasMap() {
         <p className="subtitle">한국의 공간통계와 현재 POI를 함께 읽는 도시 아틀라스 MVP</p>
 
         <form className="search-row" onSubmit={runSearch}>
-          <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="카페, 편의점, 병원, 영화관..." />
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={provider === "hira" ? "병원/의원 또는 병원명..." : "카페, 편의점, 병원, 영화관..."}
+          />
           <button type="submit" disabled={loading}>{loading ? "검색중" : "검색"}</button>
         </form>
 
-        <div className="provider-row">
-          {(["kakao", "naver", "google"] as Provider[]).map((item) => (
-            <button key={item} className={provider === item ? "active" : ""} onClick={() => setProvider(item)}>
-              {item === "kakao" ? "Kakao" : item === "naver" ? "Naver" : "Google"}
+        <div className="provider-row" aria-label="POI 데이터 제공자 선택">
+          {PROVIDERS.map((item) => (
+            <button
+              type="button"
+              key={item.id}
+              className={provider === item.id ? "active" : ""}
+              onClick={() => selectProvider(item.id)}
+              title={item.description}
+            >
+              {item.label}
             </button>
           ))}
         </div>
 
+        <div className="radius-row">
+          <span>검색 반경</span>
+          <select value={radius} onChange={(event) => setRadius(Number(event.target.value))}>
+            <option value={500}>500m</option>
+            <option value={1200}>1.2km</option>
+            <option value={2000}>2km</option>
+            <option value={3000}>3km</option>
+          </select>
+          <small>{providerInfo?.description}</small>
+        </div>
+
         <div className="stat-grid">
-          <div className="stat-card"><b>{data?.count ?? 0}</b><span>현재 검색 POI</span></div>
+          <div className="stat-card"><b>{data?.count ?? 0}</b><span>{official ? "공식 의료시설" : "현재 검색 POI"}</span></div>
           <div className="stat-card"><b>{mappedCount}</b><span>지도 표시 가능</span></div>
         </div>
+
+        {data && (
+          <div className="source-strip">
+            <span className={`source-kind ${official ? "official" : "live"}`}>{official ? "공식" : "LIVE"}</span>
+            <div>
+              <strong>{data.areaLabel || `${data.provider} provider`}</strong>
+              <small>조회 {new Date(data.retrievedAt).toLocaleString("ko-KR")}</small>
+            </div>
+          </div>
+        )}
 
         {error && <div className="error">{error}</div>}
         {data?.warning && <div className="warning">{data.warning}</div>}
@@ -153,10 +214,11 @@ export default function AtlasMap() {
               <p>{item.roadAddress || item.address || "주소 정보 없음"}</p>
               <p>{item.categoryPath || item.category}</p>
               <div className="poi-meta">
-                <span className="badge">{item.provider}</span>
+                <span className="badge">{item.provider === "hira" ? "HIRA 공식" : item.provider}</span>
                 {item.distanceM !== undefined && <span className="badge">{item.distanceM}m</span>}
                 {item.rating !== undefined && <span className="badge">★ {item.rating}</span>}
                 {item.reviewCount !== undefined && <span className="badge">리뷰 {item.reviewCount}</span>}
+                {typeof item.metadata?.doctorCount === "number" && <span className="badge">의사 {item.metadata.doctorCount}명</span>}
               </div>
             </article>
           ))}
@@ -164,7 +226,7 @@ export default function AtlasMap() {
       </aside>
 
       <section className="map-wrap">
-        <div className="map-label">현재 지도 중심 기준 · 기본 반경 1.2km</div>
+        <div className="map-label">현재 지도 중심 기준 · 검색 반경 {formatRadius(radius)}</div>
         <div ref={mapContainer} className="map" />
       </section>
     </main>
