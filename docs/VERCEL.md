@@ -15,6 +15,7 @@ The connected Vercel account currently has no projects, so the repository must f
    - `KAKAO_REST_API_KEY`
    - `NAVER_CLIENT_ID`
    - `NAVER_CLIENT_SECRET`
+   - `DATA_GO_KR_SERVICE_KEY` (decoded/general key; required for the HIRA layer)
    - `GOOGLE_MAPS_API_KEY` (optional initially)
    - `NEXT_PUBLIC_MAP_STYLE_URL` (optional)
 5. Run the default build command (`npm run build`).
@@ -25,12 +26,13 @@ The connected Vercel account currently has no projects, so the repository must f
 - `/` renders the MapLibre map.
 - Kakao search for `카페`, `편의점`, `병원`, `영화관` returns POIs near the map center.
 - Naver local search returns Korean place results without exposing API secrets in the browser.
+- HIRA 공식 search for `병원` resolves the current map center to legal-dong areas, returns official hospital records, and distance-filters them to the selected radius.
 - Google provider remains optional until a Google Maps Platform key is configured.
-- Provider results display their source and are not presented as official establishment statistics.
+- Provider results display LIVE vs 공식 status and are not presented as a single authoritative establishment count.
 
 ## Next integrations after deploy
 
-1. HIRA medical facility official layer.
+1. HIRA pharmacy/detail expansion.
 2. LOCALDATA licensed-business layer.
 3. SGIS/census 100m population and establishment grids.
 4. Building footprints and building-to-business spatial matching.
