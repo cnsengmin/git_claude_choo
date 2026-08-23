@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { SgisStatsSnapshot } from "@/lib/sgis/client";
+import styles from "./SgisStatsCard.module.css";
 
 type Props = {
   center: { lng: number; lat: number };
@@ -38,8 +39,8 @@ export default function SgisStatsCard({ center }: Props) {
   }
 
   return (
-    <section className="official-stats-card">
-      <div className="official-stats-heading">
+    <section className={styles.card}>
+      <div className={styles.heading}>
         <div>
           <strong>SGIS 공식 통계</strong>
           <small>지도 중심이 속한 행정동의 인구·사업체·종사자를 조회합니다.</small>
@@ -47,7 +48,7 @@ export default function SgisStatsCard({ center }: Props) {
         <span>OFFICIAL</span>
       </div>
 
-      <div className="official-stats-controls">
+      <div className={styles.controls}>
         <label>
           <span>기준연도</span>
           <select value={year} onChange={(event) => setYear(Number(event.target.value))}>
@@ -63,11 +64,11 @@ export default function SgisStatsCard({ center }: Props) {
         </button>
       </div>
 
-      {error && <div className="error compact">{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
 
       {data && (
         <>
-          <div className="official-area-strip">
+          <div className={styles.area}>
             <div>
               <span>행정동</span>
               <strong>{data.area.sgisAdmName}</strong>
@@ -82,7 +83,7 @@ export default function SgisStatsCard({ center }: Props) {
             </div>
           </div>
 
-          <div className="official-stat-grid">
+          <div className={styles.grid}>
             <div><span>총인구</span><b>{formatNumber(data.population.totalPopulation)}</b><small>명</small></div>
             <div><span>사업체</span><b>{formatNumber(data.business.establishments)}</b><small>개</small></div>
             <div><span>종사자</span><b>{formatNumber(data.business.workers)}</b><small>명</small></div>
@@ -91,7 +92,7 @@ export default function SgisStatsCard({ center }: Props) {
             <div><span>가구</span><b>{formatNumber(data.population.households)}</b><small>가구</small></div>
           </div>
 
-          <div className="official-provenance">
+          <div className={styles.provenance}>
             <strong>SGIS · 공식 집계통계</strong>
             <span>조회 {new Date(data.retrievedAt).toLocaleString("ko-KR")}</span>
             <small>{data.warning}</small>
