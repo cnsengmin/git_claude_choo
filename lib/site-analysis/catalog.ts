@@ -48,9 +48,10 @@ export const SITE_LAYERS: SiteLayerDefinition[] = [
   { id: "transit", group: "mobility", label: "지하철·버스", description: "역·정류장 및 대중교통 시설", status: "planned", source: "국가/지자체 교통 OpenAPI" },
   { id: "walk-access", group: "mobility", label: "보행 접근성", description: "생활시설까지의 보행 네트워크 접근성", status: "planned", source: "도로망 + Network analysis" },
 
-  { id: "population-100m", group: "people", label: "100m 인구", description: "격자 인구와 연령구조", status: "planned", source: "SGIS 인구격자" },
-  { id: "business-stats", group: "people", label: "사업체 통계", description: "업종별 사업체·종사자 및 시계열", status: "planned", source: "SGIS / 전국사업체조사" },
-  { id: "employment", group: "people", label: "고용·종사자", description: "종사자 밀도와 직주 구조", status: "planned", source: "사업체 통계" },
+  { id: "population-admin", group: "people", label: "행정동 인구", description: "지도 중심 행정동의 총인구·평균연령·인구밀도·가구", status: "available", source: "SGIS 총조사 주요지표 API" },
+  { id: "population-100m", group: "people", label: "100m 인구", description: "100m 격자 인구와 연령구조", status: "planned", source: "SGIS 자료제공 / 인구격자" },
+  { id: "business-stats", group: "people", label: "사업체 통계", description: "지도 중심 행정동의 공식 사업체·종사자 집계 및 향후 업종별 시계열", status: "available", source: "SGIS 전국사업체조사 API" },
+  { id: "employment", group: "people", label: "고용·종사자", description: "현재 행정동 종사자 집계를 시작으로 종사자 밀도와 직주 구조 확장", status: "partial", source: "SGIS 사업체 통계" },
   { id: "floating-pop", group: "people", label: "생활·유동인구", description: "생활이동·유동인구 기반 활동성", status: "planned", source: "지자체 / 생활이동 데이터" },
 
   { id: "live-poi", group: "places", label: "실시간 POI", description: "현재 지도 주변 장소 검색", status: "available", source: "Kakao / Naver / Google" },
@@ -68,7 +69,7 @@ export const SITE_PRESETS: Record<string, { label: string; layerIds: string[] }>
   },
   neighborhood: {
     label: "생활권",
-    layerIds: ["roads", "green-water", "transit", "population-100m", "business-stats", "live-poi", "medical"],
+    layerIds: ["roads", "green-water", "transit", "population-admin", "population-100m", "business-stats", "live-poi", "medical"],
   },
   commercial: {
     label: "상권·활동",
