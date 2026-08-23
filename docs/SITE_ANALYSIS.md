@@ -25,6 +25,8 @@ The initial MVP exposes four radius presets around the current map center:
 
 Later versions may also support administrative boundaries and a user-drawn polygon.
 
+The OpenStreetMap Overpass fallback is capped at 1.5km in the MVP to keep browser/server requests bounded. A 3km Site Analysis can still be defined, but OSM context is explicitly reported as a smaller fallback extent when capped.
+
 ## Presets
 
 - **Architecture Site**: building geometry/use/age/height, roads, terrain, cadastral, zoning.
@@ -38,9 +40,9 @@ The international site-analysis references are translated into Korea-first sourc
 | Site-analysis need | Korea-first Atlas source strategy |
 |---|---|
 | satellite/context | public aerial/satellite imagery where licensing permits; external imagery as context only |
-| roads/buildings | national/open spatial data with OSM as a complementary source |
+| roads/buildings | official/national spatial data, with OSM Overpass available immediately as a complementary context source |
 | building attributes | building register / BuildingHUB / VWorld-compatible public data |
-| land use | official land-cover and planning datasets, OSM only as a complement |
+| land use | official land-cover and planning datasets, with OSM as an immediate context complement |
 | topography/contours | national DEM / digital topographic data |
 | cadastral | continuous cadastral data |
 | planning | official zoning, district-unit-plan, UPIS/land-use planning information |
@@ -59,6 +61,8 @@ A map layer is not treated as analysis by itself. Atlas should preserve at least
 - CRS / normalization method when relevant;
 - calculation method for derived layers.
 
+OpenStreetMap data is labeled as an open-data **context/fallback layer**, not as an official Korean building, road, cadastral, or planning record. Attribution is preserved as `© OpenStreetMap contributors (ODbL)`.
+
 ## Current implementation
 
 The `atlas-mvp` branch now includes:
@@ -68,17 +72,22 @@ The `atlas-mvp` branch now includes:
 - the five layer groups and Korea-first source registry;
 - architecture/neighborhood/commercial presets;
 - layer implementation status (`available`, `partial`, `planned`);
-- jump-back from an available Site Analysis layer to a real provider search;
+- an OSM Overpass server route at `GET /api/site/osm?x=...&y=...&radius=...`;
+- immediate OSM context rendering for building footprints, roads, land use, and green/water features;
+- layer toggles that hide/show the loaded OSM context by stable Site Analysis layer ID;
+- OSM feature counts, retrieval time, source warning and attribution in the Site Analysis panel;
+- jump-back from an available Places layer to a real provider search;
 - an analysis-configuration snapshot action.
 
-The analysis catalog is defined in `lib/site-analysis/catalog.ts` so later data providers can attach to stable layer IDs without rewriting the UI.
+The analysis catalog is defined in `lib/site-analysis/catalog.ts` so official Korean providers can replace or supplement OSM without rewriting the UI.
 
 ## Next implementation sequence
 
-1. Vercel Preview + API-key runtime verification.
+1. Vercel Preview + API-key/runtime verification, including the OSM Overpass route.
 2. HIRA pharmacy/details and official culture/public-facility datasets.
 3. LOCALDATA licensed businesses.
 4. SGIS 100m population/business grids.
-5. Building footprints + register attributes + cadastral/zoning.
-6. deck.gl density, grid and 2.5D building-activity views.
-7. automatic 15+ diagram generation and exploded 3D export.
+5. Official building footprints + register attributes + cadastral/zoning.
+6. National terrain/green/transit layers.
+7. deck.gl density, grid and 2.5D building-activity views.
+8. automatic 15+ diagram generation and exploded 3D export.
