@@ -1,4 +1,5 @@
-export type PoiProvider = "kakao" | "naver" | "google" | "public";
+export type PoiProvider = "kakao" | "naver" | "google" | "hira" | "public";
+export type PoiSourceKind = "live" | "official";
 
 export type AtlasPoiCategory =
   | "food"
@@ -39,8 +40,11 @@ export interface AtlasPoi {
 
 export interface PoiSearchResponse {
   provider: PoiProvider;
+  sourceKind?: PoiSourceKind;
   query?: string;
   count: number;
+  totalAvailable?: number;
+  areaLabel?: string;
   items: AtlasPoi[];
   retrievedAt: string;
   warning?: string;
