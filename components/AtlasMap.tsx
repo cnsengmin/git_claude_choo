@@ -6,6 +6,8 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import type { AtlasPoi, PoiSearchResponse } from "@/lib/poi/types";
 
 type Provider = "kakao" | "naver" | "google" | "hira";
+type ProviderStatus = { configured: boolean; requires: string[]; note?: string };
+type StatusResponse = { providers: Record<Provider, ProviderStatus> };
 
 const PROVIDERS: { id: Provider; label: string; description: string }[] = [
   { id: "kakao", label: "Kakao", description: "현재 지도 주변 POI" },
@@ -25,7 +27,6 @@ const googleTypesFromQuery = (query: string): string[] | undefined => {
 };
 
 const isMedicalQuery = (query: string) => /병원|의원|의료|클리닉|내과|외과|치과|한의/u.test(query);
-
 const formatRadius = (radius: number) => radius >= 1000 ? `${(radius / 1000).toFixed(1)}km` : `${radius}m`;
 
 export default function AtlasMap() {
@@ -36,8 +37,25 @@ export default function AtlasMap() {
   const [provider, setProvider] = useState<Provider>("kakao");
   const [radius, setRadius] = useState(1200);
   const [data, setData] = useState<PoiSearchResponse | null>(null);
+  const [providerStatus, setProviderStatus] = useState<StatusResponse["providers"] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/status")
+      .then(async (response) => {
+        if (!response.ok) throw new Error(`status ${response.status}`);
+        return response.json() as Promise<StatusResponse>;
+      })
+      .then((payload) => {
+        if (!cancelled) setProviderStatus(payload.providers);
+      })
+      .catch(() => {
+        if (!cancelled) setProviderStatus(null);
+      });
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     if (!mapContainer.current || mapRef.current) return;
@@ -148,6 +166,7 @@ export default function AtlasMap() {
   const mappedCount = data?.items.filter((item) => item.lat !== undefined && item.lng !== undefined).length ?? 0;
   const official = data?.sourceKind === "official" || data?.provider === "hira";
   const providerInfo = PROVIDERS.find((item) => item.id === provider);
+  const selectedStatus = providerStatus?.[provider];
 
   return (
     <main className="atlas-shell">
@@ -165,18 +184,29 @@ export default function AtlasMap() {
         </form>
 
         <div className="provider-row" aria-label="POI 데이터 제공자 선택">
-          {PROVIDERS.map((item) => (
-            <button
-              type="button"
-              key={item.id}
-              className={provider === item.id ? "active" : ""}
-              onClick={() => selectProvider(item.id)}
-              title={item.description}
-            >
-              {item.label}
-            </button>
-          ))}
+          {PROVIDERS.map((item) => {
+            const status = providerStatus?.[item.id];
+            const statusTitle = status && !status.configured ? `미설정: ${status.requires.join(", ")}` : item.description;
+            return (
+              <button
+                type="button"
+                key={item.id}
+                className={provider === item.id ? "active" : ""}
+                onClick={() => selectProvider(item.id)}
+                title={statusTitle}
+              >
+                <span className={`status-dot ${status ? (status.configured ? "ready" : "missing") : "unknown"}`} aria-hidden="true" />
+                {item.label}
+              </button>
+            );
+          })}
         </div>
+
+        {selectedStatus && !selectedStatus.configured && (
+          <div className="config-warning">
+            이 provider는 아직 환경변수가 필요합니다: <b>{selectedStatus.requires.join(", ")}</b>
+          </div>
+        )}
 
         <div className="radius-row">
           <span>검색 반경</span>
