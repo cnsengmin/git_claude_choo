@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import SgisStatsCard from "@/components/SgisStatsCard";
 import {
   SITE_LAYER_GROUPS,
   SITE_LAYERS,
@@ -139,6 +140,8 @@ export default function SiteAnalysisPanel({
         {openContext.warning && <small className="open-context-note">{openContext.warning}</small>}
       </section>
 
+      <SgisStatsCard center={center} />
+
       <div className="layer-groups">
         {SITE_LAYER_GROUPS.map((group) => {
           const layers = SITE_LAYERS.filter((layer) => layer.group === group.id);
@@ -193,7 +196,7 @@ export default function SiteAnalysisPanel({
           <p>
             반경 {radius >= 1000 ? `${radius / 1000}km` : `${radius}m`} · {selected.length}개 레이어 · {new Date(snapshotAt).toLocaleString("ko-KR")}
           </p>
-          <small>OSM은 즉시 맥락 확인용 보완 레이어이며, 건물대장·지적·도시계획·SGIS 등 공식 데이터가 연결되는 순서대로 동일한 구성에 분석 결과가 채워집니다.</small>
+          <small>OSM은 즉시 맥락 확인용 보완 레이어이며, SGIS 행정동 통계는 공식 집계값입니다. 100m 격자·건물대장·지적·도시계획 데이터가 연결되는 순서대로 동일한 구성에 더 세밀한 분석 결과가 채워집니다.</small>
         </div>
       )}
     </div>
