@@ -2,6 +2,19 @@ import type { AtlasSourceManifest } from "./types";
 
 export const SOURCE_REGISTRY: AtlasSourceManifest[] = [
   {
+    id: "mois-code",
+    name: "행정안전부 행정표준코드 / 행정구역 변경내역",
+    category: "administration",
+    official: true,
+    agentGrade: "A",
+    accessMethods: ["file-download"],
+    sourceFormats: ["xls", "xlsx", "csv", "txt", "html"],
+    spatialLevels: ["sido", "sigungu", "admin-dong", "legal-dong"],
+    preferredFor: ["administrative-code", "legal-dong-code", "admin-legal-crosswalk", "region-change-history"],
+    licenseNote: "Preserve the official source page, reference/effective date and original code columns with every normalized region snapshot.",
+    notes: "Primary region-code authority. Public code search/full-download pages and MOIS change notices are accessible without an API key, but download/attachment URLs may change and therefore need periodic adapter maintenance.",
+  },
+  {
     id: "kosis",
     name: "KOSIS 국가통계포털",
     category: "statistics",
@@ -27,7 +40,7 @@ export const SOURCE_REGISTRY: AtlasSourceManifest[] = [
     spatialLevels: ["sido", "sigungu", "admin-dong", "grid-1km", "grid-500m", "grid-100m"],
     preferredFor: ["population", "business", "workers", "grid-statistics"],
     licenseNote: "Preserve SGIS source/reference year, native administrative codes and native grid IDs.",
-    notes: "Primary spatial-statistics provider. Existing MVP already queries administrative-dong population/business statistics.",
+    notes: "Primary spatial-statistics provider. Existing MVP already queries administrative-dong population/business statistics; small-area grid assets remain a separate ingestion path.",
   },
   {
     id: "data-go-kr",
@@ -56,7 +69,7 @@ export const SOURCE_REGISTRY: AtlasSourceManifest[] = [
     preferredFor: ["cadastral", "zoning", "planning", "national-spatial-layers", "map-reference"],
     fallbackIds: ["osm"],
     licenseNote: "Store layer-specific VWorld/public-data license and traffic metadata; do not assume every layer can be mirrored or redistributed.",
-    notes: "Scriptable provider. Prefer WFS/Data API for extractable features and WMS/WMTS for display/verification. Official samples demonstrate API-key based WMTS, WMS, geocoding and 3D usage.",
+    notes: "Scriptable provider. Prefer WFS/Data API for extractable features and WMS/WMTS for display/verification. The allowlist intentionally separates catalog-verified layers from runtime-verified layer/type names.",
   },
   {
     id: "osm",
