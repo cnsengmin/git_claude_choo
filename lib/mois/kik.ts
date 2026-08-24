@@ -118,23 +118,41 @@ function isoDate(value: string) {
   return `${digits.slice(0, 4)}-${digits.slice(4, 6)}-${digits.slice(6, 8)}`;
 }
 
-function parentOfficialCode(code: string, regionType: AtlasRegionType) {
+/**
+ * KIK administrative codes are hierarchical, but a simple sido -> sigungu -> dong
+ * assumption is not sufficient. A general city can contain autonomous/non-autonomous
+ * gu records before the dong level (e.g. Anyang-si -> Dongan-gu -> Burim-dong), and
+ * Sejong has its own intermediate administrative code. Resolve the parent by finding
+ * the longest zero-padded prefix that actually exists in the same snapshot.
+ */
+export function resolveKikParentCode(code: string, knownCodes: ReadonlySet<string>) {
   if (!/^\d{10}$/.test(code)) return null;
-  if (regionType === "sigungu") return `${code.slice(0, 2)}00000000`;
-  if (regionType === "admin-dong" || regionType === "legal-dong") return `${code.slice(0, 5)}00000`;
+  for (let prefixLength = 9; prefixLength >= 2; prefixLength -= 1) {
+    const candidate = `${code.slice(0, prefixLength)}${"0".repeat(10 - prefixLength)}`;
+    if (candidate !== code && knownCodes.has(candidate)) return candidate;
+  }
   return null;
 }
 
 function inferAdminType(row: KikAdminRow): AtlasRegionType {
   if (row.eupMyeonDongName) return "admin-dong";
   if (row.sigunguName) return "sigungu";
+  // Some KIK intermediate agencies (for example Sejong's 3611000000) have
+  // a blank sigunguName. Their nested position is preserved by parent IDs;
+  // the Atlas type remains sigungu for compatibility with the current model.
+  if (!row.adminCode.endsWith("00000000")) return "sigungu";
   return "sido";
 }
 
 function inferLegalType(row: KikLegalRow): AtlasRegionType {
   if (row.eupMyeonDongName || row.dongRiName) return "legal-dong";
   if (row.sigunguName) return "sigungu";
+  if (!row.legalCode.endsWith("00000000")) return "sigungu";
   return "sido";
+}
+
+function adminDisplayName(row: KikAdminRow) {
+  return row.eupMyeonDongName || row.sigunguName || row.sidoName;
 }
 
 function legalDisplayName(row: KikLegalRow) {
@@ -143,15 +161,16 @@ function legalDisplayName(row: KikLegalRow) {
 }
 
 export function normalizeKikAdminRows(rows: KikAdminRow[], snapshotDate?: string): AtlasRegionRef[] {
+  const knownCodes = new Set(rows.map((row) => row.adminCode).filter(Boolean));
   return rows.map((row) => {
     const regionType = inferAdminType(row);
-    const parentCode = parentOfficialCode(row.adminCode, regionType);
+    const parentCode = resolveKikParentCode(row.adminCode, knownCodes);
     const validFrom = isoDate(row.createdAt);
     return {
       ...normalizeMoisRegion({
         regionType,
         officialCode: row.adminCode,
-        name: row.eupMyeonDongName || row.sigunguName || row.sidoName,
+        name: adminDisplayName(row),
         parentAtlasRegionId: parentCode ? `external:mois:${parentCode}` : null,
         validFrom,
         validTo: isoDate(row.abolishedAt) ?? null,
@@ -164,9 +183,10 @@ export function normalizeKikAdminRows(rows: KikAdminRow[], snapshotDate?: string
 }
 
 export function normalizeKikLegalRows(rows: KikLegalRow[], snapshotDate?: string): AtlasRegionRef[] {
+  const knownCodes = new Set(rows.map((row) => row.legalCode).filter(Boolean));
   return rows.map((row) => {
     const regionType = inferLegalType(row);
-    const parentCode = parentOfficialCode(row.legalCode, regionType);
+    const parentCode = resolveKikParentCode(row.legalCode, knownCodes);
     const validFrom = isoDate(row.createdAt);
     return {
       ...normalizeMoisRegion({
