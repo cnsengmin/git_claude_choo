@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getMvpAdminLegalLinks } from "@/lib/mois/mvp-crosswalk";
 import { getMvpRegion, getMvpRegionPath, listMvpRegionChildren, MVP_REGION_SNAPSHOT } from "@/lib/mois/mvp-regions";
 
 export async function GET(request: NextRequest) {
@@ -23,6 +24,7 @@ export async function GET(request: NextRequest) {
       path,
       levels,
       children: listMvpRegionChildren(code),
+      legalLinks: region.kind === "admin-dong" ? getMvpAdminLegalLinks(code) : [],
     });
   }
 
