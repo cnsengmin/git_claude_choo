@@ -38,6 +38,7 @@ export type AtlasRegionType = "sido" | "sigungu" | "admin-dong" | "legal-dong";
 export type AtlasRegionRelationType = "rename" | "split" | "merge" | "new" | "abolished" | "boundary-change" | "admin-legal-crosswalk";
 export type AtlasEntityType = "region" | "relation" | "grid" | "feature" | "raster" | "statistic";
 export type AtlasLayerStatus = "available" | "partial" | "planned";
+export type AtlasLayerRole = "analysis" | "reference";
 export type AtlasExportTarget = "web" | "data" | "qgis" | "cad" | "mcp";
 export type AtlasDatasetVerification = "source-verified" | "catalogued" | "runtime-verified" | "manual";
 
@@ -94,6 +95,7 @@ export interface AtlasLayerManifest {
   title: string;
   group: "administration" | "statistics" | "built" | "planning" | "mobility" | "places" | "environment";
   entityType: AtlasEntityType;
+  role?: AtlasLayerRole;
   geometryType?: "point" | "line" | "polygon" | "raster" | "none";
   sourceId: string;
   fallbackSourceIds?: string[];
