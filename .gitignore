@@ -13,3 +13,6 @@ pnpm-debug.log*
 # Keep only manifests/receipts and reproducible ingestion code in Git.
 data/raw/*
 !data/raw/README.md
+
+# Local SGIS raw ZIP/SHP/CSV workspace. Do not commit bulk source files.
+/SGIS/
