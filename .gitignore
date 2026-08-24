@@ -8,3 +8,8 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+
+# Raw/bulk source downloads are stored outside the public code repository.
+# Keep only manifests/receipts and reproducible ingestion code in Git.
+data/raw/*
+!data/raw/README.md
