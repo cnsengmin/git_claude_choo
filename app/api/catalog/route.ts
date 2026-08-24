@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { CRS_REGISTRY, LAYER_REGISTRY, SOURCE_REGISTRY } from "@/lib/atlas-registry";
+import {
+  CRS_REGISTRY,
+  EXPORT_PROFILES,
+  GRID_SYSTEM_REGISTRY,
+  INDICATOR_REGISTRY,
+  LAYER_REGISTRY,
+  REGION_REGISTRY_META,
+  SOURCE_REGISTRY,
+} from "@/lib/atlas-registry";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -26,19 +34,28 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({
     app: "atlas-kr",
-    schemaVersion: "0.1.0",
+    schemaVersion: "0.2.0",
     defaults: {
       analysisCrs: "EPSG:5179",
       webCoordinateCrs: "EPSG:4326",
       displayCrs: "EPSG:3857",
+      regionFirst: true,
+      preserveNativeIds: true,
     },
     filters: { source, group, status },
     counts: {
       sources: sources.length,
       layers: layers.length,
       crs: CRS_REGISTRY.length,
+      gridSystems: GRID_SYSTEM_REGISTRY.length,
+      indicators: INDICATOR_REGISTRY.length,
+      exportProfiles: EXPORT_PROFILES.length,
     },
+    regionRegistry: REGION_REGISTRY_META,
+    gridSystems: GRID_SYSTEM_REGISTRY,
     crs: CRS_REGISTRY,
+    indicators: INDICATOR_REGISTRY,
+    exportProfiles: EXPORT_PROFILES,
     sources,
     layers,
   });
