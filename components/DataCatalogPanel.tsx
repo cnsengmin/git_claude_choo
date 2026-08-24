@@ -154,6 +154,7 @@ export default function DataCatalogPanel() {
             regionCode: region.code,
             regionName: region.path.map((item) => item.name).join(" "),
             regionSnapshot: region.snapshotDate,
+            legalCodes: region.legalLinks.map((link) => link.legalCode),
             year,
           },
           layerIds: selected,
@@ -200,6 +201,7 @@ export default function DataCatalogPanel() {
         <span>분석 CRS <b>{catalog?.defaults.analysisCrs ?? "EPSG:5179"}</b></span>
         <span>Native ID <b>보존</b></span>
         <span>지역 <b>{region?.code ?? "미선택"}</b></span>
+        <span>법정동 연결 <b>{region?.legalLinks.length ?? 0}</b></span>
         <span>선택 <b>{selected.length}</b></span>
       </div>
 
