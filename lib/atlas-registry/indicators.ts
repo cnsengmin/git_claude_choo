@@ -1,0 +1,78 @@
+import type { AtlasIndicatorDefinition } from "./types";
+
+export const INDICATOR_REGISTRY: AtlasIndicatorDefinition[] = [
+  {
+    id: "population.total",
+    title: "총인구",
+    category: "population",
+    unit: "person",
+    spatialLevels: ["sido", "sigungu", "admin-dong", "grid-1km", "grid-500m", "grid-100m"],
+    preferredSourceIds: ["sgis", "kosis"],
+    notes: "Prefer SGIS for spatially detailed units and KOSIS for broad regional time series.",
+  },
+  {
+    id: "population.youth",
+    title: "청년인구",
+    category: "population",
+    unit: "person",
+    spatialLevels: ["sido", "sigungu", "admin-dong", "grid-100m"],
+    preferredSourceIds: ["sgis", "kosis"],
+    notes: "Age definition must travel with the dataset/analysis recipe; Atlas should not silently impose one universal youth age band.",
+  },
+  {
+    id: "population.elderly",
+    title: "고령인구",
+    category: "population",
+    unit: "person",
+    spatialLevels: ["sido", "sigungu", "admin-dong", "grid-100m"],
+    preferredSourceIds: ["sgis", "kosis"],
+    notes: "Default presentation may use 65+ only when source metadata supports it; preserve the exact age-band definition.",
+  },
+  {
+    id: "household.total",
+    title: "가구 수",
+    category: "household",
+    unit: "household",
+    spatialLevels: ["sido", "sigungu", "admin-dong", "grid-100m"],
+    preferredSourceIds: ["sgis", "kosis"],
+    notes: "Normalized household count for region/grid comparison.",
+  },
+  {
+    id: "business.total",
+    title: "사업체 수",
+    category: "business",
+    unit: "establishment",
+    spatialLevels: ["sido", "sigungu", "admin-dong", "grid-100m"],
+    preferredSourceIds: ["sgis", "kosis"],
+    notes: "Official establishment statistics remain distinct from POI search counts and licensing records.",
+  },
+  {
+    id: "employment.workers",
+    title: "종사자 수",
+    category: "employment",
+    unit: "person",
+    spatialLevels: ["sido", "sigungu", "admin-dong", "grid-100m"],
+    preferredSourceIds: ["sgis", "kosis"],
+    notes: "Official worker statistics; do not infer employee counts from POI providers.",
+  },
+  {
+    id: "facility.medical.count",
+    title: "의료시설 수",
+    category: "facility",
+    unit: "facility",
+    spatialLevels: ["sigungu", "admin-dong", "grid-500m", "grid-100m", "feature"],
+    preferredSourceIds: ["hira"],
+    notes: "Derived count from official HIRA facility features at the selected spatial unit.",
+  },
+  {
+    id: "environment.ndvi.mean",
+    title: "평균 NDVI",
+    category: "environment",
+    unit: "index",
+    spatialLevels: ["sigungu", "admin-dong", "grid-500m", "grid-100m", "raster-scene"],
+    preferredSourceIds: ["ngii-satellite"],
+    notes: "Derived raster indicator. Acquisition date, sensor/product and thresholding method must remain in provenance.",
+  },
+];
+
+export const getIndicator = (id: string) => INDICATOR_REGISTRY.find((indicator) => indicator.id === id);
