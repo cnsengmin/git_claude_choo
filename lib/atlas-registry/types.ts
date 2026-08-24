@@ -1,6 +1,7 @@
 export type AgentAccessGrade = "A" | "B" | "C" | "D";
 
 export type SourceCategory =
+  | "administration"
   | "statistics"
   | "spatial-statistics"
   | "vector"
@@ -33,10 +34,10 @@ export type SpatialLevel =
   | "feature"
   | "raster-scene";
 
-export type AtlasEntityType = "region" | "grid" | "feature" | "raster" | "statistic";
-
+export type AtlasRegionType = "sido" | "sigungu" | "admin-dong" | "legal-dong";
+export type AtlasRegionRelationType = "rename" | "split" | "merge" | "new" | "abolished" | "boundary-change" | "admin-legal-crosswalk";
+export type AtlasEntityType = "region" | "relation" | "grid" | "feature" | "raster" | "statistic";
 export type AtlasLayerStatus = "available" | "partial" | "planned";
-
 export type AtlasExportTarget = "web" | "data" | "qgis" | "cad" | "mcp";
 
 export interface AtlasCrsDefinition {
@@ -87,12 +88,28 @@ export interface AtlasLayerManifest {
 
 export interface AtlasRegionRef {
   atlasRegionId: string;
-  regionType: "sido" | "sigungu" | "admin-dong" | "legal-dong";
+  regionType: AtlasRegionType;
   officialCode: string;
   name: string;
+  sourceId?: string;
+  parentAtlasRegionId?: string | null;
   validFrom?: string;
   validTo?: string | null;
   boundaryVersion?: string;
+  legalCode?: string | null;
+  residentCode?: string | null;
+  cadastralCode?: string | null;
+}
+
+export interface AtlasRegionRelation {
+  id: string;
+  relationType: AtlasRegionRelationType;
+  fromRegionIds: string[];
+  toRegionIds: string[];
+  effectiveDate?: string;
+  sourceId: string;
+  sourceRecordId?: string;
+  notes?: string;
 }
 
 export interface AtlasGridRef {
@@ -101,4 +118,34 @@ export interface AtlasGridRef {
   gridSystem: string;
   gridSizeM: 100 | 500 | 1000;
   crs: string;
+}
+
+export interface AtlasGridSystemDefinition {
+  id: string;
+  providerId: string;
+  title: string;
+  sizesM: Array<100 | 500 | 1000>;
+  crs: string;
+  nativeIdPolicy: "preserve";
+  notes: string;
+}
+
+export interface AtlasIndicatorDefinition {
+  id: string;
+  title: string;
+  category: "population" | "household" | "business" | "employment" | "building" | "mobility" | "environment" | "facility";
+  unit: string;
+  spatialLevels: SpatialLevel[];
+  preferredSourceIds: string[];
+  notes: string;
+}
+
+export interface AtlasExportProfile {
+  id: string;
+  title: string;
+  target: AtlasExportTarget;
+  primaryFormats: string[];
+  preserveSourceCrs: boolean;
+  defaultOutputCrs?: string;
+  notes: string;
 }
