@@ -2,7 +2,7 @@
 
 Atlas KR is a Korea-focused spatial data hub MVP. Its core purpose is to make Korean statistics and geospatial datasets easy to discover, normalize, compare and export as independent analysis-ready layers.
 
-The product is moving from a map-first prototype toward a **region-first compatibility layer**:
+The MVP is now **region-first** rather than radius-first:
 
 ```text
 Sido -> Sigungu -> Eup/Myeon/Dong -> official Grid
@@ -14,47 +14,54 @@ Sido -> Sigungu -> Eup/Myeon/Dong -> official Grid
              Web / QGIS / CAD / MCP
 ```
 
-See `docs/SPATIAL_DATA_HUB_ARCHITECTURE.md` for the current architecture, CRS/format strategy and QGIS/CAD direction.
+See `docs/SPATIAL_DATA_HUB_ARCHITECTURE.md` and `docs/REGION_GRID_REGISTRY.md` for the current architecture, region/grid/version policy, CRS/format strategy and QGIS/CAD direction.
 
 ## Current MVP
 
-- Next.js + MapLibre web map centered on the initial Pyeongchon/Burim development area
-- Existing exploratory UI
-  - **Explore / POI**: request-time place search and official facility lookup
-  - **Site Analysis**: experimental radius-based target-area view; no longer the primary data model
-- Open-source context through OSM Overpass
-  - buildings
-  - roads
-  - land use
-  - green/water
-- Korea-first live POI providers
-  - Kakao Local
-  - Naver Local Search
-  - Google Places (optional)
-- Official/public providers
-  - HIRA hospital information from data.go.kr
-  - SGIS administrative-dong population and establishment statistics
-- New spatial-data registry foundation
-  - `lib/atlas-registry/types.ts`
-  - `lib/atlas-registry/crs.ts`
-  - `lib/atlas-registry/sources.ts`
-  - `lib/atlas-registry/layers.ts`
-  - `GET /api/catalog`
-- VWorld registered as a scriptable Agent Grade B spatial provider
-  - WMS/WFS/WMTS access model
-  - server-side URL/client helpers in `lib/vworld/client.ts`
-  - actual extractable VWorld layer allowlist/runtime validation is a next milestone
+- Next.js + MapLibre exploratory map remains available as **Map Prototype**
+- The default home workspace is now a **Region-first Data Catalog**
+  - spatial-unit selector: sigungu / eup-myeon-dong / 1km / 500m / 100m grid
+  - common layer list grouped by administration/statistics/built/planning/mobility/places/environment
+  - provider, Agent accessibility grade, normalized formats and implementation status
+  - independent layer selection
+  - reproducible Data/QGIS/MCP/CAD/Web export-plan preview
+- Existing exploratory providers
+  - Kakao / Naver / Google request-time POI
+  - HIRA official medical facilities
+  - SGIS administrative-dong population/business statistics
+  - OSM Overpass buildings/roads/land-use/green-water context
+- Registry foundation
+  - source / layer / CRS registries
+  - versioned region and region-relation model
+  - SGIS official-grid registry with native grid IDs preserved
+  - common indicator dictionary
+  - export profiles
+- MOIS/code.go adapter foundation
+  - preserves official code strings and validity periods
+  - supports administrative/legal-dong crosswalk relations
+  - supports rename/split/merge/new/abolished/boundary-change relations
+- SGIS grid-file adapter foundation
+  - preserves provider boundary/grid codes
+  - namespaces Atlas IDs as `sgis:<size>m:<native-id>`
+  - normalizes grid statistics to a common long-table form
+- VWorld Agent Grade B integration
+  - WMS/WFS/WMTS helper client
+  - conservative layer verification registry
+  - WMS display layers are separated from extractable WFS/Data-API candidates
+- KOSIS generic adapter
+  - statistics-table search endpoint
+  - generic statistics-data request endpoint
+  - normalized KOSIS result rows for later indicator mappings
 
 ## Core data model
 
-Atlas keeps five durable spatial entities:
-
 ```text
-REGION     administrative/legal regions with versioned codes
-GRID       native official grid identifiers + Atlas namespace
-FEATURE    buildings/roads/parcels/facilities/POI
-RASTER     satellite/DEM/NDVI and product metadata
-STATISTIC  long-table region/grid statistics
+REGION       versioned administrative/legal regions
+RELATION     rename/split/merge/crosswalk/change history
+GRID         native official grid identifiers + Atlas namespace
+FEATURE      buildings/roads/parcels/facilities/POI
+RASTER       satellite/DEM/NDVI and product metadata
+STATISTIC    long-table region/grid statistics
 ```
 
 ### CRS policy
@@ -93,8 +100,6 @@ npm install
 npm run dev
 ```
 
-Current/provider variables:
-
 - `KAKAO_REST_API_KEY`
 - `NAVER_CLIENT_ID`
 - `NAVER_CLIENT_SECRET`
@@ -103,12 +108,12 @@ Current/provider variables:
 - `SGIS_CONSUMER_KEY`
 - `SGIS_CONSUMER_SECRET`
 - `VWORLD_API_KEY`
-- `KOSIS_API_KEY` (adapter planned)
+- `KOSIS_API_KEY`
 - `NEXT_PUBLIC_MAP_STYLE_URL` (optional)
 
 ## API routes
 
-Existing data routes:
+Data/provider routes:
 
 - `GET /api/poi/kakao`
 - `GET /api/poi/naver`
@@ -116,16 +121,20 @@ Existing data routes:
 - `GET /api/poi/hira`
 - `GET /api/site/osm`
 - `GET /api/stats/sgis`
-- `GET /api/status`
+- `GET /api/kosis/search?query=...`
+- `POST /api/kosis/data`
 
-Registry/catalog route:
+Discovery/compatibility routes:
 
 - `GET /api/catalog`
 - `GET /api/catalog?source=vworld`
-- `GET /api/catalog?group=statistics`
-- `GET /api/catalog?status=available`
+- `GET /api/registry`
+- `GET /api/registry?kind=region|grid|crs|indicator|export`
+- `GET /api/vworld/layers`
+- `POST /api/export/plan`
+- `GET /api/status`
 
-The catalog API is intentionally provider-neutral so future web UI, export jobs and MCP clients can discover layers without knowing each Korean source API directly.
+The catalog/registry API is provider-neutral so the web UI and future QGIS/CAD MCP clients can discover layers without implementing every Korean source API independently.
 
 ## Validation
 
@@ -134,12 +143,12 @@ GitHub Actions runs dependency installation, TypeScript checking and `next build
 ## Next milestones
 
 1. Vercel Preview + provider-key runtime smoke test
-2. MOIS administrative-code/change-history Region Registry
-3. official boundary version + admin/legal-dong crosswalk
-4. SGIS 100m Grid Registry and population/business attributes
-5. VWorld WFS/Data API allowlist + runtime verification
-6. KOSIS statistics adapter
+2. actual MOIS/code.go snapshot + change-history ingestion and boundary-version catalog
+3. SGIS 100m population/business grid file ingestion and regional extraction
+4. VWorld WFS/Data API runtime verification with a project key
+5. first real CSV/GeoJSON extraction endpoint for selected region/layers
+6. GeoPackage QGIS-ready package generation
 7. official building/cadastral/zoning datasets
-8. domestic satellite/DEM raster registry
-9. CSV/GeoJSON export -> GeoPackage QGIS-ready package
-10. QGIS MCP integration, then CAD/DXF + AutoCAD MCP
+8. domestic satellite/DEM raster registry + COG metadata
+9. QGIS MCP integration
+10. CAD/DXF export + AutoCAD MCP
