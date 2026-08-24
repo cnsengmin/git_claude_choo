@@ -6,12 +6,14 @@ import RegionPicker, { type RegionSelection } from "@/components/RegionPicker";
 type SpatialLevel = "sigungu" | "admin-dong" | "grid-1km" | "grid-500m" | "grid-100m";
 type ExportTarget = "data" | "qgis" | "mcp" | "cad" | "web";
 type LayerStatus = "available" | "partial" | "planned";
+type LayerRole = "analysis" | "reference";
 
 type CatalogLayer = {
   id: string;
   title: string;
   group: string;
   entityType: string;
+  role?: LayerRole;
   sourceId: string;
   fallbackSourceIds?: string[];
   sourceCrs?: string;
@@ -47,6 +49,7 @@ type ExportPlan = {
     status: LayerStatus;
     sourceName: string;
     outputFormat: string | null;
+    role?: LayerRole;
     warnings: string[];
   }>;
 };
@@ -118,6 +121,7 @@ export default function DataCatalogPanel() {
   const visibleLayers = useMemo(() => {
     if (!catalog) return [];
     return catalog.layers.filter((layer) => {
+      if (layer.role === "reference") return true;
       if (layer.spatialLevels.includes(level)) return true;
       if (layer.spatialLevels.includes("feature")) return level === "sigungu" || level === "admin-dong";
       if (layer.spatialLevels.includes("raster-scene")) return level === "sigungu" || level === "admin-dong";
@@ -177,12 +181,12 @@ export default function DataCatalogPanel() {
     <section className="catalog-panel">
       <div className="site-intro">
         <strong>Region-first Data Catalog</strong>
-        <p>지역 단위를 정하고 필요한 레이어만 선택합니다. 아직 모든 레이어를 하나의 지도에 합치지 않고, 분석·추출 시점에 결합합니다.</p>
+        <p>분석 단위와 참조 경계 레이어를 분리합니다. 예를 들어 100m 격자를 분석하면서 시도·시군구·행정읍면동 경계를 함께 선택할 수 있습니다.</p>
       </div>
 
       <div className="catalog-scope">
         <label>
-          <span>공간 단위</span>
+          <span>분석 단위</span>
           <select value={level} onChange={(event) => { setLevel(event.target.value as SpatialLevel); setSelected([]); setRegion(null); setPlan(null); }}>
             {LEVELS.map((item) => <option key={item.id} value={item.id}>{item.label} · {item.description}</option>)}
           </select>
@@ -205,7 +209,7 @@ export default function DataCatalogPanel() {
         <span>선택 <b>{selected.length}</b></span>
       </div>
 
-      {region && !region.ready && <div className="error compact">{level === "sigungu" ? "시군구 단계의 지역을 선택하세요." : "읍면동 단계까지 선택해야 이 공간 단위의 추출 계획을 만들 수 있습니다."}</div>}
+      {region && !region.ready && <div className="error compact">{level === "sigungu" ? "시군구 단계의 지역을 선택하세요." : "읍면동 단계까지 선택해야 이 분석 단위의 추출 계획을 만들 수 있습니다."}</div>}
       {error && <div className="error compact">{error}</div>}
 
       <div className="catalog-groups">
@@ -218,9 +222,9 @@ export default function DataCatalogPanel() {
                 <label className="catalog-layer" key={layer.id}>
                   <input type="checkbox" checked={selected.includes(layer.id)} onChange={() => toggleLayer(layer.id)} />
                   <div>
-                    <b>{layer.title}</b>
+                    <b>{layer.title}{layer.role === "reference" ? " · 참조경계" : ""}</b>
                     <small>{source?.name ?? layer.sourceId} · Agent {source?.agentGrade ?? "?"}</small>
-                    <small>{layer.atlasFormats.slice(0, 3).join(" · ")}</small>
+                    <small>{layer.spatialLevels.join("/")} · {layer.atlasFormats.slice(0, 3).join(" · ")}</small>
                   </div>
                   <span className={`layer-status ${layer.status}`}>{layer.status}</span>
                 </label>
@@ -232,7 +236,7 @@ export default function DataCatalogPanel() {
 
       <div className="catalog-export">
         <div className="catalog-export-heading">
-          <div><strong>Extract / Export</strong><small>현재는 재현 가능한 추출 계획을 생성합니다.</small></div>
+          <div><strong>Extract / Export</strong><small>분석 레이어와 참조 경계를 독립 레이어로 묶어 재현 가능한 추출 계획을 생성합니다.</small></div>
           <select value={target} onChange={(event) => { setTarget(event.target.value as ExportTarget); setPlan(null); }}>
             {EXPORTS.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
           </select>
@@ -247,7 +251,7 @@ export default function DataCatalogPanel() {
           <div className="export-plan-layers">
             {plan.layers.map((layer) => (
               <div key={layer.layerId}>
-                <b>{layer.title}</b>
+                <b>{layer.title}{layer.role === "reference" ? " · reference" : ""}</b>
                 <span>{layer.outputFormat ?? "변환 필요"}</span>
                 <small>{layer.sourceName}</small>
                 {layer.warnings.slice(0, 1).map((warning) => <em key={warning}>{warning}</em>)}
