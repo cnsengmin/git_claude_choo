@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   CRS_REGISTRY,
+  DATASET_REGISTRY,
   EXPORT_PROFILES,
   GRID_SYSTEM_REGISTRY,
   INDICATOR_REGISTRY,
@@ -11,8 +12,9 @@ export async function GET(request: NextRequest) {
   const kind = request.nextUrl.searchParams.get("kind");
 
   const payload = {
-    schemaVersion: "0.2.0",
+    schemaVersion: "0.3.0",
     region: REGION_REGISTRY_META,
+    datasets: DATASET_REGISTRY,
     grids: GRID_SYSTEM_REGISTRY,
     crs: CRS_REGISTRY,
     indicators: INDICATOR_REGISTRY,
@@ -22,13 +24,14 @@ export async function GET(request: NextRequest) {
   if (!kind) return NextResponse.json(payload);
 
   if (kind === "region") return NextResponse.json({ schemaVersion: payload.schemaVersion, region: payload.region });
+  if (kind === "dataset") return NextResponse.json({ schemaVersion: payload.schemaVersion, datasets: payload.datasets });
   if (kind === "grid") return NextResponse.json({ schemaVersion: payload.schemaVersion, grids: payload.grids });
   if (kind === "crs") return NextResponse.json({ schemaVersion: payload.schemaVersion, crs: payload.crs });
   if (kind === "indicator") return NextResponse.json({ schemaVersion: payload.schemaVersion, indicators: payload.indicators });
   if (kind === "export") return NextResponse.json({ schemaVersion: payload.schemaVersion, exports: payload.exports });
 
   return NextResponse.json(
-    { error: `Unknown registry kind: ${kind}`, allowed: ["region", "grid", "crs", "indicator", "export"] },
+    { error: `Unknown registry kind: ${kind}`, allowed: ["region", "dataset", "grid", "crs", "indicator", "export"] },
     { status: 400 },
   );
 }
