@@ -8,10 +8,20 @@ export async function GET(request: NextRequest) {
   if (code) {
     const region = getMvpRegion(code);
     if (!region) return NextResponse.json({ error: `Unknown MVP region code: ${code}` }, { status: 404 });
+    const path = getMvpRegionPath(code);
+    const levels = path.map((node, index) => {
+      const parent = index === 0 ? null : path[index - 1].code;
+      return {
+        parent,
+        selectedCode: node.code,
+        options: listMvpRegionChildren(parent),
+      };
+    });
     return NextResponse.json({
       snapshot: MVP_REGION_SNAPSHOT,
       region,
-      path: getMvpRegionPath(code),
+      path,
+      levels,
       children: listMvpRegionChildren(code),
     });
   }
