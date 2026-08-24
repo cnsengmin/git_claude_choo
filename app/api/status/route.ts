@@ -11,7 +11,7 @@ export async function GET() {
 
   return NextResponse.json({
     app: "atlas-kr",
-    version: "0.4.0",
+    version: "0.5.0",
     providers: {
       kakao: { configured: kakao, requires: ["KAKAO_REST_API_KEY"] },
       naver: { configured: naver, requires: ["NAVER_CLIENT_ID", "NAVER_CLIENT_SECRET"] },
@@ -29,16 +29,18 @@ export async function GET() {
       vworld: {
         configured: vworld,
         requires: ["VWORLD_API_KEY"],
-        note: "VWorld is registered as an Agent Grade B spatial provider. Atlas will prefer WFS/Data API for extractable features and WMS/WMTS for display/verification.",
+        note: "VWorld is registered as an Agent Grade B spatial provider. Atlas prefers verified WFS/Data API services for extractable features and WMS/WMTS for display/verification.",
       },
       kosis: {
         configured: kosis,
         requires: ["KOSIS_API_KEY"],
-        note: "KOSIS is registered in the catalog; the table/indicator adapter is a next milestone.",
+        note: "KOSIS search and generic statistics-data adapters are implemented at /api/kosis/search and /api/kosis/data; table-specific indicator mappings remain incremental catalog work.",
       },
     },
     catalog: {
       endpoint: "/api/catalog",
+      registryEndpoint: "/api/registry",
+      vworldLayerEndpoint: "/api/vworld/layers",
       analysisCrs: "EPSG:5179",
     },
   });
