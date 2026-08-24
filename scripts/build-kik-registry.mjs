@@ -98,9 +98,19 @@ function parseMix(bytes) {
   }));
 }
 
+function isSidoCode(code) {
+  return /^\d{2}0{8}$/.test(code);
+}
+
 function regionKind(row) {
   if (row.eupMyeonDongName) return "admin-dong";
-  if (/^\d{2}0{8}$/.test(row.code)) return "sido";
+  if (isSidoCode(row.code)) return "sido";
+  return "sigungu";
+}
+
+function legalKind(row) {
+  if (row.eupMyeonDongName || row.dongRiName) return "legal-dong";
+  if (isSidoCode(row.code)) return "sido";
   return "sigungu";
 }
 
@@ -113,26 +123,123 @@ function legalDisplayName(row) {
   return row.dongRiName || row.eupMyeonDongName || row.sigunguName || row.sidoName;
 }
 
-function parentFinder(rows) {
-  const byCode = new Map(rows.map((row) => [row.code, row]));
-  return (row) => {
-    for (let cut = 9; cut >= 1; cut -= 1) {
-      const candidateCode = `${row.code.slice(0, cut)}${"0".repeat(10 - cut)}`;
-      if (candidateCode === row.code) continue;
-      const candidate = byCode.get(candidateCode);
-      if (!candidate) continue;
-      // This prevents false prefix parents across special/renamed top-level code families.
-      if (candidate.sidoName !== row.sidoName) continue;
-      return candidateCode;
-    }
-    return null;
-  };
+function isZeroPaddedPrefix(parentCode, childCode) {
+  if (parentCode === childCode) return false;
+  for (let cut = 1; cut < 10; cut += 1) {
+    if (`${childCode.slice(0, cut)}${"0".repeat(10 - cut)}` === parentCode) return true;
+  }
+  return false;
 }
 
-function legalKind(row) {
-  if (row.eupMyeonDongName || row.dongRiName) return "legal-dong";
-  if (/^\d{2}0{8}$/.test(row.code)) return "sido";
-  return "sigungu";
+function buildAdminHierarchy(rows) {
+  const roots = rows.filter((row) => !row.sigunguName && !row.eupMyeonDongName && isSidoCode(row.code));
+  const sigunguRows = rows.filter((row) => !row.eupMyeonDongName && !roots.includes(row));
+  const adminRows = rows.filter((row) => row.eupMyeonDongName);
+  const rootByName = new Map(roots.map((row) => [row.sidoName, row]));
+
+  function sigunguParent(row) {
+    if (row.sigunguName) {
+      const upper = sigunguRows
+        .filter((candidate) => candidate.code !== row.code
+          && candidate.sidoName === row.sidoName
+          && candidate.sigunguName
+          && row.sigunguName.startsWith(`${candidate.sigunguName} `))
+        .sort((a, b) => b.sigunguName.length - a.sigunguName.length)[0];
+      if (upper) return upper;
+    }
+    return rootByName.get(row.sidoName) ?? null;
+  }
+
+  function nestedAdminParent(row) {
+    return adminRows
+      .filter((candidate) => candidate.code !== row.code
+        && candidate.sidoName === row.sidoName
+        && candidate.sigunguName === row.sigunguName
+        && candidate.eupMyeonDongName
+        && row.eupMyeonDongName.startsWith(candidate.eupMyeonDongName)
+        && row.eupMyeonDongName.length > candidate.eupMyeonDongName.length
+        && isZeroPaddedPrefix(candidate.code, row.code))
+      .sort((a, b) => b.eupMyeonDongName.length - a.eupMyeonDongName.length)[0] ?? null;
+  }
+
+  function adminParent(row) {
+    const nested = nestedAdminParent(row);
+    if (nested) return nested;
+
+    if (row.sigunguName) {
+      const exact = sigunguRows.find((candidate) => candidate.sidoName === row.sidoName && candidate.sigunguName === row.sigunguName);
+      if (exact) return exact;
+    }
+
+    // Sejong-like structures can have a sigungu-equivalent code with a blank sigunguName.
+    const blankIntermediates = sigunguRows.filter((candidate) => candidate.sidoName === row.sidoName && !candidate.sigunguName);
+    if (blankIntermediates.length === 1) return blankIntermediates[0];
+
+    return rootByName.get(row.sidoName) ?? null;
+  }
+
+  const parentByCode = new Map();
+  for (const row of rows) {
+    const kind = regionKind(row);
+    let parent = null;
+    if (kind === "sigungu") parent = sigunguParent(row);
+    if (kind === "admin-dong") parent = adminParent(row);
+    parentByCode.set(row.code, parent?.code ?? null);
+  }
+
+  return { parentByCode, roots };
+}
+
+function buildLegalHierarchy(rows) {
+  const roots = rows.filter((row) => !row.sigunguName && !row.eupMyeonDongName && !row.dongRiName && isSidoCode(row.code));
+  const sigunguRows = rows.filter((row) => !row.eupMyeonDongName && !row.dongRiName && !roots.includes(row));
+  const legalRows = rows.filter((row) => row.eupMyeonDongName || row.dongRiName);
+  const rootByName = new Map(roots.map((row) => [row.sidoName, row]));
+
+  function sigunguParent(row) {
+    if (row.sigunguName) {
+      const upper = sigunguRows
+        .filter((candidate) => candidate.code !== row.code
+          && candidate.sidoName === row.sidoName
+          && candidate.sigunguName
+          && row.sigunguName.startsWith(`${candidate.sigunguName} `))
+        .sort((a, b) => b.sigunguName.length - a.sigunguName.length)[0];
+      if (upper) return upper;
+    }
+    return rootByName.get(row.sidoName) ?? null;
+  }
+
+  function legalParent(row) {
+    if (row.dongRiName && row.eupMyeonDongName) {
+      const eupMyeon = legalRows.find((candidate) => candidate.code !== row.code
+        && candidate.sidoName === row.sidoName
+        && candidate.sigunguName === row.sigunguName
+        && candidate.eupMyeonDongName === row.eupMyeonDongName
+        && !candidate.dongRiName);
+      if (eupMyeon) return eupMyeon;
+    }
+
+    if (row.sigunguName) {
+      const exact = sigunguRows.find((candidate) => candidate.sidoName === row.sidoName && candidate.sigunguName === row.sigunguName);
+      if (exact) return exact;
+    }
+
+    const blankIntermediates = sigunguRows.filter((candidate) => candidate.sidoName === row.sidoName && !candidate.sigunguName);
+    if (blankIntermediates.length === 1) return blankIntermediates[0];
+
+    return rootByName.get(row.sidoName) ?? null;
+  }
+
+  const parentByCode = new Map();
+  for (const row of rows) {
+    const kind = legalKind(row);
+    let parent = null;
+    if (kind === "sigungu") parent = sigunguParent(row);
+    if (kind === "legal-dong") parent = legalParent(row);
+    parentByCode.set(row.code, parent?.code ?? null);
+  }
+
+  return { parentByCode, roots };
 }
 
 function compactJson(value) {
@@ -148,13 +255,14 @@ const [hBytes, bBytes, mixBytes] = await Promise.all([
 const hRows = parseH(hBytes);
 const bRows = parseB(bBytes);
 const mixRows = parseMix(mixBytes);
+const adminHierarchy = buildAdminHierarchy(hRows);
+const legalHierarchy = buildLegalHierarchy(bRows);
 
-const findAdminParent = parentFinder(hRows);
 const adminNodes = [];
 const adminOrphans = [];
 for (const row of hRows) {
   const kind = regionKind(row);
-  const parentCode = kind === "sido" ? null : findAdminParent(row);
+  const parentCode = adminHierarchy.parentByCode.get(row.code) ?? null;
   const normalized = {
     code: row.code,
     name: displayName(row),
@@ -170,12 +278,11 @@ for (const row of hRows) {
   adminNodes.push(normalized);
 }
 
-const findLegalParent = parentFinder(bRows);
 const legalNodes = bRows.map((row) => ({
   code: row.code,
   name: legalDisplayName(row),
   kind: legalKind(row),
-  parentCode: legalKind(row) === "sido" ? null : findLegalParent(row),
+  parentCode: legalHierarchy.parentByCode.get(row.code) ?? null,
   createdAt: dateIso(row.createdAt),
   abolishedAt: dateIso(row.abolishedAt),
   sidoName: row.sidoName,
@@ -200,7 +307,6 @@ for (const row of mixRows) {
   crosswalk.set(row.adminCode, links);
 }
 
-const rootSidos = adminNodes.filter((node) => node.kind === "sido" && !node.parentCode);
 const activeAdminNodes = adminNodes.filter((node) => !node.abolishedAt);
 const activeLegalNodes = legalNodes.filter((node) => !node.abolishedAt);
 
@@ -212,7 +318,7 @@ await Promise.all([
 ]);
 
 const manifest = {
-  schemaVersion: "0.1.0",
+  schemaVersion: "0.2.0",
   snapshotDate: dateIso(snapshot),
   generatedAt: new Date().toISOString(),
   source: {
@@ -226,17 +332,22 @@ const manifest = {
     legalRegions: legalNodes.length,
     activeLegalRegions: activeLegalNodes.length,
     adminCodesWithCrosswalk: crosswalk.size,
-    rootSidos: rootSidos.map((row) => ({ code: row.code, name: row.name })),
+    rootSidos: adminHierarchy.roots.map((row) => ({ code: row.code, name: displayName(row) })),
     adminOrphans: adminOrphans.map((row) => ({ code: row.code, name: row.name, sidoName: row.sidoName })),
+  },
+  validationExamples: {
+    anyangBurim: "4100000000 > 4117000000 > 4117300000 > 4117356600",
+    sejongGoun: "3600000000 > 3611000000 > 3611055000",
+    yeosuDolsanBranch: "1200000000 > 1213000000 > 1213025000 > 1213025100",
   },
   policy: {
     preserveNativeCodesAsStrings: true,
-    hierarchy: "longest zero-padded native-code prefix within the same source sidoName; non-standard orphan offices are reported, not silently attached",
-    crosswalk: "KIKmix remains a versioned relation table and is not permanently merged into admin/legal region rows",
-    boundaryGeometry: "not inferred from KIK code files; attach a separately versioned boundary dataset",
+    hierarchy: "Use explicit KIK sido/sigungu/eup-myeon-dong names first. City-gu parents are resolved by sigungu-name prefix; nested branch offices additionally require both name prefix and zero-padded code-prefix agreement.",
+    crosswalk: "KIKmix remains a versioned relation table and is not permanently merged into admin/legal region rows.",
+    boundaryGeometry: "Not inferred from KIK code files; attach a separately versioned boundary dataset.",
+    orphans: "Non-standard office rows without a normal KIK parent are reported and must not be silently attached to a similarly-prefixed code.",
   },
 };
 
 await writeFile(join(outDir, "manifest.json"), JSON.stringify(manifest, null, 2));
-
 console.log(JSON.stringify(manifest, null, 2));
