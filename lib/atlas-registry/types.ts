@@ -19,6 +19,7 @@ export type AccessMethod =
   | "wmts"
   | "file-download"
   | "manual-download"
+  | "restricted-analysis"
   | "stac"
   | "local-cache";
 
