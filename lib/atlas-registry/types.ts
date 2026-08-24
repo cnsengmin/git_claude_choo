@@ -39,6 +39,7 @@ export type AtlasRegionRelationType = "rename" | "split" | "merge" | "new" | "ab
 export type AtlasEntityType = "region" | "relation" | "grid" | "feature" | "raster" | "statistic";
 export type AtlasLayerStatus = "available" | "partial" | "planned";
 export type AtlasExportTarget = "web" | "data" | "qgis" | "cad" | "mcp";
+export type AtlasDatasetVerification = "source-verified" | "catalogued" | "runtime-verified" | "manual";
 
 export interface AtlasCrsDefinition {
   id: string;
@@ -61,6 +62,29 @@ export interface AtlasSourceManifest {
   spatialLevels: SpatialLevel[];
   preferredFor: string[];
   fallbackIds?: string[];
+  licenseNote: string;
+  notes: string;
+}
+
+export interface AtlasDatasetManifest {
+  id: string;
+  title: string;
+  sourceId: string;
+  authority: string;
+  official: boolean;
+  agentGrade: AgentAccessGrade;
+  accessMethod: AccessMethod;
+  requiresEnv?: string[];
+  dataPageUrl: string;
+  sourceFormats: string[];
+  atlasFormats: string[];
+  spatialLevels: SpatialLevel[];
+  sourceCrs?: string;
+  nativeIdField?: string;
+  referenceDate?: string;
+  updateCycle: string;
+  verification: AtlasDatasetVerification;
+  status: AtlasLayerStatus;
   licenseNote: string;
   notes: string;
 }
@@ -92,7 +116,11 @@ export interface AtlasRegionRef {
   officialCode: string;
   name: string;
   sourceId?: string;
+  sourceDatasetId?: string;
+  sourceRecordId?: string;
   parentAtlasRegionId?: string | null;
+  parentOfficialCode?: string | null;
+  revisionDate?: string;
   validFrom?: string;
   validTo?: string | null;
   boundaryVersion?: string;
