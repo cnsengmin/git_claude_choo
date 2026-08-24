@@ -29,6 +29,7 @@ jobs:
           node --check scripts/build-kik-registry.mjs
           node --check scripts/build-sgis-grid-statistics.mjs
           node --check scripts/build-boundary-geojson-snapshot.mjs
+          python -m py_compile scripts/inspect-sgis-package.py
 
       - name: Typecheck
         run: npm run typecheck
