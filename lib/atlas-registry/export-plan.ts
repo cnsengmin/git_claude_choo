@@ -8,6 +8,9 @@ export interface AtlasExportPlanRequest {
     level: SpatialLevel;
     regionId?: string;
     regionCode?: string;
+    regionName?: string;
+    regionSnapshot?: string;
+    legalCodes?: string[];
     year?: number;
   };
   layerIds: string[];
@@ -95,8 +98,11 @@ export function buildExportPlan(request: AtlasExportPlanRequest) {
   const ready = layers.every((layer) => layer.status === "available" && layer.outputFormat && !layer.warnings.some((warning) => warning.includes("not enabled")));
 
   return {
-    schemaVersion: "0.1.0",
-    scope: request.scope,
+    schemaVersion: "0.2.0",
+    scope: {
+      ...request.scope,
+      legalCodes: [...new Set(request.scope.legalCodes ?? [])],
+    },
     target: request.target,
     profile: profile.id,
     outputCrs,
@@ -104,6 +110,6 @@ export function buildExportPlan(request: AtlasExportPlanRequest) {
     ready,
     layers,
     provenanceRequired: true,
-    notes: "This endpoint creates a reproducible extraction/export plan. It does not claim that planned or partially implemented providers have already produced files.",
+    notes: "This endpoint creates a reproducible extraction/export plan. It preserves the selected KIK region snapshot and admin-to-legal crosswalk when supplied, but does not claim that planned or partially implemented providers have already produced files.",
   };
 }
