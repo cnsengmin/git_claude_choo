@@ -14,6 +14,13 @@ type RegionNode = {
   hasChildren?: boolean;
 };
 
+type LegalLink = {
+  adminCode: string;
+  legalCode: string;
+  legalName: string;
+  createdAt: string;
+};
+
 type RegionLevelState = {
   parent: string | null;
   selectedCode: string;
@@ -31,6 +38,8 @@ type RegionResponse = {
   path?: RegionNode[];
   levels?: RegionLevelState[];
   children?: RegionNode[];
+  legalLinks?: LegalLink[];
+  error?: string;
 };
 
 export type RegionSelection = {
@@ -38,6 +47,7 @@ export type RegionSelection = {
   name: string;
   kind: RegionKind;
   path: RegionNode[];
+  legalLinks: LegalLink[];
   ready: boolean;
   snapshotDate: string;
 };
@@ -57,6 +67,7 @@ function targetKind(level: SpatialLevel): RegionKind {
 export default function RegionPicker({ level, onChange }: { level: SpatialLevel; onChange: (selection: RegionSelection | null) => void }) {
   const [levels, setLevels] = useState<RegionLevelState[]>([]);
   const [path, setPath] = useState<RegionNode[]>([]);
+  const [legalLinks, setLegalLinks] = useState<LegalLink[]>([]);
   const [snapshotDate, setSnapshotDate] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -74,8 +85,10 @@ export default function RegionPicker({ level, onChange }: { level: SpatialLevel;
         if (cancelled) return;
         const nextLevels = payload.levels ?? [];
         const nextPath = payload.path ?? [];
+        const nextLinks = payload.legalLinks ?? [];
         setLevels(nextLevels);
         setPath(nextPath);
+        setLegalLinks(nextLinks);
         setSnapshotDate(payload.snapshot.snapshotDate);
         const region = payload.region;
         if (!region) return onChange(null);
@@ -84,6 +97,7 @@ export default function RegionPicker({ level, onChange }: { level: SpatialLevel;
           name: region.name,
           kind: region.kind,
           path: nextPath,
+          legalLinks: nextLinks,
           ready: region.kind === targetKind(level),
           snapshotDate: payload.snapshot.snapshotDate,
         });
@@ -107,15 +121,31 @@ export default function RegionPicker({ level, onChange }: { level: SpatialLevel;
 
     const nextLevels = levels.slice(0, index + 1).map((item, itemIndex) => itemIndex === index ? { ...item, selectedCode: code } : item);
     const nextPath = [...path.slice(0, index), node];
+    let nextLinks: LegalLink[] = [];
     setLevels(nextLevels);
     setPath(nextPath);
+    setLegalLinks([]);
     setError(null);
+
+    if (node.kind === "admin-dong") {
+      try {
+        const detailResponse = await fetch(`/api/regions?code=${node.code}`);
+        const detail = await detailResponse.json() as RegionResponse;
+        if (!detailResponse.ok) throw new Error(detail.error || `regions ${detailResponse.status}`);
+        nextLinks = detail.legalLinks ?? [];
+        setLegalLinks(nextLinks);
+        setSnapshotDate(detail.snapshot.snapshotDate);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "법정동 Crosswalk를 불러오지 못했습니다.");
+      }
+    }
 
     onChange({
       code: node.code,
       name: node.name,
       kind: node.kind,
       path: nextPath,
+      legalLinks: nextLinks,
       ready: node.kind === targetKind(level),
       snapshotDate,
     });
@@ -125,7 +155,7 @@ export default function RegionPicker({ level, onChange }: { level: SpatialLevel;
     try {
       const response = await fetch(`/api/regions?parent=${node.code}`);
       const payload = await response.json() as RegionResponse;
-      if (!response.ok) throw new Error((payload as { error?: string }).error || `regions ${response.status}`);
+      if (!response.ok) throw new Error(payload.error || `regions ${response.status}`);
       const options = payload.children ?? [];
       if (!options.length) return;
       setLevels((currentLevels) => [
@@ -161,6 +191,13 @@ export default function RegionPicker({ level, onChange }: { level: SpatialLevel;
         <div className="region-picker-path">
           <span>{path.map((item) => item.name).join(" › ")}</span>
           <b>{path[path.length - 1].code}</b>
+        </div>
+      )}
+
+      {legalLinks.length > 0 && (
+        <div className="region-legal-links">
+          <strong>관할 법정동</strong>
+          <div>{legalLinks.map((link) => <span key={`${link.adminCode}-${link.legalCode}`}>{link.legalName} <b>{link.legalCode}</b></span>)}</div>
         </div>
       )}
 
