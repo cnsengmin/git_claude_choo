@@ -1,5 +1,5 @@
-import AtlasMap from "@/components/AtlasMap";
+import AtlasHome from "@/components/AtlasHome";
 
 export default function Home() {
-  return <AtlasMap />;
+  return <AtlasHome />;
 }
