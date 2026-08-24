@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import RegionPicker, { type RegionSelection } from "@/components/RegionPicker";
 
 type SpatialLevel = "sigungu" | "admin-dong" | "grid-1km" | "grid-500m" | "grid-100m";
 type ExportTarget = "data" | "qgis" | "mcp" | "cad" | "web";
@@ -82,7 +83,7 @@ export default function DataCatalogPanel() {
   const [selected, setSelected] = useState<string[]>([]);
   const [target, setTarget] = useState<ExportTarget>("qgis");
   const [year, setYear] = useState(2024);
-  const [regionCode, setRegionCode] = useState("");
+  const [region, setRegion] = useState<RegionSelection | null>(null);
   const [plan, setPlan] = useState<ExportPlan | null>(null);
   const [loading, setLoading] = useState(true);
   const [planning, setPlanning] = useState(false);
@@ -105,6 +106,11 @@ export default function DataCatalogPanel() {
         if (!cancelled) setLoading(false);
       });
     return () => { cancelled = true; };
+  }, []);
+
+  const handleRegionChange = useCallback((selection: RegionSelection | null) => {
+    setRegion(selection);
+    setPlan(null);
   }, []);
 
   const sourceMap = useMemo(() => new Map((catalog?.sources ?? []).map((source) => [source.id, source])), [catalog]);
@@ -135,7 +141,7 @@ export default function DataCatalogPanel() {
   }
 
   async function makePlan() {
-    if (!selected.length) return;
+    if (!selected.length || !region?.ready) return;
     setPlanning(true);
     setError(null);
     try {
@@ -143,7 +149,13 @@ export default function DataCatalogPanel() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          scope: { level, regionCode: regionCode.trim() || undefined, year },
+          scope: {
+            level,
+            regionCode: region.code,
+            regionName: region.path.map((item) => item.name).join(" "),
+            regionSnapshot: region.snapshotDate,
+            year,
+          },
           layerIds: selected,
           target,
         }),
@@ -170,7 +182,7 @@ export default function DataCatalogPanel() {
       <div className="catalog-scope">
         <label>
           <span>공간 단위</span>
-          <select value={level} onChange={(event) => { setLevel(event.target.value as SpatialLevel); setSelected([]); setPlan(null); }}>
+          <select value={level} onChange={(event) => { setLevel(event.target.value as SpatialLevel); setSelected([]); setRegion(null); setPlan(null); }}>
             {LEVELS.map((item) => <option key={item.id} value={item.id}>{item.label} · {item.description}</option>)}
           </select>
         </label>
@@ -182,17 +194,16 @@ export default function DataCatalogPanel() {
         </label>
       </div>
 
-      <label className="region-code-field">
-        <span>지역코드 <small>선택 입력 · Registry 연결 전</small></span>
-        <input value={regionCode} onChange={(event) => { setRegionCode(event.target.value); setPlan(null); }} placeholder="예: 행정동/시군구 공식코드" />
-      </label>
+      <RegionPicker level={level} onChange={handleRegionChange} />
 
       <div className="catalog-rule-strip">
         <span>분석 CRS <b>{catalog?.defaults.analysisCrs ?? "EPSG:5179"}</b></span>
         <span>Native ID <b>보존</b></span>
+        <span>지역 <b>{region?.code ?? "미선택"}</b></span>
         <span>선택 <b>{selected.length}</b></span>
       </div>
 
+      {region && !region.ready && <div className="error compact">{level === "sigungu" ? "시군구 단계의 지역을 선택하세요." : "읍면동 단계까지 선택해야 이 공간 단위의 추출 계획을 만들 수 있습니다."}</div>}
       {error && <div className="error compact">{error}</div>}
 
       <div className="catalog-groups">
@@ -224,7 +235,7 @@ export default function DataCatalogPanel() {
             {EXPORTS.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
           </select>
         </div>
-        <button type="button" disabled={!selected.length || planning} onClick={makePlan}>{planning ? "계획 생성 중…" : `선택 레이어 ${selected.length}개 Export Plan`}</button>
+        <button type="button" disabled={!selected.length || planning || !region?.ready} onClick={makePlan}>{planning ? "계획 생성 중…" : `선택 레이어 ${selected.length}개 Export Plan`}</button>
       </div>
 
       {plan && (
