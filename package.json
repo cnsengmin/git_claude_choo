@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "data:kik": "node scripts/build-kik-registry.mjs"
+    "data:kik": "node scripts/build-kik-registry.mjs",
+    "data:sgis-grid": "node scripts/build-sgis-grid-statistics.mjs"
   },
   "dependencies": {
     "fast-xml-parser": "^5.11.0",
