@@ -25,7 +25,9 @@ jobs:
         run: npm install
 
       - name: Check ingestion scripts
-        run: node --check scripts/build-kik-registry.mjs
+        run: |
+          node --check scripts/build-kik-registry.mjs
+          node --check scripts/build-sgis-grid-statistics.mjs
 
       - name: Typecheck
         run: npm run typecheck
