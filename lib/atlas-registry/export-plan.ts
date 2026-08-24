@@ -28,6 +28,7 @@ export interface AtlasExportPlanLayer {
   analysisCrs: string;
   outputFormat: string | null;
   joinKey?: string;
+  role: "analysis" | "reference";
   warnings: string[];
 }
 
@@ -67,12 +68,16 @@ export function buildExportPlan(request: AtlasExportPlanRequest) {
     const layer = LAYER_REGISTRY.find((item) => item.id === layerId)!;
     const source = SOURCE_REGISTRY.find((item) => item.id === layer.sourceId);
     const warnings: string[] = [];
+    const role = layer.role ?? "analysis";
 
     if (!layer.exportTargets.includes(request.target)) warnings.push(`${request.target} export is not enabled for this layer`);
     if (layer.status === "planned") warnings.push("Layer provider/ingestion is not implemented yet");
     if (layer.status === "partial") warnings.push("Layer is only partially implemented or still needs provider/runtime verification");
-    if (!layer.spatialLevels.includes(request.scope.level) && !layer.spatialLevels.includes("feature") && !layer.spatialLevels.includes("raster-scene")) {
+    if (role !== "reference" && !layer.spatialLevels.includes(request.scope.level) && !layer.spatialLevels.includes("feature") && !layer.spatialLevels.includes("raster-scene")) {
       warnings.push(`Layer is not natively published at ${request.scope.level}; an explicit join/aggregation step may be required`);
+    }
+    if (role === "reference" && !layer.spatialLevels.includes(request.scope.level)) {
+      warnings.push(`Reference boundary remains an independent ${layer.spatialLevels.join("/")} layer and is not relabeled as ${request.scope.level}`);
     }
 
     const outputFormat = layer.exportTargets.includes(request.target)
@@ -90,6 +95,7 @@ export function buildExportPlan(request: AtlasExportPlanRequest) {
       analysisCrs: layer.analysisCrs,
       outputFormat,
       joinKey: layer.joinKey,
+      role,
       warnings,
     };
   });
@@ -98,7 +104,7 @@ export function buildExportPlan(request: AtlasExportPlanRequest) {
   const ready = layers.every((layer) => layer.status === "available" && layer.outputFormat && !layer.warnings.some((warning) => warning.includes("not enabled")));
 
   return {
-    schemaVersion: "0.2.0",
+    schemaVersion: "0.3.0",
     scope: {
       ...request.scope,
       legalCodes: [...new Set(request.scope.legalCodes ?? [])],
@@ -110,6 +116,6 @@ export function buildExportPlan(request: AtlasExportPlanRequest) {
     ready,
     layers,
     provenanceRequired: true,
-    notes: "This endpoint creates a reproducible extraction/export plan. It preserves the selected KIK region snapshot and admin-to-legal crosswalk when supplied, but does not claim that planned or partially implemented providers have already produced files.",
+    notes: "This endpoint creates a reproducible extraction/export plan. Reference boundaries remain independent layers and are never relabeled to match the analysis unit. The selected KIK region snapshot and admin-to-legal crosswalk are preserved when supplied. Planned or partially implemented providers are not represented as produced files.",
   };
 }
