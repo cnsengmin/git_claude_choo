@@ -38,6 +38,31 @@ type SgisCompanyItem = {
   tot_worker?: string;
 };
 
+type GeoJsonGeometry = {
+  type: string;
+  coordinates: unknown;
+};
+
+type SgisBoundaryFeature = {
+  type: "Feature";
+  geometry: GeoJsonGeometry | null;
+  properties: Record<string, unknown> & {
+    adm_cd?: string;
+    adm_nm?: string;
+    addr_en?: string;
+    x?: number | string;
+    y?: number | string;
+  };
+};
+
+type SgisBoundaryResponse = {
+  type?: "FeatureCollection";
+  features?: SgisBoundaryFeature[];
+  errCd?: number;
+  errMsg?: string;
+  trId?: string;
+};
+
 export type SgisStatsSnapshot = {
   source: "SGIS";
   sourceKind: "official-statistical";
@@ -63,6 +88,30 @@ export type SgisStatsSnapshot = {
   };
   retrievedAt: string;
   warning: string;
+};
+
+export type SgisResolvedRegion = {
+  sido: SgisStageItem;
+  sigungu?: SgisStageItem;
+  adminDong?: SgisStageItem;
+  selected: SgisStageItem;
+};
+
+export type SgisAdministrativeBoundary = {
+  source: "SGIS";
+  datasetId: "sgis-administrative-boundary-api";
+  providerHost: string;
+  sourceRoute: string;
+  referenceYear: number;
+  lowSearch: 0 | 1 | 2;
+  sgisAdmCd: string;
+  sgisAdmName?: string;
+  retrievedAt: string;
+  crsVerification: "runtime-pending";
+  geojson: {
+    type: "FeatureCollection";
+    features: SgisBoundaryFeature[];
+  };
 };
 
 const SGIS_HOSTS = ["https://sgisapi.mods.go.kr/OpenAPI3", "https://sgisapi.kostat.go.kr/OpenAPI3"] as const;
@@ -156,26 +205,112 @@ async function sgisRequest<T>(path: string, params: Record<string, string | unde
   return { result: envelope.result, host };
 }
 
+export async function resolveSgisAdministrativeRegionByName(input: {
+  sidoName: string;
+  sigunguName?: string;
+  adminDongName?: string;
+}): Promise<SgisResolvedRegion> {
+  const provinces = await sgisRequest<SgisStageItem[]>("/addr/stage.json", {});
+  const sido = chooseStageItem(provinces.result, input.sidoName);
+  if (!sido) throw new Error(`SGIS 시도 코드 매칭 실패: ${input.sidoName}`);
+
+  if (!input.sigunguName) return { sido, selected: sido };
+
+  const sigungus = await sgisRequest<SgisStageItem[]>("/addr/stage.json", { cd: sido.cd });
+  const sigungu = chooseStageItem(sigungus.result, input.sigunguName);
+  if (!sigungu) throw new Error(`SGIS 시군구 코드 매칭 실패: ${input.sigunguName}`);
+
+  if (!input.adminDongName) return { sido, sigungu, selected: sigungu };
+
+  const dongs = await sgisRequest<SgisStageItem[]>("/addr/stage.json", { cd: sigungu.cd });
+  const adminDong = chooseStageItem(dongs.result, input.adminDongName);
+  if (!adminDong) throw new Error(`SGIS 행정동 코드 매칭 실패: ${input.adminDongName}`);
+
+  return { sido, sigungu, adminDong, selected: adminDong };
+}
+
 async function resolveSgisAdministrativeCode(center: GeoPoint): Promise<{ admCd: string; admName: string; kakaoName: string }> {
   const kakaoRegion = await resolveCenterAdministrativeRegion(center);
   if (!kakaoRegion) throw new Error("현재 지도 중심의 행정동을 Kakao에서 확인하지 못했습니다.");
 
-  const provinces = await sgisRequest<SgisStageItem[]>("/addr/stage.json", {});
-  const province = chooseStageItem(provinces.result, kakaoRegion.sidoName);
-  if (!province) throw new Error(`SGIS 시도 코드 매칭 실패: ${kakaoRegion.sidoName}`);
-
-  const sigungus = await sgisRequest<SgisStageItem[]>("/addr/stage.json", { cd: province.cd });
-  const sigungu = chooseStageItem(sigungus.result, kakaoRegion.sigunguName);
-  if (!sigungu) throw new Error(`SGIS 시군구 코드 매칭 실패: ${kakaoRegion.sigunguName}`);
-
-  const dongs = await sgisRequest<SgisStageItem[]>("/addr/stage.json", { cd: sigungu.cd });
-  const dong = chooseStageItem(dongs.result, kakaoRegion.dongName);
-  if (!dong) throw new Error(`SGIS 행정동 코드 매칭 실패: ${kakaoRegion.dongName}`);
+  const resolved = await resolveSgisAdministrativeRegionByName({
+    sidoName: kakaoRegion.sidoName,
+    sigunguName: kakaoRegion.sigunguName,
+    adminDongName: kakaoRegion.dongName,
+  });
 
   return {
-    admCd: dong.cd,
-    admName: dong.addr_name,
+    admCd: resolved.selected.cd,
+    admName: resolved.selected.addr_name,
     kakaoName: kakaoRegion.addressName,
+  };
+}
+
+export async function getSgisAdministrativeBoundary(input: {
+  admCd?: string;
+  admName?: string;
+  sidoName?: string;
+  sigunguName?: string;
+  adminDongName?: string;
+  year?: number;
+  lowSearch?: 0 | 1 | 2;
+}): Promise<SgisAdministrativeBoundary> {
+  const year = Math.max(2001, Math.min(input.year ?? 2025, 2025));
+  const lowSearch = input.lowSearch ?? 0;
+  if (![0, 1, 2].includes(lowSearch)) throw new Error("lowSearch must be 0, 1 or 2");
+
+  let admCd = input.admCd?.trim();
+  let admName = input.admName?.trim();
+
+  if (!admCd) {
+    if (!input.sidoName) throw new Error("admCd or sidoName is required");
+    const resolved = await resolveSgisAdministrativeRegionByName({
+      sidoName: input.sidoName,
+      sigunguName: input.sigunguName,
+      adminDongName: input.adminDongName,
+    });
+    admCd = resolved.selected.cd;
+    admName = resolved.selected.addr_name;
+  }
+
+  const { token, host } = await authenticate();
+  const sourceRoute = "/boundary/hadmarea.geojson";
+  const searchParams = new URLSearchParams({
+    accessToken: token,
+    year: String(year),
+    adm_cd: admCd,
+    low_search: String(lowSearch),
+  });
+  const response = await fetch(`${host}${sourceRoute}?${searchParams}`, { cache: "no-store" });
+  const text = await response.text();
+  if (!response.ok) throw new Error(`SGIS boundary request failed (${response.status}): ${text.slice(0, 220)}`);
+
+  let parsed: SgisBoundaryResponse;
+  try {
+    parsed = JSON.parse(text) as SgisBoundaryResponse;
+  } catch {
+    throw new Error(`SGIS boundary returned non-JSON: ${text.slice(0, 220)}`);
+  }
+  if (parsed.errCd !== undefined && parsed.errCd !== 0) {
+    throw new Error(`SGIS boundary API error ${parsed.errCd}: ${parsed.errMsg || "Unknown error"}`);
+  }
+  if (!Array.isArray(parsed.features)) throw new Error("SGIS boundary response did not include GeoJSON features");
+
+  return {
+    source: "SGIS",
+    datasetId: "sgis-administrative-boundary-api",
+    providerHost: host,
+    sourceRoute,
+    referenceYear: year,
+    lowSearch,
+    sgisAdmCd: admCd,
+    sgisAdmName: admName,
+    retrievedAt: new Date().toISOString(),
+    crsVerification: "runtime-pending",
+    geojson: {
+      type: "FeatureCollection",
+      features: parsed.features,
+    },
   };
 }
 
