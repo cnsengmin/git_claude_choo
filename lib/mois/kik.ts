@@ -90,15 +90,15 @@ function decodeField(line: Uint8Array, slice: Slice) {
   return decoder.decode(line.subarray(start, end)).trim();
 }
 
-function parseRows<T extends Record<string, string>>(input: Uint8Array, layout: Record<keyof T, Slice>): T[] {
+function parseRows<T extends object>(input: Uint8Array, layout: { [K in keyof T]: Slice }): T[] {
   const lines = splitLines(input);
   if (lines.length <= 1) return [];
   return lines.slice(1).filter((line) => line.length > 0).map((line) => {
-    const row = {} as T;
+    const row = {} as { [K in keyof T]: string };
     for (const key of Object.keys(layout) as Array<keyof T>) {
-      row[key] = decodeField(line, layout[key]) as T[keyof T];
+      row[key] = decodeField(line, layout[key]);
     }
-    return row;
+    return row as T;
   });
 }
 
