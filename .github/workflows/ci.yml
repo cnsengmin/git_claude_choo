@@ -28,6 +28,7 @@ jobs:
         run: |
           node --check scripts/build-kik-registry.mjs
           node --check scripts/build-sgis-grid-statistics.mjs
+          node --check scripts/build-boundary-geojson-snapshot.mjs
 
       - name: Typecheck
         run: npm run typecheck
