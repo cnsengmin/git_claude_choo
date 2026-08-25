@@ -30,6 +30,8 @@ jobs:
           node --check scripts/build-sgis-grid-statistics.mjs
           node --check scripts/build-boundary-geojson-snapshot.mjs
           python -m py_compile scripts/inspect-sgis-package.py
+          python -m py_compile scripts/inspect-sgis-shapefile-schema.py
+          python -m py_compile scripts/extract-sgis-region-grid.py
 
       - name: Typecheck
         run: npm run typecheck
