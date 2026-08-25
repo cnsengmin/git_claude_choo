@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit",
     "data:kik": "node scripts/build-kik-registry.mjs",
     "data:sgis-grid": "node scripts/build-sgis-grid-statistics.mjs",
-    "data:boundary": "node scripts/build-boundary-geojson-snapshot.mjs"
+    "data:boundary": "node scripts/build-boundary-geojson-snapshot.mjs",
+    "data:sgis-extract": "python scripts/extract-sgis-region-grid.py"
   },
   "dependencies": {
     "fast-xml-parser": "^5.11.0",
