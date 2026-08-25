@@ -3,9 +3,13 @@
 
 Standard-library only. The script reads:
 - SHP header CRS-independent bounding boxes and shape type
-- DBF schema, row count, and optional text matches
+- DBF schema, row count, and optional text matches for non-grid boundary packages
 - CPG/PRJ metadata
 - candidate grid-boundary partitions whose archive bbox intersects a matched region
+
+Grid archives are deliberately *not* scanned record-by-record during the region-name
+lookup. Their archive-level SHP bbox is enough to shortlist candidate partitions and
+keeps this inspection practical for multi-GB nationwide 100m grid packages.
 
 This is intentionally an inspection tool, not the final geometry normalizer.
 """
@@ -181,6 +185,9 @@ def group_members(names: Iterable[str]) -> dict[str, dict[str, str]]:
 
 
 def inspect_zip(path: Path, queries: list[str], match_limit: int) -> dict:
+    is_grid_partition = "grid_border_grid" in path.name.lower()
+    should_match_records = bool(queries) and not is_grid_partition
+
     with zipfile.ZipFile(path, "r") as zf:
         names = [i.filename for i in zf.infolist() if not i.is_dir()]
         groups = group_members(names)
@@ -195,18 +202,23 @@ def inspect_zip(path: Path, queries: list[str], match_limit: int) -> dict:
                 prj_text, prj_encoding = decode_bytes(zf.read(members[".prj"]))
                 item["prj"] = prj_text.strip()
                 item["prj_encoding"] = prj_encoding
+
             shp_data = None
             record_bboxes: list[list[float] | None] = []
             if ".shp" in members:
+                # Reading the compressed member is still required by zipfile, but for grid
+                # partitions we only parse the 100-byte archive-level header and skip all
+                # feature bboxes/DBF text matching.
                 shp_data = zf.read(members[".shp"])
                 item["shp"] = shp_header(shp_data)
-                if queries:
+                if should_match_records:
                     record_bboxes = shp_record_bboxes(shp_data)
+
             if ".dbf" in members:
                 dbf_data = zf.read(members[".dbf"])
                 schema = parse_dbf_schema(dbf_data)
                 item["dbf"] = schema
-                if queries:
+                if should_match_records:
                     lowered = [q.casefold() for q in queries]
                     for row_index, row in iter_dbf_records(dbf_data, schema, encoding):
                         haystack = " | ".join(row.values()).casefold()
@@ -227,6 +239,8 @@ def inspect_zip(path: Path, queries: list[str], match_limit: int) -> dict:
         return {
             "filename": path.name,
             "size": path.stat().st_size,
+            "is_grid_partition": is_grid_partition,
+            "record_match_scanned": should_match_records,
             "shapefiles": shp_groups,
             "matches": matches,
         }
@@ -245,7 +259,8 @@ def main() -> int:
     inspected = []
     matched_features = []
 
-    for path in archives:
+    for index, path in enumerate(archives, start=1):
+        print(f"[{index}/{len(archives)}] {path.name}", flush=True)
         try:
             item = inspect_zip(path, args.match, args.match_limit)
             item["path"] = path.relative_to(root).as_posix()
@@ -274,7 +289,7 @@ def main() -> int:
                     )
 
     output = {
-        "schema_version": "0.1.0",
+        "schema_version": "0.2.0",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "root": str(root),
         "queries": args.match,
@@ -284,6 +299,7 @@ def main() -> int:
         "archives": inspected,
         "notes": [
             "DBF/SHP metadata is inspected directly inside ZIP archives; raw files are not modified.",
+            "Grid archives are not record-scanned during name lookup; archive-level bboxes are used to shortlist partitions.",
             "Grid partition candidates are bbox intersections only and must be verified by actual feature-level spatial filtering before export.",
         ],
     }
