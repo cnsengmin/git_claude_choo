@@ -482,7 +482,7 @@ def load_population(root: Path, stat_year: int, grid_size: int, partition: str, 
     target_marker = f"_{partition}_{grid_size}M.csv".lower()
     with zipfile.ZipFile(path, "r") as zf:
         members = [i.filename for i in zf.infolist() if not i.is_dir() and i.filename.lower().endswith(".csv")]
-        matches = [m for m in members if target_marker in m.lower()]
+        matches = [m for m in members if target_marker in m.lower() and "인구" in Path(m).name]
         if len(matches) != 1:
             raise ValueError(f"Expected one population CSV for partition {partition}, found {matches}")
         text, encoding = decode_csv_member(zf.read(matches[0]))
