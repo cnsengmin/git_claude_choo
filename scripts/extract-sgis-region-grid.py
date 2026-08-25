@@ -14,8 +14,8 @@ Current MVP path:
       -> CSV + WGS84 GeoJSON + manifest
 
 Only Python's standard library is required. EPSG:5179 -> EPSG:4326 conversion is
-implemented from the published Korea 2000 / Unified CS parameters found in the
-source PRJ. Raw ZIPs are never modified.
+implemented from the Korea 2000 / Unified CS parameters found in the source PRJ.
+Raw ZIPs are never modified.
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ import zipfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable, Iterator
+from typing import Iterable
 
 ENCODINGS = ("utf-8-sig", "utf-8", "cp949", "euc-kr")
 
@@ -192,7 +192,6 @@ def bbox_intersects(a: list[float], b: list[float]) -> bool:
 def point_in_polygon(point: tuple[float, float], polygon: PolygonShape) -> bool:
     x, y = point
     inside = False
-    # Even-odd across all rings works for ordinary shell/hole shapefile polygons.
     for ring in polygon.parts:
         n = len(ring)
         if n < 3:
@@ -236,15 +235,15 @@ def polygon_intersects_rect(polygon: PolygonShape, rect: list[float]) -> bool:
     corners = [(xmin, ymin), (xmax, ymin), (xmax, ymax), (xmin, ymax)]
     if any(point_in_polygon(c, polygon) for c in corners):
         return True
+    rect_edges = [
+        (corners[0], corners[1]),
+        (corners[1], corners[2]),
+        (corners[2], corners[3]),
+        (corners[3], corners[0]),
+    ]
     for ring in polygon.parts:
         if any(xmin <= x <= xmax and ymin <= y <= ymax for x, y in ring):
             return True
-        rect_edges = [
-            (corners[0], corners[1]),
-            (corners[1], corners[2]),
-            (corners[2], corners[3]),
-            (corners[3], corners[0]),
-        ]
         for i in range(len(ring)):
             a = ring[i]
             b = ring[(i + 1) % len(ring)]
@@ -264,7 +263,6 @@ def meridional_arc(phi: float, a: float, e2: float) -> float:
 
 
 def epsg5179_to_wgs84(x: float, y: float) -> tuple[float, float]:
-    """Inverse Korea 2000 / Unified CS using GRS80 parameters."""
     a = 6378137.0
     f = 1 / 298.257222101
     e2 = f * (2 - f)
@@ -274,7 +272,6 @@ def epsg5179_to_wgs84(x: float, y: float) -> tuple[float, float]:
     lat0 = math.radians(38.0)
     false_easting = 1000000.0
     false_northing = 2000000.0
-
     e4 = e2 * e2
     e6 = e4 * e2
     a0 = 1 - e2 / 4 - 3 * e4 / 64 - 5 * e6 / 256
@@ -287,7 +284,6 @@ def epsg5179_to_wgs84(x: float, y: float) -> tuple[float, float]:
     j3 = 151 * e1**3 / 96
     j4 = 1097 * e1**4 / 512
     fp = mu + j1 * math.sin(2 * mu) + j2 * math.sin(4 * mu) + j3 * math.sin(6 * mu) + j4 * math.sin(8 * mu)
-
     sin_fp = math.sin(fp)
     cos_fp = math.cos(fp)
     tan_fp = math.tan(fp)
@@ -296,7 +292,6 @@ def epsg5179_to_wgs84(x: float, y: float) -> tuple[float, float]:
     n1 = a / math.sqrt(1 - e2 * sin_fp**2)
     r1 = a * (1 - e2) / (1 - e2 * sin_fp**2) ** 1.5
     d = (x - false_easting) / (n1 * k0)
-
     lat = fp - (n1 * tan_fp / r1) * (
         d**2 / 2
         - (5 + 3 * t1 + 10 * c1 - 4 * c1**2 - 9 * ep2) * d**4 / 24
@@ -362,13 +357,11 @@ def resolve_region(root: Path, boundary_year: int, sido: str, sigungu: str, dong
     sido_zip = choose_archive(root, "센서스용 행정구역경계(시도)", boundary_year)
     sigungu_zip = choose_archive(root, "센서스용 행정구역경계(시군구)", boundary_year)
     dong_zip = choose_archive(root, "센서스용 행정구역경계(읍면동)", boundary_year)
-
     sido_rows, _, _, _ = read_single_shapefile_group(sido_zip)
     sido_matches = [r for r in sido_rows if exact_name(r.get("SIDO_NM", ""), sido)]
     if len(sido_matches) != 1:
         raise ValueError(f"Expected one sido match for {sido!r}, found {len(sido_matches)}")
     sido_code = sido_matches[0]["SIDO_CD"]
-
     sigungu_rows, _, _, _ = read_single_shapefile_group(sigungu_zip)
     sigungu_matches = [
         r for r in sigungu_rows
@@ -378,7 +371,6 @@ def resolve_region(root: Path, boundary_year: int, sido: str, sigungu: str, dong
         names = [r.get("SIGUNGU_NM") for r in sigungu_rows if r.get("SIGUNGU_CD", "").startswith(sido_code)]
         raise ValueError(f"Expected one sigungu match for {sigungu!r}, found {len(sigungu_matches)}. Available sample={names[:20]}")
     sigungu_code = sigungu_matches[0]["SIGUNGU_CD"]
-
     dong_rows, dong_shapes, dong_stem, encoding = read_single_shapefile_group(dong_zip)
     dong_matches = [
         (idx, row)
@@ -391,7 +383,6 @@ def resolve_region(root: Path, boundary_year: int, sido: str, sigungu: str, dong
     idx, dong_row = dong_matches[0]
     if idx >= len(dong_shapes) or dong_shapes[idx] is None:
         raise ValueError("Matched dong has no polygon shape")
-
     return {
         "sido": {"name": sido, "code": sido_code, "zip": sido_zip.name},
         "sigungu": {"name": sigungu, "code": sigungu_code, "zip": sigungu_zip.name},
@@ -408,19 +399,45 @@ def resolve_region(root: Path, boundary_year: int, sido: str, sigungu: str, dong
     }
 
 
+def target_grid_suffix(grid_size: int) -> str:
+    return f"_{grid_size}M" if grid_size < 1000 else f"_{grid_size // 1000}K"
+
+
+def candidate_grid_archives(root: Path, grid_year: int, grid_size: int, region_bbox: list[float]) -> list[Path]:
+    out: list[Path] = []
+    suffix = target_grid_suffix(grid_size)
+    for path in sorted(root.rglob("*.zip")):
+        if "grid_border_grid" not in path.name.lower() or str(grid_year) not in path.name:
+            continue
+        try:
+            with zipfile.ZipFile(path, "r") as zf:
+                names = [i.filename for i in zf.infolist() if not i.is_dir()]
+                groups = group_members(names)
+                for stem, members in groups.items():
+                    if not stem.upper().endswith(suffix.upper()) or ".shp" not in members:
+                        continue
+                    with zf.open(members[".shp"], "r") as shp_stream:
+                        header = shp_stream.read(100)
+                    _, bbox = shp_header(header)
+                    if bbox_intersects(bbox, region_bbox):
+                        out.append(path)
+                    break
+        except Exception:
+            continue
+    return out
+
+
 def read_grid_partition(path: Path, grid_size: int, region_shape: PolygonShape) -> tuple[str, list[tuple[str, PolygonShape]]]:
-    target_suffix = f"_{grid_size}M" if grid_size < 1000 else f"_{grid_size // 1000}K"
+    suffix = target_grid_suffix(grid_size)
     with zipfile.ZipFile(path, "r") as zf:
         names = [i.filename for i in zf.infolist() if not i.is_dir()]
         groups = group_members(names)
-        matches = [(stem, members) for stem, members in groups.items() if stem.upper().endswith(target_suffix.upper()) and ".dbf" in members and ".shp" in members]
+        matches = [(stem, members) for stem, members in groups.items() if stem.upper().endswith(suffix.upper()) and ".dbf" in members and ".shp" in members]
         if not matches:
             return "", []
         stem, members = matches[0]
-        _, overall_bbox = shp_header(zf.read(members[".shp"][:]) if False else b"")
-        # Above is intentionally unreachable; ZIP members are read once below.
         shp_data = zf.read(members[".shp"])
-        _, overall_bbox = shp_header(shp_data)
+        _, overall_bbox = shp_header(shp_data[:100])
         if not bbox_intersects(overall_bbox, region_shape.bbox):
             return stem, []
         encoding = normalize_cpg(zf.read(members[".cpg"])) if ".cpg" in members else None
@@ -440,33 +457,7 @@ def read_grid_partition(path: Path, grid_size: int, region_shape: PolygonShape) 
         return stem, selected
 
 
-def candidate_grid_archives(root: Path, grid_year: int, grid_size: int, region_bbox: list[float]) -> list[Path]:
-    out: list[Path] = []
-    suffix = f"_{grid_size}M" if grid_size < 1000 else f"_{grid_size // 1000}K"
-    for path in sorted(root.rglob("*.zip")):
-        if "grid_border_grid" not in path.name.lower():
-            continue
-        if str(grid_year) not in path.name:
-            continue
-        try:
-            with zipfile.ZipFile(path, "r") as zf:
-                names = [i.filename for i in zf.infolist() if not i.is_dir()]
-                groups = group_members(names)
-                for stem, members in groups.items():
-                    if not stem.upper().endswith(suffix.upper()) or ".shp" not in members:
-                        continue
-                    header = zf.read(members[".shp"], pwd=None)[:100]
-                    _, bbox = shp_header(header)
-                    if bbox_intersects(bbox, region_bbox):
-                        out.append(path)
-                    break
-        except Exception:
-            continue
-    return out
-
-
 def partition_from_stem(stem: str) -> str:
-    # grid_다사_100M -> 다사
     bits = stem.split("_")
     if len(bits) >= 3:
         return bits[1]
@@ -479,7 +470,7 @@ def decode_csv_member(data: bytes) -> tuple[str, str]:
             return data.decode(enc), enc
         except UnicodeDecodeError:
             continue
-    raise UnicodeDecodeError("sgis", data, 0, min(1, len(data)), "No supported encoding")
+    raise ValueError("No supported encoding for SGIS CSV member")
 
 
 def load_population(root: Path, stat_year: int, grid_size: int, partition: str, indicator: str, selected_ids: set[str]) -> tuple[dict[str, int], dict]:
@@ -494,8 +485,7 @@ def load_population(root: Path, stat_year: int, grid_size: int, partition: str, 
         matches = [m for m in members if target_marker in m.lower()]
         if len(matches) != 1:
             raise ValueError(f"Expected one population CSV for partition {partition}, found {matches}")
-        raw = zf.read(matches[0])
-        text, encoding = decode_csv_member(raw)
+        text, encoding = decode_csv_member(zf.read(matches[0]))
         values: dict[str, int] = {}
         parsed_rows = 0
         for row in csv.reader(io.StringIO(text)):
@@ -504,9 +494,9 @@ def load_population(root: Path, stat_year: int, grid_size: int, partition: str, 
             year, grid_id, stat_cd, value = [v.strip() for v in row[:4]]
             if year != str(stat_year) or stat_cd != indicator or grid_id not in selected_ids:
                 continue
-            parsed_rows += 1
             try:
                 values[grid_id] = int(float(value))
+                parsed_rows += 1
             except ValueError:
                 continue
         return values, {
@@ -576,22 +566,10 @@ def main() -> int:
 
     print("[4/4] writing CSV / GeoJSON / manifest", flush=True)
     csv_fields = [
-        "atlas_grid_id",
-        "native_grid_id",
-        "grid_size_m",
-        "source_crs",
-        "grid_reference_year",
-        "statistics_reference_year",
-        "indicator_code",
-        "population_total",
-        "population_status",
-        "sgis_adm_cd",
-        "sgis_adm_nm",
-        "sgis_sigungu_cd",
-        "sgis_sigungu_nm",
-        "sgis_sido_cd",
-        "sgis_sido_nm",
-        "partition",
+        "atlas_grid_id", "native_grid_id", "grid_size_m", "source_crs",
+        "grid_reference_year", "statistics_reference_year", "indicator_code",
+        "population_total", "population_status", "sgis_adm_cd", "sgis_adm_nm",
+        "sgis_sigungu_cd", "sgis_sigungu_nm", "sgis_sido_cd", "sgis_sido_nm", "partition",
     ]
     with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=csv_fields)
@@ -652,11 +630,8 @@ def main() -> int:
         "grid_reference_year": args.grid_year,
         "statistics_reference_year": args.stat_year,
         "grid_size_m": args.grid_size,
-        "indicator": {
-            "code": args.indicator,
-            "title": "총인구" if args.indicator == "to_in_001" else None,
-        },
-        "selection_rule": "include every 100m grid polygon whose geometry intersects the selected administrative-dong polygon",
+        "indicator": {"code": args.indicator, "title": "총인구" if args.indicator == "to_in_001" else None},
+        "selection_rule": "include every grid polygon whose geometry intersects the selected administrative-dong polygon",
         "grid_partitions": partition_meta,
         "statistic_sources": statistic_sources,
         "selected_grid_count": len(selected),
@@ -668,10 +643,7 @@ def main() -> int:
             "Cells without a statistics row are preserved as null/no-stat-row; Atlas does not silently coerce them to zero in normalized output.",
             "SGIS native codes are preserved and are not derived from KIK codes by truncation.",
         ],
-        "outputs": {
-            "csv": csv_path.name,
-            "geojson": geojson_path.name,
-        },
+        "outputs": {"csv": csv_path.name, "geojson": geojson_path.name},
     }
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
