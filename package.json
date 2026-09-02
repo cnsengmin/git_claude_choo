@@ -1,0 +1,28 @@
+{
+  "name": "atlas-kr",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "data:kik": "node scripts/build-kik-registry.mjs",
+    "data:sgis-grid": "node scripts/build-sgis-grid-statistics.mjs",
+    "data:boundary": "node scripts/build-boundary-geojson-snapshot.mjs",
+    "data:sgis-extract": "python scripts/extract-sgis-region-grid.py"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.11.0",
+    "maplibre-gl": "^5.6.0",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.8.0"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "sgis",
+  "dataset_id": "<dataset-id>",
+  "reference_year": null,
+  "reference_date": null,
+  "acquired_at": "<ISO-8601>",
+  "request": {
+    "portal": "SGIS 자료제공",
+    "selections": {}
+  },
+  "storage": {
+    "kind": "private-github-lfs",
+    "repository": "<owner>/<data-repository>",
+    "path": "<raw/path/original.zip>"
+  },
+  "original_filename": "<original.zip>",
+  "sha256": "<sha256>",
+  "inventory_manifest": "<path-to-inventory-json>",
+  "license_status": "needs-review",
+  "redistribution_status": "not-cleared",
+  "notes": "Preserve provider filename and acquisition context. Do not publish raw binary until reuse/redistribution terms are verified."
+}

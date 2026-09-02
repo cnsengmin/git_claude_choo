@@ -1,0 +1,40 @@
+name: Atlas KR CI
+
+on:
+  push:
+    branches:
+      - atlas-mvp
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  typecheck-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check ingestion scripts
+        run: |
+          node --check scripts/build-kik-registry.mjs
+          node --check scripts/build-sgis-grid-statistics.mjs
+          node --check scripts/build-boundary-geojson-snapshot.mjs
+          python -m py_compile scripts/inspect-sgis-package.py
+          python -m py_compile scripts/inspect-sgis-shapefile-schema.py
+          python -m py_compile scripts/extract-sgis-region-grid.py
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
