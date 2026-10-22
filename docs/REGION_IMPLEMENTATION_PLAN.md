@@ -10,6 +10,7 @@
 | 2025 시군구 단년도 표(229) | 완료, 검증 31/31 | `scripts/sgg2025/`, `data/derived/sgg2025/` |
 | 단위 레지스트리·시점별 레이어(2-1, 2-3 목록) | 완료, 검증 20/20 | `scripts/region_registry/`, `data/derived/region-registry/` |
 | 집계구 경계 2025·통계 2024 (P3) | 완료: 108,510개, 전국 인구 공표치와 차이 0 | `data/raw/sgis/oa-2025/`, `data/manifests/sgis-oa-2025.json` |
+| 변경 사건 (P1) | 완료, 검증 9/9, KIRD 11/11(1건 범위 밖) | `scripts/region_registry/build_events.py`, `data/derived/region-registry/events.csv` |
 | 그 밖 | 미착수 | 아래 |
 
 ## 작업 묶음
