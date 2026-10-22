@@ -12,6 +12,7 @@
 | 집계구 경계 2025·통계 2024 (P3) | 완료: 108,510개, 전국 인구 공표치와 차이 0 | `data/raw/sgis/oa-2025/`, `data/manifests/sgis-oa-2025.json` |
 | 변경 사건 (P1) | 완료, 검증 9/9, KIRD 11/11(1건 범위 밖) | `scripts/region_registry/build_events.py`, `data/derived/region-registry/events.csv` |
 | 레이어 경계 (P2) | 완료, 57개 레이어 차이 모두 설명(기초 단위 19/19 일치), 레지스트리 검증 23/23 | `scripts/region_registry/build_layer_boundaries.py`, `data/derived/region-registry/layer_boundaries.csv` |
+| 레이어별 코드 대응 (P5) | 완료, 검증 10/10. 2025 시군구 252쌍 공식 연계정보와 일치, 2026-10-01은 공식 코드로 대체 | `scripts/region_registry/build_code_map_layers.py`, `data/derived/region-registry/code_map_layers.csv` |
 | 그 밖 | 미착수 | 아래 |
 
 ## 작업 묶음
