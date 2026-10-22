@@ -91,3 +91,21 @@ python scripts/region_registry/build_layer_boundaries.py --detail   # admdongkor
   - 일반구 구분은 2016년만 `version_lag`(2016-02-01판에 부천 일반구 3개가 남아 있음).
   - 행정동은 2015년만 완전 일치. 나머지는 위 세 갈래(`no_polygon`, `source_gap`, `version_lag`)로 모두 설명된다.
 - 연결표(P4)에 주는 영향: 경계판이 연말에 없는 해는 레이어 경계를 쓰지 말고, 사건 시행일 바로 앞뒤의 admdongkor 판(64개 시점)을 쓴다. 경계 없는 5개 면은 인구가 없으므로 1:1(코드 재부여)로만 잇는다.
+
+## 레이어별 코드 대응 (설계안 2-5)
+
+```bash
+python scripts/region_registry/build_code_map_layers.py   # 공식 연계정보: data/raw/external/kostat-linkage/linkage_<날짜>.csv
+python scripts/region_registry/validate_code_map.py
+```
+
+- 근거: 레이어 경계판의 읍면동 경계 하나하나에 통계청 코드(2021년판까지 `emd7`, 2022년판부터 `emd8`)와 행안부 10자리 코드(`emdcd`)가 함께 붙어 있다. 같은 경계에 붙은 두 코드를 한 쌍으로 본다. 통계청 시군구는 통계청 코드 안의 시군구 자리이고, 행안부 시군구는 같은 경계들의 행안부 시군구다. 한 체계의 코드를 잘라 다른 체계 코드를 만들지 않는다.
+- 결과: `code_map_layers.csv`(시군구·기초 단위, 레이어 38개), `code_map_layers_admdong.parquet`(행정동). 모든 레이어에서 1:1이다.
+- 원자료 오류 처리(`code_map_source_anomalies.csv`):
+  - 2018년판에서 남동구 동 하나에만 붙은 통계청 시군구 23057은 소수 쌍으로 버린다.
+  - 2019년판에 두 번 들어 있는 검암경서동은 하나로 합친다.
+- 공식 대조(국가데이터처 법정동 연계정보 2026-10-01판, 개정판 6개가 한 파일에 있음): 각 레이어를 그 날짜 이전 1년 안의 가장 최근 개정판과 비교한다(`code_map_linkage_check.csv`).
+  - `kr-sgg@2025-12-31` 252쌍이 2025-10-01판과 모두 일치한다. 3단계에서 SGIS 경계 겹침으로 만든 2025 대응표와도 일치한다.
+  - `kr-sgg@2026-10-01`: 2026-07 개편 지역 12개 시군구(광주 5개 구, 전남 5개 시, 인천 서해·검단구)에서 admdongkor 코드가 공식과 다르다. 행정동은 257개가 다르다.
+- 공식 개정판이 있는 레이어는 공식 코드를 `kostat_final`로 쓰고(`kostat_source = official_linkage`), 없는 레이어(2008–2024)는 경계판 코드를 쓴다(`boundary_polygon`).
+- 검증 10/10.
