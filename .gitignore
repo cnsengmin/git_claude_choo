@@ -16,3 +16,7 @@ data/raw/*
 
 # Local SGIS raw ZIP/SHP/CSV workspace. Do not commit bulk source files.
 /SGIS/
+
+# Python caches
+__pycache__/
+*.pyc

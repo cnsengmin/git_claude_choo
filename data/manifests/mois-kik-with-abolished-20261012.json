@@ -1,0 +1,83 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "mois-code",
+  "dataset_id": "mois-kik-with-abolished-20261012",
+  "reference_date": "2026-10-12",
+  "acquired_at": "2026-10-21T17:43:22+00:00",
+  "request": {
+    "portal": "행정안전부 누리집 > 행정기관(행정동) 및 관할구역(법정동) 정보 게시판",
+    "board": "https://www.mois.go.kr/frt/bbs/type001/commonSelectBoardList.do?bbsId=BBSMSTR_000000000052",
+    "article": "https://www.mois.go.kr/frt/bbs/type001/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000052&nttId=130109",
+    "article_title": "행정기관(행정동) 및 관할구역(법정동) 변경내역 (2026.10.12. 시행)",
+    "attachment": "jscode20261012(말소코드포함).zip (fileSn=2)"
+  },
+  "original_filename": "jscode20261012(말소코드포함).zip",
+  "stored_as": "data/raw/mois/jscode20261012/jscode20261012_with_abolished.zip",
+  "sha256": "1594c1da830a75cad9c555492f7b5bb7a362565cf100feca6f2d15dd9a2f51b0",
+  "bytes": 5541645,
+  "members": [
+    {
+      "name": "KIKcd_B.20261012(말소코드포함)",
+      "bytes": 16075808,
+      "lines": 53408,
+      "sha256": "2aa463eed57c32598277241635b6adf2197810b9ac05485f18ce096c0cfa3e56"
+    },
+    {
+      "name": "KIKcd_B.20261012(말소코드포함).xlsx",
+      "bytes": 1953507,
+      "lines": 7494,
+      "sha256": "78146810d67e2f18585c6cc66157fc73ee166f2929207285dcc2e85e13ff296b"
+    },
+    {
+      "name": "KIKcd_H.20261012(말소코드포함)",
+      "bytes": 2893513,
+      "lines": 9613,
+      "sha256": "7166cf3763997cda46099dca31b18a35cd54fca25ebedd2bd5e630255ebbb626"
+    },
+    {
+      "name": "KIKcd_H.20261012(말소코드포함).xlsx",
+      "bytes": 357681,
+      "lines": 1218,
+      "sha256": "0fea01056b3f83a9d7a5292a0df79c849e717c9fa6eea33b4c8a511df3525a69"
+    },
+    {
+      "name": "KIKmix.20261012(말소코드포함)",
+      "bytes": 9728895,
+      "lines": 58963,
+      "sha256": "5eeddf687a60a96788c707808a3c3fa3961c5857c68cd94b8c4da11ff3518abe"
+    },
+    {
+      "name": "KIKmix.20261012(말소코드포함).xlsx",
+      "bytes": 2384125,
+      "lines": 7805,
+      "sha256": "61c0b11f98a09c4207847b72e527b1b4afeed95a0ba71458236d4970e26f120c"
+    }
+  ],
+  "format": "fixed-width text (CP949, header line) + xlsx; layout as docs/MOIS_KIK_20260720.md; 말소일자 filled for abolished codes",
+  "findings": {
+    "KIKcd_H_rows": 9612,
+    "KIKcd_H_rows_with_abolition_date": 5687,
+    "earliest_creation": "1984-04-23",
+    "lgu_count_rule": "시군구 행 중 출장소 제외, 'OO시 OO구' 일반구 제외, 단층제 세종(시군구명 빈칸) 포함",
+    "lgu_counts": {
+      "2010-12-31": 230,
+      "2013-12-31": 230,
+      "2014-12-31": 229,
+      "2025-12-31": 229,
+      "2026-07-01": 230,
+      "2026-10-01": 230
+    },
+    "admin_dong_2025-12-31": {
+      "all": 3625,
+      "eupmyeon_sub_offices": 63,
+      "excluding_sub_offices": 3562,
+      "sgis_2025_boundary": 3559
+    }
+  },
+  "storage": {
+    "kind": "local-gitignored",
+    "path": "data/raw/mois/jscode20261012"
+  },
+  "license_status": "행정안전부 공개 자료(게시판 첨부) — 이용조건 표시 없음, 재배포 전 확인 필요",
+  "redistribution_status": "not-cleared"
+}

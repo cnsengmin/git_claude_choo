@@ -1,0 +1,596 @@
+{
+  "requests": {
+    "pop_sex": {
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "tbl_nm": "행정구역(시군구)별 성별 인구수",
+      "prd_se": "M",
+      "period": "202512",
+      "itm_id": "T20+T21+T22",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 879,
+      "periods_returned": [
+        "202512"
+      ],
+      "path": "data/raw/kosis/sgg2025/pop_sex.json",
+      "sha256": "f06e39b84cf8ec55276a7d292cec10482de49acb764847a658376babe4540b6c",
+      "fetched_at": "2026-10-21T16:45:43+00:00"
+    },
+    "pop_age1_T2": {
+      "org_id": "101",
+      "tbl_id": "DT_1B04006",
+      "tbl_nm": "행정구역(시군구)별/1세별 주민등록인구",
+      "prd_se": "M",
+      "period": "202512",
+      "itm_id": "T2",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 30090,
+      "periods_returned": [
+        "202512"
+      ],
+      "path": "data/raw/kosis/sgg2025/pop_age1_T2.json",
+      "sha256": "8e2c9bcccf7242f4a5306f06fdd7c316bc338b33e251957a7cdefd134e0d6882",
+      "fetched_at": "2026-10-21T16:45:54+00:00"
+    },
+    "pop_age1_T3": {
+      "org_id": "101",
+      "tbl_id": "DT_1B04006",
+      "tbl_nm": "행정구역(시군구)별/1세별 주민등록인구",
+      "prd_se": "M",
+      "period": "202512",
+      "itm_id": "T3",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 30090,
+      "periods_returned": [
+        "202512"
+      ],
+      "path": "data/raw/kosis/sgg2025/pop_age1_T3.json",
+      "sha256": "1bdc5fabe29ea5e79229dd055754526de99cbf9683e0a206fd7433011d758e77",
+      "fetched_at": "2026-10-21T16:46:04+00:00"
+    },
+    "pop_age1_T4": {
+      "org_id": "101",
+      "tbl_id": "DT_1B04006",
+      "tbl_nm": "행정구역(시군구)별/1세별 주민등록인구",
+      "prd_se": "M",
+      "period": "202512",
+      "itm_id": "T4",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 30090,
+      "periods_returned": [
+        "202512"
+      ],
+      "path": "data/raw/kosis/sgg2025/pop_age1_T4.json",
+      "sha256": "c10238633839aea601d63590c506b1a0aae02eb1351f9f39113474c75b410a06",
+      "fetched_at": "2026-10-21T16:46:14+00:00"
+    },
+    "households": {
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "tbl_nm": "행정구역(시군구)별 주민등록세대수",
+      "prd_se": "M",
+      "period": "202512",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 293,
+      "periods_returned": [
+        "202512"
+      ],
+      "path": "data/raw/kosis/sgg2025/households.json",
+      "sha256": "4c499dc4342915adff34ddf96255a312527e21b5e93b02861c50f87cd78debc8",
+      "fetched_at": "2026-10-21T16:46:15+00:00"
+    },
+    "migration": {
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "tbl_nm": "시군구별 이동자수",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 816,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/migration.json",
+      "sha256": "c9020600d144ba968f9ae247f81f6723769da040e50cc3115e14c6f19b332279",
+      "fetched_at": "2026-10-21T16:46:17+00:00"
+    },
+    "births": {
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "tbl_nm": "시군구/출생아수 합계출산율",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T1+T2",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 564,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/births.json",
+      "sha256": "6fdbafef6990470aea4004575ad7e094331551450fc162909bbd0272c698251e",
+      "fetched_at": "2026-10-21T16:46:19+00:00"
+    },
+    "deaths": {
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "tbl_nm": "시군구/월별 사망자수(1997~)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 282,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/deaths.json",
+      "sha256": "15ffd17763fe9c8e4de2da773aa4418396c06260d5e7dc81da69aca30ebcba6b",
+      "fetched_at": "2026-10-21T16:46:20+00:00"
+    },
+    "establishments": {
+      "org_id": "101",
+      "tbl_id": "DT_1YL20832",
+      "tbl_nm": "사업체수(등록기반)(시도/시/군/구)",
+      "prd_se": "Y",
+      "period": "2024",
+      "itm_id": "ALL",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 246,
+      "periods_returned": [
+        "2024"
+      ],
+      "path": "data/raw/kosis/sgg2025/establishments.json",
+      "sha256": "b76c537249020b2e687aa81bcba10bd6d7ee6ad1d0a83c0c08caa2eba9656a2d",
+      "fetched_at": "2026-10-21T16:46:21+00:00"
+    },
+    "employees": {
+      "org_id": "101",
+      "tbl_id": "DT_1YL15014",
+      "tbl_nm": "종사자수(등록기반)(시도/시/군/구)",
+      "prd_se": "Y",
+      "period": "2024",
+      "itm_id": "ALL",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 738,
+      "periods_returned": [
+        "2024"
+      ],
+      "path": "data/raw/kosis/sgg2025/employees.json",
+      "sha256": "1a922f97f959555c89e965ae87ac5b5e9ff50e0023eb52809a069353c3550475",
+      "fetched_at": "2026-10-21T16:46:22+00:00"
+    },
+    "employees_mfg": {
+      "org_id": "101",
+      "tbl_id": "DT_1YL5802",
+      "tbl_nm": "제조업 종사자수(등록기반)(시도/시/군/구)",
+      "prd_se": "Y",
+      "period": "2024",
+      "itm_id": "ALL",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 246,
+      "periods_returned": [
+        "2024"
+      ],
+      "path": "data/raw/kosis/sgg2025/employees_mfg.json",
+      "sha256": "9433e0b89c71ba49bdcd1e99dd8e219d452533802837ba7fcc87f619d08b4090",
+      "fetched_at": "2026-10-21T16:46:23+00:00"
+    },
+    "employees_retail": {
+      "org_id": "101",
+      "tbl_id": "DT_1YL6202",
+      "tbl_nm": "도소매업 종사자수(등록기반)(시도/시/군/구)",
+      "prd_se": "Y",
+      "period": "2024",
+      "itm_id": "ALL",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 246,
+      "periods_returned": [
+        "2024"
+      ],
+      "path": "data/raw/kosis/sgg2025/employees_retail.json",
+      "sha256": "fe7aeb19e994bcd54d2dcfc9f70122d33834ff03ab63283a58176dc89e42b353",
+      "fetched_at": "2026-10-21T16:46:24+00:00"
+    },
+    "lfs_summary": {
+      "org_id": "101",
+      "tbl_id": "DT_1ES3A01S",
+      "tbl_nm": "시군구 경제활동인구 총괄",
+      "prd_se": "H",
+      "period": "202502",
+      "itm_id": "ALL",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "LFS4",
+      "rows": 2271,
+      "periods_returned": [
+        "202502"
+      ],
+      "path": "data/raw/kosis/sgg2025/lfs_summary.json",
+      "sha256": "783b5ec71125b6f4d78f8454d208892a1c81c8f64755d85fb86811736497094a",
+      "fetched_at": "2026-10-21T16:46:26+00:00"
+    },
+    "lfs_emp_age": {
+      "org_id": "101",
+      "tbl_id": "DT_1ES3A03_A01S",
+      "tbl_nm": "시군구/연령별 취업자 및 고용률 (전체)",
+      "prd_se": "H",
+      "period": "202502",
+      "itm_id": "ALL",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "ALL"
+      },
+      "code_system": "LFS4",
+      "rows": 3248,
+      "periods_returned": [
+        "202502"
+      ],
+      "path": "data/raw/kosis/sgg2025/lfs_emp_age.json",
+      "sha256": "51cb0b72107848fe23ca915274cd322707456797278ced3bd73f9f57b2f1b1f7",
+      "fetched_at": "2026-10-21T16:46:29+00:00"
+    },
+    "census_T100": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T100",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T100.json",
+      "sha256": "f3265c64586aee71c464f43643befd5930cafb18a125b6645b6fe0a9179ccaed",
+      "fetched_at": "2026-10-21T16:46:33+00:00"
+    },
+    "census_T110": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T110",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T110.json",
+      "sha256": "a47760124767b75028da0067a7fb571699712f61ad0000425839893e86e46822",
+      "fetched_at": "2026-10-21T16:46:49+00:00"
+    },
+    "census_T120": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T120",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T120.json",
+      "sha256": "544a48e46a7fd737acd7aef9f151a6d3d2d732eb09c1dba269b5e7de3ea7c2d1",
+      "fetched_at": "2026-10-21T16:46:58+00:00"
+    },
+    "census_T140": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T140",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T140.json",
+      "sha256": "5b183f08b9ba8b72982ecad6f7402a73cd73f2c69aa8b3d15edd62cf1cac802c",
+      "fetched_at": "2026-10-21T16:47:14+00:00"
+    },
+    "census_T200": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T200",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T200.json",
+      "sha256": "c16d8984a515a79f40ca9f3e1d7bbd01ed16d6cde130aa5ca53a0cac393c936f",
+      "fetched_at": "2026-10-21T16:47:29+00:00"
+    },
+    "census_T210": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T210",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T210.json",
+      "sha256": "bd42685185550d3f1b7dde04f72cb6ba119e20d7199cc3d4935b4830b6b316b0",
+      "fetched_at": "2026-10-21T16:47:39+00:00"
+    },
+    "census_T310": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T310.json",
+      "sha256": "b55a70179b6cc5d58181813e3c2db2293a52199c598f28b2d3721ecf4919da4f",
+      "fetched_at": "2026-10-21T16:47:54+00:00"
+    },
+    "census_T311": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T311",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T311.json",
+      "sha256": "614cea5c8cdd2f85f49b9b0313e188e8340ab83dbf1ac258b00b16ac8a7c48d4",
+      "fetched_at": "2026-10-21T16:48:04+00:00"
+    },
+    "census_T312": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T312",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T312.json",
+      "sha256": "d8871fa5f9211e883484e2cfd7f1d7800fa1e52505bc6a33f7dd1b56c4e3e82c",
+      "fetched_at": "2026-10-21T16:48:14+00:00"
+    },
+    "census_T313": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T313",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T313.json",
+      "sha256": "7d889000656bd274c4f8dc1327fdd029852b9a554d9b040601f65100066ac1fe",
+      "fetched_at": "2026-10-21T16:48:28+00:00"
+    },
+    "census_T314": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T314",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T314.json",
+      "sha256": "0626fb4d7c5a317e75010d0cc57c64778e5446c58fcfe1bd44b6bfc444a10800",
+      "fetched_at": "2026-10-21T16:48:38+00:00"
+    },
+    "census_T315": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T315",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T315.json",
+      "sha256": "a009be34e7cc2e2efab6c4502e9b3e30ef8becae60ba77b5d912620b3d527071",
+      "fetched_at": "2026-10-21T16:48:53+00:00"
+    },
+    "census_T320": {
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "tbl_nm": "인구 가구 및 주택 – 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T320",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 3884,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg2025/census_T320.json",
+      "sha256": "90422a9f7b56dbe193e1035ffda2ba940a037273f7137fb381813bed09968ed9",
+      "fetched_at": "2026-10-21T16:49:03+00:00"
+    }
+  },
+  "schema_version": "0.1.0",
+  "source_id": "kosis",
+  "endpoint": "openapi/Param/statisticsParameterData.do",
+  "storage": {
+    "kind": "local-gitignored",
+    "path": "data/raw/kosis/sgg2025"
+  },
+  "meta": {
+    "DT_1B04006": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1B04006.json",
+      "rows": 450,
+      "sha256": "5ba380b6ab7c81ec68ec46eecc9489041b3adae43627a903923845d42ef311f2"
+    },
+    "DT_1B040A3": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1B040A3.json",
+      "rows": 421,
+      "sha256": "01633916a99d00f586c3e18870c6da8bede8e559a468ad812425b735210f2ee3"
+    },
+    "DT_1B040B3": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1B040B3.json",
+      "rows": 419,
+      "sha256": "bcf8a368ee52ccef5442a179de1a4b37c4aa3f395fdfbf77b8a6459ab3acfe2f"
+    },
+    "DT_1B26001_A01": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1B26001_A01.json",
+      "rows": 312,
+      "sha256": "72ac1d2bb72e4bab4292589062ae1a201cfd788aebb60cc806154d19ca48a2ad"
+    },
+    "DT_1B81A23": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1B81A23.json",
+      "rows": 305,
+      "sha256": "0a7d0c357bbfe7eecb47d69a67e2f9013b35ff9484cf7e71c761e4d4dab61416"
+    },
+    "DT_1B82A01": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1B82A01.json",
+      "rows": 311,
+      "sha256": "83b8f0b9ef9be251b220fc82418bd192d5c6c0451499cd781ec3a833c9ae0f03"
+    },
+    "DT_1ES3A01S": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1ES3A01S.json",
+      "rows": 242,
+      "sha256": "37ef67f7d39d4ad6e6c8698ed247a611888090da5d41825c033a42e0ae95f54c"
+    },
+    "DT_1ES3A03_A01S": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1ES3A03_A01S.json",
+      "rows": 242,
+      "sha256": "2a6ed5d5be725a0e3c93c8b49dfdbc0715ae26fde2af2b467bb3368dc1e01b42"
+    },
+    "DT_1IN1502": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1IN1502.json",
+      "rows": 4178,
+      "sha256": "8fbdb49fefe90ca640807a3373e1952a9063d0b93892d83de0cfd8b48ccba61f"
+    },
+    "DT_1YL15014": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1YL15014.json",
+      "rows": 255,
+      "sha256": "c20287e0225ca94127cec9e51d609030f56afcd6bcc9f1b3665420f25693872e"
+    },
+    "DT_1YL20832": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1YL20832.json",
+      "rows": 253,
+      "sha256": "f42b08ba1a94d0d3f54fe3bbad9b4b6a9f47965bfea15940015a5e80530a6417"
+    },
+    "DT_1YL5802": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1YL5802.json",
+      "rows": 253,
+      "sha256": "9911b2ac41b0cab36084203849838623d637e3c29a2cc27b09f022317f757d85"
+    },
+    "DT_1YL6202": {
+      "path": "data/raw/kosis/sgg2025/meta_DT_1YL6202.json",
+      "rows": 253,
+      "sha256": "1e6660ba1e70090ac6694bf2ae1762d0ff94859e68d53a2820bf81dccb5f168b"
+    }
+  }
+}
