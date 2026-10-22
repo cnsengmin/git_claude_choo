@@ -41,6 +41,7 @@ OUT = REPO_ROOT / "data" / "derived" / "region-registry"
 
 CITY_GU = re.compile(r"^(.+?시)\s?(.+구)$")
 OFFICE = "출장소"
+DONG_BRANCH = re.compile(r"(지소|분소)$")
 LAYER_DATES = [date(y, 12, 31) for y in range(2008, 2026)] + [date(2026, 10, 1)]
 LAYER_LEVELS = {  # layer level -> registry levels it holds
     "lgu": ["lgu"],                       # 기초자치단체 + 제주 행정시 + 세종
@@ -78,7 +79,8 @@ def classify(r) -> str:
         if r.sgg_name == "":
             return "lgu" if r.sido_name.endswith("특별자치시") else "unknown"
         return "general_gu" if CITY_GU.match(r.sgg_name) else "lgu"
-    return "dong_sub_office" if OFFICE in r.emd_name else "admin_dong"
+    # 출장소, 출장지소(…출장운서지소) and 동 분소(…동분소) are branch offices, not 행정동
+    return "dong_sub_office" if OFFICE in r.emd_name or DONG_BRANCH.search(r.emd_name) else "admin_dong"
 
 
 def alive_on(df: pd.DataFrame, d: date) -> pd.Series:

@@ -135,6 +135,21 @@ def main() -> None:
     for name, ok in k.items():
         check(f"공식 사건: {name}", ok)
 
+    # ---- layer boundaries (P2) --------------------------------------------------------------------
+    lbp = OUT / "layer_boundaries.csv"
+    if lbp.exists():
+        lb = pd.read_csv(lbp, dtype=str).fillna("")
+        check("모든 레이어에 경계 버전이 붙음", set(lb.layer_id) == set(layers.layer_id), f"{len(lb)}/{len(layers)}")
+        check("레이어–경계 차이는 모두 설명됨(시점 차이·원자료 누락·경계 없는 단위)", (lb.n_unexplained.astype(int) == 0).all(),
+              lb[lb.n_unexplained.astype(int) > 0][["layer_id", "unexplained"]].values.tolist())
+        check("기초 단위 레이어 19개 모두 경계와 코드까지 일치", (lb[lb.level == "lgu"].status == "match").all())
+        nopoly = set("|".join(lb.no_polygon).split("|")) - {""}
+        check("경계가 아예 없는 단위는 군사분계선 북쪽 철원·고성 5개 면뿐",
+              u[u.code.isin(nopoly)].name.tolist() and set(u[u.code.isin(nopoly)].sgg_name) <= {"철원군", "고성군"},
+              sorted(u[u.code.isin(nopoly)].name))
+    else:
+        skip("레이어 경계 대조", "layer_boundaries.csv 없음 — build_layer_boundaries.py 먼저")
+
     # ---- admdongkor sub-office list --------------------------------------------------------------
     if args.offices:
         try:

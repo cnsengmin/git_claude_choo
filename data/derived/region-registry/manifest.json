@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "dataset_id": "atlas-region-registry",
-  "built_at": "2026-10-21T17:58:08+00:00",
+  "built_at": "2026-10-22T13:13:49+00:00",
   "source": {
     "file": "KIKcd_H.20261012(말소코드포함)",
     "snapshot_date": "20261012",
@@ -10,9 +10,9 @@
   },
   "rows": 9612,
   "levels": {
-    "admin_dong": 8682,
+    "admin_dong": 8647,
     "lgu": 438,
-    "dong_sub_office": 354,
+    "dong_sub_office": 389,
     "general_gu": 74,
     "sub_office": 38,
     "sido": 26
