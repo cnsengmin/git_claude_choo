@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "kird",
+  "purpose": "comparison only (design v2.1, 2-6); KIRD data is not redistributed",
+  "repository": "https://github.com/nariyoo/kird-korea-immigration",
+  "commit": "1af7807cb69f473a96a4f2ff04fdc0cf6346e726",
+  "acquired_at": "2026-10-22T13:09:27+00:00",
+  "files": [
+    {
+      "path": "code/04_reconcile_districts.py",
+      "sha256": "ebafc65f9e55ddd57992666239c220e8d86aba7ee05201a934af8877b35bd141"
+    },
+    {
+      "path": "code/crosswalks.py",
+      "sha256": "274a25464850e557dd0a9fd111677d4d8f2064dee45d4841c8a7d1ef89044740"
+    },
+    {
+      "path": "code/kird.py",
+      "sha256": "908c3b9470e4e9f730f36fbe705d52eced83ac205285bd593aac9cff83a42f81"
+    }
+  ],
+  "used": "SGG_LINEAGE, SGG_SPLIT_LINEAGE constants of code/kird.py, read with ast.literal_eval (never executed)",
+  "license": "code MIT; data CC BY 4.0 (openICPSR 10.3886/E249944)",
+  "storage": {
+    "kind": "local-gitignored",
+    "path": "data/raw/external/kird"
+  }
+}
