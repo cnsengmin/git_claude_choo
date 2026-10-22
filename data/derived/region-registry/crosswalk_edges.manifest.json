@@ -1,0 +1,49 @@
+{
+  "built_at": "2026-10-22T15:53:40+00:00",
+  "admdongkor_data_version": "2026.10.17",
+  "rules": {
+    "sliver_share": 0.002,
+    "sliver_area_m2": 5000.0,
+    "sliver_width_m": 20.0,
+    "meaningful": 0.05,
+    "ceded_min": 0.01
+  },
+  "population": "SGIS census output areas on the 2025 boundary; 2015/2020/2024 population by event year; representative points",
+  "edges": 72020,
+  "by_method": {
+    "admdong": {
+      "area_abolished_code": 584,
+      "area_ceded_to_new": 318,
+      "code_1to1": 61549,
+      "event_1to1_no_polygon": 3,
+      "recode": 904
+    },
+    "lgu": {
+      "area_abolished_code": 13,
+      "area_ceded_to_new": 4,
+      "code_1to1": 4059,
+      "event_1to1_no_polygon": 0,
+      "recode": 60
+    },
+    "sgg": {
+      "area_abolished_code": 28,
+      "area_ceded_to_new": 8,
+      "code_1to1": 4429,
+      "event_1to1_no_polygon": 0,
+      "recode": 61
+    }
+  },
+  "missing_polygons": {
+    "admdong 2009-12-31->2010-12-31": [
+      "3020059000"
+    ]
+  },
+  "targets_without_source": [
+    {
+      "level": "admdong",
+      "to_layer": "kr-admdong@2018-12-31",
+      "code": "4159051500",
+      "reason": "no source polygon overlaps it (new land)"
+    }
+  ]
+}

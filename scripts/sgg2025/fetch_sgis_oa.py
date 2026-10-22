@@ -142,6 +142,53 @@ def merge(args) -> None:
     print(f"empty 읍면동: boundary {len(empty['boundary'])}, stats {len(empty['stats'])}")
 
 
+def fetch_stats(args) -> None:
+    """Statistics of another census year on the same (2025) output areas: SGIS answers past years
+    with current codes (2015 and 2020 have values; 2010 returns zeros/N/A). Saved to stats_<year>/."""
+    year = args.year
+    d = OUT / f"stats_{year}"
+    d.mkdir(parents=True, exist_ok=True)
+    codes = sorted(gpd.read_file(EMD, ignore_geometry=True).adm_cd.astype(str))
+    todo = [c for c in codes if not (d / f"{c}.json").exists()]
+    if args.limit:
+        todo = todo[: args.limit]
+    print(f"{year}: {len(todo)} requests to go", flush=True)
+    api = Sgis(args.keyfile)
+    api.token()
+    failures: list[str] = []
+
+    def one(code: str) -> None:
+        body = api.get("stats/population.json", year=year, adm_cd=code, low_search="1")
+        if body.get("errCd") not in (0, NO_RESULT):
+            raise RuntimeError(f"{year} {code}: {body.get('errCd')} {body.get('errMsg')}")
+        (d / f"{code}.json").write_text(json.dumps(body, ensure_ascii=False), encoding="utf-8")
+
+    done = 0
+    with ThreadPoolExecutor(max_workers=args.workers) as ex:
+        for f in as_completed([ex.submit(one, c) for c in todo]):
+            try:
+                f.result()
+            except Exception as e:
+                failures.append(str(e))
+            done += 1
+            if done % 250 == 0:
+                print(f"{year} {done}/{len(todo)} done, {len(failures)} failed", flush=True)
+    print(f"{year} finished: {done} requests, {len(failures)} failed", flush=True)
+
+
+def stats_csv(args) -> None:
+    """Flatten stats_<year>/*.json into oa_stats_<year>.csv (all values as strings)."""
+    d = OUT / f"stats_{args.year}" if args.year != STATS_YEAR else OUT / "stats"
+    rows = []
+    for p in sorted(d.glob("*.json")):
+        body = json.loads(p.read_text(encoding="utf-8"))
+        if body.get("errCd") == 0:
+            rows += [{**r, "emd_cd": p.stem} for r in body["result"]]
+    s = pd.DataFrame(rows).astype(str)
+    s.to_csv(OUT / f"oa_stats_{args.year}.csv", index=False, encoding="utf-8")
+    print(f"{args.year}: {s.emd_cd.nunique()} 읍면동, {len(s)} 집계구 -> oa_stats_{args.year}.csv")
+
+
 CHECK_PAIRS = [("tot_ppltn", "all_tot_ppltn"), ("tot_family", "all_tot_family"), ("tot_house", "all_tot_house"),
                ("corp_cnt", "all_corp_cnt")]
 
@@ -186,14 +233,15 @@ def check(args) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["fetch", "merge", "check"])
+    ap.add_argument("cmd", choices=["fetch", "merge", "check", "fetch-stats", "stats-csv"])
+    ap.add_argument("--year", default=STATS_YEAR, help="fetch-stats / stats-csv: census year of the statistics")
     ap.add_argument("--write", action="store_true", help="check: save oa_check.csv")
     ap.add_argument("--keyfile")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--limit", type=int)
     ap.add_argument("--only", nargs="*")
     args = ap.parse_args()
-    {"fetch": fetch, "merge": merge, "check": check}[args.cmd](args)
+    {"fetch": fetch, "merge": merge, "check": check, "fetch-stats": fetch_stats, "stats-csv": stats_csv}[args.cmd](args)
 
 
 if __name__ == "__main__":
