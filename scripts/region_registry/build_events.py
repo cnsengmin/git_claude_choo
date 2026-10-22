@@ -92,7 +92,12 @@ def main() -> None:
 
     def name_key(code: str, level: str) -> str:
         r = info.loc[code]
-        return norm(r.unit_name) if level != "admdong" else norm(r.sgg_name) + "/" + norm(r["name"])
+        if level != "admdong":
+            return norm(r.unit_name)
+        # a dong keeps its identity when only a general-gu is added or removed above it
+        # (부천 2016/2024, 화성 2026): compare by city or county, not by gu
+        city = CITY_GU.match(r.sgg_name or "")
+        return norm(city.group(1) if city else r.sgg_name) + "/" + norm(r["name"])
 
     def group_key(code: str, level: str) -> str:
         r = info.loc[code]

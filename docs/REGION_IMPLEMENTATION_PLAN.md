@@ -13,6 +13,7 @@
 | 변경 사건 (P1) | 완료, 검증 9/9, KIRD 11/11(1건 범위 밖) | `scripts/region_registry/build_events.py`, `data/derived/region-registry/events.csv` |
 | 레이어 경계 (P2) | 완료, 57개 레이어 차이 모두 설명(기초 단위 19/19 일치), 레지스트리 검증 23/23 | `scripts/region_registry/build_layer_boundaries.py`, `data/derived/region-registry/layer_boundaries.csv` |
 | 레이어별 코드 대응 (P5) | 완료, 검증 10/10. 2025 시군구 252쌍 공식 연계정보와 일치, 2026-10-01은 공식 코드로 대체 | `scripts/region_registry/build_code_map_layers.py`, `data/derived/region-registry/code_map_layers.csv` |
+| 연결표·인구 가중 (P4) | 완료, 검증 22/22. v0.2와 3,656행 일치(몫 차이 0), 서울 v0.1과 99.7% 일치. 인구 가중은 2015·2020·2024 집계구 인구 | `scripts/region_registry/build_crosswalk.py`, `crosswalk_chain.py`, `data/derived/region-registry/crosswalk/` |
 | 그 밖 | 미착수 | 아래 |
 
 ## 작업 묶음

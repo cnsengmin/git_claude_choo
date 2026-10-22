@@ -70,7 +70,9 @@ def main() -> None:
 
     # ---- event sanity ----------------------------------------------------------------------------
     rc = ev[ev.type == "recode"]
-    same = [norm(f.split(" ", 1)[1]) == norm(t.split(" ", 1)[1]) for f, t in zip(rc.from_names, rc.to_names)] if len(rc) else []
+    # unit name after the sido; for 행정동 the dong name alone (a general-gu may appear or vanish above it)
+    key = lambda lv, s: norm(s.split(" ")[-1]) if lv == "admdong" else norm(s.split(" ", 1)[1])
+    same = [key(lv, f) == key(lv, t) for lv, f, t in zip(rc.level, rc.from_names, rc.to_names)] if len(rc) else []
     check("recode는 모두 이름이 같은 1:1", all(same) and (rc.n_from == "1").all() and (rc.n_to == "1").all(), f"{len(rc)}건")
     lgu = ev[ev.level == "lgu"]
     check("기초 단위 코드 재부여 60건(강원 18·군위 1·전북 14·광주 5·전남 22)",
