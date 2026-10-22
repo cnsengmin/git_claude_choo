@@ -1,0 +1,131 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "sgis",
+  "dataset_id": "sgis.boundary.emd",
+  "reference_year": "2025",
+  "acquired_at": "2026-10-21T17:07:46+00:00",
+  "request": {
+    "endpoint": "OpenAPI3/boundary/hadmarea.geojson",
+    "params": {
+      "year": "2025",
+      "low_search": "2",
+      "adm_cd": "<each sido>"
+    }
+  },
+  "crs": "EPSG:5179 (UTM-K, as served)",
+  "code_system": "KOSTAT/SGIS administrative code (not MOIS)",
+  "storage": {
+    "kind": "local-gitignored",
+    "path": "data/raw/sgis/boundary-2025"
+  },
+  "files": [
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_11.geojson",
+      "sido": "11",
+      "features": 426,
+      "sha256": "f1173a350173c0209dbd1aad655f24f43e9add4d3cb81ddb515d35d7266a04c8"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_21.geojson",
+      "sido": "21",
+      "features": 206,
+      "sha256": "fa2951d4aa0e6dbc1320a586de78b1641dc88adb9bb9af4606378892eeedddb9"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_22.geojson",
+      "sido": "22",
+      "features": 150,
+      "sha256": "8d4b3ec2a00616c94610c67ad79a5458945cc6b4605a3fb2326409cc28d62591"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_23.geojson",
+      "sido": "23",
+      "features": 156,
+      "sha256": "1d3da8cebe5b38db7fe3c3eccb0bbfb9b2b52072ee2d4ba08f2262f3d14eb097"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_24.geojson",
+      "sido": "24",
+      "features": 96,
+      "sha256": "f7585fc6682776d9895638115eb521d8f6426111423f15795f5a1bf4459d5df7"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_25.geojson",
+      "sido": "25",
+      "features": 82,
+      "sha256": "a3e1f8442fbb07f183e92d4d4d2f49c1a24457b911671f00208646d623f91ff0"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_26.geojson",
+      "sido": "26",
+      "features": 55,
+      "sha256": "a035f20085faaced22f42eb2ce5d505d5f09a4b6aeaa857bdd375cf0634001fd"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_29.geojson",
+      "sido": "29",
+      "features": 24,
+      "sha256": "d9503d5ce075d8a71e7c9e3f7002f4987750c7e953cec7634e25fb5dbe6c5584"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_31.geojson",
+      "sido": "31",
+      "features": 601,
+      "sha256": "4640aab7a065155ea5120a76ca48784a05225d7fee80f9c12be18b537f6b7c66"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_32.geojson",
+      "sido": "32",
+      "features": 193,
+      "sha256": "9d3d7372ff5b4337ceaf0d025fb5d9f3bc0a99eeb3e2b1ee091a4f16cdb7b48e"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_33.geojson",
+      "sido": "33",
+      "features": 153,
+      "sha256": "369108ad0580ee6c8f1ef5a0f303869e81681165d4fdce34933db124333a2540"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_34.geojson",
+      "sido": "34",
+      "features": 208,
+      "sha256": "fb7006c09e1a74f619b86d319b03ecdc0081120a8497130ec04b573f9cc5d079"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_35.geojson",
+      "sido": "35",
+      "features": 242,
+      "sha256": "8ecad9b42d3601b5c5bd4eaa9f1ea380d2406b9601c7543ef380c70540b6d5f8"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_36.geojson",
+      "sido": "36",
+      "features": 297,
+      "sha256": "5d15ab4fcd13cdf00fe10c9ddeb6ec0f0a5b3927c56ca83b7d288fc57cbec9d3"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_37.geojson",
+      "sido": "37",
+      "features": 322,
+      "sha256": "c5175ed2d956335688bf10d5a674cf95814c4d367db0a03753aaa50b1ed4ea48"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_38.geojson",
+      "sido": "38",
+      "features": 305,
+      "sha256": "55d0e2bcd3e320746be4545f21f243851a139dd44d32b2df32185f5326968de9"
+    },
+    {
+      "path": "data/raw/sgis/boundary-2025/geojson/emd_39.geojson",
+      "sido": "39",
+      "features": 43,
+      "sha256": "bba526f19e767b5a191ad3bcf146d8460ec0291c62a6c641635bf667a75ce27e"
+    }
+  ],
+  "merged": {
+    "path": "data/raw/sgis/boundary-2025/sgis_emd_2025.gpkg",
+    "features": 3559
+  },
+  "license_status": "KOGL Type 1 (공공누리 제1유형, 출처표시)",
+  "redistribution_status": "attribution-required"
+}

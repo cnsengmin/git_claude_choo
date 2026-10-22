@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1.0",
+  "dataset_id": "atlas-region-registry",
+  "built_at": "2026-10-21T17:58:08+00:00",
+  "source": {
+    "file": "KIKcd_H.20261012(말소코드포함)",
+    "snapshot_date": "20261012",
+    "sha256": "7166cf3763997cda46099dca31b18a35cd54fca25ebedd2bd5e630255ebbb626",
+    "receipt": "data/manifests/mois-kik-with-abolished-20261012.json"
+  },
+  "rows": 9612,
+  "levels": {
+    "admin_dong": 8682,
+    "lgu": 438,
+    "dong_sub_office": 354,
+    "general_gu": 74,
+    "sub_office": 38,
+    "sido": 26
+  },
+  "layers": 57,
+  "outputs": [
+    "region_units.csv",
+    "region_units.parquet",
+    "layers.csv",
+    "layer_units.parquet"
+  ]
+}

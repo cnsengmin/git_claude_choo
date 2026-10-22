@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "sgis",
+  "dataset_id": "sgis.census-output-area",
+  "acquired_at": "2026-10-21T18:33:13+00:00",
+  "requests": {
+    "boundary": {
+      "endpoint": "OpenAPI3/boundary/statsarea.geojson",
+      "params": {
+        "year": "2025",
+        "adm_cd": "<each 읍면동>"
+      }
+    },
+    "stats": {
+      "endpoint": "OpenAPI3/stats/population.json",
+      "params": {
+        "year": "2024",
+        "adm_cd": "<each 읍면동>",
+        "low_search": "1"
+      }
+    }
+  },
+  "emd_count": 3559,
+  "emd_without_output_areas": {
+    "boundary": [],
+    "stats": []
+  },
+  "output_areas": {
+    "boundary": 108510,
+    "stats": 108510,
+    "boundary_without_stats": 0,
+    "stats_without_boundary": 0
+  },
+  "stat_columns": [
+    "ppltn_dnsty",
+    "imga_cnt",
+    "all_corp_cnt",
+    "all_nongga_ppltn_cnt",
+    "naesuoga_cnt",
+    "avg_fmember_cnt",
+    "all_tot_house",
+    "all_haesuoga_ppltn_cnt",
+    "haesuoga_cnt",
+    "all_tot_family",
+    "tot_family",
+    "corp_cnt",
+    "all_imga_cnt",
+    "employee_cnt",
+    "all_nongga_cnt",
+    "nongga_cnt",
+    "nongga_ppltn",
+    "haesuoga_ppltn",
+    "oldage_suprt_per",
+    "all_imga_ppltn_cnt",
+    "avg_age",
+    "all_naesuoga_cnt",
+    "all_tot_ppltn",
+    "aged_child_idx",
+    "all_naesuoga_ppltn_cnt",
+    "naesuoga_ppltn",
+    "juv_suprt_per",
+    "tot_ppltn",
+    "imga_ppltn",
+    "all_haesuoga_cnt",
+    "tot_house"
+  ],
+  "crs": "EPSG:5179 (UTM-K, as served)",
+  "storage": {
+    "kind": "local-gitignored",
+    "path": "data/raw/sgis/oa-2025",
+    "merged": "data/raw/sgis/oa-2025/oa_2025.gpkg"
+  },
+  "raw_files_sha256_of_sorted_hashes": "e756e709ebae1665d1de5e3a8dae468bf4a664d68a983b5558783382ee028b77",
+  "license_status": "KOGL Type 1 (공공누리 제1유형, 출처표시)",
+  "redistribution_status": "attribution-required",
+  "validation": {
+    "checked_at": "2026-10-22",
+    "pairing": "boundary 108,510 = stats 108,510 output areas, 1:1 on code, 0 unmatched",
+    "emd_totals_consistent": "each 읍면동's all_* total is identical on every output-area row",
+    "sum_vs_emd_total": {
+      "tot_ppltn": "3,559/3,559 읍면동 equal; 978 have N/A cells and all of them still sum to the total (N/A = no residents)",
+      "tot_family": "1,021/1,094 읍면동 with N/A equal; 148 households hidden nationwide",
+      "tot_house": "1,044/1,279 with N/A equal; 557 units hidden nationwide",
+      "corp_cnt": "578/578 with N/A equal; 0 hidden"
+    },
+    "vs_kosis_2024_census": {
+      "population": "51,805,547 = DT_1IN1502 2024 T100 (difference 0)",
+      "households": "22,294,419 = DT_1IN1502 2024 T210 일반가구 (difference 0); T200 가구_계 22,997,120 adds 집단·외국인가구",
+      "housing": "18,273,588 vs DT_1IN1502 2024 T310 주택_계 19,872,674 — definition not confirmed (gap ≈ vacant-housing scale); do not treat as equal"
+    },
+    "report": "data/raw/sgis/oa-2025/oa_check.csv"
+  }
+}
