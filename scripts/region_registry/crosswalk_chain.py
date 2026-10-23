@@ -12,6 +12,10 @@ w_tgt  / w_tgt_pop: share of the target coming from each source, from the source
        w_src. Use to average rates.
 alloc  : True when any step of the path split the unit (area_* methods).
 
+General-gu that were merged into their city and later split out again (부천 2016 -> 2024)
+are chained through their dongs instead (gu_cycles, via_dongs): the city-only layers in
+between would otherwise spread each old gu over all new gu by area.
+
 Outputs: data/derived/region-registry/crosswalk/<level>_to_<base>.csv
 """
 
@@ -64,11 +68,66 @@ def measures(level: str, date: str) -> pd.DataFrame:
     return pd.DataFrame({"area": g.set_index("code").area, "pop": j}).fillna(0)
 
 
+@lru_cache(maxsize=1)
+def members() -> pd.DataFrame:
+    return pd.read_parquet(REG / "layer_units.parquet")
+
+
+def gu_cycles(level: str, start: str, end: str) -> set[str]:
+    """General-gu merged into their own city and later split out of it again within
+    (start, end] (부천: gu abolished 2016-07, re-created 2024-01). A chain through the
+    city-only layers forgets which gu the land came from, so these sources go via dongs."""
+    if level != "sgg":
+        return set()
+    e = pd.read_csv(REG / "events.csv", dtype=str).fillna("")
+    e = e[e.level == "sgg"]
+    out: set[str] = set()
+    for mg in e[(e.type == "merge") & (e.date_start > start) & (e.date_start <= end)].itertuples():
+        gus = mg.from_codes.split("|")
+        if "|" in mg.to_codes or any(units().loc[g].parent_code != mg.to_codes for g in gus):
+            continue
+        if ((e.type == "split") & (e.from_codes == mg.to_codes) & (e.date_start > mg.date_start) & (e.date_start <= end)).any():
+            out |= set(gus)
+    return out
+
+
+def via_dongs(level: str, start: str, end: str, sources: set[str]) -> pd.DataFrame:
+    """w_src / w_src_pop of the given sources from the admdong chain: each dong's share of
+    its source unit (area, population of the start layer) times the dong's own chain,
+    summed by the unit the target dong belongs to at `end`. Sources whose dongs have no
+    measures (boundary version lag) are left out; the caller keeps their plain chain."""
+    m = members()
+
+    def unit_of(dongs, date):
+        layer = set(m[m.layer_id == f"kr-{level}@{date}"].code)
+        out = {}
+        for d in dongs:
+            p = units().loc[d].parent_code
+            while isinstance(p, str) and p not in layer:
+                p = units().loc[p].parent_code if p in units().index else None
+            out[d] = p
+        return out
+
+    dc = chain("admdong", start, end)[["from_code", "to_code", "w_src", "w_src_pop"]]
+    dc["src"] = dc.from_code.map(unit_of(dc.from_code.unique(), start))
+    dc = dc[dc.src.isin(sources)].copy()
+    dc["tgt"] = dc.to_code.map(unit_of(dc.to_code.unique(), end))
+    meas = measures("admdong", start)
+    dc["a"], dc["p"] = dc.from_code.map(meas.area).fillna(0), dc.from_code.map(meas["pop"]).fillna(0)
+    once = dc.drop_duplicates("from_code").groupby("src")[["a", "p"]].sum()
+    dc = dc[dc.src.map(once.a) > 0]
+    dc["w_src"] = dc.w_src * dc.a / dc.src.map(once.a)
+    dc["w_src_pop"] = dc.w_src_pop * dc.p / dc.src.map(once.p).where(lambda s: s > 0)
+    dc["w_src_pop"] = dc.w_src_pop.fillna(dc.w_src)
+    g = dc.groupby(["src", "tgt"], as_index=False)[["w_src", "w_src_pop"]].sum()
+    return g.rename(columns={"src": "from_code", "tgt": "to_code"}).assign(alloc=True)
+
+
 def chain(level: str, start: str, end: str) -> pd.DataFrame:
     dates = sorted(layers()[layers().level == level].reference_date)
     if start not in dates or end not in dates or start > end:
         raise SystemExit(f"{level}: need layer dates with start <= end ({start}, {end})")
-    m = pd.read_parquet(REG / "layer_units.parquet")
+    m = members()
     cur = pd.DataFrame({"from_code": sorted(m[m.layer_id == f"kr-{level}@{start}"].code)})
     cur["to_code"], cur["w_src"], cur["w_src_pop"], cur["alloc"] = cur.from_code, 1.0, 1.0, False
     e = edges()[edges().level == level]
@@ -85,6 +144,10 @@ def chain(level: str, start: str, end: str) -> pd.DataFrame:
         cur = (j.drop(columns=["to_code"]).rename(columns={"next": "to_code"})
                .groupby(["from_code", "to_code"], as_index=False).agg(w_src=("w_src", "sum"), w_src_pop=("w_src_pop", "sum"),
                                                                       alloc=("alloc", "max")))
+    cycles = gu_cycles(level, start, end)
+    if cycles:
+        vd = via_dongs(level, start, end, cycles)
+        cur = pd.concat([cur[~cur.from_code.isin(set(vd.from_code))], vd], ignore_index=True)
     meas = measures(level, start)
     cur["contrib"] = cur.w_src * cur.from_code.map(meas.area).fillna(0)
     cur["contrib_pop"] = cur.w_src_pop * cur.from_code.map(meas["pop"]).fillna(0)
