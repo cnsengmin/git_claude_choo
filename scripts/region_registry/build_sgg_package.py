@@ -166,7 +166,8 @@ def main() -> None:
         "license": {"crosswalk": "CC BY 4.0", "code": "MIT"},
         "files": files,
     }
-    (PKG / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (PKG / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8",
+                                       newline="\n")  # packages/.gitattributes keeps LF
     for k, v in files.items():
         print(f"{v['bytes']:>10,}  {k}")
 

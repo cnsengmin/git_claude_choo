@@ -1,0 +1,2 @@
+# Package files are hashed in manifest.json as written (LF); keep LF on every checkout.
+* text=auto eol=lf
