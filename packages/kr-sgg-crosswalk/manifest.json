@@ -1,0 +1,63 @@
+{
+  "package": "kr-sgg-crosswalk",
+  "version": "0.3.0",
+  "built": "2026-10-23",
+  "built_from": {
+    "registry": "data/derived/region-registry (scripts/region_registry/)",
+    "mois_source": {
+      "file": "KIKcd_H.20261012(말소코드포함)",
+      "snapshot_date": "20261012",
+      "sha256": "7166cf3763997cda46099dca31b18a35cd54fca25ebedd2bd5e630255ebbb626",
+      "receipt": "data/manifests/mois-kik-with-abolished-20261012.json"
+    },
+    "boundaries": "vuski/admdongkor versions per layer (layer_boundaries.csv), SGIS KOGL Type 1",
+    "population": "SGIS census output areas 2025 with 2015/2020/2024 census population"
+  },
+  "bases": [
+    "2025-12-31",
+    "2026-10-01"
+  ],
+  "years": "2008-2025 (+2026 for the 2026-10-01 base)",
+  "license": {
+    "crosswalk": "CC BY 4.0",
+    "code": "MIT"
+  },
+  "files": {
+    "crosswalk/crosswalk_lgu_to_base20251231.csv": {
+      "bytes": 568073,
+      "sha256": "7a0fb8c232f25cf8a40ca5ee1837e508eaac1fa690b1eb85438b705911168e39"
+    },
+    "crosswalk/crosswalk_lgu_to_base20261001.csv": {
+      "bytes": 619083,
+      "sha256": "6bcf13b8cd073f2d5778f72cc7387a879b1a7928b24acb2d12303fcb423ae7df"
+    },
+    "crosswalk/crosswalk_sgg_to_base20251231.csv": {
+      "bytes": 645999,
+      "sha256": "9548e13221cb1b4ae32cf795f5abae80c337d9457ce18f685a237c4662b0838f"
+    },
+    "crosswalk/crosswalk_sgg_to_base20261001.csv": {
+      "bytes": 710421,
+      "sha256": "37b85e429bb3934925618b44b4bcc67b736b356e081e465be54720f93bc4a312"
+    },
+    "crosswalk/events_lgu.csv": {
+      "bytes": 9521,
+      "sha256": "261f59c878b399616f218298be3e35ac853bcd0d82ff5203ae70affeaa604636"
+    },
+    "crosswalk/events_sgg.csv": {
+      "bytes": 10923,
+      "sha256": "14ab22064c5c8575de6c8ffc699c4b4abb42897286626fd90914e335385b7d48"
+    },
+    "examples/example_synthetic_input_lgu.csv": {
+      "bytes": 196033,
+      "sha256": "68358a8bf38019f0ddb0e7d4fef38a908622fc79c603fab9602af92b345b4d66"
+    },
+    "units/lgu_units_by_year.csv": {
+      "bytes": 478779,
+      "sha256": "260972bb2fe2b71f81f88921b15ea930f5ffd32ada4f4721d7d083b7689cb6b7"
+    },
+    "units/sgg_units_by_year.csv": {
+      "bytes": 610685,
+      "sha256": "820618ff39cea6f253930b617ff29890e9429dd4958d82bea6584c2e4bf37b8c"
+    }
+  }
+}

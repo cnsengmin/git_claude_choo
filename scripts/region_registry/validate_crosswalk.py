@@ -87,6 +87,9 @@ def main() -> None:
         "인천 중구 → 영종구 면적 89% (2025→2026-10)": abs(w("lgu", "2025-12-31", "중구", "영종구") - 0.891) < 0.02,
         "청주 상당구 → 청원구 일부 (sgg 2013→2014, 코드 유지 단위의 재편)": w("sgg", "2013-12-31", "청주시 상당구", "청주시 청원구") > 0.3,
     }
+    sc = pd.read_csv(REG / "crosswalk" / "sgg_to_20251231.csv", dtype=str)
+    wm = sc[(sc.from_date == "2010-12-31") & (sc.from_name == "부천시 원미구") & (sc.to_name == "부천시 원미구")].w_src.astype(float).sum()
+    cases[f"부천 원미구 2010 → 원미구 2025 ≥ 95% (일반구 폐지·부활을 행정동으로 이음, {wm:.3f})"] = wm >= 0.95
     for k, ok in cases.items():
         check(f"사례: {k}", ok)
 
