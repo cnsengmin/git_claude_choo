@@ -306,7 +306,8 @@ button, input, select { font: inherit; }
 .site-snapshot small { color: #688170; font-size: 9px; line-height: 1.45; }
 
 .map-wrap { position: relative; min-height:100vh; }
-.map { position:absolute; inset:0; }
+/* .map-wrap > .map outranks maplibre-gl.css .maplibregl-map { position:relative }, which loads later. */
+.map-wrap > .map { position:absolute; inset:0; }
 .map-label {
   position:absolute; top:14px; left:14px; z-index:2;
   padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.9);
