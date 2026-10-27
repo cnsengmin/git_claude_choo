@@ -14,7 +14,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = join(fileURLToPath(import.meta.url), "..", "..", "..");
 const LAYERS_DIR = join(ROOT, "layers");
-const GROUPS = ["physical", "planning", "mobility", "people", "places"];
+const GROUPS = ["boundaries", "physical", "planning", "mobility", "people", "places"];
 const STATUSES = ["available", "partial", "planned"];
 const REQUIRED = ["id", "group", "label", "description", "status", "source"];
 
