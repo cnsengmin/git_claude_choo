@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import SgisStatsCard from "@/components/SgisStatsCard";
 import { LAYER_GROUPS, LAYER_PRESETS, LAYERS, type LayerStatus } from "@/layers";
+import { BOUNDARY_DATES } from "@/layers/providers/region-layers/dates";
 
 type Center = { lng: number; lat: number };
 type OsmCounts = { building: number; road: number; landuse: number; "green-water": number };
@@ -24,6 +25,8 @@ type Props = {
   onSelectionChange: (layerIds: string[]) => void;
   onLoadOpenContext: () => void;
   openContext: OpenContextState;
+  boundaryDate: string;
+  onBoundaryDateChange: (date: string) => void;
 };
 
 export const DEFAULT_SITE_LAYERS = LAYER_PRESETS.neighborhood.layerIds;
@@ -43,6 +46,8 @@ export default function SiteAnalysisPanel({
   onSelectionChange,
   onLoadOpenContext,
   openContext,
+  boundaryDate,
+  onBoundaryDateChange,
 }: Props) {
   const [selected, setSelected] = useState<string[]>(DEFAULT_SITE_LAYERS);
   const [snapshotAt, setSnapshotAt] = useState<string | null>(null);
@@ -149,6 +154,17 @@ export default function SiteAnalysisPanel({
                 </div>
                 <span>{layers.filter((layer) => selected.includes(layer.id)).length}/{layers.length}</span>
               </div>
+
+              {group.id === "boundaries" && (
+                <label className="boundary-date">
+                  <span>경계 시점</span>
+                  <select value={boundaryDate} onChange={(event) => onBoundaryDateChange(event.target.value)}>
+                    {BOUNDARY_DATES.map((item) => (
+                      <option key={item.date} value={item.date}>{item.date}</option>
+                    ))}
+                  </select>
+                </label>
+              )}
 
               <div className="layer-checks">
                 {layers.map((layer) => (

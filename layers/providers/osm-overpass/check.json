@@ -1,9 +1,13 @@
 {
-  "query": { "x": "126.9568", "y": "37.3943", "radius": "300" },
   "timeoutSeconds": 120,
-  "expect": [
-    { "path": "counts.building", "min": 1 },
-    { "path": "counts.road", "min": 1 },
-    { "path": "featureCollection.features", "minLength": 1 }
+  "requests": [
+    {
+      "query": { "x": "126.9568", "y": "37.3943", "radius": "300" },
+      "expect": [
+        { "path": "counts.building", "min": 1 },
+        { "path": "counts.road", "min": 1 },
+        { "path": "featureCollection.features", "minLength": 1 }
+      ]
+    }
   ]
 }

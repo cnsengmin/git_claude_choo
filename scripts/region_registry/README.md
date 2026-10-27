@@ -159,3 +159,11 @@ gh release create region-layers-YYYYMMDD dist/region-layers/*.gpkg dist/region-l
 ```
 
   - 2026-10-27 빌드: 기초 단위 93MB, 일반구 구분 95MB, 행정동 269MB. 행정동은 레이어 경계판에 아직 없는 동 168건(19개 레이어 합)이 가장 가까운 판의 경계를 쓰고(`polygon_version`), 2023년 이후 북쪽 접경 5개 면은 경계가 없다.
+- **지도용 벡터 타일**(PMTiles, 같은 Release): `build_release_pmtiles.py`가 위 GPKG에서 수준별 PMTiles를 만든다(GDAL PMTiles 드라이버). 모든 시점이 한 파일에 있고, 지역마다 속한 시점 표시(`d2008`…`d2025`, `d202610`)가 1이다. `manifest.json`의 `tiles`와 `RELEASE_NOTES.md`의 타일 절을 고쳐 쓴다. 앱은 `layers/providers/region-layers`가 Release에서 구간별로 읽어 `/api/layers/region-layers/<수준>/<z>/<x>/<y>.pbf`로 준다.
+
+```bash
+python scripts/region_registry/build_release_pmtiles.py
+gh release upload region-layers-YYYYMMDD dist/region-layers/*.pmtiles dist/region-layers/manifest.json --clobber
+```
+
+  - 2026-10-27 빌드: 기초 단위 14.0MB(z4–12), 일반구 구분 14.2MB(z5–12), 행정동 35.9MB(z8–12). 지역×시점 4,362 / 4,766 / 66,633개.

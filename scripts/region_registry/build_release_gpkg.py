@@ -86,12 +86,15 @@ def main() -> None:
         files[path.name] = {"bytes": path.stat().st_size, "sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "layers": stats}
 
     manifest_path = OUT / "manifest.json"
-    old = json.loads(manifest_path.read_text(encoding="utf-8")).get("files", {}) if manifest_path.exists() else {}
+    previous = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
+    old = previous.get("files", {})
     manifest = {
         "built": date.today().isoformat(), "crs": "EPSG:5179",
         "built_from": {"registry": "data/derived/region-registry", "boundaries": "vuski/admdongkor (SGIS, KOGL Type 1), cached in data/raw/admdongkor"},
         "license": "CC BY 4.0. 출처: 통계청 SGIS 행정구역 경계(공공누리 제1유형), 가공 vuski/admdongkor (CC BY 4.0), 단위·코드 행정안전부.",
         "files": {**old, **files},
+        # Written by build_release_pmtiles.py, which also re-adds its section to the notes.
+        **({"tiles": previous["tiles"]} if "tiles" in previous else {}),
     }
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     notes = [

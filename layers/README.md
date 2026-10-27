@@ -8,7 +8,7 @@ layers/
     layer.json      레이어 정의: 이름, 그룹, 상태, 출처 (필수)
     style.ts        지도에 그리는 방법 (자료가 연결된 레이어만)
   providers/<provider>/
-    server.ts       자료를 가져오는 서버 코드: /api/layers/<provider>
+    server.ts       자료를 가져오는 서버 코드: /api/layers/<provider>[/<경로>]
     check.json      실시간 검증 요청과 기대값
     README.md       무엇이 되고 무엇이 안 되는지, 확인 결과
   index.ts          모든 layer.json과 style.ts 목록 (사이드바 순서)
@@ -16,7 +16,7 @@ layers/
   server.ts         provider 목록 (서버 전용)
 ```
 
-그룹: `physical`, `planning`, `mobility`, `people`, `places`.
+그룹: `boundaries`, `physical`, `planning`, `mobility`, `people`, `places`.
 
 ## layer.json
 | 필드 | 뜻 |
@@ -30,6 +30,13 @@ layers/
 
 여러 레이어가 provider 하나를 함께 쓸 수 있습니다. 예를 들어 OSM 건물·도로·녹지·하천·토지이용은 모두 `osm-overpass` 응답 하나에서 그립니다.
 
+## style.ts
+- 기본: provider의 GeoJSON 응답을 `filter`로 나눠 그립니다(`osm-overpass`). `order`가 작은 레이어가 아래에 깔립니다.
+- `tiles`가 있으면 provider의 벡터 타일 `/api/layers/<provider>/<tiles.path>/{z}/{x}/{y}.pbf`를 그립니다(`region-layers`). 행정경계 레이어는 고른 시점으로 걸러지고, 지역을 누르면 이름과 코드가 뜹니다.
+
+## check.json
+`requests`의 요청마다 `/api/layers/<provider>/<path>?<query>`를 부르고 `expect` 규칙을 검사합니다. JSON 규칙은 `min`, `minLength`, `equals`이고, 타일처럼 JSON이 아닌 응답에는 `minBytes`, `contains`를 씁니다. 자세한 형식은 `scripts/layers/check-live.mjs` 머리말에 있습니다.
+
 ## 새 레이어를 구현하는 순서
 1. `layer/<id>` 브랜치를 만듭니다.
 2. 자료를 가져올 provider를 `providers/<provider>/`에 만들고 `layers/server.ts`에 등록합니다. 이미 있는 provider를 쓰면 이 단계는 건너뜁니다.
@@ -41,4 +48,4 @@ layers/
 6. 로컬 화면에서 지도에 그려지는지 확인하고, 결과를 provider README에 적습니다.
 
 ## 데이터
-1MB를 넘는 자료는 Git에 넣지 않습니다. 정적 자료는 벡터 타일(PMTiles) 등으로 만들어 GitHub Release나 저장소 밖 저장 공간에 두고, 위치와 해시는 provider README에 적습니다.
+1MB를 넘는 자료는 Git에 넣지 않습니다. 정적 자료는 벡터 타일(PMTiles) 등으로 만들어 GitHub Release나 저장소 밖 저장 공간에 두고, 위치와 해시는 provider README에 적습니다. 예: `region-layers`는 Release의 PMTiles를 서버가 구간별로 읽어 타일로 돌려줍니다.

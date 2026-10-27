@@ -1,6 +1,9 @@
 // Every layer folder, in sidebar order. scripts/layers/check-manifests.mjs fails when a
 // layers/<group>/<id>/ folder is missing here or a style.ts is not registered.
 import type { LayerManifest, LayerStyle } from "./types";
+import adminLgu from "./boundaries/admin-lgu/layer.json";
+import adminSgg from "./boundaries/admin-sgg/layer.json";
+import adminDong from "./boundaries/admin-dong/layer.json";
 import buildings from "./physical/buildings/layer.json";
 import buildingUse from "./physical/building-use/layer.json";
 import buildingAge from "./physical/building-age/layer.json";
@@ -26,6 +29,9 @@ import foodCafe from "./places/food-cafe/layer.json";
 import convenience from "./places/convenience/layer.json";
 import culture from "./places/culture/layer.json";
 import hotspot from "./places/hotspot/layer.json";
+import { style as adminLguStyle } from "./boundaries/admin-lgu/style";
+import { style as adminSggStyle } from "./boundaries/admin-sgg/style";
+import { style as adminDongStyle } from "./boundaries/admin-dong/style";
 import { style as buildingsStyle } from "./physical/buildings/style";
 import { style as roadsStyle } from "./physical/roads/style";
 import { style as greenWaterStyle } from "./physical/green-water/style";
@@ -35,6 +41,9 @@ export { LAYER_GROUPS, LAYER_PRESETS } from "./groups";
 export type { LayerGroup, LayerGroupId, LayerManifest, LayerStatus, LayerStyle } from "./types";
 
 export const LAYERS = [
+  adminLgu,
+  adminSgg,
+  adminDong,
   buildings,
   buildingUse,
   buildingAge,
@@ -63,6 +72,9 @@ export const LAYERS = [
 ] as LayerManifest[];
 
 export const LAYER_STYLES: Record<string, LayerStyle> = {
+  "admin-lgu": adminLguStyle,
+  "admin-sgg": adminSggStyle,
+  "admin-dong": adminDongStyle,
   "buildings": buildingsStyle,
   "roads": roadsStyle,
   "green-water": greenWaterStyle,

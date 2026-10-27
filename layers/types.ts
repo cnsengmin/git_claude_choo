@@ -3,6 +3,7 @@ import type { FilterSpecification } from "maplibre-gl";
 export type LayerStatus = "available" | "partial" | "planned";
 
 export type LayerGroupId =
+  | "boundaries"
   | "physical"
   | "planning"
   | "mobility"
@@ -36,4 +37,7 @@ export interface LayerStyle {
   type: "fill" | "line" | "circle";
   filter?: FilterSpecification;
   paint: Record<string, unknown>;
+  // Vector tiles at /api/layers/<provider>/<tiles.path>/{z}/{x}/{y}.pbf instead of the
+  // provider's GeoJSON response.
+  tiles?: { path: string; sourceLayer: string; minzoom: number; maxzoom: number };
 }

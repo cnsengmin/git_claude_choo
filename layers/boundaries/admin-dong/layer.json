@@ -1,0 +1,10 @@
+{
+  "id": "admin-dong",
+  "group": "boundaries",
+  "label": "행정동 경계",
+  "description": "행정동·읍면 경계, 시점별",
+  "status": "partial",
+  "source": "행정안전부 행정기관코드 + SGIS 경계(vuski/admdongkor) · Atlas 시점별 레이어",
+  "provider": "region-layers",
+  "license": "CC BY 4.0"
+}
