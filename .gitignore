@@ -26,3 +26,6 @@ packages/*/examples/example_output_*
 
 # TypeScript incremental build info (npm run typecheck)
 *.tsbuildinfo
+
+# Release builds (scripts/region_registry/build_release_gpkg.py -> GitHub Release)
+dist/

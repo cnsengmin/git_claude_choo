@@ -80,7 +80,7 @@ gu = to_lgu(df_gu, load_units("units/sgg_units_by_year.csv"), code_system="kosta
 ## 단위 목록
 `units/{lgu,sgg}_units_by_year.csv`: 연도별 단위, 5·10자리 행안부 코드, 통계청 코드, 경계판(`boundary_version`), 면적, 집계구 인구(`pop_census`, `pop_year`). 일반구 목록에는 소속 기초 단위(`lgu_code`)가 있습니다.
 
-경계 GPKG는 용량 때문에 이 폴더에 넣지 않고 GitHub Release로 배포합니다.
+경계 GPKG는 용량 때문에 이 폴더에 넣지 않고 GitHub Release(`region-layers-YYYYMMDD`)로 배포합니다: 수준별 파일 하나, 레이어 날짜마다 테이블 하나(예: `lgu_20251231`), EPSG:5179.
 
 ## 한계
 - 면적 배분은 사람이 땅에 고르게 산다고 가정하고, 인구 배분은 2025 집계구 대표점 위의 인구총조사 값을 씁니다. 2010년 집계구 인구는 SGIS가 주지 않아 2008–2017년 사건은 2015년 인구를 씁니다.

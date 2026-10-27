@@ -16,7 +16,7 @@
 | 연결표·인구 가중 (P4) | 완료, 검증 23/23(P6에서 부천 일반구 폐지·부활 보정). v0.2와 3,656행 일치(몫 차이 0), 서울 v0.1과 99.7% 일치. 인구 가중은 2015·2020·2024 집계구 인구 | `scripts/region_registry/build_crosswalk.py`, `crosswalk_chain.py`, `data/derived/region-registry/crosswalk/` |
 | 시군구 연결표 패키지 v0.3 (P6) | 완료, 패키지 검증 40/40(R 비교는 CI에서). 기초 단위 229, 2008–2025, 면적·인구 몫, 통계청 코드 | `packages/kr-sgg-crosswalk/`, `scripts/region_registry/build_sgg_package.py` |
 | Atlas KR 반영 (P7) | 완료, `tsc --noEmit` 통과. 타입(`AtlasLayerVersion`·`AtlasCrosswalkEdge`·`AtlasCrosswalkRow`·`AtlasCodeMapEntry`, 관계 유형 `recode`·`reorganize`·`absorbed`), 데이터셋 6개, CSV 리더(서버 전용) | `lib/atlas-registry/types.ts`, `datasets.ts`, `lib/atlas-data/` |
-| 그 밖(P8 CI·배포) | 미착수 | 아래 |
+| CI·배포 (P8) | CI 작업 2개 추가(산출물 검증, 패키지 Python·R). 경계 GPKG 3개(457MB) 빌드 완료, Release 업로드는 푸시 뒤 | `.github/workflows/ci.yml`, `scripts/region_registry/build_release_gpkg.py`, `dist/region-layers/` |
 
 ## 작업 묶음
 

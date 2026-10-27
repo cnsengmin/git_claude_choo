@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - atlas-mvp
+      - "feature/**"
   pull_request:
     branches:
       - master
+      - atlas-mvp
 
 jobs:
   typecheck-and-build:
@@ -38,3 +40,70 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  # Region layers and crosswalks (scripts/region_registry). Raw sources live outside Git
+  # (data/raw, gitignored), so CI checks the committed derived files only; comparisons that
+  # need raw inputs (v0.2 package, KIRD, admdongkor offices) report themselves as skipped.
+  region-registry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install "pandas>=2.2" "pyarrow>=15"
+
+      - name: Compile Python pipelines
+        run: |
+          python -m py_compile scripts/sgg2025/*.py scripts/region_registry/*.py
+          python -m py_compile packages/kr-sgg-crosswalk/code/harmonize.py packages/kr-sgg-crosswalk/examples/example.py packages/kr-sgg-crosswalk/tests/validate.py
+
+      - name: Validate registry, events, code map and crosswalks
+        run: |
+          python scripts/region_registry/validate_registry.py
+          python scripts/region_registry/validate_events.py
+          python scripts/region_registry/validate_code_map.py
+          python scripts/region_registry/validate_crosswalk.py
+
+  # kr-sgg-crosswalk package: Python and R examples, then the package tests, which compare
+  # the two outputs (R runs only here; design v2.1 decision 4).
+  kr-sgg-crosswalk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONUTF8: "1"
+    defaults:
+      run:
+        working-directory: packages/kr-sgg-crosswalk
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+
+      - name: Install dependencies
+        run: python -m pip install "pandas>=2.2"
+
+      - name: Run examples
+        run: |
+          python examples/example.py
+          Rscript examples/example.R
+
+      - name: Validate package
+        run: python tests/validate.py
