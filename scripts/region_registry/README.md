@@ -144,3 +144,18 @@ python scripts/region_registry/validate_crosswalk.py
   - 사례 7건(부천 원미구 포함): 청원→청주 1, 공주→세종 8.2%, 청원→세종 3.4%, 연기→세종 1, 인천 중구→영종구 89%, 청주 상당구→청원구, 부천 원미구 2010→원미구 2025 99.8%.
   - **연결표 패키지 v0.2와 이름 기준 3,656행이 일치하고 면적 몫 차이는 0**이다. 다른 것은 v0.2의 증평 버그와 여주군 2% 미만 조각(v0.2 잡음)뿐이다.
   - **서울 행정동 패키지 v0.1과는 2010–2025년에 같은 연결이 99.7%, 그중 몫 일치가 99.7%**다. 차이 20행은 위례 일대 시·구 경계 조각(2~5%)과 강남 동 1곳의 날짜 기준 차이(v0.1은 경계판 날짜, 이쪽은 행안부 시행일)다.
+
+## CI·배포 (P8)
+
+- **CI**(`.github/workflows/ci.yml`): 원자료(`data/raw/`)는 git에 없으므로 커밋된 산출물만으로 검사한다.
+  - `region-registry`: 스크립트 문법 검사(`py_compile`), `validate_registry.py`·`validate_events.py`·`validate_code_map.py`·`validate_crosswalk.py`. 원자료가 필요한 대조(v0.2 패키지, KIRD, admdongkor 출장소)는 건너뜀으로 표시된다.
+  - `kr-sgg-crosswalk`: Python·R 예제를 돌린 뒤 패키지 검증(Python·R 결과 비교 포함). R은 CI에서만 돈다.
+  - `scripts/sgg2025/validate.py`는 KOSIS 원자료 JSON이 있어야 해서 CI에 넣지 않는다.
+- **경계 GPKG**(GitHub Release): `build_release_gpkg.py`가 `dist/region-layers/`(gitignore)에 수준별 GPKG 3개, `manifest.json`(SHA-256), `RELEASE_NOTES.md`를 만든다. 레이어 날짜마다 테이블 하나, EPSG:5179.
+
+```bash
+python scripts/region_registry/build_release_gpkg.py
+gh release create region-layers-YYYYMMDD dist/region-layers/*.gpkg dist/region-layers/manifest.json --title "행정구역 시점별 레이어 경계 YYYY-MM-DD" --notes-file dist/region-layers/RELEASE_NOTES.md
+```
+
+  - 2026-10-27 빌드: 기초 단위 93MB, 일반구 구분 95MB, 행정동 269MB. 행정동은 레이어 경계판에 아직 없는 동 168건(19개 레이어 합)이 가장 가까운 판의 경계를 쓰고(`polygon_version`), 2023년 이후 북쪽 접경 5개 면은 경계가 없다.
