@@ -4,6 +4,7 @@ import maplibregl, { type GeoJSONSource, type Map as MapLibreMap, type Marker } 
 import "maplibre-gl/dist/maplibre-gl.css";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import SiteAnalysisPanel, { DEFAULT_SITE_LAYERS, type OpenContextState } from "@/components/SiteAnalysisPanel";
+import { BASEMAP_STYLE } from "@/lib/map/basemap";
 import type { AtlasPoi, PoiSearchResponse } from "@/lib/poi/types";
 import type { OsmContextResponse } from "@/lib/site-analysis/osm";
 
@@ -117,7 +118,7 @@ export default function AtlasMap() {
 
     const map = new maplibregl.Map({
       container: mapContainer.current,
-      style: process.env.NEXT_PUBLIC_MAP_STYLE_URL || "https://demotiles.maplibre.org/style.json",
+      style: BASEMAP_STYLE,
       center: [INITIAL_CENTER.lng, INITIAL_CENTER.lat],
       zoom: 14,
       pitch: 35,

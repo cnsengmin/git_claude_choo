@@ -3,6 +3,7 @@
 import maplibregl, { type GeoJSONSource } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useEffect, useRef, useState } from "react";
+import { BASEMAP_STYLE } from "@/lib/map/basemap";
 
 type DemoManifest = {
   region: { dong: { name: string; code: string } };
@@ -50,7 +51,7 @@ export default function BurimGridDemo() {
 
     const map = new maplibregl.Map({
       container: mapContainer.current,
-      style: process.env.NEXT_PUBLIC_MAP_STYLE_URL || "https://demotiles.maplibre.org/style.json",
+      style: BASEMAP_STYLE,
       center: [126.9568, 37.3943],
       zoom: 14.4,
       pitch: 0,
