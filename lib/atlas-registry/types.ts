@@ -36,7 +36,25 @@ export type SpatialLevel =
   | "raster-scene";
 
 export type AtlasRegionType = "sido" | "sigungu" | "admin-dong" | "legal-dong";
-export type AtlasRegionRelationType = "rename" | "split" | "merge" | "new" | "abolished" | "boundary-change" | "admin-legal-crosswalk";
+export type AtlasRegionRelationType =
+  | "rename"
+  | "recode"
+  | "split"
+  | "merge"
+  | "reorganize"
+  | "absorbed"
+  | "new"
+  | "abolished"
+  | "boundary-change"
+  | "admin-legal-crosswalk";
+/** lgu: 기초 단위(일반구를 시로 합침), sgg: 일반구 구분 시군구, admdong: 행정동. */
+export type AtlasLayerLevel = "lgu" | "sgg" | "admdong";
+export type AtlasCrosswalkMethod =
+  | "code_1to1"
+  | "recode"
+  | "area_abolished_code"
+  | "area_ceded_to_new"
+  | "event_1to1_no_polygon";
 export type AtlasEntityType = "region" | "relation" | "grid" | "feature" | "raster" | "statistic";
 export type AtlasLayerStatus = "available" | "partial" | "planned";
 export type AtlasLayerRole = "analysis" | "reference";
@@ -141,6 +159,66 @@ export interface AtlasRegionRelation {
   sourceId: string;
   sourceRecordId?: string;
   notes?: string;
+}
+
+/** A dated set of units in force (`kr-{level}@{referenceDate}`), built from the MOIS registry. */
+export interface AtlasLayerVersion {
+  id: string;
+  level: AtlasLayerLevel;
+  referenceDate: string;
+  unitCount: number;
+  /** admdongkor boundary version drawn for this layer (YYYYMMDD). */
+  boundaryVersion: string;
+  /** How the boundary version's units compare with the layer's units. */
+  status: string;
+}
+
+/** One link between neighbouring layers. Shares sum to 1 per source (wSrc*) and per target (wTgt*). */
+export interface AtlasCrosswalkEdge {
+  level: AtlasLayerLevel;
+  fromLayer: string;
+  toLayer: string;
+  fromCode: string;
+  toCode: string;
+  wSrc: number;
+  wTgt: number;
+  wSrcPop: number;
+  wTgtPop: number;
+  method: AtlasCrosswalkMethod;
+  eventIds: string[];
+  /** Census year of the population weights (2015 / 2020 / 2024); null when no event touched the unit. */
+  popYear: number | null;
+}
+
+/** A row of a chained crosswalk from any layer to a base layer (crosswalk/{level}_to_{base}.csv). */
+export interface AtlasCrosswalkRow {
+  fromDate: string;
+  toDate: string;
+  fromCode: string;
+  fromSido: string;
+  fromName: string;
+  toCode: string;
+  toSido: string;
+  toName: string;
+  wSrc: number;
+  wSrcPop: number;
+  wTgt: number;
+  wTgtPop: number;
+  /** True when some step of the path split the unit. */
+  alloc: boolean;
+}
+
+/** Another code system's code for a layer unit. Never derived by cutting digits. */
+export interface AtlasCodeMapEntry {
+  layer: string;
+  /** e.g. KOSTAT5_7 (5-digit sigungu, through 2021) or KOSTAT5_8 (from 2022). */
+  codeSystem: string;
+  code: string;
+  /** MOIS 10-digit code of the layer unit. */
+  baseCode: string;
+  method: string;
+  /** boundary_polygon (boundary version codes) or official_linkage (국가데이터처 연계정보). */
+  evidence: string;
 }
 
 export interface AtlasGridRef {

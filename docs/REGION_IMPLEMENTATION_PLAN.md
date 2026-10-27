@@ -15,7 +15,8 @@
 | 레이어별 코드 대응 (P5) | 완료, 검증 10/10. 2025 시군구 252쌍 공식 연계정보와 일치, 2026-10-01은 공식 코드로 대체 | `scripts/region_registry/build_code_map_layers.py`, `data/derived/region-registry/code_map_layers.csv` |
 | 연결표·인구 가중 (P4) | 완료, 검증 23/23(P6에서 부천 일반구 폐지·부활 보정). v0.2와 3,656행 일치(몫 차이 0), 서울 v0.1과 99.7% 일치. 인구 가중은 2015·2020·2024 집계구 인구 | `scripts/region_registry/build_crosswalk.py`, `crosswalk_chain.py`, `data/derived/region-registry/crosswalk/` |
 | 시군구 연결표 패키지 v0.3 (P6) | 완료, 패키지 검증 40/40(R 비교는 CI에서). 기초 단위 229, 2008–2025, 면적·인구 몫, 통계청 코드 | `packages/kr-sgg-crosswalk/`, `scripts/region_registry/build_sgg_package.py` |
-| 그 밖(P7 Atlas 반영, P8 CI·배포) | 미착수 | 아래 |
+| Atlas KR 반영 (P7) | 완료, `tsc --noEmit` 통과. 타입(`AtlasLayerVersion`·`AtlasCrosswalkEdge`·`AtlasCrosswalkRow`·`AtlasCodeMapEntry`, 관계 유형 `recode`·`reorganize`·`absorbed`), 데이터셋 6개, CSV 리더(서버 전용) | `lib/atlas-registry/types.ts`, `datasets.ts`, `lib/atlas-data/` |
+| 그 밖(P8 CI·배포) | 미착수 | 아래 |
 
 ## 작업 묶음
 
