@@ -119,7 +119,7 @@ Data/provider routes:
 - `GET /api/poi/naver`
 - `POST /api/poi/google`
 - `GET /api/poi/hira`
-- `GET /api/site/osm`
+- `GET /api/layers/osm-overpass` (layer providers: `GET /api/layers/<provider>`, see `layers/README.md`)
 - `GET /api/stats/sgis`
 - `GET /api/kosis/search?query=...`
 - `POST /api/kosis/data`

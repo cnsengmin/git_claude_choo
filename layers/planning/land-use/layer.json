@@ -1,0 +1,10 @@
+{
+  "id": "land-use",
+  "group": "planning",
+  "label": "토지이용",
+  "description": "현재 토지이용 및 피복 맥락",
+  "status": "partial",
+  "source": "OSM 즉시 보기 + 공식 토지피복지도(예정)",
+  "provider": "osm-overpass",
+  "license": "ODbL"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "buildings",
+  "group": "physical",
+  "label": "건물",
+  "description": "건물 footprint와 건축물 기본 형상",
+  "status": "partial",
+  "source": "OSM 즉시 보기 + 건축물 공간정보(예정)",
+  "provider": "osm-overpass",
+  "license": "ODbL"
+}

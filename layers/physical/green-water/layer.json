@@ -1,0 +1,10 @@
+{
+  "id": "green-water",
+  "group": "physical",
+  "label": "녹지·하천",
+  "description": "공원·녹지·하천 및 오픈스페이스",
+  "status": "partial",
+  "source": "OSM 즉시 보기 + 토지피복/공공자료(예정)",
+  "provider": "osm-overpass",
+  "license": "ODbL"
+}

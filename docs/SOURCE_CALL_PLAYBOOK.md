@@ -497,8 +497,8 @@ Record the working type name, output fields, CRS and any bbox constraints here a
 - Source ID: `osm`
 - Purpose: open fallback/context for buildings, roads, land use, green/water
 - Agent grade: A
-- Adapter/code: `lib/site-analysis/osm.ts`
-- Atlas route: `GET /api/site/osm`
+- Adapter/code: `layers/providers/osm-overpass/server.ts`
+- Atlas route: `GET /api/layers/osm-overpass`
 
 ### Access
 
