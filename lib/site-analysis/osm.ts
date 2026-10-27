@@ -61,7 +61,11 @@ export async function fetchOsmSiteContext(lat: number, lng: number, requestedRad
 
   const response = await fetch(OVERPASS_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+    // overpass-api.de answers 406 to requests without an identifying User-Agent.
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      "User-Agent": "AtlasKR/0.2 (+https://github.com/cnsengmin/git_claude_choo)",
+    },
     body: new URLSearchParams({ data: query }),
     cache: "no-store",
   });
