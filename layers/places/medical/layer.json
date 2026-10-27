@@ -1,0 +1,8 @@
+{
+  "id": "medical",
+  "group": "places",
+  "label": "의료시설",
+  "description": "병원·의원 등 공식 의료기관",
+  "status": "available",
+  "source": "HIRA"
+}

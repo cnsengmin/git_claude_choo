@@ -1,0 +1,8 @@
+{
+  "id": "business-stats",
+  "group": "people",
+  "label": "사업체 통계",
+  "description": "지도 중심 행정동의 공식 사업체·종사자 집계 및 향후 업종별 시계열",
+  "status": "available",
+  "source": "SGIS 전국사업체조사 API"
+}

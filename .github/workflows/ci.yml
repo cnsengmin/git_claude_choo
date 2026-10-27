@@ -5,6 +5,7 @@ on:
     branches:
       - atlas-mvp
       - "feature/**"
+      - "layer/**"
   pull_request:
     branches:
       - master

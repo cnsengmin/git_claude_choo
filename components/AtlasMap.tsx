@@ -1,12 +1,13 @@
 "use client";
 
-import maplibregl, { type GeoJSONSource, type Map as MapLibreMap, type Marker } from "maplibre-gl";
+import maplibregl, { type AddLayerObject, type GeoJSONSource, type Map as MapLibreMap, type Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import SiteAnalysisPanel, { DEFAULT_SITE_LAYERS, type OpenContextState } from "@/components/SiteAnalysisPanel";
+import { LAYER_STYLES, LAYERS, mapLayerId, mapSourceId } from "@/layers";
+import type { OsmContextResponse } from "@/layers/providers/osm-overpass/server";
 import { BASEMAP_STYLE } from "@/lib/map/basemap";
 import type { AtlasPoi, PoiSearchResponse } from "@/lib/poi/types";
-import type { OsmContextResponse } from "@/lib/site-analysis/osm";
 
 type Provider = "kakao" | "naver" | "google" | "hira";
 type ProviderStatus = { configured: boolean; requires: string[]; note?: string };
@@ -30,11 +31,12 @@ const INITIAL_CENTER: MapCenter = { lng: 126.9568, lat: 37.3943 };
 const ANALYSIS_SOURCE = "atlas-site-analysis-area";
 const ANALYSIS_FILL = "atlas-site-analysis-fill";
 const ANALYSIS_LINE = "atlas-site-analysis-line";
-const OSM_SOURCE = "atlas-osm-context";
-const OSM_BUILDINGS = "atlas-osm-buildings";
-const OSM_ROADS = "atlas-osm-roads";
-const OSM_LANDUSE = "atlas-osm-landuse";
-const OSM_GREEN_WATER = "atlas-osm-green-water";
+const OSM_PROVIDER = "osm-overpass";
+const OSM_SOURCE = mapSourceId(OSM_PROVIDER);
+// Layers drawn from the Overpass response, bottom to top (layers/<group>/<id>/style.ts).
+const OSM_LAYERS = LAYERS
+  .filter((layer) => layer.provider === OSM_PROVIDER && LAYER_STYLES[layer.id])
+  .sort((a, b) => LAYER_STYLES[a.id].order - LAYER_STYLES[b.id].order);
 
 const googleTypesFromQuery = (query: string): string[] | undefined => {
   if (query.includes("편의점")) return ["convenience_store"];
@@ -176,10 +178,7 @@ export default function AtlasMap() {
     const map = mapRef.current;
     if (!map) return;
     const siteVisible = mode === "site";
-    setLayerVisibility(map, OSM_BUILDINGS, siteVisible && siteLayerIds.includes("buildings"));
-    setLayerVisibility(map, OSM_ROADS, siteVisible && siteLayerIds.includes("roads"));
-    setLayerVisibility(map, OSM_LANDUSE, siteVisible && siteLayerIds.includes("land-use"));
-    setLayerVisibility(map, OSM_GREEN_WATER, siteVisible && siteLayerIds.includes("green-water"));
+    OSM_LAYERS.forEach((layer) => setLayerVisibility(map, mapLayerId(layer.id), siteVisible && siteLayerIds.includes(layer.id)));
   }, [mode, siteLayerIds]);
 
   useEffect(() => {
@@ -252,7 +251,7 @@ export default function AtlasMap() {
         y: String(mapCenter.lat),
         radius: String(siteRadius),
       });
-      const response = await fetch(`/api/site/osm?${params}`);
+      const response = await fetch(`/api/layers/${OSM_PROVIDER}?${params}`);
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || `OSM request failed: ${response.status}`);
       const osm = payload as OsmContextResponse;
@@ -262,40 +261,13 @@ export default function AtlasMap() {
         if (source) source.setData(osm.featureCollection);
         else {
           map.addSource(OSM_SOURCE, { type: "geojson", data: osm.featureCollection });
-          map.addLayer({
-            id: OSM_LANDUSE,
-            type: "fill",
-            source: OSM_SOURCE,
-            filter: ["==", ["get", "kind"], "landuse"],
-            paint: { "fill-color": "#c7cbd1", "fill-opacity": 0.22 },
-          });
-          map.addLayer({
-            id: OSM_GREEN_WATER,
-            type: "fill",
-            source: OSM_SOURCE,
-            filter: ["==", ["get", "kind"], "green-water"],
-            paint: { "fill-color": "#7fa68a", "fill-opacity": 0.35 },
-          });
-          map.addLayer({
-            id: OSM_BUILDINGS,
-            type: "fill",
-            source: OSM_SOURCE,
-            filter: ["==", ["get", "kind"], "building"],
-            paint: { "fill-color": "#5f6670", "fill-opacity": 0.42, "fill-outline-color": "#444b55" },
-          });
-          map.addLayer({
-            id: OSM_ROADS,
-            type: "line",
-            source: OSM_SOURCE,
-            filter: ["==", ["get", "kind"], "road"],
-            paint: { "line-color": "#4f5661", "line-width": 1.25, "line-opacity": 0.72 },
+          OSM_LAYERS.forEach((layer) => {
+            const { order: _order, ...style } = LAYER_STYLES[layer.id];
+            map.addLayer({ id: mapLayerId(layer.id), source: OSM_SOURCE, ...style } as AddLayerObject);
           });
         }
 
-        setLayerVisibility(map, OSM_BUILDINGS, mode === "site" && siteLayerIds.includes("buildings"));
-        setLayerVisibility(map, OSM_ROADS, mode === "site" && siteLayerIds.includes("roads"));
-        setLayerVisibility(map, OSM_LANDUSE, mode === "site" && siteLayerIds.includes("land-use"));
-        setLayerVisibility(map, OSM_GREEN_WATER, mode === "site" && siteLayerIds.includes("green-water"));
+        OSM_LAYERS.forEach((layer) => setLayerVisibility(map, mapLayerId(layer.id), mode === "site" && siteLayerIds.includes(layer.id)));
       };
 
       if (map.isStyleLoaded()) apply();

@@ -1,0 +1,8 @@
+{
+  "id": "live-poi",
+  "group": "places",
+  "label": "실시간 POI",
+  "description": "현재 지도 주변 장소 검색",
+  "status": "available",
+  "source": "Kakao / Naver / Google"
+}

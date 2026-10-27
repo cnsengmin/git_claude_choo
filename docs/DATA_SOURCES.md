@@ -26,7 +26,7 @@ For Site Analysis Mode, a downloaded or rendered map is not considered analysis 
 
 ## Site Analysis catalog
 
-The stable UI/data layer IDs are maintained in `lib/site-analysis/catalog.ts` and grouped into:
+The stable UI/data layer IDs are maintained in one `layers/<group>/<id>/layer.json` per layer (see `layers/README.md`) and grouped into:
 
 1. Physical / Built
 2. Planning

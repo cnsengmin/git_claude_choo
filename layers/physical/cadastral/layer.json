@@ -1,0 +1,8 @@
+{
+  "id": "cadastral",
+  "group": "physical",
+  "label": "지적",
+  "description": "필지 경계와 토지 단위",
+  "status": "planned",
+  "source": "연속지적도"
+}

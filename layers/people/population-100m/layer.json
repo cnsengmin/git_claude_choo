@@ -1,0 +1,8 @@
+{
+  "id": "population-100m",
+  "group": "people",
+  "label": "100m 인구",
+  "description": "100m 격자 인구와 연령구조",
+  "status": "planned",
+  "source": "SGIS 자료제공 / 인구격자"
+}

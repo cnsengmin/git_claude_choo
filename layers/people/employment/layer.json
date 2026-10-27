@@ -1,0 +1,8 @@
+{
+  "id": "employment",
+  "group": "people",
+  "label": "고용·종사자",
+  "description": "현재 행정동 종사자 집계를 시작으로 종사자 밀도와 직주 구조 확장",
+  "status": "partial",
+  "source": "SGIS 사업체 통계"
+}

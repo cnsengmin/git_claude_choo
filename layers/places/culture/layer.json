@@ -1,0 +1,8 @@
+{
+  "id": "culture",
+  "group": "places",
+  "label": "문화·여가",
+  "description": "영화관·도서관·문화시설",
+  "status": "partial",
+  "source": "공공데이터 + POI providers"
+}

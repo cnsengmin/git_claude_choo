@@ -1,0 +1,8 @@
+{
+  "id": "floating-pop",
+  "group": "people",
+  "label": "생활·유동인구",
+  "description": "생활이동·유동인구 기반 활동성",
+  "status": "planned",
+  "source": "지자체 / 생활이동 데이터"
+}

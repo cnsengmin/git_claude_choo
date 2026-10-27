@@ -2,12 +2,7 @@
 
 import { useMemo, useState } from "react";
 import SgisStatsCard from "@/components/SgisStatsCard";
-import {
-  SITE_LAYER_GROUPS,
-  SITE_LAYERS,
-  SITE_PRESETS,
-  type SiteLayerStatus,
-} from "@/lib/site-analysis/catalog";
+import { LAYER_GROUPS, LAYER_PRESETS, LAYERS, type LayerStatus } from "@/layers";
 
 type Center = { lng: number; lat: number };
 type OsmCounts = { building: number; road: number; landuse: number; "green-water": number };
@@ -31,10 +26,10 @@ type Props = {
   openContext: OpenContextState;
 };
 
-export const DEFAULT_SITE_LAYERS = SITE_PRESETS.neighborhood.layerIds;
-const OSM_LAYER_IDS = new Set(["buildings", "roads", "green-water", "land-use"]);
+export const DEFAULT_SITE_LAYERS = LAYER_PRESETS.neighborhood.layerIds;
+const OSM_LAYER_IDS = new Set(LAYERS.filter((layer) => layer.provider === "osm-overpass").map((layer) => layer.id));
 
-const statusLabel = (status: SiteLayerStatus) => {
+const statusLabel = (status: LayerStatus) => {
   if (status === "available") return "연결됨";
   if (status === "partial") return "보완";
   return "다음";
@@ -53,7 +48,7 @@ export default function SiteAnalysisPanel({
   const [snapshotAt, setSnapshotAt] = useState<string | null>(null);
 
   const selectedDefinitions = useMemo(
-    () => SITE_LAYERS.filter((layer) => selected.includes(layer.id)),
+    () => LAYERS.filter((layer) => selected.includes(layer.id)),
     [selected],
   );
 
@@ -74,7 +69,7 @@ export default function SiteAnalysisPanel({
   }
 
   function applyPreset(key: string) {
-    const preset = SITE_PRESETS[key];
+    const preset = LAYER_PRESETS[key];
     if (!preset) return;
     commitSelection(preset.layerIds);
   }
@@ -103,7 +98,7 @@ export default function SiteAnalysisPanel({
       </div>
 
       <div className="preset-row" aria-label="Site analysis presets">
-        {Object.entries(SITE_PRESETS).map(([key, preset]) => (
+        {Object.entries(LAYER_PRESETS).map(([key, preset]) => (
           <button type="button" key={key} onClick={() => applyPreset(key)}>{preset.label}</button>
         ))}
       </div>
@@ -143,8 +138,8 @@ export default function SiteAnalysisPanel({
       <SgisStatsCard center={center} />
 
       <div className="layer-groups">
-        {SITE_LAYER_GROUPS.map((group) => {
-          const layers = SITE_LAYERS.filter((layer) => layer.group === group.id);
+        {LAYER_GROUPS.map((group) => {
+          const layers = LAYERS.filter((layer) => layer.group === group.id);
           return (
             <section className="layer-group" key={group.id}>
               <div className="layer-group-heading">

@@ -72,14 +72,14 @@ The `atlas-mvp` branch now includes:
 - the five layer groups and Korea-first source registry;
 - architecture/neighborhood/commercial presets;
 - layer implementation status (`available`, `partial`, `planned`);
-- an OSM Overpass server route at `GET /api/site/osm?x=...&y=...&radius=...`;
+- an OSM Overpass server route at `GET /api/layers/osm-overpass?x=...&y=...&radius=...` (`layers/providers/osm-overpass/`);
 - immediate OSM context rendering for building footprints, roads, land use, and green/water features;
 - layer toggles that hide/show the loaded OSM context by stable Site Analysis layer ID;
 - OSM feature counts, retrieval time, source warning and attribution in the Site Analysis panel;
 - jump-back from an available Places layer to a real provider search;
 - an analysis-configuration snapshot action.
 
-The analysis catalog is defined in `lib/site-analysis/catalog.ts` so official Korean providers can replace or supplement OSM without rewriting the UI.
+The analysis catalog is one `layers/<group>/<id>/layer.json` per layer (`layers/README.md`) so official Korean providers can replace or supplement OSM without rewriting the UI.
 
 ## Next implementation sequence
 

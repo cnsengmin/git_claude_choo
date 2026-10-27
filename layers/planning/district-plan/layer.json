@@ -1,0 +1,8 @@
+{
+  "id": "district-plan",
+  "group": "planning",
+  "label": "지구단위계획",
+  "description": "지구단위계획 구역과 계획정보",
+  "status": "planned",
+  "source": "도시계획정보 / UPIS"
+}

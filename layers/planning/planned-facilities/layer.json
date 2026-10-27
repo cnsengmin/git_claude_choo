@@ -1,0 +1,8 @@
+{
+  "id": "planned-facilities",
+  "group": "planning",
+  "label": "도시계획시설",
+  "description": "도로·공원 등 도시계획시설 결정",
+  "status": "planned",
+  "source": "국토부 도시계획시설정보"
+}

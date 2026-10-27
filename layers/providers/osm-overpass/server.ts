@@ -1,3 +1,5 @@
+import { LayerRequestError, numberParam } from "@/layers/providers/errors";
+
 export type OsmContextKind = "building" | "road" | "landuse" | "green-water";
 
 type OverpassGeometryPoint = { lat: number; lon: number };
@@ -119,4 +121,19 @@ export async function fetchOsmSiteContext(lat: number, lng: number, requestedRad
     featureCollection: { type: "FeatureCollection", features },
     warning: `OSM is an open-data context/fallback layer, not an official Korean building, road, cadastral, or planning record.${capped ? ` MVP Overpass load is capped at ${MAX_RADIUS}m.` : ""}`,
   };
+}
+
+// GET /api/layers/osm-overpass?x=<lng>&y=<lat>&radius=<m>
+export async function handle(params: URLSearchParams): Promise<OsmContextResponse> {
+  const lng = numberParam(params, "x");
+  const lat = numberParam(params, "y");
+  const radius = numberParam(params, "radius") ?? 500;
+
+  if (lng === undefined || lat === undefined) {
+    throw new LayerRequestError("x and y are required numbers");
+  }
+  if (lng < -180 || lng > 180 || lat < -90 || lat > 90) {
+    throw new LayerRequestError("x/y are outside valid WGS84 longitude/latitude ranges");
+  }
+  return fetchOsmSiteContext(lat, lng, radius);
 }
