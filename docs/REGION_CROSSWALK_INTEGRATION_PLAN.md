@@ -111,6 +111,7 @@
 - 타입(`lib/atlas-registry/types.ts`): `AtlasRegionRelationType`에 `recode` 추가. `AtlasLayerVersion { id, level, referenceDate, unitCount, boundaryVersion, status }`, `AtlasCrosswalkEdge { fromLayer, toLayer, fromCode, toCode, wSrc, wTgt, wPop?, method, eventId }`, `AtlasCodeMapEntry { layer, codeSystem, code, baseCode, method, evidence }` 추가.
 - `AtlasRegionType`은 그대로 두고, 기초 단위와 일반구 구분은 레이어 `level`로 한다.
 - 데이터셋 목록(`datasets.ts`): `mois-kik-with-abolished-<날짜>`(원천), `atlas-region-registry`, `atlas-region-layers`, `atlas-crosswalk-edges`, `atlas-region-code-map`, `atlas-sgg-single-year-2025`.
+- 구현(P7): 연결 엣지는 설계의 `wPop` 대신 원천·대상 인구 몫 `wSrcPop`·`wTgtPop`을 함께 두고, 기준 레이어까지 이어 붙인 표는 `AtlasCrosswalkRow`로 읽는다. 관계 유형에는 `reorganize`·`absorbed`도 더했다. 리더는 `lib/atlas-data/region-registry.ts`(서버 전용, CSV만; 행정동 엣지는 Parquet에만 있어 읽지 않는다).
 - 원칙은 v1과 같다: Python이 CSV/Parquet + manifest를 만들고, TS는 읽기만 한다. 기존 `REGION_REGISTRY_META.policy`("코드와 유효기간을 보존하고 과거 코드를 덮어쓰지 않는다")와 맞는다.
 
 ## 6. 알려진 한계
