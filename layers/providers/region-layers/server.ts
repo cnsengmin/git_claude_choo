@@ -4,7 +4,7 @@ import { badTilePath, releasePmtiles, tilePath } from "@/layers/providers/pmtile
 // Region-layer boundary tiles (PMTiles, one file per level) from the GitHub Release.
 // REGION_LAYERS_PMTILES_DIR: read local files instead (e.g. dist/region-layers after
 // build_release_pmtiles.py).
-export const LEVELS = ["lgu", "sgg", "admdong"] as const;
+export const LEVELS = ["sido", "lgu", "sgg", "admdong"] as const;
 type Level = (typeof LEVELS)[number];
 
 const reader = releasePmtiles({

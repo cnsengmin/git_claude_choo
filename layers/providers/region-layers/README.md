@@ -5,9 +5,9 @@
 - 경로
   - `GET /api/layers/region-layers/<수준>/<z>/<x>/<y>.pbf`: 타일 한 장. 없는 타일은 204입니다.
   - `GET /api/layers/region-layers/<수준>/metadata`: 확대 단계, 범위, 타일 속성.
-  - 수준은 `lgu`, `sgg`, `admdong`입니다.
-- 레이어: `boundaries/admin-lgu`, `boundaries/admin-sgg`, `boundaries/admin-dong`.
-- 자료: GitHub Release `region-layers-20261027`의 `kr-region-layers-{lgu,sgg,admdong}.pmtiles`.
+  - 수준은 `sido`, `lgu`, `sgg`, `admdong`입니다. `sido`는 기초 단위를 시점마다 행안부 시도 코드로 합친 것입니다.
+- 레이어: `boundaries/admin-sido`, `boundaries/admin-lgu`, `boundaries/admin-sgg`, `boundaries/admin-dong`.
+- 자료: GitHub Release `region-layers-20261027`의 `kr-region-layers-{sido,lgu,sgg,admdong}.pmtiles`.
   - `scripts/region_registry/build_release_pmtiles.py`가 Release용 GeoPackage에서 만듭니다.
   - 크기와 해시는 Release의 `manifest.json` `tiles`에 있습니다.
 - 시점: 지역마다 속한 시점 표시(`d2008`…`d2025`, `d202610`)가 1입니다. 지도는 고른 시점으로 걸러 그립니다(`dates.ts`).
