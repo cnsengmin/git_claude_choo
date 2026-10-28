@@ -1,7 +1,7 @@
 import type { LayerGroup } from "./types";
 
 export const LAYER_GROUPS: LayerGroup[] = [
-  { id: "boundaries", label: "Boundaries", description: "시점별 기초 단위·시군구·행정동 경계 (2008–2026)" },
+  { id: "boundaries", label: "Boundaries", description: "시점별 시도·기초 단위·시군구·행정동 경계 (2008–2026)" },
   { id: "physical", label: "Physical / Built", description: "건물·도로·지적·지형 등 물리적 도시구조" },
   { id: "planning", label: "Planning", description: "용도지역·지구단위계획·도시계획시설" },
   { id: "mobility", label: "Mobility", description: "대중교통·도로망·보행 접근성" },
