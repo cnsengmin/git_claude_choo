@@ -167,3 +167,11 @@ gh release upload region-layers-YYYYMMDD dist/region-layers/*.pmtiles dist/regio
 ```
 
   - 2026-10-28 빌드: 기초 단위 12.7MB(z4–12), 일반구 구분 12.6MB(z5–12), 행정동 34.8MB(z8–12). 지역×시점 4,362 / 4,766 / 66,633개. 2026-10-27 빌드는 단순화·타일 크기 옵션을 레이어 옵션으로 넘겨 GDAL이 무시했고, 저배율 타일에서 지역이 빠졌다(서울 행정동 z8 1,323개 중 731개 누락). `write_pmtiles()`가 무시된 옵션을 오류로 막는다.
+- **집계구 인구 타일**(PMTiles, Release `oa-population-YYYYMMDD`): `build_release_oa_pmtiles.py`가 `data/raw/sgis/oa-2025`의 2025 집계구 경계에 2015·2020·2024 인구를 붙여 `dist/oa-population/`에 만든다. 속성은 `p<연도>`(인구)와 `dn<연도>`(명/㎢)이고, N/A는 비워 둔다. 연도별 집계구 합이 `data/manifests/sgis-oa-2025.json` 기록과 다르면 멈춘다. 앱 레이어는 `layers/people/population-oa`.
+
+```bash
+python scripts/region_registry/build_release_oa_pmtiles.py
+gh release create oa-population-YYYYMMDD dist/oa-population/* --title "집계구 인구 YYYY-MM-DD" --notes-file dist/oa-population/RELEASE_NOTES.md
+```
+
+  - 2026-10-29 빌드: 90.2MB(z10–14), 집계구 108,510개. 합계 2015 51,066,669 / 2020 51,828,109 / 2024 51,805,547(기록과 같음). 서울 도심 z10 타일 17,489개 중 17,483개(빠진 6개는 타일 경계에 11㎡ 이하로 걸친 것), z12 이상 전부.

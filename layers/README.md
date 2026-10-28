@@ -33,6 +33,8 @@ layers/
 ## style.ts
 - 기본: provider의 GeoJSON 응답을 `filter`로 나눠 그립니다(`osm-overpass`). `order`가 작은 레이어가 아래에 깔립니다.
 - `tiles`가 있으면 provider의 벡터 타일 `/api/layers/<provider>/<tiles.path>/{z}/{x}/{y}.pbf`를 그립니다(`region-layers`). 행정경계 레이어는 고른 시점으로 걸러지고, 지역을 누르면 이름과 코드가 뜹니다.
+- `time`: 사이드바에서 고르는 시점이나 연도입니다. 선택지와, 고른 값에 따른 `filter`·`paint`를 정합니다. `key`가 같은 레이어는 선택 하나를 같이 씁니다. 예: 경계 3개는 `boundary-date`를 같이 쓰고, 집계구 인구는 `oa-year`를 씁니다.
+- `describe`: 지역을 눌렀을 때 뜨는 한 줄입니다. `legend`: 레이어를 켰을 때 사이드바에 나오는 범례입니다.
 
 ## check.json
 `requests`의 요청마다 `/api/layers/<provider>/<path>?<query>`를 부르고 `expect` 규칙을 검사합니다. JSON 규칙은 `min`, `minLength`, `equals`이고, 타일처럼 JSON이 아닌 응답에는 `minBytes`, `contains`를 씁니다. 자세한 형식은 `scripts/layers/check-live.mjs` 머리말에 있습니다.
@@ -48,4 +50,4 @@ layers/
 6. 로컬 화면에서 지도에 그려지는지 확인하고, 결과를 provider README에 적습니다.
 
 ## 데이터
-1MB를 넘는 자료는 Git에 넣지 않습니다. 정적 자료는 벡터 타일(PMTiles) 등으로 만들어 GitHub Release나 저장소 밖 저장 공간에 두고, 위치와 해시는 provider README에 적습니다. 예: `region-layers`는 Release의 PMTiles를 서버가 구간별로 읽어 타일로 돌려줍니다.
+1MB를 넘는 자료는 Git에 넣지 않습니다. 정적 자료는 벡터 타일(PMTiles) 등으로 만들어 GitHub Release나 저장소 밖 저장 공간에 두고, 위치와 해시는 provider README에 적습니다. 예: `region-layers`와 `sgis-oa`는 Release의 PMTiles를 서버가 구간별로 읽어 타일로 돌려줍니다(공용 코드 `providers/pmtiles.ts`). PMTiles는 `scripts/region_registry/build_release_pmtiles.py`의 `write_pmtiles()`로 만듭니다. 이 함수는 GDAL이 무시하는 옵션을 오류로 막습니다. 무시된 옵션 때문에 저배율 타일에서 지역이 빠진 적이 있기 때문입니다.

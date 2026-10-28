@@ -2,8 +2,7 @@
 
 import { useMemo, useState } from "react";
 import SgisStatsCard from "@/components/SgisStatsCard";
-import { LAYER_GROUPS, LAYER_PRESETS, LAYERS, type LayerStatus } from "@/layers";
-import { BOUNDARY_DATES } from "@/layers/providers/region-layers/dates";
+import { LAYER_GROUPS, LAYER_PRESETS, LAYER_STYLES, LAYERS, type LayerStatus } from "@/layers";
 
 type Center = { lng: number; lat: number };
 type OsmCounts = { building: number; road: number; landuse: number; "green-water": number };
@@ -25,8 +24,8 @@ type Props = {
   onSelectionChange: (layerIds: string[]) => void;
   onLoadOpenContext: () => void;
   openContext: OpenContextState;
-  boundaryDate: string;
-  onBoundaryDateChange: (date: string) => void;
+  layerTimes: Record<string, string>;
+  onLayerTimeChange: (key: string, value: string) => void;
 };
 
 export const DEFAULT_SITE_LAYERS = LAYER_PRESETS.neighborhood.layerIds;
@@ -46,8 +45,8 @@ export default function SiteAnalysisPanel({
   onSelectionChange,
   onLoadOpenContext,
   openContext,
-  boundaryDate,
-  onBoundaryDateChange,
+  layerTimes,
+  onLayerTimeChange,
 }: Props) {
   const [selected, setSelected] = useState<string[]>(DEFAULT_SITE_LAYERS);
   const [snapshotAt, setSnapshotAt] = useState<string | null>(null);
@@ -155,16 +154,33 @@ export default function SiteAnalysisPanel({
                 <span>{layers.filter((layer) => selected.includes(layer.id)).length}/{layers.length}</span>
               </div>
 
-              {group.id === "boundaries" && (
-                <label className="boundary-date">
-                  <span>경계 시점</span>
-                  <select value={boundaryDate} onChange={(event) => onBoundaryDateChange(event.target.value)}>
-                    {BOUNDARY_DATES.map((item) => (
-                      <option key={item.date} value={item.date}>{item.date}</option>
+              {[...new Map(layers.flatMap((layer) => {
+                const time = LAYER_STYLES[layer.id]?.time;
+                return time ? [[time.key, time] as const] : [];
+              })).values()].map((time) => (
+                <label className="layer-time" key={time.key}>
+                  <span>{time.label}</span>
+                  <select value={layerTimes[time.key] ?? time.initial} onChange={(event) => onLayerTimeChange(time.key, event.target.value)}>
+                    {time.options.map((option) => (
+                      <option key={option.value} value={option.value}>{option.label}</option>
                     ))}
                   </select>
                 </label>
-              )}
+              ))}
+
+              {layers.filter((layer) => selected.includes(layer.id) && LAYER_STYLES[layer.id]?.legend).map((layer) => {
+                const legend = LAYER_STYLES[layer.id].legend!;
+                return (
+                  <div className="layer-legend" key={layer.id}>
+                    <span>{legend.title}</span>
+                    <ul>
+                      {legend.items.map((item) => (
+                        <li key={item.label}><i style={{ background: item.color }} />{item.label}</li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
 
               <div className="layer-checks">
                 {layers.map((layer) => (

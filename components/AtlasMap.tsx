@@ -1,12 +1,11 @@
 "use client";
 
-import maplibregl, { type AddLayerObject, type FilterSpecification, type GeoJSONSource, type Map as MapLibreMap, type Marker } from "maplibre-gl";
+import maplibregl, { type AddLayerObject, type GeoJSONSource, type Map as MapLibreMap, type Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import SiteAnalysisPanel, { DEFAULT_SITE_LAYERS, type OpenContextState } from "@/components/SiteAnalysisPanel";
 import { LAYER_STYLES, LAYERS, mapLayerId, mapSourceId } from "@/layers";
 import type { OsmContextResponse } from "@/layers/providers/osm-overpass/server";
-import { boundaryFlag, DEFAULT_BOUNDARY_DATE } from "@/layers/providers/region-layers/dates";
 import { BASEMAP_STYLE } from "@/lib/map/basemap";
 import type { AtlasPoi, PoiSearchResponse } from "@/lib/poi/types";
 
@@ -38,17 +37,27 @@ const OSM_SOURCE = mapSourceId(OSM_PROVIDER);
 const OSM_LAYERS = LAYERS
   .filter((layer) => layer.provider === OSM_PROVIDER && LAYER_STYLES[layer.id])
   .sort((a, b) => LAYER_STYLES[a.id].order - LAYER_STYLES[b.id].order);
-// Layers drawn from provider vector tiles (boundaries), filtered by the selected date. Each
-// gets an invisible fill underneath so a click inside a unit finds it.
+// Layers drawn from provider vector tiles (boundaries, output-area population), set to the
+// date or year chosen in the sidebar. Each gets an invisible fill underneath so a click
+// inside a unit finds it.
 const TILE_LAYERS = LAYERS
   .filter((layer) => layer.provider && LAYER_STYLES[layer.id]?.tiles)
   .sort((a, b) => LAYER_STYLES[a.id].order - LAYER_STYLES[b.id].order);
 const pickLayerId = (layerId: string) => `${mapLayerId(layerId)}-pick`;
-const TILE_LEVEL_LABEL: Record<string, string> = { lgu: "기초 단위", sgg: "시군구", admdong: "행정동" };
+const LAYER_BY_PICK = new Map(TILE_LAYERS.map((layer) => [pickLayerId(layer.id), layer.id]));
+const LAYER_TIMES = new Map(TILE_LAYERS.flatMap((layer) => {
+  const time = LAYER_STYLES[layer.id].time;
+  return time ? [[time.key, time] as const] : [];
+}));
+const INITIAL_TIMES = Object.fromEntries([...LAYER_TIMES.values()].map((time) => [time.key, time.initial]));
+const timeLabel = (key: string, value: string) => {
+  const time = LAYER_TIMES.get(key);
+  return `${time?.label ?? key} ${time?.options.find((option) => option.value === value)?.label ?? value}`;
+};
 
 function addTileLayers(map: MapLibreMap) {
   TILE_LAYERS.forEach((layer) => {
-    const { order: _order, tiles, ...style } = LAYER_STYLES[layer.id];
+    const { order: _order, tiles, time: _time, describe: _describe, legend: _legend, ...style } = LAYER_STYLES[layer.id];
     if (!tiles) return;
     const source = mapSourceId(`${layer.provider}-${tiles.path}`);
     if (!map.getSource(source)) {
@@ -65,19 +74,28 @@ function addTileLayers(map: MapLibreMap) {
   });
 }
 
-function boundaryPopup(features: maplibregl.MapGeoJSONFeature[], date: string) {
+// One line per clicked feature from its layer's describe(), topmost layer first, under the
+// dates or years in use.
+function featurePopup(features: maplibregl.MapGeoJSONFeature[], times: Record<string, string>) {
+  const lines = new Set<string>();
+  const keys = new Set<string>();
+  [...features]
+    .map((feature) => ({ feature, layerId: LAYER_BY_PICK.get(feature.layer.id) ?? "" }))
+    .filter(({ layerId }) => LAYER_STYLES[layerId]?.describe)
+    .sort((a, b) => LAYER_STYLES[b.layerId].order - LAYER_STYLES[a.layerId].order)
+    .forEach(({ feature, layerId }) => {
+      const { describe, time } = LAYER_STYLES[layerId];
+      if (time) keys.add(time.key);
+      lines.add(describe!(feature.properties, time ? times[time.key] : undefined));
+    });
+
   const root = document.createElement("div");
   const title = document.createElement("strong");
-  title.textContent = `행정경계 · ${date}`;
+  title.textContent = [...keys].map((key) => timeLabel(key, times[key])).join(" · ");
   root.append(title);
-  const seen = new Set<string>();
-  features.forEach((feature) => {
-    const key = `${feature.sourceLayer}:${feature.properties.code}`;
-    if (seen.has(key)) return;
-    seen.add(key);
-    const { name, code, kostat } = feature.properties as Record<string, string>;
+  lines.forEach((text) => {
     const line = document.createElement("div");
-    line.textContent = `${TILE_LEVEL_LABEL[feature.sourceLayer ?? ""] ?? feature.sourceLayer} ${name} · 행안부 ${code}${kostat ? ` · 통계청 ${kostat}` : ""}`;
+    line.textContent = text;
     root.append(line);
   });
   return root;
@@ -139,8 +157,8 @@ export default function AtlasMap() {
   const [siteRadius, setSiteRadius] = useState(1000);
   const [siteLayerIds, setSiteLayerIds] = useState<string[]>(DEFAULT_SITE_LAYERS);
   const [openContext, setOpenContext] = useState<OpenContextState>({ loading: false });
-  const [boundaryDate, setBoundaryDate] = useState(DEFAULT_BOUNDARY_DATE);
-  const boundaryDateRef = useRef(boundaryDate);
+  const [layerTimes, setLayerTimes] = useState<Record<string, string>>(INITIAL_TIMES);
+  const layerTimesRef = useRef(layerTimes);
   const [mapReady, setMapReady] = useState(false);
   const [data, setData] = useState<PoiSearchResponse | null>(null);
   const [providerStatus, setProviderStatus] = useState<StatusResponse["providers"] | null>(null);
@@ -183,20 +201,20 @@ export default function AtlasMap() {
       addTileLayers(map);
       setMapReady(true);
     });
-    const showBoundary = (event: maplibregl.MapMouseEvent) => {
+    const showFeatures = (event: maplibregl.MapMouseEvent) => {
       const layers = TILE_LAYERS.map((layer) => pickLayerId(layer.id))
         .filter((id) => map.getLayer(id) && map.getLayoutProperty(id, "visibility") !== "none");
       if (!layers.length) return;
       const features = map.queryRenderedFeatures(event.point, { layers });
       if (!features.length) return;
-      new maplibregl.Popup({ offset: 8 }).setLngLat(event.lngLat).setDOMContent(boundaryPopup(features, boundaryDateRef.current)).addTo(map);
+      new maplibregl.Popup({ offset: 8 }).setLngLat(event.lngLat).setDOMContent(featurePopup(features, layerTimesRef.current)).addTo(map);
     };
-    map.on("click", showBoundary);
+    map.on("click", showFeatures);
     mapRef.current = map;
 
     return () => {
       map.off("moveend", syncCenter);
-      map.off("click", showBoundary);
+      map.off("click", showFeatures);
       map.remove();
       mapRef.current = null;
     };
@@ -249,15 +267,20 @@ export default function AtlasMap() {
   }, [mode, siteLayerIds, mapReady]);
 
   useEffect(() => {
-    boundaryDateRef.current = boundaryDate;
+    layerTimesRef.current = layerTimes;
     const map = mapRef.current;
     if (!map || !mapReady) return;
-    const filter = ["==", ["get", boundaryFlag(boundaryDate)], 1] as FilterSpecification;
     TILE_LAYERS.forEach((layer) => {
-      map.setFilter(mapLayerId(layer.id), filter);
-      map.setFilter(pickLayerId(layer.id), filter);
+      const time = LAYER_STYLES[layer.id].time;
+      if (!time) return;
+      const { filter, paint } = time.apply(layerTimes[time.key]);
+      if (filter) {
+        map.setFilter(mapLayerId(layer.id), filter);
+        map.setFilter(pickLayerId(layer.id), filter);
+      }
+      Object.entries(paint ?? {}).forEach(([name, value]) => map.setPaintProperty(mapLayerId(layer.id), name, value));
     });
-  }, [boundaryDate, mapReady]);
+  }, [layerTimes, mapReady]);
 
   useEffect(() => {
     setOpenContext({ loading: false });
@@ -423,6 +446,9 @@ export default function AtlasMap() {
   const providerInfo = PROVIDERS.find((item) => item.id === provider);
   const selectedStatus = providerStatus?.[provider];
   const activeRadius = mode === "site" ? siteRadius : radius;
+  const activeTimeKeys = [...new Set(TILE_LAYERS
+    .filter((layer) => siteLayerIds.includes(layer.id))
+    .flatMap((layer) => LAYER_STYLES[layer.id].time?.key ?? []))];
 
   return (
     <main className="atlas-shell">
@@ -444,8 +470,8 @@ export default function AtlasMap() {
             onSelectionChange={setSiteLayerIds}
             onLoadOpenContext={loadOpenContext}
             openContext={openContext}
-            boundaryDate={boundaryDate}
-            onBoundaryDateChange={setBoundaryDate}
+            layerTimes={layerTimes}
+            onLayerTimeChange={(key, value) => setLayerTimes((current) => ({ ...current, [key]: value }))}
           />
         ) : (
           <>
@@ -535,7 +561,7 @@ export default function AtlasMap() {
       <section className="map-wrap">
         <div className="map-label">
           {mode === "site"
-            ? `Site Analysis 범위 · ${formatRadius(siteRadius)}${TILE_LAYERS.some((layer) => siteLayerIds.includes(layer.id)) ? ` · 경계 ${boundaryDate}` : ""}`
+            ? [`Site Analysis 범위 · ${formatRadius(siteRadius)}`, ...activeTimeKeys.map((key) => timeLabel(key, layerTimes[key]))].join(" · ")
             : `현재 지도 중심 기준 · 검색 반경 ${formatRadius(activeRadius)}`}
         </div>
         <div ref={mapContainer} className="map" />
