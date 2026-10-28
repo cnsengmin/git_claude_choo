@@ -266,6 +266,7 @@ button, input, select { font: inherit; }
 }
 .layer-time > span { color: #8a9098; font-size: 10px; font-weight: 700; }
 .layer-time select {
+  max-width: 240px;
   border: 1px solid #d9dde3;
   border-radius: 8px;
   background: white;
@@ -276,6 +277,7 @@ button, input, select { font: inherit; }
 .layer-legend > span { color: #8a9098; font-size: 10px; font-weight: 700; }
 .layer-legend ul { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 6px 0 0; padding: 0; list-style: none; }
 .layer-legend li { display: flex; align-items: center; gap: 4px; color: #4b5059; font-size: 10px; }
+.layer-legend > small { display: block; margin-top: 5px; color: #8a9098; font-size: 9px; }
 .layer-legend i { width: 12px; height: 9px; border-radius: 2px; border: 1px solid rgba(0, 0, 0, 0.08); }
 
 .layer-checks { display: grid; }

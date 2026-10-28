@@ -11,6 +11,8 @@ on:
     paths:
       - "layers/**"
       - "scripts/layers/**"
+      - "scripts/sgg2025/build_layer_indicators.py"
+      - "data/derived/sgg2025/codebook.csv"
       - ".github/workflows/layers.yml"
   pull_request:
     branches:
@@ -19,6 +21,8 @@ on:
     paths:
       - "layers/**"
       - "scripts/layers/**"
+      - "scripts/sgg2025/build_layer_indicators.py"
+      - "data/derived/sgg2025/codebook.csv"
       - ".github/workflows/layers.yml"
 
 jobs:
@@ -36,3 +40,6 @@ jobs:
 
       - name: Check layer manifests
         run: node scripts/layers/check-manifests.mjs
+
+      - name: Check the sigungu indicator list against the codebook
+        run: python3 scripts/sgg2025/build_layer_indicators.py --check

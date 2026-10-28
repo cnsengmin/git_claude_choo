@@ -21,6 +21,7 @@ import transit from "./mobility/transit/layer.json";
 import walkAccess from "./mobility/walk-access/layer.json";
 import populationAdmin from "./people/population-admin/layer.json";
 import populationOa from "./people/population-oa/layer.json";
+import sggStats2025 from "./people/sgg-stats-2025/layer.json";
 import population100m from "./people/population-100m/layer.json";
 import businessStats from "./people/business-stats/layer.json";
 import employment from "./people/employment/layer.json";
@@ -36,13 +37,14 @@ import { style as adminLguStyle } from "./boundaries/admin-lgu/style";
 import { style as adminSggStyle } from "./boundaries/admin-sgg/style";
 import { style as adminDongStyle } from "./boundaries/admin-dong/style";
 import { style as populationOaStyle } from "./people/population-oa/style";
+import { style as sggStats2025Style } from "./people/sgg-stats-2025/style";
 import { style as buildingsStyle } from "./physical/buildings/style";
 import { style as roadsStyle } from "./physical/roads/style";
 import { style as greenWaterStyle } from "./physical/green-water/style";
 import { style as landUseStyle } from "./planning/land-use/style";
 
 export { LAYER_GROUPS, LAYER_PRESETS } from "./groups";
-export type { LayerGroup, LayerGroupId, LayerManifest, LayerStatus, LayerStyle } from "./types";
+export type { LayerControl, LayerGroup, LayerGroupId, LayerLegend, LayerManifest, LayerStatus, LayerStyle } from "./types";
 
 export const LAYERS = [
   adminSido,
@@ -65,6 +67,7 @@ export const LAYERS = [
   walkAccess,
   populationAdmin,
   populationOa,
+  sggStats2025,
   population100m,
   businessStats,
   employment,
@@ -87,6 +90,7 @@ export const LAYER_STYLES: Record<string, LayerStyle> = {
   "green-water": greenWaterStyle,
   "land-use": landUseStyle,
   "population-oa": populationOaStyle,
+  "sgg-stats-2025": sggStats2025Style,
 };
 
 // Map layer and source ids for provider-backed layers.

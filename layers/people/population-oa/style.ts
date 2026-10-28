@@ -27,14 +27,15 @@ export const style: LayerStyle = {
   type: "fill",
   tiles: { path: "oa", sourceLayer: "oa", minzoom: 10, maxzoom: 14 },
   paint: { "fill-color": fillColor("2024"), "fill-opacity": 0.55, "fill-outline-color": "rgba(120, 60, 20, 0.25)" },
-  time: {
+  controls: [{
     key: "oa-year",
     label: "인구 연도",
     options: YEARS.map((year) => ({ value: year, label: `${year}년` })),
     initial: "2024",
-    apply: (year) => ({ paint: { "fill-color": fillColor(year) } }),
-  },
-  describe: (properties, year = "2024") => {
+  }],
+  apply: (selection) => ({ paint: { "fill-color": fillColor(selection["oa-year"]) } }),
+  describe: (properties, selection) => {
+    const year = selection["oa-year"];
     const { oa_cd, adm_nm } = properties as Record<string, string>;
     const people = properties[`p${year}`];
     const density = properties[`dn${year}`];
