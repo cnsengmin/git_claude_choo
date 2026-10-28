@@ -16,7 +16,7 @@ export const LAYER_PRESETS: Record<string, { label: string; layerIds: string[] }
   },
   neighborhood: {
     label: "생활권",
-    layerIds: ["admin-sgg", "roads", "green-water", "transit", "population-admin", "population-100m", "business-stats", "live-poi", "medical"],
+    layerIds: ["admin-sgg", "roads", "green-water", "transit", "population-admin", "population-oa", "population-100m", "business-stats", "live-poi", "medical"],
   },
   commercial: {
     label: "상권·활동",
