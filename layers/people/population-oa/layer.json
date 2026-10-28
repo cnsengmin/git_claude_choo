@@ -1,0 +1,10 @@
+{
+  "id": "population-oa",
+  "group": "people",
+  "label": "집계구 인구",
+  "description": "2025 집계구 경계 위 인구총조사 인구(2015·2020·2024), 인구밀도로 표시",
+  "status": "partial",
+  "source": "SGIS 집계구 경계·인구총조사 (2025 집계구 코드)",
+  "provider": "sgis-oa",
+  "license": "공공누리 제1유형"
+}

@@ -14,14 +14,9 @@
 - 라이선스: CC BY 4.0. 출처는 통계청 SGIS 경계(공공누리 제1유형), 가공 vuski/admdongkor, 단위·코드 행정안전부입니다.
 
 ## 읽는 곳
-Release 파일은 CORS 헤더가 없어서 브라우저가 직접 읽지 못합니다. 이 provider가 서버에서 필요한 구간만 읽어(HTTP Range) 타일을 돌려줍니다. 타일은 Release와 함께 바뀌지 않으므로 CDN에 길게 캐시합니다.
+Release 파일은 CORS 헤더가 없어서 브라우저가 직접 읽지 못합니다. 서버가 필요한 구간만 읽어(HTTP Range) 타일을 돌려줍니다. 이 읽기 코드는 공용 모듈 `layers/providers/pmtiles.ts`에 있습니다. 타일은 Release와 함께 바뀌지 않으므로 CDN에 길게 캐시합니다.
 
-| 환경변수 | 뜻 |
-|---|---|
-| `REGION_LAYERS_PMTILES_DIR` | 로컬 폴더에서 읽습니다. 개발할 때 `dist/region-layers`를 씁니다 |
-| `REGION_LAYERS_PMTILES_URL` | Release 대신 쓸 주소입니다. Range 요청을 지원해야 합니다 |
-
-둘 다 없으면 Release 주소를 씁니다.
+개발할 때는 `REGION_LAYERS_PMTILES_DIR`(예: `dist/region-layers`)를 주면 Release 대신 로컬 파일을 읽습니다.
 
 ## 확인
 `node scripts/layers/check-live.mjs http://localhost:3000 region-layers`

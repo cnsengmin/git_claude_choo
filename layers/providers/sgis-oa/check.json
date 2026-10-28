@@ -1,0 +1,21 @@
+{
+  "timeoutSeconds": 60,
+  "requests": [
+    {
+      "path": "oa/metadata",
+      "expect": [
+        { "path": "layer", "equals": "oa" },
+        { "path": "maxZoom", "min": 14 },
+        { "path": "tileCompression", "equals": "Gzip" }
+      ]
+    },
+    {
+      "path": "oa/13/6984/3177.pbf",
+      "expect": [{ "minBytes": 1000 }, { "contains": "31042580" }, { "contains": "dn2024" }, { "contains": "p2015" }]
+    },
+    {
+      "path": "oa/10/873/396.pbf",
+      "expect": [{ "contains": "11010530" }]
+    }
+  ]
+}
