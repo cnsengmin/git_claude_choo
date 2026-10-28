@@ -166,4 +166,4 @@ python scripts/region_registry/build_release_pmtiles.py
 gh release upload region-layers-YYYYMMDD dist/region-layers/*.pmtiles dist/region-layers/manifest.json --clobber
 ```
 
-  - 2026-10-27 빌드: 기초 단위 14.0MB(z4–12), 일반구 구분 14.2MB(z5–12), 행정동 35.9MB(z8–12). 지역×시점 4,362 / 4,766 / 66,633개.
+  - 2026-10-28 빌드: 기초 단위 12.7MB(z4–12), 일반구 구분 12.6MB(z5–12), 행정동 34.8MB(z8–12). 지역×시점 4,362 / 4,766 / 66,633개. 2026-10-27 빌드는 단순화·타일 크기 옵션을 레이어 옵션으로 넘겨 GDAL이 무시했고, 저배율 타일에서 지역이 빠졌다(서울 행정동 z8 1,323개 중 731개 누락). `write_pmtiles()`가 무시된 옵션을 오류로 막는다.

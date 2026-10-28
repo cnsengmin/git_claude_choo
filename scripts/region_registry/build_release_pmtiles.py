@@ -19,6 +19,7 @@ import hashlib
 import json
 import re
 import time
+import warnings
 from pathlib import Path
 
 import geopandas as gpd
@@ -29,7 +30,22 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 OUT = REPO_ROOT / "dist" / "region-layers"
 ATTRS = ["code", "code5", "name", "sido_name", "kostat", "lgu_code"]
 ZOOMS = {"lgu": (4, 12), "sgg": (5, 12), "admdong": (8, 12)}
+# Largest compressed tile GDAL may write before it starts dropping features.
+MAX_TILE_BYTES = 2_000_000
 NOTES_START, NOTES_END = "<!-- pmtiles -->", "<!-- /pmtiles -->"
+
+
+def write_pmtiles(g: gpd.GeoDataFrame, path: Path, layer: str, options: dict[str, str]) -> None:
+    """Write one tile layer. SIMPLIFICATION and MAX_SIZE are dataset options: GDAL only warns
+    about layer options it ignores, and its default MAX_SIZE (500 KB per compressed tile)
+    silently drops features from dense low-zoom tiles, so ignored options stop the build."""
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        pyogrio.write_dataframe(g, path, driver="PMTiles", layer=layer,
+                                dataset_options={"SIMPLIFICATION": "1", "MAX_SIZE": str(MAX_TILE_BYTES), **options})
+    ignored = [str(w.message) for w in caught if "does not support" in str(w.message)]
+    if ignored:
+        raise SystemExit(f"{path.name}: {ignored[0]}")
 
 
 def date_flag(table: str) -> str:
@@ -65,11 +81,7 @@ def main() -> None:
         path = OUT / f"kr-region-layers-{level}.pmtiles"
         path.unlink(missing_ok=True)
         minzoom, maxzoom = ZOOMS[level]
-        pyogrio.write_dataframe(
-            g, path, driver="PMTiles", layer=level,
-            dataset_options={"MINZOOM": str(minzoom), "MAXZOOM": str(maxzoom), "NAME": f"kr-region-layers-{level}"},
-            layer_options={"SIMPLIFICATION": "1"},
-        )
+        write_pmtiles(g, path, level, {"MINZOOM": str(minzoom), "MAXZOOM": str(maxzoom), "NAME": f"kr-region-layers-{level}"})
         tiles[path.name] = {
             "bytes": path.stat().st_size, "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "tile_layer": level, "minzoom": minzoom, "maxzoom": maxzoom, "features": len(g), "date_flags": flags,
