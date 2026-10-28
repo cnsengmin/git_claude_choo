@@ -33,8 +33,11 @@ layers/
 ## style.ts
 - 기본: provider의 GeoJSON 응답을 `filter`로 나눠 그립니다(`osm-overpass`). `order`가 작은 레이어가 아래에 깔립니다.
 - `tiles`가 있으면 provider의 벡터 타일 `/api/layers/<provider>/<tiles.path>/{z}/{x}/{y}.pbf`를 그립니다(`region-layers`). 행정경계 레이어는 고른 시점으로 걸러지고, 지역을 누르면 이름과 코드가 뜹니다.
-- `time`: 사이드바에서 고르는 시점이나 연도입니다. 선택지와, 고른 값에 따른 `filter`·`paint`를 정합니다. `key`가 같은 레이어는 선택 하나를 같이 씁니다. 예: 경계 3개는 `boundary-date`를 같이 쓰고, 집계구 인구는 `oa-year`를 씁니다.
-- `describe`: 지역을 눌렀을 때 뜨는 한 줄입니다. `legend`: 레이어를 켰을 때 사이드바에 나오는 범례입니다.
+- `controls`: 사이드바에서 고르는 값(시점, 연도, 지표)입니다. `key`가 같은 레이어는 선택 하나를 같이 씁니다. 예: 경계 4개는 `boundary-date`를 같이 쓰고, 집계구 인구는 `oa-year`, 시군구 통계는 `sgg-indicator`·`sgg-measure`를 씁니다.
+- `apply(selection, data)`: 고른 값에 맞는 `filter`·`paint`를 돌려줍니다. 지도가 값이 바뀔 때마다 다시 적용합니다.
+- `data`: 레이어가 처음 켜질 때 지도가 받아 두는 JSON 경로(`/api/layers/<provider>/<data>`)입니다. 받은 값은 `apply`, `describe`, `legend`에 그대로 넘어갑니다. 예: 시군구 통계는 2025 표를 받아 지표 값으로 색을 정합니다.
+- `tiles.provider`: 다른 provider의 타일 위에 그릴 때 씁니다. 예: 시군구 통계는 `region-layers`의 기초 단위 타일 위에 칠합니다.
+- `describe`: 지역을 눌렀을 때 뜨는 한 줄입니다. `legend`: 레이어를 켰을 때 사이드바에 나오는 범례입니다. 자료에 따라 범례가 달라지면 함수로 둡니다.
 
 ## check.json
 `requests`의 요청마다 `/api/layers/<provider>/<path>?<query>`를 부르고 `expect` 규칙을 검사합니다. JSON 규칙은 `min`, `minLength`, `equals`이고, 타일처럼 JSON이 아닌 응답에는 `minBytes`, `contains`를 씁니다. 자세한 형식은 `scripts/layers/check-live.mjs` 머리말에 있습니다.

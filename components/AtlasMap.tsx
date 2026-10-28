@@ -37,46 +37,45 @@ const OSM_SOURCE = mapSourceId(OSM_PROVIDER);
 const OSM_LAYERS = LAYERS
   .filter((layer) => layer.provider === OSM_PROVIDER && LAYER_STYLES[layer.id])
   .sort((a, b) => LAYER_STYLES[a.id].order - LAYER_STYLES[b.id].order);
-// Layers drawn from provider vector tiles (boundaries, output-area population), set to the
-// date or year chosen in the sidebar. Each gets an invisible fill underneath so a click
-// inside a unit finds it.
+// Layers drawn from provider vector tiles (boundaries, output-area population, sigungu
+// statistics), set by the sidebar controls their styles declare. Each gets an invisible fill
+// underneath so a click inside a unit finds it.
 const TILE_LAYERS = LAYERS
   .filter((layer) => layer.provider && LAYER_STYLES[layer.id]?.tiles)
   .sort((a, b) => LAYER_STYLES[a.id].order - LAYER_STYLES[b.id].order);
 const pickLayerId = (layerId: string) => `${mapLayerId(layerId)}-pick`;
 const LAYER_BY_PICK = new Map(TILE_LAYERS.map((layer) => [pickLayerId(layer.id), layer.id]));
-const LAYER_TIMES = new Map(TILE_LAYERS.flatMap((layer) => {
-  const time = LAYER_STYLES[layer.id].time;
-  return time ? [[time.key, time] as const] : [];
-}));
-const INITIAL_TIMES = Object.fromEntries([...LAYER_TIMES.values()].map((time) => [time.key, time.initial]));
-const timeLabel = (key: string, value: string) => {
-  const time = LAYER_TIMES.get(key);
-  return `${time?.label ?? key} ${time?.options.find((option) => option.value === value)?.label ?? value}`;
+const LAYER_CONTROLS = new Map(TILE_LAYERS.flatMap((layer) => (LAYER_STYLES[layer.id].controls ?? []).map((control) => [control.key, control] as const)));
+const INITIAL_CONTROLS = Object.fromEntries([...LAYER_CONTROLS.values()].map((control) => [control.key, control.initial]));
+const controlLabel = (key: string, value: string) => {
+  const control = LAYER_CONTROLS.get(key);
+  return `${control?.label ?? key} ${control?.options.find((option) => option.value === value)?.label ?? value}`;
 };
+const controlKeys = (layerId: string) => (LAYER_STYLES[layerId].controls ?? []).map((control) => control.key);
 
 function addTileLayers(map: MapLibreMap) {
   TILE_LAYERS.forEach((layer) => {
-    const { order: _order, tiles, time: _time, describe: _describe, legend: _legend, ...style } = LAYER_STYLES[layer.id];
+    const { order: _order, tiles, controls: _controls, data: _data, apply: _apply, describe: _describe, legend: _legend, ...style } = LAYER_STYLES[layer.id];
     if (!tiles) return;
-    const source = mapSourceId(`${layer.provider}-${tiles.path}`);
+    const provider = tiles.provider ?? layer.provider;
+    const source = mapSourceId(`${provider}-${tiles.path}`);
     if (!map.getSource(source)) {
       map.addSource(source, {
         type: "vector",
-        tiles: [`${window.location.origin}/api/layers/${layer.provider}/${tiles.path}/{z}/{x}/{y}.pbf`],
+        tiles: [`${window.location.origin}/api/layers/${provider}/${tiles.path}/{z}/{x}/{y}.pbf`],
         minzoom: tiles.minzoom,
         maxzoom: tiles.maxzoom,
       });
     }
     const common = { source, "source-layer": tiles.sourceLayer, layout: { visibility: "none" as const } };
-    map.addLayer({ id: pickLayerId(layer.id), type: "fill", ...common, paint: { "fill-color": "#000000", "fill-opacity": 0 } });
+    map.addLayer({ id: pickLayerId(layer.id), type: "fill", ...common, ...(style.filter ? { filter: style.filter } : {}), paint: { "fill-color": "#000000", "fill-opacity": 0 } });
     map.addLayer({ id: mapLayerId(layer.id), ...common, ...style } as AddLayerObject);
   });
 }
 
 // One line per clicked feature from its layer's describe(), topmost layer first, under the
-// dates or years in use.
-function featurePopup(features: maplibregl.MapGeoJSONFeature[], times: Record<string, string>) {
+// control values in use.
+function featurePopup(features: maplibregl.MapGeoJSONFeature[], selection: Record<string, string>, layerData: Record<string, unknown>) {
   const lines = new Set<string>();
   const keys = new Set<string>();
   [...features]
@@ -84,14 +83,13 @@ function featurePopup(features: maplibregl.MapGeoJSONFeature[], times: Record<st
     .filter(({ layerId }) => LAYER_STYLES[layerId]?.describe)
     .sort((a, b) => LAYER_STYLES[b.layerId].order - LAYER_STYLES[a.layerId].order)
     .forEach(({ feature, layerId }) => {
-      const { describe, time } = LAYER_STYLES[layerId];
-      if (time) keys.add(time.key);
-      lines.add(describe!(feature.properties, time ? times[time.key] : undefined));
+      controlKeys(layerId).forEach((key) => keys.add(key));
+      lines.add(LAYER_STYLES[layerId].describe!(feature.properties, selection, layerData[layerId]));
     });
 
   const root = document.createElement("div");
   const title = document.createElement("strong");
-  title.textContent = [...keys].map((key) => timeLabel(key, times[key])).join(" · ");
+  title.textContent = [...keys].map((key) => controlLabel(key, selection[key])).join(" · ");
   root.append(title);
   lines.forEach((text) => {
     const line = document.createElement("div");
@@ -157,8 +155,9 @@ export default function AtlasMap() {
   const [siteRadius, setSiteRadius] = useState(1000);
   const [siteLayerIds, setSiteLayerIds] = useState<string[]>(DEFAULT_SITE_LAYERS);
   const [openContext, setOpenContext] = useState<OpenContextState>({ loading: false });
-  const [layerTimes, setLayerTimes] = useState<Record<string, string>>(INITIAL_TIMES);
-  const layerTimesRef = useRef(layerTimes);
+  const [controlValues, setControlValues] = useState<Record<string, string>>(INITIAL_CONTROLS);
+  const [layerData, setLayerData] = useState<Record<string, unknown>>({});
+  const popupStateRef = useRef({ controlValues, layerData });
   const [mapReady, setMapReady] = useState(false);
   const [data, setData] = useState<PoiSearchResponse | null>(null);
   const [providerStatus, setProviderStatus] = useState<StatusResponse["providers"] | null>(null);
@@ -207,7 +206,7 @@ export default function AtlasMap() {
       if (!layers.length) return;
       const features = map.queryRenderedFeatures(event.point, { layers });
       if (!features.length) return;
-      new maplibregl.Popup({ offset: 8 }).setLngLat(event.lngLat).setDOMContent(featurePopup(features, layerTimesRef.current)).addTo(map);
+      new maplibregl.Popup({ offset: 8 }).setLngLat(event.lngLat).setDOMContent(featurePopup(features, popupStateRef.current.controlValues, popupStateRef.current.layerData)).addTo(map);
     };
     map.on("click", showFeatures);
     mapRef.current = map;
@@ -266,21 +265,41 @@ export default function AtlasMap() {
     });
   }, [mode, siteLayerIds, mapReady]);
 
+  // Load the JSON a style asks for (`data`) the first time its layer is switched on.
   useEffect(() => {
-    layerTimesRef.current = layerTimes;
+    TILE_LAYERS.forEach((layer) => {
+      const path = LAYER_STYLES[layer.id].data;
+      if (!path || !siteLayerIds.includes(layer.id) || layer.id in layerData) return;
+      setLayerData((current) => ({ ...current, [layer.id]: undefined }));
+      fetch(`/api/layers/${layer.provider}/${path}`)
+        .then(async (response) => {
+          if (!response.ok) throw new Error(`${layer.id} data ${response.status}`);
+          return response.json();
+        })
+        .then((payload) => setLayerData((current) => ({ ...current, [layer.id]: payload })))
+        .catch(() => setLayerData((current) => {
+          const next = { ...current };
+          delete next[layer.id];
+          return next;
+        }));
+    });
+  }, [siteLayerIds, layerData]);
+
+  useEffect(() => {
+    popupStateRef.current = { controlValues, layerData };
     const map = mapRef.current;
     if (!map || !mapReady) return;
     TILE_LAYERS.forEach((layer) => {
-      const time = LAYER_STYLES[layer.id].time;
-      if (!time) return;
-      const { filter, paint } = time.apply(layerTimes[time.key]);
+      const { apply } = LAYER_STYLES[layer.id];
+      if (!apply) return;
+      const { filter, paint } = apply(controlValues, layerData[layer.id]);
       if (filter) {
         map.setFilter(mapLayerId(layer.id), filter);
         map.setFilter(pickLayerId(layer.id), filter);
       }
       Object.entries(paint ?? {}).forEach(([name, value]) => map.setPaintProperty(mapLayerId(layer.id), name, value));
     });
-  }, [layerTimes, mapReady]);
+  }, [controlValues, layerData, mapReady]);
 
   useEffect(() => {
     setOpenContext({ loading: false });
@@ -446,9 +465,9 @@ export default function AtlasMap() {
   const providerInfo = PROVIDERS.find((item) => item.id === provider);
   const selectedStatus = providerStatus?.[provider];
   const activeRadius = mode === "site" ? siteRadius : radius;
-  const activeTimeKeys = [...new Set(TILE_LAYERS
+  const activeControlKeys = [...new Set(TILE_LAYERS
     .filter((layer) => siteLayerIds.includes(layer.id))
-    .flatMap((layer) => LAYER_STYLES[layer.id].time?.key ?? []))];
+    .flatMap((layer) => controlKeys(layer.id)))];
 
   return (
     <main className="atlas-shell">
@@ -470,8 +489,9 @@ export default function AtlasMap() {
             onSelectionChange={setSiteLayerIds}
             onLoadOpenContext={loadOpenContext}
             openContext={openContext}
-            layerTimes={layerTimes}
-            onLayerTimeChange={(key, value) => setLayerTimes((current) => ({ ...current, [key]: value }))}
+            controlValues={controlValues}
+            onControlChange={(key, value) => setControlValues((current) => ({ ...current, [key]: value }))}
+            layerData={layerData}
           />
         ) : (
           <>
@@ -561,7 +581,7 @@ export default function AtlasMap() {
       <section className="map-wrap">
         <div className="map-label">
           {mode === "site"
-            ? [`Site Analysis 범위 · ${formatRadius(siteRadius)}`, ...activeTimeKeys.map((key) => timeLabel(key, layerTimes[key]))].join(" · ")
+            ? [`Site Analysis 범위 · ${formatRadius(siteRadius)}`, ...activeControlKeys.map((key) => controlLabel(key, controlValues[key]))].join(" · ")
             : `현재 지도 중심 기준 · 검색 반경 ${formatRadius(activeRadius)}`}
         </div>
         <div ref={mapContainer} className="map" />

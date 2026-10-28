@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import SgisStatsCard from "@/components/SgisStatsCard";
-import { LAYER_GROUPS, LAYER_PRESETS, LAYER_STYLES, LAYERS, type LayerStatus } from "@/layers";
+import { LAYER_GROUPS, LAYER_PRESETS, LAYER_STYLES, LAYERS, type LayerControl, type LayerStatus } from "@/layers";
 
 type Center = { lng: number; lat: number };
 type OsmCounts = { building: number; road: number; landuse: number; "green-water": number };
@@ -24,12 +24,20 @@ type Props = {
   onSelectionChange: (layerIds: string[]) => void;
   onLoadOpenContext: () => void;
   openContext: OpenContextState;
-  layerTimes: Record<string, string>;
-  onLayerTimeChange: (key: string, value: string) => void;
+  controlValues: Record<string, string>;
+  onControlChange: (key: string, value: string) => void;
+  layerData: Record<string, unknown>;
 };
 
 export const DEFAULT_SITE_LAYERS = LAYER_PRESETS.neighborhood.layerIds;
 const OSM_LAYER_IDS = new Set(LAYERS.filter((layer) => layer.provider === "osm-overpass").map((layer) => layer.id));
+
+// Options in order, gathered under their `group` (indicator lists); ungrouped ones stay flat.
+const groupOptions = (options: LayerControl["options"]) => {
+  const groups = new Map<string, LayerControl["options"]>();
+  options.forEach((option) => groups.set(option.group ?? "", [...(groups.get(option.group ?? "") ?? []), option]));
+  return [...groups.entries()];
+};
 
 const statusLabel = (status: LayerStatus) => {
   if (status === "available") return "연결됨";
@@ -45,8 +53,9 @@ export default function SiteAnalysisPanel({
   onSelectionChange,
   onLoadOpenContext,
   openContext,
-  layerTimes,
-  onLayerTimeChange,
+  controlValues,
+  onControlChange,
+  layerData,
 }: Props) {
   const [selected, setSelected] = useState<string[]>(DEFAULT_SITE_LAYERS);
   const [snapshotAt, setSnapshotAt] = useState<string | null>(null);
@@ -154,22 +163,25 @@ export default function SiteAnalysisPanel({
                 <span>{layers.filter((layer) => selected.includes(layer.id)).length}/{layers.length}</span>
               </div>
 
-              {[...new Map(layers.flatMap((layer) => {
-                const time = LAYER_STYLES[layer.id]?.time;
-                return time ? [[time.key, time] as const] : [];
-              })).values()].map((time) => (
-                <label className="layer-time" key={time.key}>
-                  <span>{time.label}</span>
-                  <select value={layerTimes[time.key] ?? time.initial} onChange={(event) => onLayerTimeChange(time.key, event.target.value)}>
-                    {time.options.map((option) => (
-                      <option key={option.value} value={option.value}>{option.label}</option>
-                    ))}
+              {[...new Map(layers.flatMap((layer) => (LAYER_STYLES[layer.id]?.controls ?? []).map((control) => [control.key, control] as const))).values()].map((control) => (
+                <label className="layer-time" key={control.key}>
+                  <span>{control.label}</span>
+                  <select value={controlValues[control.key] ?? control.initial} onChange={(event) => onControlChange(control.key, event.target.value)}>
+                    {groupOptions(control.options).map(([group, options]) => (group
+                      ? (
+                        <optgroup key={group} label={group}>
+                          {options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                        </optgroup>
+                      )
+                      : options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)))}
                   </select>
                 </label>
               ))}
 
               {layers.filter((layer) => selected.includes(layer.id) && LAYER_STYLES[layer.id]?.legend).map((layer) => {
-                const legend = LAYER_STYLES[layer.id].legend!;
+                const { legend: spec } = LAYER_STYLES[layer.id];
+                const legend = typeof spec === "function" ? spec(controlValues, layerData[layer.id]) : spec;
+                if (!legend) return null;
                 return (
                   <div className="layer-legend" key={layer.id}>
                     <span>{legend.title}</span>
@@ -178,6 +190,7 @@ export default function SiteAnalysisPanel({
                         <li key={item.label}><i style={{ background: item.color }} />{item.label}</li>
                       ))}
                     </ul>
+                    {legend.note && <small>{legend.note}</small>}
                   </div>
                 );
               })}

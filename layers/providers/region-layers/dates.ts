@@ -1,5 +1,5 @@
 import type { FilterSpecification } from "maplibre-gl";
-import type { LayerTime } from "@/layers/types";
+import type { LayerControl } from "@/layers/types";
 
 // Layer dates in the region-layer tiles and the per-date flag each feature carries
 // (scripts/region_registry/build_release_pmtiles.py). Client-safe.
@@ -13,14 +13,17 @@ export const BOUNDARY_DATES = [
 
 const boundaryFlag = (date: string) => BOUNDARY_DATES.find((item) => item.date === date)?.flag ?? "d2025";
 
-// One date selector shared by the three boundary layers.
-export const BOUNDARY_TIME: LayerTime = {
+// One date selector shared by the boundary layers.
+export const BOUNDARY_DATE: LayerControl = {
   key: "boundary-date",
   label: "경계 시점",
   options: BOUNDARY_DATES.map((item) => ({ value: item.date, label: item.date })),
   initial: "2025-12-31",
-  apply: (date) => ({ filter: ["==", ["get", boundaryFlag(date)], 1] as FilterSpecification }),
 };
+
+export const applyBoundaryDate = (selection: Record<string, string>) => ({
+  filter: ["==", ["get", boundaryFlag(selection[BOUNDARY_DATE.key])], 1] as FilterSpecification,
+});
 
 export const describeBoundary = (level: string) => (properties: Record<string, unknown>) => {
   const { name, code, kostat } = properties as Record<string, string>;

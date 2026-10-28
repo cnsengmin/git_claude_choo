@@ -37,21 +37,32 @@ export interface LayerStyle {
   type: "fill" | "line" | "circle";
   filter?: FilterSpecification;
   paint: Record<string, unknown>;
-  // Vector tiles at /api/layers/<provider>/<tiles.path>/{z}/{x}/{y}.pbf instead of the
-  // provider's GeoJSON response.
-  tiles?: { path: string; sourceLayer: string; minzoom: number; maxzoom: number };
-  // A date or year chosen in the sidebar. Layers with the same `key` share one selector.
-  time?: LayerTime;
-  // One popup line for a clicked feature of this layer, at the chosen time.
-  describe?: (properties: Record<string, unknown>, time?: string) => string;
-  legend?: { title: string; items: { color: string; label: string }[] };
+  // Vector tiles at /api/layers/<tiles.provider ?? provider>/<tiles.path>/{z}/{x}/{y}.pbf
+  // instead of the provider's GeoJSON response; `tiles.provider` lets a layer draw on another
+  // provider's tiles (e.g. statistics on boundary tiles).
+  tiles?: { provider?: string; path: string; sourceLayer: string; minzoom: number; maxzoom: number };
+  // Sidebar selectors (a date, a year, an indicator). Layers using the same control key share
+  // one selector.
+  controls?: LayerControl[];
+  // JSON at /api/layers/<provider>/<data> that the map loads once and hands to apply,
+  // describe and legend.
+  data?: string;
+  // Filter and paint for the chosen control values; the filter also applies to the click target.
+  apply?: (selection: Record<string, string>, data?: unknown) => { filter?: FilterSpecification; paint?: Record<string, unknown> };
+  // One popup line for a clicked feature of this layer.
+  describe?: (properties: Record<string, unknown>, selection: Record<string, string>, data?: unknown) => string;
+  legend?: LayerLegend | ((selection: Record<string, string>, data?: unknown) => LayerLegend | undefined);
 }
 
-export interface LayerTime {
+export interface LayerLegend {
+  title: string;
+  items: { color: string; label: string }[];
+  note?: string;
+}
+
+export interface LayerControl {
   key: string;
   label: string;
-  options: { value: string; label: string }[];
+  options: { value: string; label: string; group?: string }[];
   initial: string;
-  // Filter and paint for the chosen value; the filter also applies to the click target.
-  apply: (value: string) => { filter?: FilterSpecification; paint?: Record<string, unknown> };
 }
