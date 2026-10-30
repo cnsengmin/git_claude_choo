@@ -58,7 +58,7 @@ const controlKeys = (layerId: string) => (LAYER_STYLES[layerId].controls ?? []).
 
 function addTileLayers(map: MapLibreMap) {
   TILE_LAYERS.forEach((layer) => {
-    const { order: _order, tiles, controls: _controls, data: _data, apply: _apply, describe: _describe, legend: _legend, ...style } = LAYER_STYLES[layer.id];
+    const { order: _order, tiles, controls: _controls, data: _data, apply: _apply, describe: _describe, legend: _legend, layout, ...style } = LAYER_STYLES[layer.id];
     if (!tiles) return;
     const provider = tiles.provider ?? layer.provider;
     const source = mapSourceId(`${provider}-${tiles.path}`);
@@ -72,7 +72,7 @@ function addTileLayers(map: MapLibreMap) {
     }
     const common = { source, "source-layer": tiles.sourceLayer, layout: { visibility: "none" as const } };
     map.addLayer({ id: pickLayerId(layer.id), type: "fill", ...common, ...(style.filter ? { filter: style.filter } : {}), paint: { "fill-color": "#000000", "fill-opacity": 0 } });
-    map.addLayer({ id: mapLayerId(layer.id), ...common, ...style } as AddLayerObject);
+    map.addLayer({ id: mapLayerId(layer.id), ...common, ...style, layout: { ...layout, visibility: "none" } } as AddLayerObject);
   });
   // Outlines of the clicked units, above every data layer: solid dark for data units (cells,
   // output areas), dashed teal for boundary lines, so the two kinds stay apart.

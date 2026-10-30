@@ -2,7 +2,9 @@
   "id": "zoning",
   "group": "planning",
   "label": "용도지역",
-  "description": "도시계획 용도지역·지구·구역",
-  "status": "planned",
-  "source": "국토부 / VWorld / 토지이음"
+  "description": "전국 용도지역 21종(도시·관리·농림·자연환경보전)과 개발제한구역, z9부터 표시",
+  "status": "available",
+  "source": "국토교통부 용도지역지구정보 (VWorld 2D 데이터 API, 2026-10-30 수집)",
+  "provider": "vworld-zoning",
+  "license": "출처표시 (VWorld, 법적 효력 없는 참고 정보)"
 }
