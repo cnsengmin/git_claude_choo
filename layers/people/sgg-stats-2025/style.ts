@@ -35,6 +35,7 @@ export const style: LayerStyle = {
   order: 3,
   type: "fill",
   tiles: { provider: "region-layers", path: "lgu", sourceLayer: "lgu", minzoom: 4, maxzoom: 12 },
+  featureKey: "code",
   filter: FILTER_2025,
   paint: { "fill-color": NO_VALUE, "fill-opacity": 0.7, "fill-outline-color": "rgba(40, 50, 70, 0.35)" },
   data: "2025",

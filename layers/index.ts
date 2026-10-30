@@ -38,6 +38,7 @@ import { style as adminLguStyle } from "./boundaries/admin-lgu/style";
 import { style as adminSggStyle } from "./boundaries/admin-sgg/style";
 import { style as adminDongStyle } from "./boundaries/admin-dong/style";
 import { style as populationOaStyle } from "./people/population-oa/style";
+import { style as population100mStyle } from "./people/population-100m/style";
 import { style as sggStats2025Style } from "./people/sgg-stats-2025/style";
 import { style as sggPanelStyle } from "./people/sgg-panel/style";
 import { style as buildingsStyle } from "./physical/buildings/style";
@@ -93,6 +94,7 @@ export const LAYER_STYLES: Record<string, LayerStyle> = {
   "green-water": greenWaterStyle,
   "land-use": landUseStyle,
   "population-oa": populationOaStyle,
+  "population-100m": population100mStyle,
   "sgg-stats-2025": sggStats2025Style,
   "sgg-panel": sggPanelStyle,
 };

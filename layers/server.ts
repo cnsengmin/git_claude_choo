@@ -3,11 +3,13 @@
 import { handle as osmOverpass } from "@/layers/providers/osm-overpass/server";
 import { handle as regionLayers } from "@/layers/providers/region-layers/server";
 import { handle as sggStats } from "@/layers/providers/sgg-stats/server";
+import { handle as sgisGrid } from "@/layers/providers/sgis-grid/server";
 import { handle as sgisOa } from "@/layers/providers/sgis-oa/server";
 
 export const PROVIDERS: Record<string, (params: URLSearchParams, path: string[]) => Promise<unknown>> = {
   "osm-overpass": osmOverpass,
   "region-layers": regionLayers,
   "sgg-stats": sggStats,
+  "sgis-grid": sgisGrid,
   "sgis-oa": sgisOa,
 };

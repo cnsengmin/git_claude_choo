@@ -1,0 +1,22 @@
+{
+  "timeoutSeconds": 60,
+  "requests": [
+    {
+      "path": "grid/metadata",
+      "expect": [
+        { "path": "layer", "equals": "grid" },
+        { "path": "minZoom", "equals": 11 },
+        { "path": "maxZoom", "min": 14 },
+        { "path": "tileCompression", "equals": "Gzip" }
+      ]
+    },
+    {
+      "path": "grid/14/13970/6344.pbf",
+      "expect": [{ "minBytes": 1000 }, { "contains": "다사539520" }, { "contains": "w2024" }, { "contains": "p2015" }]
+    },
+    {
+      "path": "grid/11/1746/793.pbf",
+      "expect": [{ "minBytes": 100000 }, { "contains": "p2024" }]
+    }
+  ]
+}
