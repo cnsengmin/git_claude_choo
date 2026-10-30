@@ -353,3 +353,9 @@ button, input, select { font: inherit; }
   .analysis-summary { grid-template-columns: 1fr 1fr; }
   .site-actions { grid-template-columns: 1fr; }
 }
+
+/* Map click popup: one section per layer, topmost layer first. */
+.feature-popup { display: grid; gap: 8px; font-size: 12px; line-height: 1.45; }
+.feature-popup section + section { border-top: 1px solid #e5e7eb; padding-top: 8px; }
+.feature-popup strong { display: block; margin-bottom: 2px; color: #111827; }
+.feature-popup div { color: #374151; }

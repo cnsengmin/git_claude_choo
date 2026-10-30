@@ -26,6 +26,7 @@ export const style: LayerStyle = {
   order: 5,
   type: "fill",
   tiles: { path: "oa", sourceLayer: "oa", minzoom: 10, maxzoom: 14 },
+  featureKey: "oa_cd",
   paint: { "fill-color": fillColor("2024"), "fill-opacity": 0.55, "fill-outline-color": "rgba(120, 60, 20, 0.25)" },
   controls: [{
     key: "oa-year",

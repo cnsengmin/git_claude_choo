@@ -169,6 +169,7 @@ gh release upload region-layers-YYYYMMDD dist/region-layers/*.pmtiles dist/regio
   - 2026-10-28 빌드: 기초 단위 12.7MB(z4–12), 일반구 구분 12.6MB(z5–12), 행정동 34.8MB(z8–12). 지역×시점 4,362 / 4,766 / 66,633개. 2026-10-27 빌드는 단순화·타일 크기 옵션을 레이어 옵션으로 넘겨 GDAL이 무시했고, 저배율 타일에서 지역이 빠졌다(서울 행정동 z8 1,323개 중 731개 누락). `write_pmtiles()`가 무시된 옵션을 오류로 막는다.
   - 시도(`--levels sido`, 2026-10-29): 따로 그린 경계가 없어 시점마다 기초 단위를 행안부 시도 코드(10자리 코드 앞 두 자리)로 합친다. 2.9MB(z4–10), 318개(2008–2011 16개, 2012–2025 17개, 2026-10-01 16개). 경계판 차이로 생긴 1ha 미만 틈 구멍(2011년 4,374개)은 메운다. 영산호·수영만처럼 어느 기초 단위에도 속하지 않는 물은 그대로 빈다.
 - **집계구 인구 타일**(PMTiles, Release `oa-population-YYYYMMDD`): `build_release_oa_pmtiles.py`가 `data/raw/sgis/oa-2025`의 2025 집계구 경계에 2015·2020·2024 인구를 붙여 `dist/oa-population/`에 만든다. 속성은 `p<연도>`(인구)와 `dn<연도>`(명/㎢)이고, N/A는 비워 둔다. 연도별 집계구 합이 `data/manifests/sgis-oa-2025.json` 기록과 다르면 멈춘다. 앱 레이어는 `layers/people/population-oa`.
+- **100m 격자 타일**(PMTiles, Release `grid-100m-YYYYMMDD`): `build_release_grid_pmtiles.py`가 `data/raw/sgis/grid/100m`의 SGIS 격자 통계(자료신청 90231)를 격자 코드에서 계산한 정사각형에 붙여 `dist/grid-100m/`에 만든다. 속성은 `cell`, `p<연도>`(인구 2015–2024), `h`·`u`·`b`·`w<연도>`(가구·주택·사업체·종사자, 2015·2020·2024)이고, 그 해 파일에 없는 격자는 비워 둔다. 원자료 해시가 `data/manifests/sgis-request-90231.json`과 다르거나 써 넣은 합계가 원자료 합과 다르면 멈춘다. 앱 레이어는 `layers/people/population-100m`.
 
 ```bash
 python scripts/region_registry/build_release_oa_pmtiles.py

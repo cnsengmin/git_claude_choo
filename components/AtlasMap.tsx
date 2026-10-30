@@ -1,6 +1,6 @@
 "use client";
 
-import maplibregl, { type AddLayerObject, type GeoJSONSource, type Map as MapLibreMap, type Marker } from "maplibre-gl";
+import maplibregl, { type AddLayerObject, type FilterSpecification, type GeoJSONSource, type Map as MapLibreMap, type Marker } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import SiteAnalysisPanel, { DEFAULT_SITE_LAYERS, type OpenContextState } from "@/components/SiteAnalysisPanel";
@@ -45,6 +45,9 @@ const TILE_LAYERS = LAYERS
   .sort((a, b) => LAYER_STYLES[a.id].order - LAYER_STYLES[b.id].order);
 const pickLayerId = (layerId: string) => `${mapLayerId(layerId)}-pick`;
 const LAYER_BY_PICK = new Map(TILE_LAYERS.map((layer) => [pickLayerId(layer.id), layer.id]));
+const LAYER_LABEL = new Map(TILE_LAYERS.map((layer) => [layer.id, layer.label]));
+const selectedLayerId = (layerId: string) => `${mapLayerId(layerId)}-selected`;
+const NOTHING: FilterSpecification = ["==", ["literal", 0], 1];
 const LAYER_CONTROLS = new Map(TILE_LAYERS.flatMap((layer) => (LAYER_STYLES[layer.id].controls ?? []).map((control) => [control.key, control] as const)));
 const INITIAL_CONTROLS = Object.fromEntries([...LAYER_CONTROLS.values()].map((control) => [control.key, control.initial]));
 const controlLabel = (key: string, value: string) => {
@@ -71,30 +74,69 @@ function addTileLayers(map: MapLibreMap) {
     map.addLayer({ id: pickLayerId(layer.id), type: "fill", ...common, ...(style.filter ? { filter: style.filter } : {}), paint: { "fill-color": "#000000", "fill-opacity": 0 } });
     map.addLayer({ id: mapLayerId(layer.id), ...common, ...style } as AddLayerObject);
   });
+  // Outlines of the clicked units, above every data layer: solid dark for data units (cells,
+  // output areas), dashed teal for boundary lines, so the two kinds stay apart.
+  TILE_LAYERS.forEach((layer) => {
+    const { tiles, featureKey, type } = LAYER_STYLES[layer.id];
+    if (!tiles || !featureKey) return;
+    map.addLayer({
+      id: selectedLayerId(layer.id), type: "line", source: mapSourceId(`${tiles.provider ?? layer.provider}-${tiles.path}`),
+      "source-layer": tiles.sourceLayer, layout: { visibility: "none" }, filter: NOTHING,
+      paint: type === "line"
+        ? { "line-color": "#0f766e", "line-width": 3, "line-dasharray": [2, 1] }
+        : { "line-color": "#111827", "line-width": 2.5 },
+    });
+  });
 }
 
-// One line per clicked feature from its layer's describe(), topmost layer first, under the
-// control values in use.
-function featurePopup(features: maplibregl.MapGeoJSONFeature[], selection: Record<string, string>, layerData: Record<string, unknown>) {
-  const lines = new Set<string>();
-  const keys = new Set<string>();
+// Outline the clicked unit of each layer (featureKey value by layer id); an empty map clears.
+function highlightFeatures(map: MapLibreMap, picked: Map<string, unknown>) {
+  TILE_LAYERS.forEach((layer) => {
+    const key = LAYER_STYLES[layer.id].featureKey;
+    const id = selectedLayerId(layer.id);
+    if (!key || !map.getLayer(id)) return;
+    const value = picked.get(layer.id);
+    const base = map.getFilter(mapLayerId(layer.id)) as FilterSpecification | undefined;
+    const match: FilterSpecification = ["==", ["get", key], value as string];
+    map.setFilter(id, value === undefined ? NOTHING : base ? (["all", base, match] as FilterSpecification) : match);
+  });
+}
+
+// Clicked features by layer, topmost layer first: the first feature's featureKey value (for the
+// outline) and the describe() lines of all of them.
+function pickFeatures(features: maplibregl.MapGeoJSONFeature[], selection: Record<string, string>, layerData: Record<string, unknown>) {
+  const sections = new Map<string, Set<string>>();
+  const picked = new Map<string, unknown>();
   [...features]
     .map((feature) => ({ feature, layerId: LAYER_BY_PICK.get(feature.layer.id) ?? "" }))
     .filter(({ layerId }) => LAYER_STYLES[layerId]?.describe)
     .sort((a, b) => LAYER_STYLES[b.layerId].order - LAYER_STYLES[a.layerId].order)
     .forEach(({ feature, layerId }) => {
-      controlKeys(layerId).forEach((key) => keys.add(key));
-      lines.add(LAYER_STYLES[layerId].describe!(feature.properties, selection, layerData[layerId]));
+      const { describe, featureKey } = LAYER_STYLES[layerId];
+      const text = describe!(feature.properties, selection, layerData[layerId]);
+      const lines = sections.get(layerId) ?? new Set<string>();
+      (Array.isArray(text) ? text : [text]).forEach((line) => lines.add(line));
+      sections.set(layerId, lines);
+      if (featureKey && !picked.has(layerId) && feature.properties[featureKey] !== undefined) picked.set(layerId, feature.properties[featureKey]);
     });
+  return { sections, picked };
+}
 
+// One section per layer: its name and control values, then its lines.
+function featurePopup(sections: Map<string, Set<string>>, selection: Record<string, string>) {
   const root = document.createElement("div");
-  const title = document.createElement("strong");
-  title.textContent = [...keys].map((key) => controlLabel(key, selection[key])).join(" · ");
-  root.append(title);
-  lines.forEach((text) => {
-    const line = document.createElement("div");
-    line.textContent = text;
-    root.append(line);
+  root.className = "feature-popup";
+  sections.forEach((lines, layerId) => {
+    const section = document.createElement("section");
+    const title = document.createElement("strong");
+    title.textContent = [LAYER_LABEL.get(layerId) ?? layerId, ...controlKeys(layerId).map((key) => controlLabel(key, selection[key]))].join(" · ");
+    section.append(title);
+    lines.forEach((text) => {
+      const line = document.createElement("div");
+      line.textContent = text;
+      section.append(line);
+    });
+    root.append(section);
   });
   return root;
 }
@@ -200,13 +242,26 @@ export default function AtlasMap() {
       addTileLayers(map);
       setMapReady(true);
     });
+    let currentPopup: maplibregl.Popup | null = null;
     const showFeatures = (event: maplibregl.MapMouseEvent) => {
       const layers = TILE_LAYERS.map((layer) => pickLayerId(layer.id))
         .filter((id) => map.getLayer(id) && map.getLayoutProperty(id, "visibility") !== "none");
       if (!layers.length) return;
       const features = map.queryRenderedFeatures(event.point, { layers });
       if (!features.length) return;
-      new maplibregl.Popup({ offset: 8 }).setLngLat(event.lngLat).setDOMContent(featurePopup(features, popupStateRef.current.controlValues, popupStateRef.current.layerData)).addTo(map);
+      const { controlValues: selection, layerData: data } = popupStateRef.current;
+      const { sections, picked } = pickFeatures(features, selection, data);
+      if (!sections.size) return;
+      highlightFeatures(map, picked);
+      const popup = new maplibregl.Popup({ offset: 8, maxWidth: "360px" }).setLngLat(event.lngLat).setDOMContent(featurePopup(sections, selection));
+      // A click elsewhere closes the old popup after this handler has opened the new one.
+      currentPopup = popup;
+      popup.on("close", () => {
+        if (currentPopup !== popup) return;
+        currentPopup = null;
+        highlightFeatures(map, new Map());
+      });
+      popup.addTo(map);
     };
     map.on("click", showFeatures);
     mapRef.current = map;
@@ -262,6 +317,7 @@ export default function AtlasMap() {
       const visible = siteVisible && siteLayerIds.includes(layer.id);
       setLayerVisibility(map, mapLayerId(layer.id), visible);
       setLayerVisibility(map, pickLayerId(layer.id), visible);
+      setLayerVisibility(map, selectedLayerId(layer.id), visible);
     });
   }, [mode, siteLayerIds, mapReady]);
 

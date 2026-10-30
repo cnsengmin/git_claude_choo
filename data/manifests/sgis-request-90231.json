@@ -1,0 +1,3652 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "sgis",
+  "dataset_id": "sgis.request-90231",
+  "acquired_at": "2026-10-29T17:16:11+00:00",
+  "request": {
+    "service": "SGIS 자료제공 > 자료신청 (https://sgis.mods.go.kr/view/pss/requestData)",
+    "request_no": "90231",
+    "requested_on": "2026-10-30",
+    "download_window": [
+      "2026-10-30",
+      "2026-11-29"
+    ],
+    "items": {
+      "grid_100m_population": "2015-2024 매년, 전국 30개 100km 구역",
+      "grid_100m_household_housing_company_worker": "2015, 2020, 2024",
+      "output_area_stats_2024": "가구·주택·사업체 전체 세부항목, 전국 (2025년 기준 경계)",
+      "urban_area_grid_boundary_1k": "2015, 2020, 2024 (별도 zip)"
+    }
+  },
+  "received_zip": {
+    "name": "_census_reqdoc_1793293795318.zip",
+    "server_path": "/census/reqdoc/1793293795318.zip",
+    "bytes": 187833510,
+    "sha256": "b26b740dd041b89688ccd83c7077a9991eec0e586524e69cec5b97a408e29041"
+  },
+  "format": {
+    "grid_csv": "헤더 없음, cp949, 열 = 기준연도, 격자코드(예: 다사000395), 항목코드(예: to_in_001), 값",
+    "output_area_csv": "헤더 없음, utf-8, 열 = 기준연도, 집계구코드(14자리), 항목코드, 값",
+    "crs": "EPSG:5179",
+    "suppression": "인구 5 미만 N/A, 사업체수 2 이하일 때 종사자수 N/A (SGIS 안내)"
+  },
+  "grid_file_counts": {
+    "2015 가구": 30,
+    "2015 사업체": 29,
+    "2015 인구": 30,
+    "2015 종사자": 29,
+    "2015 주택": 30,
+    "2016 인구": 30,
+    "2017 인구": 30,
+    "2018 인구": 30,
+    "2019 인구": 30,
+    "2020 가구": 30,
+    "2020 사업체": 29,
+    "2020 인구": 30,
+    "2020 종사자": 29,
+    "2020 주택": 30,
+    "2021 인구": 30,
+    "2022 인구": 30,
+    "2023 인구": 30,
+    "2024 가구": 30,
+    "2024 사업체": 29,
+    "2024 인구": 30,
+    "2024 종사자": 29,
+    "2024 주택": 30
+  },
+  "grid_boxes": [
+    "가다",
+    "가라",
+    "가사",
+    "가아",
+    "나나",
+    "나다",
+    "나라",
+    "나마",
+    "나바",
+    "나사",
+    "다나",
+    "다다",
+    "다라",
+    "다마",
+    "다바",
+    "다사",
+    "다아",
+    "라다",
+    "라라",
+    "라마",
+    "라바",
+    "라사",
+    "라아",
+    "마라",
+    "마마",
+    "마바",
+    "마사",
+    "마아",
+    "바사",
+    "사사"
+  ],
+  "grid_boxes_missing": {
+    "사업체": [
+      "라다"
+    ],
+    "종사자": [
+      "라다"
+    ]
+  },
+  "files": [
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_세대구성별가구.csv",
+      "bytes": 17170282,
+      "sha256": "7cbccd927bdb7760a30378378f2b7e39f5a4ab4c446acb4866d794c9723252ba"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_가구총괄.csv",
+      "bytes": 7366431,
+      "sha256": "dcd817778af0b924b4bde5acad47127755f4bc2ba30b6a65fb66ebd054776aa3"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_주택유형별주택.csv",
+      "bytes": 8252056,
+      "sha256": "505c5dc1ffa7f2e6cd4baa1ac61a52e073cc7c0342718e1025d8d4ae220e1d60"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_연건평별주택.csv",
+      "bytes": 14876471,
+      "sha256": "80e26a536bdbad477a27c6c74de913386def64cc2f2a2084e7781641355aafb0"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_주택총괄_총주택(거처)수.csv",
+      "bytes": 3670638,
+      "sha256": "c30106c1deecd2547c3714b36105429137bffb075f48aaa75c8810e4b13a8ec9"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_건축년도별주택.csv",
+      "bytes": 18322927,
+      "sha256": "6986a6d2aaa8c57418b7fa90ecb06bb09dec8ba98e9c11f2ac07f1bcc88415fa"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_산업분류별(11차_대분류)_사업체수.csv",
+      "bytes": 28835052,
+      "sha256": "ee1de008677fa33b2378417b6b919b8f0d10391f88308277abd9fb9b0772de0a"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_산업분류별(11차_대분류)_종사자수.csv",
+      "bytes": 29912780,
+      "sha256": "692958fc159b7ffd3559bd7ba608169d10f6a0bd862548a2b6387d7859ad2884"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_산업분류별(11차_대분류)_총괄사업체수.csv",
+      "bytes": 3569430,
+      "sha256": "d73d60045813bb9a60a438fddfa699844f2f2538ad2c8918e3c9bff9dc64d1ef"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_산업분류별(11차_대분류)_총괄종사자수.csv",
+      "bytes": 3605404,
+      "sha256": "9ceaeec32713d9416f78d805f99b5814d46c8b1e7b31d6f0597c7ab5bce7900f"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_산업분류별(11차_중분류)_사업체수.csv",
+      "bytes": 43074540,
+      "sha256": "385dde071e06ff714b1441c20646ce69cf9927ed70ec554166d8e08041327860"
+    },
+    {
+      "path": "oa-stats-2024/2025년기준_2024년_산업분류별(11차_중분류)_종사자수.csv",
+      "bytes": 44943012,
+      "sha256": "f7da1fdadc4525abd415bdd31376ebd62ee6e1955dff0131d69ccf844cabfcda"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_가다_100M.csv",
+      "bytes": 2793,
+      "sha256": "00ebc8ca871cff4aea1b3e91c69209ab8d8fa3cb5d418e631ac127ae8a19db57"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_가라_100M.csv",
+      "bytes": 3305,
+      "sha256": "2098833e547382212493c03cf2f8d53f56c5c2f50b61f7272a1b39bd735ca351"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_가사_100M.csv",
+      "bytes": 23236,
+      "sha256": "4a0425ad1d11d99ea70a2a898b45505281901a0c61ca83ff8110414de19ba1cc"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_가아_100M.csv",
+      "bytes": 9191,
+      "sha256": "edc65f3996eb1219173bf27e034f1f6f45483b7c8c19a3cdb6a837ade1a80a43"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_나나_100M.csv",
+      "bytes": 543564,
+      "sha256": "c1f7ca696b85b07eec1af030d6c7d3b85da3fc250f05e2012abef0a797ba650b"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_나다_100M.csv",
+      "bytes": 63760,
+      "sha256": "5f79137160e23d82ec13a2372e2d07fe15280515b4f32c0b2040e285c517bf11"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_나라_100M.csv",
+      "bytes": 1160142,
+      "sha256": "5a2792637be9966688eaf4633a439344dac5e72e603540bca962e1da3a55d72c"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_나마_100M.csv",
+      "bytes": 27486,
+      "sha256": "86eaa85321c8b41c388d542fd581af0a985e2f5e75fa07634299c6ab8a90b948"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_나바_100M.csv",
+      "bytes": 877571,
+      "sha256": "a380a1a0c55a6372e34cd9a73f993da287741ac2da672cc5a5241fc85be45f5d"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_나사_100M.csv",
+      "bytes": 140963,
+      "sha256": "9400ca2a1b71de730857437c9a9ab9169842870a90954934d76be2fe2f6052cf"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_다나_100M.csv",
+      "bytes": 781635,
+      "sha256": "0aa26d72f0e16a5d688f0160d77abbb68d8105a48d6e4027dc81f41be550cc8f"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_다다_100M.csv",
+      "bytes": 799100,
+      "sha256": "682132c3433d87b0960bb5e89d5a9ce266461046dab5dfe8004d96843b2702fb"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_다라_100M.csv",
+      "bytes": 6574884,
+      "sha256": "c76fea5bab67c4d345c52ffe5a72ac7d6e3029f11171f3d31804ee1f4667ffc1"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_다마_100M.csv",
+      "bytes": 7709836,
+      "sha256": "edf09456cca4001203db5c437d1cbc956f508520d67fe09dc348e986004e262d"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_다바_100M.csv",
+      "bytes": 12249645,
+      "sha256": "804b77d795f4b24513608406f36e1ea4c28ce7c383d90fd0f1d36ae097efb79e"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_다사_100M.csv",
+      "bytes": 15601705,
+      "sha256": "1bad969ce4b394d41b8761a9ed04f131e75f20d1c338c5f9cf636c96feae0dc8"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_다아_100M.csv",
+      "bytes": 701857,
+      "sha256": "79ab08d4804df0f13682c31e36201d37d997f4f220702a54e7fd1247c81ce8dc"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "6108475815866c38307f98cf494bff8f34ac82ed79541a7359b8265c10a9d3df"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_라라_100M.csv",
+      "bytes": 4434971,
+      "sha256": "324e429e555c89451ef024b21bf756596f8f695c46ef674ff2565b3b18bed934"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_라마_100M.csv",
+      "bytes": 6140565,
+      "sha256": "b9996f8ed6dcef491f75ad81f0b2fa5e44f30a3518269acd193714a96727e4ad"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_라바_100M.csv",
+      "bytes": 5998270,
+      "sha256": "caab30ab4044700808346ae3c06d51698c44c2b25f66e4b3c60a09fab5304bc9"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_라사_100M.csv",
+      "bytes": 5792042,
+      "sha256": "f0e4a5ff4c435ce8d0fa12d3e34a843c63dbbb8c7934c5d65032150a432e9e88"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_라아_100M.csv",
+      "bytes": 1027215,
+      "sha256": "74dd73faa0c4eece164edcf26b2e04ec62c9349fe0b4e3ca4828183156f3e88b"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_마라_100M.csv",
+      "bytes": 2715424,
+      "sha256": "415699c6cae8f99b6a573e2229f5f63ac791d76ed41099498ca9ec08e93e4ee8"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_마마_100M.csv",
+      "bytes": 6463330,
+      "sha256": "06b5c46cdd1d99a0698ca9e3437c46875071f55956262adddce26198cf5cc1a0"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_마바_100M.csv",
+      "bytes": 2694551,
+      "sha256": "36d1658c5e9628012564963abe5f103aec93b9ef5c16191587555951d98e818c"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_마사_100M.csv",
+      "bytes": 1784096,
+      "sha256": "8d72e8d9b2b44c282cddb99b728bb31a228d89e5e839a93a2d074fef54974b0d"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_마아_100M.csv",
+      "bytes": 46066,
+      "sha256": "fc79d936f3bdfbf9baef108efd3164bf9da29f521994ecfc0324660a711c38b9"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_바사_100M.csv",
+      "bytes": 33307,
+      "sha256": "601481925ca99fef2c4a4679f6de87da7d87832a0ead02a66e82f332977eae71"
+    },
+    {
+      "path": "grid/100m/인구/2015/2015년_인구_사사_100M.csv",
+      "bytes": 20146,
+      "sha256": "2d87da2e403ca6099cd57eac2c9502e4bb7fbce5982df0eb63ee65d66be9f49b"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_가다_100M.csv",
+      "bytes": 2206,
+      "sha256": "bc3faccce55f1cbd8d14417b9639697be78ce680c64b2214858f9dac2131f552"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_가라_100M.csv",
+      "bytes": 2888,
+      "sha256": "aa59f5e043b40e219637c66e718c57369c6cf5dc1dfd9f695fbfad8cab0789ee"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_가사_100M.csv",
+      "bytes": 22759,
+      "sha256": "93a12dec859fcfb1ff860f3cd9ac2384861f1a0b668804baa9af73f91a5c3e4d"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_가아_100M.csv",
+      "bytes": 9020,
+      "sha256": "034a1ce4ceb43fa45b0a1806b70689dc982514f31fac2dd1ad11e77810aa1a31"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_나나_100M.csv",
+      "bytes": 569004,
+      "sha256": "e57f35d7018910b035c86e2dcdf4666e17afd1994b7b5c058d313b8afacce93e"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_나다_100M.csv",
+      "bytes": 63839,
+      "sha256": "c16c50b7de6374f82e4ecfa14766446a9f6d64e008ce4f4b1d7645a3ff959f98"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_나라_100M.csv",
+      "bytes": 1163976,
+      "sha256": "4e35747e62ebc0f295f8a1dcd4a555f1b630e4b345137c84405f742ac36d30ab"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_나마_100M.csv",
+      "bytes": 27051,
+      "sha256": "d8f5d7ac9d01d16b2b3020bbe544163cb62348bb8ecedea840c7b98d684729b3"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_나바_100M.csv",
+      "bytes": 886065,
+      "sha256": "f3edad9856f83edee6d8a468c832010b2fbbd4a4ee3933a25d26c36c0726b1d8"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_나사_100M.csv",
+      "bytes": 142649,
+      "sha256": "96740ad8443bc34c9208684f3fe99d4aa460a6c377c0c28294b0164f2a1f3b9c"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_다나_100M.csv",
+      "bytes": 816654,
+      "sha256": "d2eac212d9d9d089f3e9e31e141d648ed853a65c666ee81c5f770519c8e78489"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_다다_100M.csv",
+      "bytes": 816229,
+      "sha256": "f8abfb1174789594dac153b2305844aad84710325a9d7bba83247c72e111862a"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_다라_100M.csv",
+      "bytes": 6634524,
+      "sha256": "850bd93f53c688f3987fdb179219b0d0eaacaceec46993f5dbdebff4d1464cab"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_다마_100M.csv",
+      "bytes": 7809598,
+      "sha256": "cb81659f3a57a89c74e66d5913909b59e877b14dcf1ff5bb9979b27efe30725b"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_다바_100M.csv",
+      "bytes": 12531229,
+      "sha256": "fcedc1436e4a1dbc28aa148cf82a365fba4d642a86ac364ff443be54c813d88c"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_다사_100M.csv",
+      "bytes": 16098523,
+      "sha256": "5d8c3d9a4c1468822b2d8106af5f17c38fbab863db25364205c339b1b2f3d1cb"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_다아_100M.csv",
+      "bytes": 713119,
+      "sha256": "02e3ee8525975142b37b1bf6419f379dd2d8f8def748eef727c1aec797e3d083"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "236cf39706bbfae4793c2ab2d44179807a8f90f826185f9150b52bb75d6af084"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_라라_100M.csv",
+      "bytes": 4489573,
+      "sha256": "4548760e3c6981731d2bce4afc161759b6d711d05a0ec2465e2b4d16bd510877"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_라마_100M.csv",
+      "bytes": 6277007,
+      "sha256": "573abe38e36c19c9de053623cd6430191cff66eaecdaeb97ac2c35502f30b64c"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_라바_100M.csv",
+      "bytes": 6147919,
+      "sha256": "1eee1b1f918174dcc269bf31caabeec48522dd397115b09630af44c9aeef5718"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_라사_100M.csv",
+      "bytes": 5924841,
+      "sha256": "5ac96c2df9e9695ac11f3de4fc0119205c1b393ba39747fc0567cd382f93edf7"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_라아_100M.csv",
+      "bytes": 1040046,
+      "sha256": "c3dc9f23ae78da33ddc365e46b46ec4ddb0a35df6743c4f8a04310a78190e54e"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_마라_100M.csv",
+      "bytes": 2760662,
+      "sha256": "b2c9562fe7ace1cd19e49acf8eddf182908e8b6b3223ad9f73f3c8af6a5e56b6"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_마마_100M.csv",
+      "bytes": 6610794,
+      "sha256": "739c5b82c130fb56236577763f0b13f93a0321e6c608a90eb3f68bd7e0445c19"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_마바_100M.csv",
+      "bytes": 2708906,
+      "sha256": "55936f34ca422664e5dcb7938aad793d38a131369c7b45bf1528bb80d94271f9"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_마사_100M.csv",
+      "bytes": 1800374,
+      "sha256": "bee69d244d00147b462a5b17d9d8fa19c716642abdfa9e4ef80c78d5eec2dfcb"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_마아_100M.csv",
+      "bytes": 46908,
+      "sha256": "6cef39a399bcaaa0ba4c4ff0446adc32a1404bf0c27877023e67bd18ba4c1dae"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_바사_100M.csv",
+      "bytes": 33297,
+      "sha256": "76269cfb40cef97d2562df9e6464cb15e91032caf709e7963e55ed5bf7f9a1ff"
+    },
+    {
+      "path": "grid/100m/인구/2016/2016년_인구_사사_100M.csv",
+      "bytes": 19554,
+      "sha256": "825c97b8efe4a9f4ed09269f50b0e2843eb49524808d0261a41d0cb62d8cd617"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_가다_100M.csv",
+      "bytes": 2456,
+      "sha256": "a17e9fc76296803412d4811b2c12ac919271d9a0896d57eba2ce681f57f3ab16"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_가라_100M.csv",
+      "bytes": 2970,
+      "sha256": "93a1234c20612797416ea4b9a7b2b254d77d3894eb08b1e5391facaf8368cc11"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_가사_100M.csv",
+      "bytes": 22513,
+      "sha256": "b4df5f8b59f2b5bd1d93a836f101b1fcdb877351a0656e241b34309234a74b39"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_가아_100M.csv",
+      "bytes": 9121,
+      "sha256": "00d5eea7f584847d3709835f9ade0a37ba226f4493b13626f8a81f74f6ebc263"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_나나_100M.csv",
+      "bytes": 600444,
+      "sha256": "c4a4fe6ecc3ba7cee4243f8513bddf1f5f3027e59dd9e00a7b1cb774b9ae7f2c"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_나다_100M.csv",
+      "bytes": 65425,
+      "sha256": "025741fc06dad89c3e8be93c442ae0b2daee295f326006f199c82e62ee489fc0"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_나라_100M.csv",
+      "bytes": 1175192,
+      "sha256": "a2b31aa0aa79f3b1835908598046f28f05d8ac330d3eee4343a8a95a9ec102ce"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_나마_100M.csv",
+      "bytes": 27053,
+      "sha256": "4fbfb6db01b9ca15671a5f4d3152f9014bbee0b749dae1facb2467c78b22bb92"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_나바_100M.csv",
+      "bytes": 898867,
+      "sha256": "e1346f5cf35a3aec5314d39fb063e30bedf0a56691e5d084d1fb81f6b4a1e321"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_나사_100M.csv",
+      "bytes": 144853,
+      "sha256": "15b802a46186c3d3eb20b1c4a96ea92ab672fbe50a0259a48532e4942e74ec08"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_다나_100M.csv",
+      "bytes": 848430,
+      "sha256": "209f9a013462c4df42b06ea9e831d04fa1e74d6bdcb81e6b3d0f4f65194627bf"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_다다_100M.csv",
+      "bytes": 834515,
+      "sha256": "a324172ba9bbc7ec4744cafb68f5970286099cb37ea7f5be79ab82f741d49d4b"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_다라_100M.csv",
+      "bytes": 6702327,
+      "sha256": "3b8c916183b283895c181335d2683bf9d0f99f7b9f0d5ce336814712fb626d94"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_다마_100M.csv",
+      "bytes": 7864344,
+      "sha256": "db8a2756037e89c5054204098f5579e52aa5aa0996631952aa27aedee41965f6"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_다바_100M.csv",
+      "bytes": 12685228,
+      "sha256": "802116165905984a866af027b5d098cbffd030529537679fec6e105d0dcbca03"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_다사_100M.csv",
+      "bytes": 16323537,
+      "sha256": "d19ba2f1e729f55864b799a78b242e6fcc4f641e75eba4cf4d8d960eac71dbff"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_다아_100M.csv",
+      "bytes": 722305,
+      "sha256": "ead5bb10579fb98ded9e28bc6978dd1abce24ecbc0d4a92774257c42dce9a072"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "d2b7df8472235a0490add3101a9036dacb17d3580871e7dcf30c28f4d0a0cd31"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_라라_100M.csv",
+      "bytes": 4544192,
+      "sha256": "ef0837b9e27f543957f66db65199a84c857ec99bb292cb97991658d4f548e944"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_라마_100M.csv",
+      "bytes": 6369907,
+      "sha256": "b29d9bed3157c64ecc3cc5ae4d691e86e2f8add0229badadc5a5aad56b83a90e"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_라바_100M.csv",
+      "bytes": 6225254,
+      "sha256": "bb6953a85d0ff5ca829fccb10a29283af90a02ee12e47041a2cc771d3004318b"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_라사_100M.csv",
+      "bytes": 6032359,
+      "sha256": "40f73ebaa00d966ba48d7b69287a0660fa4a7dc24dc3ba552e8e22c58016f54c"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_라아_100M.csv",
+      "bytes": 1050759,
+      "sha256": "b91218b4cdf7d721ade2de7e6679306dd8784045c3ffa9c3f757613b3ab6ae41"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_마라_100M.csv",
+      "bytes": 2758416,
+      "sha256": "355e2980e04eae72647c4f2d1f8cd580230e1e2baf2f4378f801027e64ad79f2"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_마마_100M.csv",
+      "bytes": 6692351,
+      "sha256": "41d016d1b505aed43fb603c8039e1a3332d1285f99413c3bdd38928057797db0"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_마바_100M.csv",
+      "bytes": 2739097,
+      "sha256": "83654cd51e92da8756183d8a26846507199dcab55c7f4534037f04bd7bf594f4"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_마사_100M.csv",
+      "bytes": 1807295,
+      "sha256": "dfc0c78dc2ef30e750c846da1e156f21e6fcea8318cd3c207ddc48feb170f01b"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_마아_100M.csv",
+      "bytes": 47661,
+      "sha256": "969ae43eed8170b63db5ff5390becf368a10222c735dedad9d14d61e27ddc116"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_바사_100M.csv",
+      "bytes": 33729,
+      "sha256": "d22ad0be431e8c682c7a8a0051d9d0d50ea2ce657a0dd79a4a98fb094f106843"
+    },
+    {
+      "path": "grid/100m/인구/2017/2017년_인구_사사_100M.csv",
+      "bytes": 19299,
+      "sha256": "e4164ff7658fa00ab2ee74444038a48662a91d9c74153a74563d74b250e07a86"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_가다_100M.csv",
+      "bytes": 2039,
+      "sha256": "cce9cc91756c1ac7e5f2e78aab45b8c993b1bf199d31dbc13a3f2db271c8b32f"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_가라_100M.csv",
+      "bytes": 2634,
+      "sha256": "2b8fe2360857d7d9deb83f65d0352333db5cbd3727a6c51d6604ce8e9f8963bc"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_가사_100M.csv",
+      "bytes": 22842,
+      "sha256": "be15684fea77e8b793093381f82136391a7be1f20d1b8eccfaa8f5ad173ed2c8"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_가아_100M.csv",
+      "bytes": 9450,
+      "sha256": "ae84ae82c1ad7f2052e6d6c317cbe436d631d6d3ebe39eb8eef9248aca238e0b"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_나나_100M.csv",
+      "bytes": 632451,
+      "sha256": "3bf7819b2150a402ab4ec0f87c0b331e386cdb162f21f29104f115bd060e5f8e"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_나다_100M.csv",
+      "bytes": 65249,
+      "sha256": "c40c1303aeef500ebb48686c148026b8f3a2e10527c146da5c17e051dc4c748c"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_나라_100M.csv",
+      "bytes": 1178951,
+      "sha256": "d29cf035528cad7b1dac8efc8402e7ffea80b5bdc7ad2ff8f7d76059bc1579ff"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_나마_100M.csv",
+      "bytes": 27475,
+      "sha256": "c02f7eae037ff8d163ab4665d8b1a01929c74db1f3cbd7e783d2ed60ee6fe97f"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_나바_100M.csv",
+      "bytes": 908516,
+      "sha256": "8daf58e9f31e24e70295a870e4ac2cb6895dd6ed7c3d8eb9e0fa04fc57fdd98c"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_나사_100M.csv",
+      "bytes": 146522,
+      "sha256": "066fa694f85b135e4af8266036574ffc95bb970feea4228c7f2803050b17d5b1"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_다나_100M.csv",
+      "bytes": 877908,
+      "sha256": "86bc417129e10c7476aa791db4cb7e480a861d43701dc06f1b996fa1b580958a"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_다다_100M.csv",
+      "bytes": 848991,
+      "sha256": "d5b403a5b03c5de792f147a1eb9b504f967f8c824af7e6d322495e774b7d1269"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_다라_100M.csv",
+      "bytes": 6769160,
+      "sha256": "70e78d5d4fb1d5ee2b7608fcc7a4c4f5262e0a55ff71e197873f9c6a28162a5f"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_다마_100M.csv",
+      "bytes": 7929089,
+      "sha256": "4945878270c2172555a26356e33c0bd4cd6572abcb2ad4b9feca7857754e151c"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_다바_100M.csv",
+      "bytes": 12804096,
+      "sha256": "72a6735ce81a4c2ff582e4bb5a7a0ed2597c1033a660ad3b15fce0e722b599b4"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_다사_100M.csv",
+      "bytes": 16550666,
+      "sha256": "c0d6b6bf87349200d8d646a37582a06557667f09823885ed1bcc104522eb829e"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_다아_100M.csv",
+      "bytes": 732867,
+      "sha256": "6a592af7d69816ad2ccaf251ef67c355797b1f87daed3733a0e40c10d42c3cdd"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "a48365d9149d974aaa9dc40fc1c3880ed01ac3aa028c0e92d2e3bc99e263bd89"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_라라_100M.csv",
+      "bytes": 4598907,
+      "sha256": "d29d4984384dc3bda28cc1d7e4a9b62a6c17f37949646c4998dcecf600ddc441"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_라마_100M.csv",
+      "bytes": 6457186,
+      "sha256": "972f6fd7c6768cac43385efd57ee4ee5c5a264b57f09e61db20bf6a86a38929f"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_라바_100M.csv",
+      "bytes": 6333887,
+      "sha256": "c1eda377df5f1e77c0c974daca5427c999b9c11f0455125b5a003f172e0bfd1a"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_라사_100M.csv",
+      "bytes": 6160858,
+      "sha256": "4a53b28cf397a9f2eb705fbb92d8d3e613f8145f772e9fd1089c11ee82a324b2"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_라아_100M.csv",
+      "bytes": 1079480,
+      "sha256": "9c284953cbe21b708d906e3f988729538e111715663c97a87be6d36f79efda0b"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_마라_100M.csv",
+      "bytes": 2762009,
+      "sha256": "8eefaa039fc4e6681dbbb4a19577f2ddcc95641e2a618bce1ee7de8065e502e1"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_마마_100M.csv",
+      "bytes": 6770194,
+      "sha256": "35d116d70ee0cc20ed7edb8b8111dd1e4e9597e0a78bf348827c1c31abd7487e"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_마바_100M.csv",
+      "bytes": 2768005,
+      "sha256": "b2cc4dc2f6bf4dda421ad1b00746e0b26d37ec11a158768194f11cf0d994019d"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_마사_100M.csv",
+      "bytes": 1827492,
+      "sha256": "1742cd92ecce063c8574287c045089f22b2208285ed7c0127004bcc9ad40d06e"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_마아_100M.csv",
+      "bytes": 49763,
+      "sha256": "fec7dd9c09dad07a9ab146d0048d62c19dfb1c1c6cf6f3bc2a9261e78b893a75"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_바사_100M.csv",
+      "bytes": 31885,
+      "sha256": "a2ae825a41a0e8614079ec52ca21b933b0253e9b64686c6502d269c0e5a9e810"
+    },
+    {
+      "path": "grid/100m/인구/2018/2018년_인구_사사_100M.csv",
+      "bytes": 17706,
+      "sha256": "6331c8c5c437f8549d66610730b511cdc4b3e054bdf575f1a5255c14e7114dae"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_가다_100M.csv",
+      "bytes": 1866,
+      "sha256": "919d8ce4d86d3a08ecabe09b36b62b13e417d4f062cb7e94551dd913337dba0f"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_가라_100M.csv",
+      "bytes": 2630,
+      "sha256": "c638f708f8ae6de7fbb774f4d3d44fb256a51d333f69ffe4f1fe567d61683a05"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_가사_100M.csv",
+      "bytes": 23342,
+      "sha256": "9e486a0fe25d6ec4946af909711654987710842211c0d05a249302e6e0b9d401"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_가아_100M.csv",
+      "bytes": 9607,
+      "sha256": "d9fd65af165d862b193bb3c1f975c8fdbbeb09294a846312c05e716129c40e18"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_나나_100M.csv",
+      "bytes": 657215,
+      "sha256": "8bfb6053fd806856838a1e47621422efff321be04179d046e6e5baf08ea57ca7"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_나다_100M.csv",
+      "bytes": 66597,
+      "sha256": "423c199edeea75fc34673f6973eaaaac9bbc51ca080f6fc200cc5859b4a1fbec"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_나라_100M.csv",
+      "bytes": 1185925,
+      "sha256": "1c99a12a8aaafc43efb8192fa5b4f01d20a57a41497be13d643f2a393176683b"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_나마_100M.csv",
+      "bytes": 26899,
+      "sha256": "caa063402b0976f63791ab78b322cd76c0b3d4e1d8ef9787d3c9ee09f80e2042"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_나바_100M.csv",
+      "bytes": 912586,
+      "sha256": "bf47d48f3cf062dfb3493a0add4220a4d6c572a7eda5537f9d21ebdae6be8dd3"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_나사_100M.csv",
+      "bytes": 149196,
+      "sha256": "a3a41196193baf6948f5a9c8635fce72523a973e8e8d0b09e5111b74aab7f45c"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_다나_100M.csv",
+      "bytes": 895568,
+      "sha256": "e90f070b792487becb6ede9a6e0a6e61cac347ed35e2c70993a692c52d6bf1c9"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_다다_100M.csv",
+      "bytes": 868638,
+      "sha256": "b7d2169eb60fc39b7e64313eda7c360030e4e00c115ecaa390d9694f3bf81df2"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_다라_100M.csv",
+      "bytes": 6824178,
+      "sha256": "14dae591f4a13e9170e5d71a55a12dc136a015b77a996df1e231f6f6280350fb"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_다마_100M.csv",
+      "bytes": 7979421,
+      "sha256": "1f759a4938d22c3253eb1b8798b87efce29ed1c553dd90fe7ff560010e3e0c17"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_다바_100M.csv",
+      "bytes": 12900724,
+      "sha256": "a45e35a1fa6420d3fef1bfdf268003365063bb979ec5d8b3e9bd97630de108c8"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_다사_100M.csv",
+      "bytes": 16773042,
+      "sha256": "42c0886b29f74520ce0426e9fdddadede88887712b86309a85c30e858c05d66e"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_다아_100M.csv",
+      "bytes": 744500,
+      "sha256": "f1c65a0cdb0a3a94d358be89a7bbc2b07ca90bea6bbe849f37ab5a95ce48ee9d"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "0b2cb700758cff9a1d82b9e7ae613fa5e860a0247e69786b13b03258c929c784"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_라라_100M.csv",
+      "bytes": 4640287,
+      "sha256": "7ac0b4d01e8f148b3f3feeeb56d721d365d78f40f1d06530acd60adf89d73ad5"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_라마_100M.csv",
+      "bytes": 6536423,
+      "sha256": "162037c1cbeea9f8f7fd191750f2b56d20170f1654ebf7be0d423409d9914014"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_라바_100M.csv",
+      "bytes": 6421646,
+      "sha256": "65c0f45a8fd7e37b86f88ebe9255b1f5301f628e95f9becc9262b2ee39d98c9b"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_라사_100M.csv",
+      "bytes": 6278977,
+      "sha256": "6718cd69b3f4992f23e13b9133ad48dd2190dbaae57427ba0114a1b87b594fc0"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_라아_100M.csv",
+      "bytes": 1097947,
+      "sha256": "5266b386d6a1e25a3ea0a428ffec076bab04bb096a88ccc0c665d937e96403a2"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_마라_100M.csv",
+      "bytes": 2764716,
+      "sha256": "d1f7fa884174a3b56df3a5347c5e97432418b0a0b1a70bac74e44b841881301b"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_마마_100M.csv",
+      "bytes": 6845025,
+      "sha256": "dad5e21c2a99752ec916c5bcc6c5f2f0c70957a8868b6a120a531424fde3937e"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_마바_100M.csv",
+      "bytes": 2794902,
+      "sha256": "ba48fe95837cb92b9dceca4cc76d07e20dd9dc108efde3066e9df9bbdb6d1963"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_마사_100M.csv",
+      "bytes": 1840226,
+      "sha256": "8116b5411212e17dfac94dedf95d9f9f6d254e53d4ed339614597e3abae9e809"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_마아_100M.csv",
+      "bytes": 50092,
+      "sha256": "babaada617f02ff5d620398f8de6247e54d51308dc32371ea68e9c37cc196900"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_바사_100M.csv",
+      "bytes": 31544,
+      "sha256": "4e49ee38a4cc64cf84736f2c6d592daef68792d016af4d4cc49470ae72b9cab0"
+    },
+    {
+      "path": "grid/100m/인구/2019/2019년_인구_사사_100M.csv",
+      "bytes": 17876,
+      "sha256": "28481dc620168939b39277c4f0b7a9b9e4e5251284e5d9107760854274a57c93"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_가다_100M.csv",
+      "bytes": 1868,
+      "sha256": "59240fdf0a642f28f2c3d78308cdd0a1e89b55ffe4abefb956a5d26580781d83"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_가라_100M.csv",
+      "bytes": 2628,
+      "sha256": "5dc134cf575a807a595ad6fab3928a7eb78ae1236c9c559e762c89bd8b15b490"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_가사_100M.csv",
+      "bytes": 23109,
+      "sha256": "e49e0a7b964aefe1cad0afbdc06d5d59486e5e225531c91fb5b8fb315e7c407e"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_가아_100M.csv",
+      "bytes": 9540,
+      "sha256": "8b8b760166f5cc23900ecb592b033086d930bc4a22cbf995b61852723b82fae7"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_나나_100M.csv",
+      "bytes": 674472,
+      "sha256": "2f2b5ad3c5f58f36efb44a9d9ab2599158c3b9aa8a07e35cd3fa42851aad58eb"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_나다_100M.csv",
+      "bytes": 66080,
+      "sha256": "db2848ff1722d74a64abc934245e69d8656b2c3280938f9d800485f37c8a16ff"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_나라_100M.csv",
+      "bytes": 1201325,
+      "sha256": "56b3ce1eecc309e54f035cab17e6efef333b0df1d8877de0b45812551499468c"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_나마_100M.csv",
+      "bytes": 26809,
+      "sha256": "1378ab8bd9f2b36f84bdddd0602b31c42cfa4a54d15c5858cffd8e4e4bbdc7eb"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_나바_100M.csv",
+      "bytes": 921863,
+      "sha256": "af2022f2b7222c54c358798410c5748721f419e750859d5cbb57ef152293cc04"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_나사_100M.csv",
+      "bytes": 150616,
+      "sha256": "0cd38130d4804906c9e4095a9996eae014525d85034f950bc051f565ecc962bf"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_다나_100M.csv",
+      "bytes": 907272,
+      "sha256": "3fe7e7dbacc375a53e2167659d5d552977034d95f72f21abbb15b38b95acc35b"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_다다_100M.csv",
+      "bytes": 880105,
+      "sha256": "971bc18e73a38fd5712b70f006b3299424a4b2d92748ff9a5a2e048fd44f7882"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_다라_100M.csv",
+      "bytes": 6905514,
+      "sha256": "5aa2c26cf2980390b68d21c5987f68a3482e09c2328e1325cef9829388b89722"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_다마_100M.csv",
+      "bytes": 8045447,
+      "sha256": "00adf60e6b29197999cb0dab8a2e3153fa9ccf5e92c63a9bf74b54cbc3754fce"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_다바_100M.csv",
+      "bytes": 12972633,
+      "sha256": "772d9d2e597ec2509049a351c1727234f73e726318a5bc03ee304c49db794a42"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_다사_100M.csv",
+      "bytes": 16949886,
+      "sha256": "e50b0a99ead19873b89f6f284a58e721f00d06ed725414e265c851ef2209a5b1"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_다아_100M.csv",
+      "bytes": 745008,
+      "sha256": "d00660845b6cf5fd9aa557c1cc2eabf759f331940d4d77ea975a6b723656be9c"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "49fb094d4fba6a376a20c467b913f9c8325c22f52755f8df007a1b7eedfa2142"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_라라_100M.csv",
+      "bytes": 4684738,
+      "sha256": "ebfd78ac257ba03a92d550d40e6132160c2138170fdb56c24a54972ec0fd5567"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_라마_100M.csv",
+      "bytes": 6601590,
+      "sha256": "e40556bf83e7146ac4cbe90f0c6edbb8a0f57c527de71aa9fdc0bec77c6bc16b"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_라바_100M.csv",
+      "bytes": 6502007,
+      "sha256": "9a573203a38e842610e81f972cbf4003a6f59c0deb2495b39320ec5a51e5d767"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_라사_100M.csv",
+      "bytes": 6378832,
+      "sha256": "6d0562dfce701f3a80ea6ee5221b088164ccaeb7e4125d14b3d2efb1d3d368ad"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_라아_100M.csv",
+      "bytes": 1110040,
+      "sha256": "16ed42eaca9ed3ff8fd1dce0eb91031e56c69ffccbed19c4dc6754eae977f4cd"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_마라_100M.csv",
+      "bytes": 2769227,
+      "sha256": "cb8b23d07e292f62a3c73770ab89e8fe0100620b13c9d52b89ded4e9d8836c01"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_마마_100M.csv",
+      "bytes": 6893208,
+      "sha256": "63873b69423a77a563b5f88cf7c92a7d49b60a497c9636263ef2db69a66aa94e"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_마바_100M.csv",
+      "bytes": 2821843,
+      "sha256": "2db1b9ce24d5e069f43939130aff5e1c5e1525883b503971578c2091d350cca9"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_마사_100M.csv",
+      "bytes": 1858641,
+      "sha256": "80ac5e4999c537c22f70ad2b975ab98f32ec27d5c84e6823c5a1f5e8f2aa9480"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_마아_100M.csv",
+      "bytes": 51019,
+      "sha256": "c8d945884c40e4ce3c7985900587f3cda9c846bd992217816a3dae8cab607817"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_바사_100M.csv",
+      "bytes": 31879,
+      "sha256": "0efb5a154e8c05ef0016b61848e5dd566521bfb98cd92939b526523979956168"
+    },
+    {
+      "path": "grid/100m/인구/2020/2020년_인구_사사_100M.csv",
+      "bytes": 17952,
+      "sha256": "32289024a0b92f38479a727b5e7d766f5a49951f23ef49f4166cdf39a7999e6a"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_가다_100M.csv",
+      "bytes": 1950,
+      "sha256": "3e9cf8244c681abd36c6a12c0af9d6258101b8bd85be6f3d47013839d45a7576"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_가라_100M.csv",
+      "bytes": 2541,
+      "sha256": "b0d1e0151b48d62b300fa860d9b7262d02064f368eba751cbf022461b66240da"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_가사_100M.csv",
+      "bytes": 23757,
+      "sha256": "4528590d78aacf76cb51c467b1a621d48f5e96e4fa7a01dca8c9315d3ca5d502"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_가아_100M.csv",
+      "bytes": 9780,
+      "sha256": "7fd7d1f284c99f2cc388a64bc72c297a8af005e3237f71322ce74b4bcfba370a"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_나나_100M.csv",
+      "bytes": 690759,
+      "sha256": "2bdbd55a25a4b5f3bd7e16ba31d2396e5a09d73adfecd787f902630ea8ab6d7e"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_나다_100M.csv",
+      "bytes": 66157,
+      "sha256": "ac449b90c4d052fa62f58af4a4e2d87b73893177dc32524ff9c458d69420b7d7"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_나라_100M.csv",
+      "bytes": 1209643,
+      "sha256": "6673e846a218dc441a72fce58d808c6d6b269dc39a477cd2c115c15fb8f1e5e2"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_나마_100M.csv",
+      "bytes": 26807,
+      "sha256": "0e17ef35fffbd986ceb419585f642e50954873020daf302fac6b93b4139102d7"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_나바_100M.csv",
+      "bytes": 927214,
+      "sha256": "03e79f7beab72e3c702463a0ebaa9cc3ae9abbbdf812c9d639360e9d1d8b8481"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_나사_100M.csv",
+      "bytes": 152114,
+      "sha256": "fcaed465aeaca005562b637b7d4de0663d0640518ca1b441f7ba962d547d83e6"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_다나_100M.csv",
+      "bytes": 921487,
+      "sha256": "abdb5510a4905c22f258b2bc12e8bccf8317627495a004bc825ab80c0255b3f2"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_다다_100M.csv",
+      "bytes": 887758,
+      "sha256": "016e97734e1ef2258d13cfd5ecc9eac8a6f8278fb46c625fdf321a60629136a0"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_다라_100M.csv",
+      "bytes": 6959422,
+      "sha256": "534a5a80b7658c78a5cb729fb8b5b1b6cdadffd816b95bf6e50a6614fe232288"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_다마_100M.csv",
+      "bytes": 8102914,
+      "sha256": "1d2d2a2494e1abfe7714532628f25e5dc7cdf82f01cfb36e19ac9051ed8180b4"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_다바_100M.csv",
+      "bytes": 13058562,
+      "sha256": "ecb69c0f9a6bdc9bd3370555ad8c46639b29a51681a77320e19d3d1652988437"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_다사_100M.csv",
+      "bytes": 17068208,
+      "sha256": "10750c27b7e88eeead1425c49ad4e4cc0ada4cc69818f645c218a8eeda774820"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_다아_100M.csv",
+      "bytes": 752580,
+      "sha256": "1b6b9ededbcbb0c1279e4bb2af639faec264d63ac637d63e90d85e4b6b5106a2"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "b494108290737b6b7f884ff9d06fbb6de5afb843037610027dde2204e72ef899"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_라라_100M.csv",
+      "bytes": 4719848,
+      "sha256": "b0742abbe0a832533c8d63d244ea35534e3ecd60954a4dd14ad37f1ad9ae839f"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_라마_100M.csv",
+      "bytes": 6664632,
+      "sha256": "7f5b778e55688c45588d6b13ea67a1462ab6510fb767dcbb21d94f929cef50ab"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_라바_100M.csv",
+      "bytes": 6575744,
+      "sha256": "3ca064d013fd4f41e8c1f9392681b262acf6670e98849ee9729202dcd035254d"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_라사_100M.csv",
+      "bytes": 6465482,
+      "sha256": "5537e78f3e32ebe497a0a95040d804d30bf7b892d1929be457e878b55640c040"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_라아_100M.csv",
+      "bytes": 1131733,
+      "sha256": "7b7da0f49e0f7ba11f1fbcaf37c8e2ee9604b90e34a14dbfb82747e9e70c4a87"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_마라_100M.csv",
+      "bytes": 2765843,
+      "sha256": "90c395cfeef91a74bb0015fc4fefe8f9a550bc0683590493d9f203bfb11f0f61"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_마마_100M.csv",
+      "bytes": 6933852,
+      "sha256": "eb06947d73d9834302ad58fc16effba859e61d3f1c4bffb45a8d0c3ce81609bc"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_마바_100M.csv",
+      "bytes": 2842168,
+      "sha256": "51605617f7f1deec314d6df4672a8dcac6107a4ca1289b564c80ae9aaf5dbcd7"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_마사_100M.csv",
+      "bytes": 1870796,
+      "sha256": "603807d6a571469779df354b084456289d33ecaf484c7a346a2abebfe2dae8d1"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_마아_100M.csv",
+      "bytes": 52020,
+      "sha256": "746210fa116f8c17f7da07035b5727ef09e0cf97beae96ecf9310b116c0fd352"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_바사_100M.csv",
+      "bytes": 32636,
+      "sha256": "e2e80c362e45ba992b7463538994f2bd1d47dc57e962434ee853d61347d3fde9"
+    },
+    {
+      "path": "grid/100m/인구/2021/2021년_인구_사사_100M.csv",
+      "bytes": 18043,
+      "sha256": "2e1cf220bad983964715267ccea74b8ce2d1afa0928be5b6d2a1f58c7beb1fc3"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_가다_100M.csv",
+      "bytes": 1950,
+      "sha256": "57cc93ebc4d4b73a59a94394560c938e9ab783df422ae590ff6566a7b3b13102"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_가라_100M.csv",
+      "bytes": 2537,
+      "sha256": "78d72cab7220c7b9326fab17ee038143365be72a8b2bbd6b3fe21babc09b9c8d"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_가사_100M.csv",
+      "bytes": 23667,
+      "sha256": "53945a7a349b57aba9ad8da20bc938ffc3bbf09fcf6ad2b52cf76b6c41b709d9"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_가아_100M.csv",
+      "bytes": 9794,
+      "sha256": "cf98a7cd03b515f8c6cb684095e6880a28d3317a81b265aee3e84954244832fe"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_나나_100M.csv",
+      "bytes": 706332,
+      "sha256": "0993d271d254cb92484e2d147e5e0501b62849bd6f764941750fba1fbbf05bec"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_나다_100M.csv",
+      "bytes": 66660,
+      "sha256": "048c0b1fabe58461010b524df168586480d92ed0a91eb83ebe40d871019dc762"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_나라_100M.csv",
+      "bytes": 1221921,
+      "sha256": "4009204ee0da6baad7cc5da6c2c835806c66c307325b15dd89c466deb004aafc"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_나마_100M.csv",
+      "bytes": 26636,
+      "sha256": "b38f0a9b11e748eed41dafe6865d9dc45ceee6a223372625d4eb8288b70eba05"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_나바_100M.csv",
+      "bytes": 938777,
+      "sha256": "668052be03867cf6c17261269ba590cdd478c04e71b04350cdd68b4024057b43"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_나사_100M.csv",
+      "bytes": 153461,
+      "sha256": "c0f761040c94c01fd76ca530c88aed561ee582936761e3b732438972f676b600"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_다나_100M.csv",
+      "bytes": 931346,
+      "sha256": "de206deb90ddc3af796981027904aeb51a7ba91c82b39196acef31d974680d62"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_다다_100M.csv",
+      "bytes": 897467,
+      "sha256": "a1a81662141f32a06a4ab68d53eb0fa9863658c9b26ffa64b49b231784db3ddc"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_다라_100M.csv",
+      "bytes": 7010307,
+      "sha256": "2e93c1ba6bb2c4b22dac3be4e9c1f0ced56b47a406c1a4d81ea63969d1d5831a"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_다마_100M.csv",
+      "bytes": 8142184,
+      "sha256": "08b5f0f04e01d30c8bef6c8caa0a82baf1dced23103dcee8c96c30b19d92b765"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_다바_100M.csv",
+      "bytes": 13137649,
+      "sha256": "76c13bdb274dabf00b3ce91c308ead14143d1c67703c65387a31487c7be1cb24"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_다사_100M.csv",
+      "bytes": 17174713,
+      "sha256": "3f49867af82fcadde32b80ba8c1bce6e96a66d11e1e426f40ccec1905d32a2c0"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_다아_100M.csv",
+      "bytes": 759880,
+      "sha256": "69216de63cfb4f3e4ea9731974820e70f3cc986e785fdbbe61b728457eeba860"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "e6c77dfde7e2719de61c6f6ebada6e77ea7c0330e0726c01fe310acae3b1dc87"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_라라_100M.csv",
+      "bytes": 4744030,
+      "sha256": "95581ef43317256e41a3fe7bb4f9002bc407e197931254b17ed2ed51881109f8"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_라마_100M.csv",
+      "bytes": 6734274,
+      "sha256": "408b852ef6d48b8d15108b9061d9fa81f16ea6bd513460810beacee24efd9626"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_라바_100M.csv",
+      "bytes": 6650580,
+      "sha256": "9609a0f2f22f4425dd0b176cf4e33a86bfe56f85e67da0a1fbe5696b3e4d4d31"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_라사_100M.csv",
+      "bytes": 6548562,
+      "sha256": "e4ebe80f32233eb9faa68260b837dcad7108c13b396d3529aa35e77dabad0cce"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_라아_100M.csv",
+      "bytes": 1143852,
+      "sha256": "c84e07993185a359867feebcb2566df41db45b43951689755d1f48258f6a1cdb"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_마라_100M.csv",
+      "bytes": 2758291,
+      "sha256": "6ac545c8aaf5cccebb2ffda5a39726e1dffc484cb6e691dfe2fa031265fd7dfc"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_마마_100M.csv",
+      "bytes": 6984867,
+      "sha256": "57c2664882e7a11863a927b7c62afa9ff885b08d3bfcdd8933875f431b1aecfa"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_마바_100M.csv",
+      "bytes": 2865679,
+      "sha256": "44f8a5c13312f5aab5ee8c6ebf70d90180349f0c7eb3af0c2348934c3f3e6036"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_마사_100M.csv",
+      "bytes": 1877888,
+      "sha256": "bf2bd3f5378cdd233dd8ea9f6a9bc6b3e281a2b2e73d8693b471744fbe6d301e"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_마아_100M.csv",
+      "bytes": 52779,
+      "sha256": "af04ae939789309384b5ac83f344d2c09ea487b74166cf5d9b2d76900b74747c"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_바사_100M.csv",
+      "bytes": 32472,
+      "sha256": "fc0589ea0b892a825e0de631396786ba042a0b3761f00a505b20abaeb33d4ddf"
+    },
+    {
+      "path": "grid/100m/인구/2022/2022년_인구_사사_100M.csv",
+      "bytes": 17959,
+      "sha256": "e8f88c4b34cc55d1e225222cc63764a281c426933215cd4b73a83fe746d033f2"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_가다_100M.csv",
+      "bytes": 2036,
+      "sha256": "9aeb2fae65bca970910584fcab855faca780e92cfa81bcfcc90eeebd27d57d19"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_가라_100M.csv",
+      "bytes": 2370,
+      "sha256": "3a29e9bb3b4b36e68a1f67cd26f7bf636b49b278ccbaf9063de962047d3e7146"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_가사_100M.csv",
+      "bytes": 24509,
+      "sha256": "4750d3b6bc9850329666955cc2bbaa530a3a14cab98e3a91449cc1c1b1647636"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_가아_100M.csv",
+      "bytes": 10046,
+      "sha256": "b26f882082c1d74af8b17db91ac41ebdb3b9acecf671cf279ec2808c3e1e567c"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_나나_100M.csv",
+      "bytes": 722331,
+      "sha256": "2619fe24e1221002418229d88b499aba62775b4a1d23d0074407896528a1060d"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_나다_100M.csv",
+      "bytes": 67588,
+      "sha256": "75236e90a32cc4051ac84603def2c61ce0ca972190df9f44b66715fcdf68c7e6"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_나라_100M.csv",
+      "bytes": 1230731,
+      "sha256": "46a16a190b28dc4b8d7bf2bd33edebfa0afa9ff9bc7854d7df8c776523c67b9f"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_나마_100M.csv",
+      "bytes": 27315,
+      "sha256": "78494a872c60c8f905729fef417342c7a622af963ea92edc24377b3f178f6675"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_나바_100M.csv",
+      "bytes": 942319,
+      "sha256": "770aa5aefac076e9ad22bfcfba9aaf11c1574bb2cf1eecccfc97a690b78d3258"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_나사_100M.csv",
+      "bytes": 156384,
+      "sha256": "b55bd009dcc136a1d6b0a00c46755d5a93b545fc10810a76bd2972cb947ba63a"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_다나_100M.csv",
+      "bytes": 940349,
+      "sha256": "a23f8b34fe0b39ab3ff31f12515a29cae7e35735b1129500fa59505e7679368c"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_다다_100M.csv",
+      "bytes": 914149,
+      "sha256": "0241e51f42279539dd040c380650d51ae03d190f3c4ecd4f189199a436c2f350"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_다라_100M.csv",
+      "bytes": 7042048,
+      "sha256": "649312ec4f96e2f1307e330ccc98d64a5968786c8f3167080a0a9f95e24d98a9"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_다마_100M.csv",
+      "bytes": 8187268,
+      "sha256": "17ac304686f7ddbdbd35d9e2a850b90480d7beaa1a637f8796d9cce4c83f3983"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_다바_100M.csv",
+      "bytes": 13219573,
+      "sha256": "9f886b1c80d143de71e15715f48460bfc852376945b38d72bdd448f27694f3ea"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_다사_100M.csv",
+      "bytes": 17254328,
+      "sha256": "2a2b8f87baa6c59c32f546b6cd7599f005ac6afc70cdd1de090fc20e7590e4f7"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_다아_100M.csv",
+      "bytes": 766655,
+      "sha256": "d88f5cf62b47dfb4930c13cfaa1823539fded05db3fdbdc42c6ef47245b24b71"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "7749e00b173a535ec923491c6d589d8a0afa5747872252647d210b39b50702c8"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_라라_100M.csv",
+      "bytes": 4774326,
+      "sha256": "d3772846954cca099395ae98d4f80e305ae29970ac716718546d0e4482c37ac0"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_라마_100M.csv",
+      "bytes": 6803885,
+      "sha256": "78693bfb5a31c35de41d5847c5cff33bcd0699f5eca9763c0c3966d3bff655d4"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_라바_100M.csv",
+      "bytes": 6715917,
+      "sha256": "2261a7eed5691082c8286e4383e68f5f2c3d33d5dce6bc58f2bf69a470924b03"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_라사_100M.csv",
+      "bytes": 6645218,
+      "sha256": "c16b3fdeb9bd13a2698600bad07bb29054020cc9b2e4cea5d035a1cca0798486"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_라아_100M.csv",
+      "bytes": 1158147,
+      "sha256": "1988b07c9c8a34508dc47f979165a35be9c9efd13a5521f6e941bb35a072df03"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_마라_100M.csv",
+      "bytes": 2758548,
+      "sha256": "017eb4e9ee6b63bacaa0c13bf1c48f43ba385d60fd686bd35ebd27966d1349e0"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_마마_100M.csv",
+      "bytes": 7060402,
+      "sha256": "1941869a89e7d6ed459db56866963762d0a6726cc806ac69c70b7a63b348c472"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_마바_100M.csv",
+      "bytes": 2886968,
+      "sha256": "95aecd2068174b1a3cace7abc8a0637db5ef0a3fb25864771135cddbe8a83b82"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_마사_100M.csv",
+      "bytes": 1887879,
+      "sha256": "d6a9c781bcca3c4c5535453800237c5bd7edd19a3bf120bdbcef1589c800b1c9"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_마아_100M.csv",
+      "bytes": 54283,
+      "sha256": "c00cd75023c3eba04afcc75c610bcecb9aceaca751c08f34d297163fdda9ddcf"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_바사_100M.csv",
+      "bytes": 33060,
+      "sha256": "f7a59fa4fdbe93de2575e26d1fb40842f82864e93abf20e95b216da446b89f3a"
+    },
+    {
+      "path": "grid/100m/인구/2023/2023년_인구_사사_100M.csv",
+      "bytes": 17797,
+      "sha256": "1d3405bd81ccf2508f08d986f69e62ada3e467b2f2d2ab5016a1a293282d82a1"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_가다_100M.csv",
+      "bytes": 2035,
+      "sha256": "b7a0fb15a31835a2d90f2321c4ac1d67c9000d3eb067cc0b24ed89fe8912cff5"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_가라_100M.csv",
+      "bytes": 2035,
+      "sha256": "a246acfd8e43a551ba543d0de9fb380d899896c288e2cd97f25a4c761be41166"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_가사_100M.csv",
+      "bytes": 24843,
+      "sha256": "728723a40fff4f02f495186a892b01fa67389fe820d90436a6bd111180fb1f57"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_가아_100M.csv",
+      "bytes": 10297,
+      "sha256": "6960019671b01face4f1dcb86d81395363362521d24f6bb4b80c71c4d82950bc"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_나나_100M.csv",
+      "bytes": 736683,
+      "sha256": "85b85ccbede8e28a1ef903c1448ea446df3b25125a1eb06ca19726251c28913c"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_나다_100M.csv",
+      "bytes": 67769,
+      "sha256": "bdbf834ebfba51022ef434181b2bed50fb748cb6147aa4d4cbc06323c6226fe3"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_나라_100M.csv",
+      "bytes": 1234346,
+      "sha256": "f9696b41b94c3b9bf6b031636cf04c1983c13744506ee184fc995e554d74889b"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_나마_100M.csv",
+      "bytes": 27478,
+      "sha256": "fa19f341c3f1573fb4ea507c0915d472b9a450b1139ee02e8c149d45149f07ea"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_나바_100M.csv",
+      "bytes": 943696,
+      "sha256": "af889b85b34c431f0bf87ffd2213675426374e6ac18ce317b4bfa5dc7f1a5709"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_나사_100M.csv",
+      "bytes": 157389,
+      "sha256": "86ad2a1d27bd0480efcd6bf5efbc66dac771937f0e95c6b68d21d0b6f8cc5d08"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_다나_100M.csv",
+      "bytes": 948113,
+      "sha256": "b96524d901c8ebb3b4f07ffca2f994c64ad5250c1181a612a4231ad11c2c37d3"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_다다_100M.csv",
+      "bytes": 922357,
+      "sha256": "886407c49ae5875e35d577f8634dabadf8a1bee9fa9c1469e7fa5baf20e3c39b"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_다라_100M.csv",
+      "bytes": 7057901,
+      "sha256": "8a528b6cef5eab781c3961cd73ad2c942669119c62c7016925953ec364285565"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_다마_100M.csv",
+      "bytes": 8176668,
+      "sha256": "d4e625deeb47859f84180f53a2da1dc785c3a90ecbedf0f100203fb49fc1b0cd"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_다바_100M.csv",
+      "bytes": 13225387,
+      "sha256": "7cc5f050e55bbac77ef9edd68257bc1db3be41084bafda2c8d5d7c5c125aba7b"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_다사_100M.csv",
+      "bytes": 17315745,
+      "sha256": "a959490296d5e1cf78916c7815b9f5c449816692ed46de9079d37c9dffd1830f"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_다아_100M.csv",
+      "bytes": 777743,
+      "sha256": "2c2e85cf4331b3a6f1476d5a0a8414d01c00655104d090c70be6b21151953ec7"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_라다_100M.csv",
+      "bytes": 168,
+      "sha256": "da809248707ae06ca28acf75d6d2a365bb49f06d0831dd4e842a552d361d5249"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_라라_100M.csv",
+      "bytes": 4790853,
+      "sha256": "150591770711b6d8dc245ffa84624021c58acb24b223d7b4f3e39e7747da2184"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_라마_100M.csv",
+      "bytes": 6820432,
+      "sha256": "5ade7c90e9f9281b878a18095234bfacda6a7eb410fdc59cac24dbf80de03da0"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_라바_100M.csv",
+      "bytes": 6755674,
+      "sha256": "3f60c2ff164b79656a2c6ed62ec974e4f6f9a918c20a9651bf3144b5179885f1"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_라사_100M.csv",
+      "bytes": 6680392,
+      "sha256": "1f300de88904abc60e91bd2011e2562f745b54483cf03c3f215d8fa224a1037c"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_라아_100M.csv",
+      "bytes": 1162822,
+      "sha256": "af96509bbd729e861378b5b5f6734c34b806dcf28ec0699e9edd57e808383225"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_마라_100M.csv",
+      "bytes": 2765692,
+      "sha256": "da78b765a9ce30522d637e67c3379de2ded226ba8a7de371b9a9506adab4ae64"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_마마_100M.csv",
+      "bytes": 7069117,
+      "sha256": "156cd06525753b29413e1eb17d344761d1037b2b4432b97222f3d1fd0aeb868f"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_마바_100M.csv",
+      "bytes": 2890285,
+      "sha256": "c826f9d569f16513e21b521bb3a00bdbb571148a3c9ef5436988e3d817d8963a"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_마사_100M.csv",
+      "bytes": 1889032,
+      "sha256": "7fefbf5414f3b1cef73f8bcb030ff675754473c3993a0d71496676be8e769606"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_마아_100M.csv",
+      "bytes": 54623,
+      "sha256": "15dfc9e8a99951ca1319290abf510026d11c08d9f7afc8aaa7b9b8162eda79fe"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_바사_100M.csv",
+      "bytes": 33566,
+      "sha256": "efae740b16d640fafdbad2709ca9feb6e8112cd896e9a34c85a3ab64f5748aa9"
+    },
+    {
+      "path": "grid/100m/인구/2024/2024년_인구_사사_100M.csv",
+      "bytes": 17793,
+      "sha256": "098343dfed3996fb2912f66f03762c0f11db334fffa87a06ee1ffaddad4b4753"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_가다_100M.csv",
+      "bytes": 932,
+      "sha256": "779f837b68871e0306a15ceb45947c3997fb0ee083c154b49cee613f72dae3ea"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_가라_100M.csv",
+      "bytes": 1098,
+      "sha256": "90f85389ee6f3cec3b56163e6e943c05a23fe4e523810b3cf4db7c7a62dc38bd"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_가사_100M.csv",
+      "bytes": 7674,
+      "sha256": "143029ea48744bb43e7fe5d0fa54f21240328f0f8602b12cfd4570715a46e9ed"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_가아_100M.csv",
+      "bytes": 3057,
+      "sha256": "5f1bbb7e75119ffdb02d9b7b5d795e0ef8459b06cd6144419c97bd0a3a01a194"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_나나_100M.csv",
+      "bytes": 176128,
+      "sha256": "0e1c072758d2a1b06b493b3d14a6d4c589066618f21a9fa81c2680ddf08c29f8"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_나다_100M.csv",
+      "bytes": 21119,
+      "sha256": "b9df6e643ee0615e2b725991b3b9f1c994943cd1aff09d9fc283359b8c1b6350"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_나라_100M.csv",
+      "bytes": 383465,
+      "sha256": "595822d811106b27a27972e7d2cf6b2965c4ddfd898bc0aa9e6d33199004818d"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_나마_100M.csv",
+      "bytes": 9148,
+      "sha256": "90b3e5bfd25c1cb266b6857c27b1549bc7acad5a74ada4ced75017e5f7f16721"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_나바_100M.csv",
+      "bytes": 290989,
+      "sha256": "7ddea318abaa369af4bea755859ec56aafb01f2db16b74d1a66818772cdff1c0"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_나사_100M.csv",
+      "bytes": 46744,
+      "sha256": "c67bc0d0ddc742a2c7f7f1ae37de3accea5f01129d956604f5a8efdff97b6979"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_다나_100M.csv",
+      "bytes": 255127,
+      "sha256": "74a28f0d915f23ff416ea1838ba70c22a2a6e657fb46b4eaf0f8d18c99c1dfab"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_다다_100M.csv",
+      "bytes": 262042,
+      "sha256": "26165efef44d7f350e20fc5b4ff210c9b8effaeacfbfdfe1bb8cbe9e1ce8759f"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_다라_100M.csv",
+      "bytes": 2157745,
+      "sha256": "6198e6c55c0149caae98a1d8396cd533cb9f65ad46c8b59a189b1a3837c6079b"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_다마_100M.csv",
+      "bytes": 2533612,
+      "sha256": "37a56d3b7ac3e313316a677bea015f7748e957d0d0cb42f6a0518493b766167c"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_다바_100M.csv",
+      "bytes": 3990859,
+      "sha256": "80406f8a1961d6f08049a0718b27308bde5aea104ebac19f266cb4077306d6fe"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_다사_100M.csv",
+      "bytes": 4991437,
+      "sha256": "bd3f7f4a531cc9a3fffdf00c43fce9fa9a20049f44b716d4f9c17d51e6e99065"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_다아_100M.csv",
+      "bytes": 230795,
+      "sha256": "29817cb647acba4391f7f0a47927e2ebd8cd7e219d22ae5d82e8a3f80bed85c7"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_라다_100M.csv",
+      "bytes": 56,
+      "sha256": "bafa06dece61cb4eb326711ecda42fbaf090d9a0653f2acb1f32dd6b2378cf8b"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_라라_100M.csv",
+      "bytes": 1450872,
+      "sha256": "318a465d2345f237935368aab95639d902137e060bb77f476082bff45b44c0eb"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_라마_100M.csv",
+      "bytes": 1995798,
+      "sha256": "265401e7b49dcd3319df21d63f8f7a02636448c208f6f939511f42b5a2e160f9"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_라바_100M.csv",
+      "bytes": 1970926,
+      "sha256": "d2e42984fbf868a465c3c1a28586baed1e85026c86eeaf15ecf58b5c5ee62429"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_라사_100M.csv",
+      "bytes": 1908040,
+      "sha256": "60ba0f3acfb1b4081fb95f9ca4eba2719ee81f169e90490012106645279573ef"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_라아_100M.csv",
+      "bytes": 339598,
+      "sha256": "edf00c742be37e96b628d6db42b7be9866bb62f5d491daab84a7ff07a2813d3e"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_마라_100M.csv",
+      "bytes": 860856,
+      "sha256": "c8b42d13b75302ff9034601d56a4eefe405754684937e4e4e7d8197df49700a5"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_마마_100M.csv",
+      "bytes": 2093637,
+      "sha256": "be0d049a66190a66af6c0b13698cf00669e13e9b635c6e45f516aa8b16cb709e"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_마바_100M.csv",
+      "bytes": 891876,
+      "sha256": "83def9919e4d0c1955955423a98ced064b9a05ab0506ca445b3f6838a5ef723c"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_마사_100M.csv",
+      "bytes": 589819,
+      "sha256": "dc12a20d7585b2dd6b6e85d76b2f7b247eadfc00fe5d5168184301e1b1f08252"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_마아_100M.csv",
+      "bytes": 15165,
+      "sha256": "db0ea1cd54c774045c3b149a9c902ce0026aac4a61670e9b6467dcf6d72cb33a"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_바사_100M.csv",
+      "bytes": 11035,
+      "sha256": "add14ac4dd0604bddc955b2e2ceb68c9040edb79f5fa054b47078c3f2658e7b2"
+    },
+    {
+      "path": "grid/100m/가구/2015/2015년_가구_사사_100M.csv",
+      "bytes": 6679,
+      "sha256": "aed57afc0976b0f6dbd817f8a9ab667d2dfce0bd0707f8ce2e65c5edd9b04aa3"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_가다_100M.csv",
+      "bytes": 622,
+      "sha256": "78dec16418a6bc448958fb8f192e37a5d3e40885a784ad5743ac368de2734b5b"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_가라_100M.csv",
+      "bytes": 873,
+      "sha256": "5312a3e86220ceababd01026f5ae72a283b5e245d896196f2e8219f1de1c8858"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_가사_100M.csv",
+      "bytes": 7612,
+      "sha256": "cd09ef17d69b8ee470133ac7a64d7fbafea59cdbc43ce657b3e643d889f57a1a"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_가아_100M.csv",
+      "bytes": 3168,
+      "sha256": "9f07f84825c42deb3e4492c24040fb378e0efc0e531354538c098d1899fd6eab"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_나나_100M.csv",
+      "bytes": 217122,
+      "sha256": "d9aeabeb3af9541b795dc566d3d2b0cda8c56894f52e581a1125098bfac3b971"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_나다_100M.csv",
+      "bytes": 21903,
+      "sha256": "f99a90c7093b714afc0bc478a9ad69a3e981b4ff2f5f0dbb6f144180dd5b0924"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_나라_100M.csv",
+      "bytes": 396564,
+      "sha256": "1adf4cf4a926e4c2c46c9d49ed86d75ee2cd83bbb3d5a9df23ecbaaecd032fc8"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_나마_100M.csv",
+      "bytes": 8923,
+      "sha256": "f0c1335cd8bb603f375243d448362f278f9b00a5db0c8d1a7a205a7f9a56bcfb"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_나바_100M.csv",
+      "bytes": 305621,
+      "sha256": "5eb2ec17228ae10edbe5ce3949f51635fabaf35575a0ff1ea158a950bb6f6470"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_나사_100M.csv",
+      "bytes": 49940,
+      "sha256": "0523e77484e225d4b9fc8ce8fe7aae2610f2c4b912629accdbd6733646067da3"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_다나_100M.csv",
+      "bytes": 293551,
+      "sha256": "f1bce6e4adeb8d8c4fc5e3cbbcd1d62156ac44bb9657b5860eea90c2a384f755"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_다다_100M.csv",
+      "bytes": 286577,
+      "sha256": "80aeeed80b9b502e9324e4d190240f4984f191c79a83374cb3a49326f8c2c6ee"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_다라_100M.csv",
+      "bytes": 2259708,
+      "sha256": "24e7831af6565e167f896e2e764c35510aba3389470285600e067bf834f4e6b9"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_다마_100M.csv",
+      "bytes": 2636724,
+      "sha256": "05265ce0d71b2fe1d160274102b3e2f75583743df7088f61a1f666a946a09a18"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_다바_100M.csv",
+      "bytes": 4205049,
+      "sha256": "53751b14e5f0fca7c6431b20f67dfc619329e236fd733648a9e3b5ed8857e7b6"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_다사_100M.csv",
+      "bytes": 5393041,
+      "sha256": "94669231a32bd04bb4b285f77df05895e7971d4703288c96e702571a4c5a774e"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_다아_100M.csv",
+      "bytes": 244217,
+      "sha256": "52ca8bb755bc83f372778e58ce7c44065fa716fd13b823d9cce5cb22b9cfaf33"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_라다_100M.csv",
+      "bytes": 56,
+      "sha256": "9c27733c5674d723bf398de8bda734a205a0f622222e072f62158c5614d7a6f3"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_라라_100M.csv",
+      "bytes": 1531312,
+      "sha256": "cef6522fbe87859de19655c9c3613f0d13555afa7227c50acd31beeafe416e14"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_라마_100M.csv",
+      "bytes": 2142903,
+      "sha256": "be1fd6aff7f7310344d4636a67b712c8277771e5a53de3d3e188dd9de5b70f6e"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_라바_100M.csv",
+      "bytes": 2130556,
+      "sha256": "7e7403bd15f5ba84b4d68b73990477805c164639b1f3f014c13579fb31b185fa"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_라사_100M.csv",
+      "bytes": 2099626,
+      "sha256": "127fdf47f9fcbcda2b32e81892ed8e9f5cf2ab38fb61d31f30671f985b15185b"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_라아_100M.csv",
+      "bytes": 366913,
+      "sha256": "581633bb32c9031d294f4ac7495b158d52ba71ff142a5a72f7ec99270c122b06"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_마라_100M.csv",
+      "bytes": 877567,
+      "sha256": "67f8bd9d06ef44e2657c7342fde7da71a20f1a3374a59f44e70e7fe09150510d"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_마마_100M.csv",
+      "bytes": 2225944,
+      "sha256": "58340b8ff043f0cd53e596bd948365b21ed1c8c0f10e02a0c262b14192afd15a"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_마바_100M.csv",
+      "bytes": 934414,
+      "sha256": "229a41ffb3bf7bcf9a051d746343c562453fc60fd727210a57da2635013c8e2a"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_마사_100M.csv",
+      "bytes": 615313,
+      "sha256": "d4e9813dab565d9e0474bc23d13c11e32100f977e740e25f54efcde2193a31bf"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_마아_100M.csv",
+      "bytes": 16677,
+      "sha256": "ea1030e4c88f8c8b662f84d3e27a4bc912c5c52e22750f64a34baa8674cbb852"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_바사_100M.csv",
+      "bytes": 10619,
+      "sha256": "03c0338a45cadbbc0c00bad80752ad2397eee75bbfe5ca6216293c5786fcc750"
+    },
+    {
+      "path": "grid/100m/가구/2020/2020년_가구_사사_100M.csv",
+      "bytes": 5919,
+      "sha256": "bd7f55c78e4449ecce4a91f5dcd4a557b78685f9077febb1390c6faa18f038ab"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_가다_100M.csv",
+      "bytes": 678,
+      "sha256": "42081d8b921ae4473f4e2b6c1ccef7cbd849d29f52cc29b99bf1381be779c6f3"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_가라_100M.csv",
+      "bytes": 677,
+      "sha256": "c620b6bd74e565d988542c418221282b2395ecb564d9b83f9f59c6b6ae18b124"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_가사_100M.csv",
+      "bytes": 8184,
+      "sha256": "479faf07bfc45023547019fe6fe76428c6269d66486ffc35335e1a86f6e3aa04"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_가아_100M.csv",
+      "bytes": 3427,
+      "sha256": "46e08ab72728189dd4ce529361266d75f2e864fc7206137f28e17daa800e655b"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_나나_100M.csv",
+      "bytes": 237503,
+      "sha256": "0b5f8de5468c43ef72f5fcd2cfbcb7072e6eb19f34794fd252eb74edf8755550"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_나다_100M.csv",
+      "bytes": 22401,
+      "sha256": "2bb971e124b96d9f6b2ad72d45ed716f900e18c3eafe2649ec9097136d23c372"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_나라_100M.csv",
+      "bytes": 406512,
+      "sha256": "a9bd4cb5372df7bd9f591e77c1be54807d770227af8bb8c859c10f80ac09be45"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_나마_100M.csv",
+      "bytes": 9146,
+      "sha256": "8a952315d6321ea30a0222e0dc7c68676be8e2c2f1de9f288f9fb14074c5497a"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_나바_100M.csv",
+      "bytes": 312020,
+      "sha256": "6f5f9a63783a85f5d37868429ea75ab0ce6d207efc2c47837cb95688926c120f"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_나사_100M.csv",
+      "bytes": 52269,
+      "sha256": "0c584b6ac28a185d5e67698045340f64c4f0c1e068c3576247de43a03a3f925c"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_다나_100M.csv",
+      "bytes": 307286,
+      "sha256": "f1cba85c05fdd86f5b24a415981c823becf95297253212745ca3c21309ce82a3"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_다다_100M.csv",
+      "bytes": 300018,
+      "sha256": "0971a9a9bd5690ab38ecf6e3b8c2b3f861c46b15ee72ba03492ae8a0831691a4"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_다라_100M.csv",
+      "bytes": 2308531,
+      "sha256": "cb7bc7a6ba2e21dc40e896e4bdda35609a01dcded3f6ad4a8de759e5c3d4aa28"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_다마_100M.csv",
+      "bytes": 2675102,
+      "sha256": "02af4912ffc4746384128dfba3b61111dada022737459457e8b0eb9f3d15a2a7"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_다바_100M.csv",
+      "bytes": 4278584,
+      "sha256": "ae78851bba33cd9258a352a21529c34fdcbe8ca3b85448d99035af0b5ccc2252"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_다사_100M.csv",
+      "bytes": 5498705,
+      "sha256": "d8abb27822498cef4d1eac35ad245b4646655041245185beea7fe9e168708934"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_다아_100M.csv",
+      "bytes": 253811,
+      "sha256": "f4446edce789d7098a67866ec319795a3daa7c29019a578200ae333560764cdb"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_라다_100M.csv",
+      "bytes": 56,
+      "sha256": "7b679448e09592e50866d0a4ff05a29c1eb990d2801d74d009015727029e2bc8"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_라라_100M.csv",
+      "bytes": 1565953,
+      "sha256": "3d178c1cf35fbf41c41139d76c6a40066c51173d5f0e185b7f644331fbed3721"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_라마_100M.csv",
+      "bytes": 2210740,
+      "sha256": "2ff78e6c8bbaf46dcb9c34036a7a3875f5965b385b3a724f7d65da3c1802cca2"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_라바_100M.csv",
+      "bytes": 2209246,
+      "sha256": "fbec649962309bb66be6c0d42f5e2dd37f23dfbea30569203783b85cfd888f28"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_라사_100M.csv",
+      "bytes": 2195738,
+      "sha256": "22c2ea1794de17fbba3e3b5e2ad2b18cb473bd9b3ff2ba9c6ce70e29d9e72049"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_라아_100M.csv",
+      "bytes": 383866,
+      "sha256": "8bbc5107e30b74934a4060e41f89e31eb235ef0415fce8302d89157b238badd9"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_마라_100M.csv",
+      "bytes": 876960,
+      "sha256": "5f689fcf56134672dadecd8738f1c68a3f1bf37d87f79eaa21a31bb64fd85ee7"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_마마_100M.csv",
+      "bytes": 2282483,
+      "sha256": "7e901e47afc993e5e0ea2dd0225a4d114f069091b5b41ef32890f50d45b3afc6"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_마바_100M.csv",
+      "bytes": 956038,
+      "sha256": "940b356e0f9826c7adafd299051512700a55370e712068ed66dab158822c8709"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_마사_100M.csv",
+      "bytes": 624598,
+      "sha256": "9d93cc2e41cef2aac163c0c629dfe7844f7f6e03ff3390e375a473546d3eb464"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_마아_100M.csv",
+      "bytes": 17972,
+      "sha256": "636241904530c506f29d6557d6cac58d389701dba70a09cf1108d255b00e8118"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_바사_100M.csv",
+      "bytes": 11125,
+      "sha256": "18be517db2696297139673065a6be0d01f5cceffaddd2b08368ca0b9d1ed15e3"
+    },
+    {
+      "path": "grid/100m/가구/2024/2024년_가구_사사_100M.csv",
+      "bytes": 5922,
+      "sha256": "5e4c05e667aacfdc3ca78acb9d482de1a53f640dcedf54bd6cb8a987dcddeefe"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_가다_100M.csv",
+      "bytes": 872,
+      "sha256": "48cfa693c86b3543687ef7d30395bb6cad7d51197b32852ce7f5e197f9ff6f53"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_가라_100M.csv",
+      "bytes": 1069,
+      "sha256": "c5212942b8b19f7e7201296cd34c2cf720c84575b1e4a7d9414f415d7a7b45fc"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_가사_100M.csv",
+      "bytes": 7115,
+      "sha256": "09b123533f2b24e704ac5f42bd37545f4c3cd9ee83d1651c7b3bdca14f22637b"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_가아_100M.csv",
+      "bytes": 2873,
+      "sha256": "48600359cb90f92661ec4a20dd818db48df58866b5fc4a719ae3613694470716"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_나나_100M.csv",
+      "bytes": 162328,
+      "sha256": "b6a552342aa743235929a2987dc817e2b11e734bf36165de018a64a7104ec096"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_나다_100M.csv",
+      "bytes": 20405,
+      "sha256": "31bed31623e7efd5d7c9db05b9116626bfe9ba26c69df628660a18bde5b91622"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_나라_100M.csv",
+      "bytes": 371817,
+      "sha256": "15caa4d769e88c4dbd67e700e2beea41a049a3e4cb973237c20386ef9aac6011"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_나마_100M.csv",
+      "bytes": 8584,
+      "sha256": "8ae6eba8ffca102dfeb33f8187641aa913d3d49c4700175df5d2fdb7733484a0"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_나바_100M.csv",
+      "bytes": 284235,
+      "sha256": "427292b5f53f29250e9827128442fc5a6370b6346dd1696a8d2d9bab88b058ee"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_나사_100M.csv",
+      "bytes": 45186,
+      "sha256": "d28ef20026ba18fbcbe069e98c37eafd33632b43339ec85eb5d62eaa987c43c1"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_다나_100M.csv",
+      "bytes": 231074,
+      "sha256": "91e36f4900d5c125bbae513fa2e79db52530a31e88c74303de90d64cb26554df"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_다다_100M.csv",
+      "bytes": 245907,
+      "sha256": "2e3266f566a95b1935a2c41dd51f577e4d0d3a7464fff6d073e3de517b5d22c7"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_다라_100M.csv",
+      "bytes": 2045846,
+      "sha256": "30243cb0b5a0049a7ac441a065cd770b53aafc760e05caf3646383d3f22cd75d"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_다마_100M.csv",
+      "bytes": 2421223,
+      "sha256": "df1cbc891f4a1b2203f5e5e9ddc5d6d4b6c7f4ead1467af4c17c6fbaf8aaa64b"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_다바_100M.csv",
+      "bytes": 3774808,
+      "sha256": "164b8a278db66939d51d708de3f39da8353daacffd281572d6b5ac9566993c22"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_다사_100M.csv",
+      "bytes": 4480067,
+      "sha256": "02056ab1c2d0fe1533b3f856e2003cb00ab66806c3471a8436f20bfa2dd489cf"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_다아_100M.csv",
+      "bytes": 215769,
+      "sha256": "1a1639b0e457676fb55a3f5fb5d1c6cf8d898a3fbffd61cceb1c7420ebbda96a"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_라다_100M.csv",
+      "bytes": 56,
+      "sha256": "4144b9dde3bbd5c141387acd4fc84d85d740e55b560874aec18fd8a6cca1bb5b"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_라라_100M.csv",
+      "bytes": 1384750,
+      "sha256": "3e7cb2e7d0beebda68e6c15e62091879ea9b5f5ad61db29e8737a1263a29b192"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_라마_100M.csv",
+      "bytes": 1852230,
+      "sha256": "3bb11029d53a0a2a865d5cf2b5c2d500079480aa76590c3462b817a33f06274b"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_라바_100M.csv",
+      "bytes": 1873530,
+      "sha256": "ae320f995e348237d2ed517176593a30f8c6ebe156888c76341e23d2873341a0"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_라사_100M.csv",
+      "bytes": 1830879,
+      "sha256": "e55e35d85bbe03e116e8d3d6baf598273a5cff74ff6f7d79e4063e5309f28aa5"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_라아_100M.csv",
+      "bytes": 323091,
+      "sha256": "f16d264da94a56e27b89c3cc720073e9654f4c5c6756b1c8f19de2992d6ab584"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_마라_100M.csv",
+      "bytes": 795427,
+      "sha256": "aeaa302bf32b7f1ef3cd8a6b26ebe015e602d1af3eebb3b0788e3cf6b6c12bdb"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_마마_100M.csv",
+      "bytes": 1947920,
+      "sha256": "1dbf6522654e9fadbe99af1e6d85247497a6385bb941193281939dfc6a98396e"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_마바_100M.csv",
+      "bytes": 860100,
+      "sha256": "b86056200e3361b918bc48862e2ce1a6693786de4d392cd028447b199279f1b8"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_마사_100M.csv",
+      "bytes": 568929,
+      "sha256": "f9a7fbdc45a72b4bfca7ef5d77f242ab52d9dc306f690d711512663a3d818dc4"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_마아_100M.csv",
+      "bytes": 14635,
+      "sha256": "bab346ff70d15139dd44ad6a911f8f36934087be39af0d1c5da797f9e4df859e"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_바사_100M.csv",
+      "bytes": 10500,
+      "sha256": "8032c60e26b064013a4ab0679f401c22c614367d9bc5477a0fec4ec650108398"
+    },
+    {
+      "path": "grid/100m/주택/2015/2015년_주택_사사_100M.csv",
+      "bytes": 6129,
+      "sha256": "624a7500bcde1aec675a507708f564f902965c9e907df5b626bbccfebed26534"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_가다_100M.csv",
+      "bytes": 592,
+      "sha256": "c40c2c177f92913b77ebade393750f7b9ecb19d741bc064b8bdc935156a809a5"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_가라_100M.csv",
+      "bytes": 843,
+      "sha256": "08fd876afe1238de52a3a1e2184dd0b25cb16de69264497e5c0886df73d0b895"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_가사_100M.csv",
+      "bytes": 7119,
+      "sha256": "e9decfb33bbbef074fce302f75a765bcbc6775bda106c3e052598c85096d3f1d"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_가아_100M.csv",
+      "bytes": 2965,
+      "sha256": "b8fd74324f534de5305a03a507fba480b084d4ba7d63f674cd98e169f18301b0"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_나나_100M.csv",
+      "bytes": 200760,
+      "sha256": "fdb5c62baa1747faf4b7e1c18b12393ee665fd2e6830807a98425f9c7c7f1668"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_나다_100M.csv",
+      "bytes": 20996,
+      "sha256": "5a22becf28cad7e728a1730eda28b069e9e2c68261c6f1e7ae980f2458ef9daa"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_나라_100M.csv",
+      "bytes": 378939,
+      "sha256": "a6e2ba1e90c9649ca50219411f6b21ceb01e282023f411f6453cd4b3e93cbdc4"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_나마_100M.csv",
+      "bytes": 8445,
+      "sha256": "9195c2fed952c0ad51c0ae3d82b2c94b71868988da0e05ff15988641d55cb4ab"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_나바_100M.csv",
+      "bytes": 296563,
+      "sha256": "2e9e571f89a22f0a04933bdc0790fce04c870aaa3c84ba813b9aa900a8e29ef4"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_나사_100M.csv",
+      "bytes": 47789,
+      "sha256": "b84356b508739023730d5924edd63ca1b03812fd92329da9820ae0064a3f86bb"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_다나_100M.csv",
+      "bytes": 267734,
+      "sha256": "0b9f2c3e8beb0031fc1052557f9d8a38db0afd9304a1fb001bf89fc81b6b2e96"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_다다_100M.csv",
+      "bytes": 267444,
+      "sha256": "f854d0d53480b3e2407286b45eca7100059ed974421950966d7a4681c95a1b3a"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_다라_100M.csv",
+      "bytes": 2112844,
+      "sha256": "d141472e20a61e93acf17b613fc9ff502abb075c8026834554627b2419d5d149"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_다마_100M.csv",
+      "bytes": 2474194,
+      "sha256": "6f499404a882e6e21b20b8b7178ff04f6f2d1e2346752d0af4705c39a14d5f3e"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_다바_100M.csv",
+      "bytes": 3906813,
+      "sha256": "936a08117bf0ba9bb9184db12606f8a647d3d2c1ae1b3fe3536236a4a5b70631"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_다사_100M.csv",
+      "bytes": 4723628,
+      "sha256": "b59b4a742bd2a11757a776ba0ddba73750493afc59b38c973510dd5be8387a17"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_다아_100M.csv",
+      "bytes": 223381,
+      "sha256": "ae15c3ad024d10c51bf3b4a47aab9e5cd4ed78b2930d366247074304ebe34002"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_라다_100M.csv",
+      "bytes": 56,
+      "sha256": "7ba9af9944fce16afbabd23b289d3d88e881d328234d25d4eff69f2d79908cb5"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_라라_100M.csv",
+      "bytes": 1442387,
+      "sha256": "fefabc1e08d9187844f37ffe8f2f9f3603d17d2ffa5e23239ab9dd127daad36d"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_라마_100M.csv",
+      "bytes": 1957323,
+      "sha256": "7e9eec1edde4a894a89f837258fb12922d9a111b7ecb81b4717a954d21cab14f"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_라바_100M.csv",
+      "bytes": 1995572,
+      "sha256": "91380a443a94ed5244ad63238541af849e43f770f7b5b37367007e56f60cb195"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_라사_100M.csv",
+      "bytes": 1990252,
+      "sha256": "3f3c30ae811f2b4de7793d7bb42523facf93cac0c63e98c265748d847fdaefb0"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_라아_100M.csv",
+      "bytes": 346190,
+      "sha256": "6da02960f84e96fa832ab31d5362fd22356c79f5678fb7c05315e65f86e9415e"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_마라_100M.csv",
+      "bytes": 800494,
+      "sha256": "8fc06794919d13c2903195cde732b43c3049a7ec9421786fa461277c2f8ca502"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_마마_100M.csv",
+      "bytes": 2030816,
+      "sha256": "c37e287b80c5d02892625365695450ce8dbb83980f8189aed092761596537ad0"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_마바_100M.csv",
+      "bytes": 889620,
+      "sha256": "3d498da104aba8679b624e6e67e478a0091b43434e2b178032afdf1494f551d9"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_마사_100M.csv",
+      "bytes": 587657,
+      "sha256": "a2a6d779651d11dfd1c54f7b64f10a4632f5c6299f18e73712ad16527dcaf075"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_마아_100M.csv",
+      "bytes": 15782,
+      "sha256": "233b8040d29a7fd9e9fd083347a201e7f58f715dfbc986943e5f2a92c3b610ff"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_바사_100M.csv",
+      "bytes": 9491,
+      "sha256": "3dcb4d0751ddba0215ffa0f24d09fb8f18b45cf8b057113c7bc0a87ffabd9d35"
+    },
+    {
+      "path": "grid/100m/주택/2020/2020년_주택_사사_100M.csv",
+      "bytes": 5433,
+      "sha256": "89feb428eed2cb58584bf96fd3d48ca2db368f9e6fd302bff9e489af4ce7e20d"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_가다_100M.csv",
+      "bytes": 620,
+      "sha256": "1c8009aa228da8e0eb581e448c140f81434351d0e82d11cbcc89e536b20f11c7"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_가라_100M.csv",
+      "bytes": 593,
+      "sha256": "d451e2432ce07f4822faa6bea03da08575deef186c0856044f0f1c0dd4e4f880"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_가사_100M.csv",
+      "bytes": 7598,
+      "sha256": "75f807e9405a91e74b8bf35ed08ae1562b583ede28655d1d817ae803d9738a79"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_가아_100M.csv",
+      "bytes": 3081,
+      "sha256": "dbcaad88786344e4f9b15c953c443df6e93c9c7f9d768874d304acc583c2d3c0"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_나나_100M.csv",
+      "bytes": 220386,
+      "sha256": "a4f4b353e8de3942dd330b4711ec3872a8fd4c5b57f9acf8775141c2c85b3fc9"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_나다_100M.csv",
+      "bytes": 21326,
+      "sha256": "b10f05f04ecc91e1279616605ab0c2f52c08f4d2e94c46cb14f077c3b8e65067"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_나라_100M.csv",
+      "bytes": 385669,
+      "sha256": "f22ab6304e8a5aa8371a02cf6a419db773ca3a0943ed7f5642f9e148c297283b"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_나마_100M.csv",
+      "bytes": 8641,
+      "sha256": "b0e9deba7cb7df0b4d425b988d857bb78ae6d4e8be2c3d15426b055759896019"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_나바_100M.csv",
+      "bytes": 301163,
+      "sha256": "a80acc6065f37eca7402556e48799464880b63830186ab873fd17dd19f895475"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_나사_100M.csv",
+      "bytes": 49702,
+      "sha256": "ec30c6348f77a3872e134e0cc7ec166830adcf28bcc97f3ab2621e8b9bfc7d47"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_다나_100M.csv",
+      "bytes": 279763,
+      "sha256": "bcf25f75590dff0ec7403349e1d0068cfc2e7ab2c7453863cb8a46a034c3f347"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_다다_100M.csv",
+      "bytes": 279320,
+      "sha256": "806fc88bb28eeeff36e8dc3944ce1895fe129fdd4271a0d451109e6bbddd6b7c"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_다라_100M.csv",
+      "bytes": 2148030,
+      "sha256": "fe3e1bd6a9780611ff757e5d578bdcf3d53b038517b31f16684a9f14d533e518"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_다마_100M.csv",
+      "bytes": 2498215,
+      "sha256": "53cfd48ec58d321d25615fc6af2a17e7b1ebcc1a8d8ed29761029c3af6ac128d"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_다바_100M.csv",
+      "bytes": 3958833,
+      "sha256": "1c38d30f2446bd151a9f4881888de85f37e8341c41b8dd11440869d8c65d64e7"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_다사_100M.csv",
+      "bytes": 4820046,
+      "sha256": "89fb35194e3c76e07b9637801c1a9519f22efc10a73536f1529f208fb9cf3c20"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_다아_100M.csv",
+      "bytes": 230207,
+      "sha256": "dd0e95ae4046bbfe1bf1841ef24487e47bd3f9c84dc0a4e4812a48f040a5a736"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_라다_100M.csv",
+      "bytes": 56,
+      "sha256": "75c3a3e6e4bb8a6a75f8e8fa23302e023f774702e1eb558e1ec8eb963279ef87"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_라라_100M.csv",
+      "bytes": 1469433,
+      "sha256": "43b740a12f788d96fc39d03c561fb7a894aabbb4ee544d04f1e6b3999b39cb97"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_라마_100M.csv",
+      "bytes": 2009222,
+      "sha256": "63f539b05db7f3b4b9ea2a6a9464ee2a924b5bc383c307b8d3d2797215588151"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_라바_100M.csv",
+      "bytes": 2052074,
+      "sha256": "32785e55912f7bd2dbd2bb75dca2bf12b437752ab9d83f78fa5c3272324156ce"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_라사_100M.csv",
+      "bytes": 2074053,
+      "sha256": "eae6c6c646d151570297c66572ebdb8e9e2f5336df69504f004a9279f327b4ca"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_라아_100M.csv",
+      "bytes": 361879,
+      "sha256": "37bed76a8aeff6c0023c3011409db8f1f530de763534d8310b531d37637831c6"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_마라_100M.csv",
+      "bytes": 797523,
+      "sha256": "ce152baa88b07a615c7e00de990e19f10cb093d99e88f16c62ab185c143e5be2"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_마마_100M.csv",
+      "bytes": 2068793,
+      "sha256": "cc657f8f1aa7f8765b65feb57810ba77721a5e617afc8803cb4f1c201a640901"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_마바_100M.csv",
+      "bytes": 905033,
+      "sha256": "5d8c4a386af28bc59f25d1a64f7b22dc7be454e40d78d4fe73bc761c409f63e1"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_마사_100M.csv",
+      "bytes": 596760,
+      "sha256": "05ef90085c229834ec1b0ae7b0600d891a5275ecb5ad5b4f23f336eb0edbe5f4"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_마아_100M.csv",
+      "bytes": 16874,
+      "sha256": "3c657e70aae7c4245f4a7af8956e948547f6d986f07d51fd9fdc5f7a99402da5"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_바사_100M.csv",
+      "bytes": 9857,
+      "sha256": "95b67986b548b54434b4badd162a6a25ab3c92feb3c3875d7ead548351610a18"
+    },
+    {
+      "path": "grid/100m/주택/2024/2024년_주택_사사_100M.csv",
+      "bytes": 5266,
+      "sha256": "647f2b3ab9d33e63526903710194e2bf07a463f34766f2838b2ccbb2107a506c"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_가다_100M.csv",
+      "bytes": 308,
+      "sha256": "a1621472abeb2ec129d2841cb3fa416bec59cbaed72e6751cc7a846e0ac67ba0"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_가라_100M.csv",
+      "bytes": 563,
+      "sha256": "ebd63386e9b1318d4cb6d1f62438a9b4edc8cbf68af0c7064e4c9565736827a8"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_가사_100M.csv",
+      "bytes": 3810,
+      "sha256": "76d0af43c2f9f08de7322a4c71559f3f1d7ef6e9d41c900f089241f99bad1fd0"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_가아_100M.csv",
+      "bytes": 2135,
+      "sha256": "5679842c8bc108944a18e58eecc27ec030a6d605e1e1276b3287924a71b7d971"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_나나_100M.csv",
+      "bytes": 79157,
+      "sha256": "0c6e94179f182054bdcc4f2b45456e3008183b169cb71ed7c673c863b71438b3"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_나다_100M.csv",
+      "bytes": 7314,
+      "sha256": "4f17be82be37788ee9e9c5232f81ab857b9bb4fa1b975b8590d418f68097df09"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_나라_100M.csv",
+      "bytes": 129532,
+      "sha256": "a8a2240d6bb745a475d1de4e1b7ac17a6ca8455bb996be08f73d6eb28261d82b"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_나마_100M.csv",
+      "bytes": 3948,
+      "sha256": "9dd84ba683778472a96aba89841ca370a5481bd24225e3cd195e29627103ce8e"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_나바_100M.csv",
+      "bytes": 57083,
+      "sha256": "7a0d45d332acaa2f809d458f36f5553c57bd3682b526296cda24680d8727b193"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_나사_100M.csv",
+      "bytes": 14962,
+      "sha256": "d0fe8051bfd54755cd1bf439688ac3baf74a53f10a453f54ee73f8b0948232bf"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_다나_100M.csv",
+      "bytes": 128649,
+      "sha256": "41761453b705453db09f3789b3bec5661604062e6cd37f983b45c74fadf38751"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_다다_100M.csv",
+      "bytes": 136895,
+      "sha256": "18369add45f82250d642d087647759953ed6984f99df6c6d059990047a2cf448"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_다라_100M.csv",
+      "bytes": 795715,
+      "sha256": "b6873d84be80e104aa079195d70ba2b036b0803b96c457e91bad6ea5b2b1b0cd"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_다마_100M.csv",
+      "bytes": 907772,
+      "sha256": "eaad5812d7238d551ce02c1ec219d977e4eb19adca1358e75a3868d032cb8f65"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_다바_100M.csv",
+      "bytes": 1675810,
+      "sha256": "a3935027f336eee8b85086b7518a90bce084d4822107af28c842cccc6469b479"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_다사_100M.csv",
+      "bytes": 3964213,
+      "sha256": "4e32407db45f1d1d9104a25f6bceff04e75208e17194552180c3e9393183e8dc"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_다아_100M.csv",
+      "bytes": 79801,
+      "sha256": "70b813e70851c87ab1e51a01abc150ac06b11be90e8ace84081a6bd25a2d6804"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_라라_100M.csv",
+      "bytes": 662777,
+      "sha256": "bf5c492e541f8124ec345bef377f649db00a454158c1ce259df2566f741f478e"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_라마_100M.csv",
+      "bytes": 939293,
+      "sha256": "4ebc06f0ec106cc8aa91922ee01d83e1d472191a1fcaeb5eb0368d6ec358d4d7"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_라바_100M.csv",
+      "bytes": 583084,
+      "sha256": "d7a2c53ae0ee4d41d99808b65ba3a034f3a4f767756dc5755a048e7ab889047c"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_라사_100M.csv",
+      "bytes": 615352,
+      "sha256": "54695354f3e4c6d40e63d45c9db3c91499f86a86bc95bb241208e792baf8cfa5"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_라아_100M.csv",
+      "bytes": 130084,
+      "sha256": "4a13eb21a14178c566aaa9bdcb6061a07af7e8bdc8ea97d3b34adaf28a4cce4a"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_마라_100M.csv",
+      "bytes": 815718,
+      "sha256": "4ed86e71a2311fbb302cd7602154284ea01dfa11f56aab0e7e9f2d553edd5ffe"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_마마_100M.csv",
+      "bytes": 1222422,
+      "sha256": "0e8f4ba5b802e65a168934006b4759835b38a21d670a16de043393c9a492ba6e"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_마바_100M.csv",
+      "bytes": 220235,
+      "sha256": "7e6185d2eb74b34934e51d96a0fe7f0ae512adaded97d64b079e7339ae35f92d"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_마사_100M.csv",
+      "bytes": 240748,
+      "sha256": "1e38b012fb03be931cb48ee74db8130f236bca34f865b0108454e7d3f321322a"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_마아_100M.csv",
+      "bytes": 6556,
+      "sha256": "93505d8c0829deba5db4a3a7e4f51c5b8c72c5e2ecc6430f603877ec77c20c05"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_바사_100M.csv",
+      "bytes": 4233,
+      "sha256": "dd5f447f9654d13a18966b245c58a60ab7556158a1e9a1c55447d754a030e8e2"
+    },
+    {
+      "path": "grid/100m/사업체/2015/2015년_사업체_사사_100M.csv",
+      "bytes": 3604,
+      "sha256": "83961ef758c7672d33229d398859270da6f7fd336f0184c5b8998dc509bcec2d"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_가다_100M.csv",
+      "bytes": 420,
+      "sha256": "9f0edc9c4430856ff5676f6f749af5d4b162b1e2492658602c71c404f7db3412"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_가라_100M.csv",
+      "bytes": 674,
+      "sha256": "63be4625593336db6b1b549eadd66543ca3391ab1c4f4aea5e0e2d7aa67a9cd5"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_가사_100M.csv",
+      "bytes": 4287,
+      "sha256": "f698697e4139d98df1ed77225651c411c892ef5450ac1094e52f360e0675b526"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_가아_100M.csv",
+      "bytes": 2499,
+      "sha256": "78e64f8257fb48e2219bb3e5d0d4d4108025dcd78d74fb06c3a26214858c326d"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_나나_100M.csv",
+      "bytes": 151443,
+      "sha256": "8244d8f35a24f81b50b187c2934695e4df0a3a98251d8528e8e97911881e899c"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_나다_100M.csv",
+      "bytes": 8664,
+      "sha256": "218735e288f3e7af55c765f25f47052d8b6c10c41b9d4a05ffd77d4dab8026d9"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_나라_100M.csv",
+      "bytes": 177631,
+      "sha256": "55f5af0d6fa9e81e615cec104cf5f75b7775352fb2f854379874f3e457904a07"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_나마_100M.csv",
+      "bytes": 4424,
+      "sha256": "1a98b7ce4b70e6d4a6e702381ab914da8b3d9b3050bd36cc0e63c868bb745514"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_나바_100M.csv",
+      "bytes": 85674,
+      "sha256": "0a504c21263cc1a6d64f4508a3c8ae15059bd22970526f4db16874d0996e8eac"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_나사_100M.csv",
+      "bytes": 19165,
+      "sha256": "aa61fe8d56f01ae2c649030dd45cef0241fed2bef803677d54c139b33d1010eb"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_다나_100M.csv",
+      "bytes": 209374,
+      "sha256": "738b2081ef10e05f49dc003374efc37c5077f390766b26b7bb83dd1d8464496c"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_다다_100M.csv",
+      "bytes": 197083,
+      "sha256": "08ac67f52abec2b044c23ae8e81c38b187240f5e970e5e2e18b31329571bd983"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_다라_100M.csv",
+      "bytes": 1137619,
+      "sha256": "2bfbbae645ad9f06b3bf656c9fd1eecc5de6c508ee7c21880a12bfde67c5a437"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_다마_100M.csv",
+      "bytes": 1399002,
+      "sha256": "7cd70ddf0609356640c35ea86ac01c02940f9c6f3c5edcc41c55c2cdc224b634"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_다바_100M.csv",
+      "bytes": 2423856,
+      "sha256": "a1f3bb69832ee0cdea4ce22dd5949293d405e51f09a55530ec4946515283f88f"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_다사_100M.csv",
+      "bytes": 5268546,
+      "sha256": "f4f62811c49a672108999198bd2662d633d0f56908d7f1c66b4093e5b8bd9a37"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_다아_100M.csv",
+      "bytes": 113988,
+      "sha256": "bbcb5a00f2aa18f4630651fa5a268ccb6ef6a809ece82c84f4bd2357369f6c58"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_라라_100M.csv",
+      "bytes": 872785,
+      "sha256": "5e6da6478323392f2d5461d0fe92de8c917286a09b10e098deaff73c0f049f40"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_라마_100M.csv",
+      "bytes": 1241465,
+      "sha256": "ba675f249b387a1b431beee4c9dc1db6406b551aefe94f296b0548150456fa5e"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_라바_100M.csv",
+      "bytes": 917443,
+      "sha256": "c0c3a3c79a9a8f5cf256e9438887fb3dac17d85fc7271e66b115a48e5bcc392e"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_라사_100M.csv",
+      "bytes": 877677,
+      "sha256": "3d61a223d7e998e21a0522dfc7e0f5b9fbf3672f44d76144778455611ef4d013"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_라아_100M.csv",
+      "bytes": 179608,
+      "sha256": "ceadfbe4089db8941fb190391eb07c3139ccaf8876b5f130b7660a5f7237ad8d"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_마라_100M.csv",
+      "bytes": 957931,
+      "sha256": "d34e38fd4a4091c38a8c7da9c8baa4dd755fa6ad819b90ae966b72c495515156"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_마마_100M.csv",
+      "bytes": 1564006,
+      "sha256": "1cb542ae99bf9b1986e24bdf2f6cd7ee8249a9af93dea6061dc2a95f1245ca86"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_마바_100M.csv",
+      "bytes": 307539,
+      "sha256": "90cfddfc74d683ed42291a326657e8d4c1179cb5539ead58b7d047447472c15f"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_마사_100M.csv",
+      "bytes": 306504,
+      "sha256": "9bbd39f5e88b72cff87e1c678d342523c2ae8ba14308138e1186182e0a509992"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_마아_100M.csv",
+      "bytes": 7622,
+      "sha256": "385919a5089e94a76a964c22b5dd7af03158a36cdf3deacd3f14dccf2efb54b5"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_바사_100M.csv",
+      "bytes": 5046,
+      "sha256": "a7b453a98039aadca13a2d7f9d0d746616d72ca3b4bf3dd4a912d18f2719e91c"
+    },
+    {
+      "path": "grid/100m/사업체/2020/2020년_사업체_사사_100M.csv",
+      "bytes": 3694,
+      "sha256": "e371ef2c5a0bf3143204325a937ac19d5fb00e1cbdbe1c14c0829e2aa9ccd841"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_가다_100M.csv",
+      "bytes": 476,
+      "sha256": "2a6eff91d7ba4db7dc733bb57336ae00ed1a05fe9223872000eebd8a641e5962"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_가라_100M.csv",
+      "bytes": 564,
+      "sha256": "06941fa46fe134c727d1abbee1ba5f97039aa9c208736e21802bf65fb32d653a"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_가사_100M.csv",
+      "bytes": 4596,
+      "sha256": "3c527e8610e2d65ff396c8cf090450f49b591c0de1e181927f80da2f015d710b"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_가아_100M.csv",
+      "bytes": 2750,
+      "sha256": "1917d91fafb7e68e9b5638fa680c54920938eff73f502a409dfb469c1b19260d"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_나나_100M.csv",
+      "bytes": 174728,
+      "sha256": "1fbc78b92c2aaf2c69736f692b986c973cdc9cef975f8b2c650e9a40e99af5c5"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_나다_100M.csv",
+      "bytes": 10206,
+      "sha256": "593af829aea358ecc7f55346bb0309850b1485039b254d1d381a67cef65807d2"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_나라_100M.csv",
+      "bytes": 195562,
+      "sha256": "44439f8f9714bdc26224aecce62b045a5bfc461cb3229e18a99ae68be21e8fa1"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_나마_100M.csv",
+      "bytes": 5293,
+      "sha256": "b5ceb357e823c3bc392fe9609b2f1cddee909ed9ef1ba8a5ad3ab58ac1eee319"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_나바_100M.csv",
+      "bytes": 97409,
+      "sha256": "210dc3974803fa214c33be9343fb1363e6781992b50f506a60b503b33dd4ed0b"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_나사_100M.csv",
+      "bytes": 21880,
+      "sha256": "8127397bb55b1addfd7c2bcf0ecd15884259aff02823f61512e6a12d0e892787"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_다나_100M.csv",
+      "bytes": 229099,
+      "sha256": "0998aea4c76b6b6a19d81836b6cdd62145329131d4bcbdc0377b556c2d969c17"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_다다_100M.csv",
+      "bytes": 216649,
+      "sha256": "685dee85dfbb822ac41917e622e14d210a29838c4040dd64a97441d43e0ac8a0"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_다라_100M.csv",
+      "bytes": 1318395,
+      "sha256": "46fa1ddc41526298d936128d8f24c647dc819a11dc76d72f036076a492607296"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_다마_100M.csv",
+      "bytes": 1631553,
+      "sha256": "833053baf52256ca9f9de4d29997a7277051d8f8455baa290f1661bd60564e32"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_다바_100M.csv",
+      "bytes": 2698995,
+      "sha256": "89047d880fab80d11cdab7800c143ca3d35ac20eda25090b9b8a84663eefc6d9"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_다사_100M.csv",
+      "bytes": 5462025,
+      "sha256": "fa04bfeb4701cb67d2d3fc01cfab998df5235d312cad19f86a3899811bc7107d"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_다아_100M.csv",
+      "bytes": 130699,
+      "sha256": "9402e031adcbc46f5899fd555ea1f4b2f8504ba7f381176c0b0e6de3d84f73e2"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_라라_100M.csv",
+      "bytes": 989706,
+      "sha256": "2587623a066a8cda3b476b11915c89781456fe3a4e0af73d86b345b642dcbd09"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_라마_100M.csv",
+      "bytes": 1407360,
+      "sha256": "fe4ba3b5d15a439ba79dc1dc083ffe4bc80b283469a3d917ff361ac49fb80ccf"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_라바_100M.csv",
+      "bytes": 1100483,
+      "sha256": "e4e48faed4e95101241add466866bd3c70bc268525900597479d3522bd17589b"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_라사_100M.csv",
+      "bytes": 1018955,
+      "sha256": "0683fe3aac00b86c3db3835fd4937337631cdcbdbf05b3fdae095ccbb4051a2c"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_라아_100M.csv",
+      "bytes": 204139,
+      "sha256": "4f749c7b3a47434ecc58020dc763053ce31484b636114b11bfa5461cd5aab70a"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_마라_100M.csv",
+      "bytes": 970583,
+      "sha256": "5577eb851b004a50c4e026104015432b0886237bd5b0a7ad8ff96d70245ea4e7"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_마마_100M.csv",
+      "bytes": 1700350,
+      "sha256": "5b4df09cb1012342e37f9d449e794c5b18b603946129b2c93d075f5634785d17"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_마바_100M.csv",
+      "bytes": 379688,
+      "sha256": "a4148a9354393404cb42ce285a1347d067f2bef64273be2edb019573231560e5"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_마사_100M.csv",
+      "bytes": 337451,
+      "sha256": "f2cfc8f9638707e6c7febd398a682e98f9363ccda8ac50cceadd9a9e714c5ab3"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_마아_100M.csv",
+      "bytes": 9641,
+      "sha256": "9f6eb202be5637fff78246a12e532ffe3476f56fdf5803a8ddc45077c606f7cf"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_바사_100M.csv",
+      "bytes": 6730,
+      "sha256": "846c5300da81336f60f7b7433a21c75d59563873d4d5eadca4bf22d4e1a24e4d"
+    },
+    {
+      "path": "grid/100m/사업체/2024/2024년_사업체_사사_100M.csv",
+      "bytes": 4036,
+      "sha256": "dc03e2a942830ed9d6d631412b0e752afcb319c73eb9df18be2f857bc1d8444e"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_가다_100M.csv",
+      "bytes": 310,
+      "sha256": "981a129bfb10c489d5b4d844ae4545922b67dbed64cd100aa307417409cbebc6"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_가라_100M.csv",
+      "bytes": 568,
+      "sha256": "626974b827348d74fcfbfa3e99fde3fbfcde417b97c2861a18a6330e8f79c540"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_가사_100M.csv",
+      "bytes": 3838,
+      "sha256": "0f6c49da376599dc03fca642a7a7ea49330f9090781c7329806e0b036e94f6ce"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_가아_100M.csv",
+      "bytes": 2146,
+      "sha256": "f4c586d65f6ae4f3c3e2e6f96a284f684257531513493ca7b72d9b30a666fcba"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_나나_100M.csv",
+      "bytes": 79814,
+      "sha256": "c9bedce678c61cb4d67bd65f0f8e85b2177673f257c105166f19be7f3c8d4a89"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_나다_100M.csv",
+      "bytes": 7360,
+      "sha256": "90d0cf197730ca46e8957d53d140c825cc43412e260c220184b114f7652b9929"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_나라_100M.csv",
+      "bytes": 130436,
+      "sha256": "440e6d407c99ff6d06310c65e31ba96ff215ff37e9ebb38ce120be08cc12d171"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_나마_100M.csv",
+      "bytes": 3965,
+      "sha256": "8a3838812b586037e970b891535ca445ab9d169828ed9a42dc7e8adf023e111e"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_나바_100M.csv",
+      "bytes": 57443,
+      "sha256": "b45ca221a5c98338908ed697640ce038fc1ae327f85a9f5806428ac9bd873a79"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_나사_100M.csv",
+      "bytes": 15018,
+      "sha256": "0b8d2a11ae0a71e65c309bad3f1fdf9b21a90229735ff153e9211b86832a4820"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_다나_100M.csv",
+      "bytes": 130199,
+      "sha256": "965c5eda58e26beaecde96682a0c512b0203c99590ab917ec2978781f14c0e51"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_다다_100M.csv",
+      "bytes": 138632,
+      "sha256": "2786756e266c2dd4016d495b1611b92bdce1c76adc96b4b324ecac18b3668ce2"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_다라_100M.csv",
+      "bytes": 805795,
+      "sha256": "533561fc25b73e3f43764f115d6f68059b2b0e9add7308991700044359d18266"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_다마_100M.csv",
+      "bytes": 918274,
+      "sha256": "57fdf8fb2a023217751b966f0b75158c93e0cc62f4a010286418f49d623fc863"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_다바_100M.csv",
+      "bytes": 1700743,
+      "sha256": "853d13316b6307137d66b4997261cc8a1d319c1ef6d4da988bc4cfab7d0128c2"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_다사_100M.csv",
+      "bytes": 4037548,
+      "sha256": "fc4619b87c4348ccf74298b5b42ec0ff55dbf9bb80f048197aaf4a07cdbc6bfb"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_다아_100M.csv",
+      "bytes": 80472,
+      "sha256": "49fdfcf1fc4bc56ac24ad93487f625e50f751e8a6068ed537401ca42054d08dd"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_라라_100M.csv",
+      "bytes": 670800,
+      "sha256": "231a884a77e5b1606f203840d564b28ccd761ce889a72f88fff00d7e6d1b9fd8"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_라마_100M.csv",
+      "bytes": 952289,
+      "sha256": "7f874469edab37301364f75497dde88d075e20e80c5d17f2e4f980f57d82d358"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_라바_100M.csv",
+      "bytes": 589171,
+      "sha256": "efa13deeb0c6e879e6f3695feb77c84c04b84250219ed906e9dd9e35f0ed37e2"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_라사_100M.csv",
+      "bytes": 621707,
+      "sha256": "cff00787d0ed3706d33962ec4cfa929dfce69dce92840ece1942a018e62ac2ec"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_라아_100M.csv",
+      "bytes": 131284,
+      "sha256": "7f6cd4adaf03127d27d9dd04823c88707778f8d576d2821a23ce675dacec3a3d"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_마라_100M.csv",
+      "bytes": 830471,
+      "sha256": "c00daf6b9599100d8a778f57965dedb1b2802e1caefc72cae7a6bbe7df8b3cd6"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_마마_100M.csv",
+      "bytes": 1240384,
+      "sha256": "0625c0d00bd7bc075b8fdf45ec73fba18d2e04e880edd4b1b1fa025532a6e35b"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_마바_100M.csv",
+      "bytes": 222194,
+      "sha256": "787c38899b64cbb77371706350ade01988c73229ea304558792afbde8888d35f"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_마사_100M.csv",
+      "bytes": 243386,
+      "sha256": "1b7bceed7ad097e9ec5f3598c70b369e5d34d947b0857e1cecdbd38d7ebb2828"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_마아_100M.csv",
+      "bytes": 6590,
+      "sha256": "623fab4b42f2b338b01fd81da893bad1e679996a2ba43ab639efc74efd60c879"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_바사_100M.csv",
+      "bytes": 4269,
+      "sha256": "c57280bdd92790a884017e2e6302f901f7e39779607e24900959e2e69f88e72f"
+    },
+    {
+      "path": "grid/100m/종사자/2015/2015년_종사자_사사_100M.csv",
+      "bytes": 3647,
+      "sha256": "5aa4fd6a6ed9bea9dd6fb9674785808ba692e87ff55cb5dc99db628d475f5c6e"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_가다_100M.csv",
+      "bytes": 425,
+      "sha256": "bc8e9c8f7f2a036e08694be7272cce8c43d2fa645fc17905b175e6c0a4c46658"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_가라_100M.csv",
+      "bytes": 679,
+      "sha256": "34dc60145e63563654fe5c9babb996504faf4787430f64d872cc92f2875c78cd"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_가사_100M.csv",
+      "bytes": 4322,
+      "sha256": "fbd2fdb6b11fb70fa6779898c1185607d11cb7e28ea3a3686c5f9a7862beba3c"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_가아_100M.csv",
+      "bytes": 2513,
+      "sha256": "7f4bef7b54223e165c08a09fd870726f7830564169856eba2bd92de9dab893ec"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_나나_100M.csv",
+      "bytes": 152296,
+      "sha256": "306c85bd92523e20d60c34d6903b0a298ce02fb888117f9b9996cc5dad06d6c7"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_나다_100M.csv",
+      "bytes": 8715,
+      "sha256": "53388a63e8421d03c4985dc776555f0c3f1efc374e4ecf5e45d1a746a5223ae7"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_나라_100M.csv",
+      "bytes": 178612,
+      "sha256": "4c923fbd840c8bdc3763b860cdfeeea23e9db67f11b4985880e7f1f38b04eaee"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_나마_100M.csv",
+      "bytes": 4437,
+      "sha256": "d6ed02b5d9a3b6aa9254382d4d787bac044cdd1ce0803e396f165f08cc2ffadd"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_나바_100M.csv",
+      "bytes": 86116,
+      "sha256": "19017b9eb802c43462ec40e3b2399bddbe3bbfce176c3bd03a50d2441dab664a"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_나사_100M.csv",
+      "bytes": 19232,
+      "sha256": "314d574ce7b0e92e3dc6d0aedf0af9b37b8b952d568a88a7d7c0c85ea92adf5c"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_다나_100M.csv",
+      "bytes": 211158,
+      "sha256": "19c16c84e9ab36f70519602700a6a238b31ce939d779c615d810d12c425f06af"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_다다_100M.csv",
+      "bytes": 198858,
+      "sha256": "c2d73adcbbfc466b53eee28d474cdcb89e6e17360eb22e98ba2e52bdf532b120"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_다라_100M.csv",
+      "bytes": 1148362,
+      "sha256": "f3e8357fb56da9cf47d76ac71adbb08191690e5103cc249a5374929bedb79978"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_다마_100M.csv",
+      "bytes": 1410186,
+      "sha256": "191cd3d96b8d880bbc2362b3b62762493e45f00bb8559bb48399b919a0dd2bf5"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_다바_100M.csv",
+      "bytes": 2452243,
+      "sha256": "72b8b9daabf0d7865b7f5f1d91b65ed7419219796a3fb22b1bb5f81a3d696c2d"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_다사_100M.csv",
+      "bytes": 5344271,
+      "sha256": "96c38b45166533d2d21b3fe0ae9959ec84bff3b7d3e7385972ea486deefd4c7b"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_다아_100M.csv",
+      "bytes": 114734,
+      "sha256": "5c7fa4d7f63238cf4797f13f76b6eeede47bc0e2f4e23f743d706c7349f22a09"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_라라_100M.csv",
+      "bytes": 881193,
+      "sha256": "5d75b3e634c3b13153e7034f36c7edfaa29a4737d4450b85b25368ebfae82ad7"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_라마_100M.csv",
+      "bytes": 1254764,
+      "sha256": "63f3e501cbc6cae354ac4da2a4365ac5489efa9fa7045d052357001be94a1440"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_라바_100M.csv",
+      "bytes": 924540,
+      "sha256": "113021c39c508723874768158a0b6189f60e96a5bd25001876d556842f8f9e13"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_라사_100M.csv",
+      "bytes": 884812,
+      "sha256": "6c46272d06282b28da723ea53fe6ea02e1123ef0c31933f8c3a660e8820bf7c7"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_라아_100M.csv",
+      "bytes": 180955,
+      "sha256": "5e8e82e9f67aa1783fc5e72e95994c1120e2c8388abde07c9a104884b6d040cd"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_마라_100M.csv",
+      "bytes": 971821,
+      "sha256": "7030935c2f4ed523531bb425e9e20500c8e3d655ae18b4b63596490e404bfa3e"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_마마_100M.csv",
+      "bytes": 1582276,
+      "sha256": "8a111217ac8268ce0c4e1d1e1a7747753fb8916c78bc4e037841f92d902e9247"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_마바_100M.csv",
+      "bytes": 309713,
+      "sha256": "6b082cf55820bbeb2dfb4845b4e1aaad8d7821cf8abf12e912fca8347e894fdd"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_마사_100M.csv",
+      "bytes": 309363,
+      "sha256": "ff9c209a5b9be424d73a5870b48a5eed084c6214c23148ca39f53e9c858a7c61"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_마아_100M.csv",
+      "bytes": 7662,
+      "sha256": "e01d3616913ab1c3872d298ef490e109f0e64a479b2509fb69ca2a1a578a193c"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_바사_100M.csv",
+      "bytes": 5084,
+      "sha256": "d674c91f48c6f811f0599a5bc7d7fb68bd156cc46df3fcdc9930fe3876843a8f"
+    },
+    {
+      "path": "grid/100m/종사자/2020/2020년_종사자_사사_100M.csv",
+      "bytes": 3733,
+      "sha256": "a6834faf074bc78016df696cc077f74eeb40bc5188d4d098b6a2aa84ee15a0b6"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_가다_100M.csv",
+      "bytes": 481,
+      "sha256": "2b9559d3f96e3714dfd653825b1b626e0e2e60e86cc01474aaca0c5e18da441d"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_가라_100M.csv",
+      "bytes": 566,
+      "sha256": "610e809d1c87d4fa64bb59b61068470669f1fe0368fea35f3aceee4ccd8e41f6"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_가사_100M.csv",
+      "bytes": 4623,
+      "sha256": "4aa18ab4d22b2a50c652caf7c4da298ddbcb06f50d6cffab996a60547295d268"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_가아_100M.csv",
+      "bytes": 2766,
+      "sha256": "448911f1670526a9081e17b8c7498c2dc5aa953134c7d99abb00aa67881bbde7"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_나나_100M.csv",
+      "bytes": 175559,
+      "sha256": "03801b3a06dd438ddf345af8f2d7f3fb827fea559588016c248aa137572d4399"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_나다_100M.csv",
+      "bytes": 10247,
+      "sha256": "34b282b556b67a2ed27af39d41910231e7a1df672fadb1f893e8d0bde8178962"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_나라_100M.csv",
+      "bytes": 196597,
+      "sha256": "58116e0afd9b62aafd5e18027dba800a49046a2f46c5c9566d7a699c0681f871"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_나마_100M.csv",
+      "bytes": 5307,
+      "sha256": "8e5e872708283153bc5c5f85e146f19091be21bf04be1772d11b0617605f7595"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_나바_100M.csv",
+      "bytes": 97815,
+      "sha256": "49756bae8d60e15bcc7d96d00bed79d233ffdc2968569c2dc7ef0e0bcedae7c6"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_나사_100M.csv",
+      "bytes": 21940,
+      "sha256": "eb88cbf211b3e48eda8ea7b313284921b5b005cd5edaac9f9710035b3b31a66f"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_다나_100M.csv",
+      "bytes": 230908,
+      "sha256": "3a7139a0b9e6d7ef99e92797dc543fdbb253b44f99e5264d3c5e4d9e7018d414"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_다다_100M.csv",
+      "bytes": 218409,
+      "sha256": "62c3f42530ae06c47c64bbe8ec0c113e4575caa55598d5c5f06a0f39e77f06a0"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_다라_100M.csv",
+      "bytes": 1329323,
+      "sha256": "be7e4bb52c4462fed33db5f168715868edaa2744c68149d393a167683339858c"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_다마_100M.csv",
+      "bytes": 1642725,
+      "sha256": "7ec3551ac75391661851ae7add7c62c408554ef9563043d3560d524af94baba4"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_다바_100M.csv",
+      "bytes": 2728294,
+      "sha256": "011157558b3cc7b10a09852ba544601dd220a28bff1bc23495ee25ceb2bc5bd3"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_다사_100M.csv",
+      "bytes": 5536301,
+      "sha256": "5bc3b5e724e375b8318cc79982aa213daae2f7a1c5a40113f4f9308b05b64cf7"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_다아_100M.csv",
+      "bytes": 131433,
+      "sha256": "1bf84743a216ee209d21782b53fd7e7209ac142a49df8dd907338ad8e37b22ad"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_라라_100M.csv",
+      "bytes": 998494,
+      "sha256": "db68c9b814f79180acf578c02035bf0a132fd6f7a689c1a7b57b76367e3ee0da"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_라마_100M.csv",
+      "bytes": 1420778,
+      "sha256": "be82ec981ba9ed2d171cafdede2f066f36f5a8cf63e6f7f3f5d623bac2428d86"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_라바_100M.csv",
+      "bytes": 1108080,
+      "sha256": "6a4eca9956ede4a5566693ead92a2ac1005319fb607f576e2764a5b556546e5f"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_라사_100M.csv",
+      "bytes": 1026522,
+      "sha256": "2056749a3a408969706d3fa8653e742d7a4f84472d172bea0df26d83ce8627c5"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_라아_100M.csv",
+      "bytes": 205448,
+      "sha256": "31870611a9c51a688450505cd3528f3545bcfe1cc105651808786fa0517c492c"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_마라_100M.csv",
+      "bytes": 984642,
+      "sha256": "d812b6c0d207ec4625f4b504940d4b9dcf02fb06d1461f898ef038c7aa272d12"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_마마_100M.csv",
+      "bytes": 1719327,
+      "sha256": "356fb5dba93e250777617ef89c7ef616a7d0f5219eff5edb7ffb322fb0a23fbc"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_마바_100M.csv",
+      "bytes": 381845,
+      "sha256": "4cf13af22f9b5c63772928ba2ddec6736cc7aecc97cc4969f2e631e0f8ca1102"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_마사_100M.csv",
+      "bytes": 340375,
+      "sha256": "7eaf7fadd83b4c12d25dbdec5635442039ba41f1c2f80f6c5625d5178c8c7f7a"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_마아_100M.csv",
+      "bytes": 9692,
+      "sha256": "b61149d565d7a4fabdd529a56e1413e75997b073209f1f607f14473334f7633f"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_바사_100M.csv",
+      "bytes": 6776,
+      "sha256": "57264c7e29302c98d698c8ecd4c701069c47ab7ee50f641b5796ae1a3b052173"
+    },
+    {
+      "path": "grid/100m/종사자/2024/2024년_종사자_사사_100M.csv",
+      "bytes": 4077,
+      "sha256": "bcc8a466885ba3b0efdf2057931b0e292c320491579af7c9349ef749a0d77089"
+    }
+  ],
+  "reference_zip": {
+    "name": "ref_code.zip",
+    "url": "https://sgis.mods.go.kr/contents/include/download.jsp?filename=ref_code.zip&path=/board/&type=board",
+    "note": "자료신청 다운로드 화면의 '코드표 및 이용설명서' (로그인 불필요)",
+    "bytes": 34348978,
+    "sha256": "d6c2dc706f683b7fc72d9ad2584c33daff806e05e457a133164a164d96244b94",
+    "files": [
+      {
+        "path": "ref-code/(참고1) SGIS 소지역 통계 이용매뉴얼.pdf",
+        "bytes": 9655355,
+        "sha256": "144afc96aa9b68a1fad220346e614f8e045d78deb683b3e97abc0f0f166abb53"
+      },
+      {
+        "path": "ref-code/(참고2) SGIS 소지역 통계 분석사례집.pdf",
+        "bytes": 23794049,
+        "sha256": "1e483cf3f11f1aa789728fdffa3efa3aed7ce9da807b02105df06b571d3d3671"
+      },
+      {
+        "path": "ref-code/1. 행정구역 코드(adm_code).xls",
+        "bytes": 10740224,
+        "sha256": "db97d9919f7b6093d92d10bec9eaa1e458163fd217d6c86a3108bf895660025a"
+      },
+      {
+        "path": "ref-code/2. 행정구역별 격자코드 매핑(adm_grid_mapping).xls",
+        "bytes": 53248,
+        "sha256": "299e882224a2c2d733a3f49f7621702b461741738bf551b084065aec41501712"
+      },
+      {
+        "path": "ref-code/3. 제공용 코드(statistics_code).xls",
+        "bytes": 192512,
+        "sha256": "e72eac92cce04bc01f3702ed37b5e3b12af2cee244e9af19c9595891392983e7"
+      },
+      {
+        "path": "ref-code/4. 통계자료 이용안내(statistics_guide).hwp",
+        "bytes": 50688,
+        "sha256": "c1f39d0d5c28c3de8fe605cae1c89d4ec759264325ee64b14313b03e6fe64839"
+      },
+      {
+        "path": "ref-code/5. 공간정보 설계서(db_schema).hwp",
+        "bytes": 42496,
+        "sha256": "0a418db8d6171a76ef6b1d6d3ab5ef1f25e702aee212300be3ada852558899ed"
+      }
+    ]
+  },
+  "urban_zips": [
+    {
+      "year": "2015",
+      "name": "_grid_border_urban_도시화경계_2015_도시화경계_2015.zip",
+      "server_path": "/grid_border/urban/도시화경계_2015/도시화경계_2015.zip",
+      "bytes": 46196,
+      "sha256": "4270cd3087d59aa8e792bd08ce2730a3d819efabe25c3fa1d4fdce127f44d969",
+      "files": [
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_도시.cpg",
+          "bytes": 5,
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        },
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_도시.dbf",
+          "bytes": 8049,
+          "sha256": "8102872763219f36949f8b617296bd46b2c530610841c7efe62cd4e15ba2a3e8"
+        },
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_도시.prj",
+          "bytes": 435,
+          "sha256": "e21b26451491c617318aab7d28abf4d07f5facc2aed1564e082ec8d4268cfa3b"
+        },
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_도시.shp",
+          "bytes": 45384,
+          "sha256": "c36b368e916903e6df60c62bbe8d6b074c1e4845edd1aba0f089a7b01bf5c9ee"
+        },
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_도시.shx",
+          "bytes": 628,
+          "sha256": "daa9774935a13fa60d8679bc1b84595a9ccf7f07e448b6c0dba82901a5596120"
+        },
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_준도시.cpg",
+          "bytes": 5,
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        },
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_준도시.dbf",
+          "bytes": 30129,
+          "sha256": "643be886185f88333001c8f198da81b561a701b82b45cf92f23b80d45bc27242"
+        },
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_준도시.prj",
+          "bytes": 435,
+          "sha256": "e21b26451491c617318aab7d28abf4d07f5facc2aed1564e082ec8d4268cfa3b"
+        },
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_준도시.shp",
+          "bytes": 148188,
+          "sha256": "d00e3a668273dff60f6eda90f0798a480507278c9a4bf670024ff05e467af80f"
+        },
+        {
+          "path": "grid/urban-1k/2015/도시화경계_2015_준도시.shx",
+          "bytes": 2100,
+          "sha256": "de52826469760a8d2a4b2164c99acc9c723446f1c4b52b88d9bded7c38722757"
+        }
+      ]
+    },
+    {
+      "year": "2020",
+      "name": "_grid_border_urban_도시화경계_2020_도시화경계_2020.zip",
+      "server_path": "/grid_border/urban/도시화경계_2020/도시화경계_2020.zip",
+      "bytes": 47651,
+      "sha256": "c84b777efcd383efc7a99463e77fba6a3af156efb0ae48983d97cba0efbe7947",
+      "files": [
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_도시.cpg",
+          "bytes": 5,
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        },
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_도시.dbf",
+          "bytes": 8649,
+          "sha256": "e20e373b489a3736c8c52b0f0d817f70ff0b24126af18b45df745949adad2adf"
+        },
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_도시.prj",
+          "bytes": 435,
+          "sha256": "e21b26451491c617318aab7d28abf4d07f5facc2aed1564e082ec8d4268cfa3b"
+        },
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_도시.shp",
+          "bytes": 47876,
+          "sha256": "487e5fd7790820bbfbc021b7dcf3fc20589541b513ee77a3b80c214854b27dd8"
+        },
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_도시.shx",
+          "bytes": 668,
+          "sha256": "8927eea64c09777aac1606998c9a35ba123dac5f60550712206a3d1c2211c3d0"
+        },
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_준도시.cpg",
+          "bytes": 5,
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        },
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_준도시.dbf",
+          "bytes": 31809,
+          "sha256": "361718a5e3933f821dc7a0afe1427b171d2c1cc6c45884213b4add92557bff4e"
+        },
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_준도시.prj",
+          "bytes": 435,
+          "sha256": "e21b26451491c617318aab7d28abf4d07f5facc2aed1564e082ec8d4268cfa3b"
+        },
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_준도시.shp",
+          "bytes": 149560,
+          "sha256": "7d071db2d21ee770f19cb444bb969f634d418fc07eadbd7c6a00801fb783b884"
+        },
+        {
+          "path": "grid/urban-1k/2020/도시화경계_2020_준도시.shx",
+          "bytes": 2212,
+          "sha256": "85086c6bb74f4d06dd29fd823d67559e8a7e0a3d65e91d8dcdf8dcd4576ba6d6"
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "name": "_grid_border_urban_도시화경계_2024_도시화경계_2024.zip",
+      "server_path": "/grid_border/urban/도시화경계_2024/도시화경계_2024.zip",
+      "bytes": 46457,
+      "sha256": "55e9626a8c29ca9eeabd827f75dc26fff877080d5da19ae0519bdb3b05c3c9f8",
+      "files": [
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_도시.cpg",
+          "bytes": 5,
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        },
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_도시.dbf",
+          "bytes": 8409,
+          "sha256": "691519cb41ee194c27376772335765b16ad6bf00e53c0d73dae7a0b3b23859b2"
+        },
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_도시.prj",
+          "bytes": 435,
+          "sha256": "e21b26451491c617318aab7d28abf4d07f5facc2aed1564e082ec8d4268cfa3b"
+        },
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_도시.shp",
+          "bytes": 47892,
+          "sha256": "dbfe64ce6b6ff6e3ccc9c6c54842797ce96d36ab6fc0024e4c51c7e363e20c24"
+        },
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_도시.shx",
+          "bytes": 652,
+          "sha256": "73c7a4860bda76c56673f6f7da1842e0aee0c298850c2d25763e54b63051d8eb"
+        },
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_준도시.cpg",
+          "bytes": 5,
+          "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+        },
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_준도시.dbf",
+          "bytes": 30369,
+          "sha256": "b0bbcf72e5ddcc259563683f2dff48ad1bb685470fc2fb6d5e42cb3cbb696359"
+        },
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_준도시.prj",
+          "bytes": 435,
+          "sha256": "e21b26451491c617318aab7d28abf4d07f5facc2aed1564e082ec8d4268cfa3b"
+        },
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_준도시.shp",
+          "bytes": 146032,
+          "sha256": "e65af7b2e709245f8873746c2022742676e25f8be1907f8d18bf74d9095a4e47"
+        },
+        {
+          "path": "grid/urban-1k/2024/도시화경계_2024_준도시.shx",
+          "bytes": 2116,
+          "sha256": "cd4e7ca78e78ae2f5cf8a2e4844388a1fda0bbc5956afbd0a5640671f2bee122"
+        }
+      ]
+    }
+  ]
+}

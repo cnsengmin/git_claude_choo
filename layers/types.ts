@@ -49,8 +49,11 @@ export interface LayerStyle {
   data?: string;
   // Filter and paint for the chosen control values; the filter also applies to the click target.
   apply?: (selection: Record<string, string>, data?: unknown) => { filter?: FilterSpecification; paint?: Record<string, unknown> };
-  // One popup line for a clicked feature of this layer.
-  describe?: (properties: Record<string, unknown>, selection: Record<string, string>, data?: unknown) => string;
+  // Popup lines for a clicked feature of this layer, shown under the layer's own heading.
+  describe?: (properties: Record<string, unknown>, selection: Record<string, string>, data?: unknown) => string | string[];
+  // Property that names one unit (grid cell, output area, boundary code); the clicked unit is
+  // outlined until its popup closes.
+  featureKey?: string;
   legend?: LayerLegend | ((selection: Record<string, string>, data?: unknown) => LayerLegend | undefined);
 }
 
