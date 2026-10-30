@@ -38,7 +38,8 @@ layers/
 - `data`: 레이어가 처음 켜질 때 지도가 받아 두는 JSON 경로(`/api/layers/<provider>/<data>`)입니다. 받은 값은 `apply`, `describe`, `legend`에 그대로 넘어갑니다. 예: 시군구 통계는 2025 표를 받아 지표 값으로 색을 정합니다.
 - `tiles.provider`: 다른 provider의 타일 위에 그릴 때 씁니다. 예: 시군구 통계는 `region-layers`의 기초 단위 타일 위에 칠합니다.
 - `describe`: 지역을 눌렀을 때 팝업에 나오는 줄입니다(문자열 하나 또는 여러 줄 배열). 팝업은 레이어마다 이름과 선택값을 머리에 단 구획으로 나뉘고, 위에 그려지는 레이어가 먼저 나옵니다.
-- `featureKey`: 한 단위를 가리키는 속성(격자 `cell`, 집계구 `oa_cd`, 경계 `code`)입니다. 누른 단위를 팝업이 닫힐 때까지 테두리로 강조합니다. 자료 단위는 검은 실선, 경계선 레이어는 청록 점선입니다.
+- `featureKey`: 한 단위를 가리키는 속성(격자 `cell`, 집계구 `oa_cd`, 경계 `code`, 용도지역 `zid`)입니다. 누른 단위를 팝업이 닫힐 때까지 테두리로 강조합니다. 자료 단위는 검은 실선, 경계선 레이어는 청록 점선입니다.
+- `layout`: visibility 말고 레이어에 줄 layout 속성입니다(예: 용도지역의 `fill-sort-key`로 미분류 도형을 아래에 그림). visibility는 지도가 정합니다.
 - `legend`: 레이어를 켰을 때 사이드바에 나오는 범례입니다. 자료에 따라 범례가 달라지면 함수로 둡니다.
 
 ## check.json
@@ -55,4 +56,4 @@ layers/
 6. 로컬 화면에서 지도에 그려지는지 확인하고, 결과를 provider README에 적습니다.
 
 ## 데이터
-1MB를 넘는 자료는 Git에 넣지 않습니다. 정적 자료는 벡터 타일(PMTiles) 등으로 만들어 GitHub Release나 저장소 밖 저장 공간에 두고, 위치와 해시는 provider README에 적습니다. 예: `region-layers`, `sgis-oa`, `sgis-grid`는 Release의 PMTiles를 서버가 구간별로 읽어 타일로 돌려줍니다(공용 코드 `providers/pmtiles.ts`). PMTiles는 `scripts/region_registry/build_release_pmtiles.py`의 `write_pmtiles()`로 만듭니다. 이 함수는 GDAL이 무시하는 옵션을 오류로 막습니다. 무시된 옵션 때문에 저배율 타일에서 지역이 빠진 적이 있기 때문입니다.
+1MB를 넘는 자료는 Git에 넣지 않습니다. 정적 자료는 벡터 타일(PMTiles) 등으로 만들어 GitHub Release나 저장소 밖 저장 공간에 두고, 위치와 해시는 provider README에 적습니다. 예: `region-layers`, `sgis-oa`, `sgis-grid`, `vworld-zoning`은 Release의 PMTiles를 서버가 구간별로 읽어 타일로 돌려줍니다(공용 코드 `providers/pmtiles.ts`). PMTiles는 `scripts/region_registry/build_release_pmtiles.py`의 `write_pmtiles()`로 만듭니다. 이 함수는 GDAL이 무시하는 옵션을 오류로 막습니다. 무시된 옵션 때문에 저배율 타일에서 지역이 빠진 적이 있기 때문입니다. 옵션이 맞아도 타일 하나의 크기 한도(2 MB)에 걸리면 도형이 빠지므로, 빌드 뒤에는 저배율 타일을 원자료 건수와 대조합니다(용도지역은 z7–8에서 면적의 31–40%가 빠져 z9부터 만듦).

@@ -1,0 +1,22 @@
+{
+  "timeoutSeconds": 60,
+  "requests": [
+    {
+      "path": "zoning/metadata",
+      "expect": [
+        { "path": "layer", "equals": "zoning" },
+        { "path": "minZoom", "equals": 9 },
+        { "path": "maxZoom", "min": 14 },
+        { "path": "tileCompression", "equals": "Gzip" }
+      ]
+    },
+    {
+      "path": "zoning/14/13970/6344.pbf",
+      "expect": [{ "minBytes": 1000 }, { "contains": "LT_C_UQ111" }, { "contains": "zid" }]
+    },
+    {
+      "path": "zoning/10/873/396.pbf",
+      "expect": [{ "minBytes": 100000 }, { "contains": "LT_C_UQ112" }, { "contains": "LT_C_UD801" }]
+    }
+  ]
+}

@@ -37,6 +37,8 @@ export interface LayerStyle {
   type: "fill" | "line" | "circle";
   filter?: FilterSpecification;
   paint: Record<string, unknown>;
+  // Layout properties other than visibility, which the map controls (e.g. fill-sort-key).
+  layout?: Record<string, unknown>;
   // Vector tiles at /api/layers/<tiles.provider ?? provider>/<tiles.path>/{z}/{x}/{y}.pbf
   // instead of the provider's GeoJSON response; `tiles.provider` lets a layer draw on another
   // provider's tiles (e.g. statistics on boundary tiles).

@@ -5,6 +5,7 @@ import { handle as regionLayers } from "@/layers/providers/region-layers/server"
 import { handle as sggStats } from "@/layers/providers/sgg-stats/server";
 import { handle as sgisGrid } from "@/layers/providers/sgis-grid/server";
 import { handle as sgisOa } from "@/layers/providers/sgis-oa/server";
+import { handle as vworldZoning } from "@/layers/providers/vworld-zoning/server";
 
 export const PROVIDERS: Record<string, (params: URLSearchParams, path: string[]) => Promise<unknown>> = {
   "osm-overpass": osmOverpass,
@@ -12,4 +13,5 @@ export const PROVIDERS: Record<string, (params: URLSearchParams, path: string[])
   "sgg-stats": sggStats,
   "sgis-grid": sgisGrid,
   "sgis-oa": sgisOa,
+  "vworld-zoning": vworldZoning,
 };
