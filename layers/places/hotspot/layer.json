@@ -1,0 +1,8 @@
+{
+  "id": "hotspot",
+  "group": "places",
+  "label": "Hot Place",
+  "description": "사업체·유동·웹 신호를 결합한 활동 클러스터",
+  "status": "planned",
+  "source": "Atlas HotScore"
+}

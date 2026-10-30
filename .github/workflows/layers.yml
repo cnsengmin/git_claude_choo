@@ -1,0 +1,45 @@
+name: Layers
+
+# Structure check for layers/ only when layer files change. Live provider checks
+# (scripts/layers/check-live.mjs) call external services and run by hand.
+on:
+  push:
+    branches:
+      - atlas-mvp
+      - "feature/**"
+      - "layer/**"
+    paths:
+      - "layers/**"
+      - "scripts/layers/**"
+      - "scripts/sgg2025/build_layer_indicators.py"
+      - "data/derived/sgg2025/codebook.csv"
+      - ".github/workflows/layers.yml"
+  pull_request:
+    branches:
+      - master
+      - atlas-mvp
+    paths:
+      - "layers/**"
+      - "scripts/layers/**"
+      - "scripts/sgg2025/build_layer_indicators.py"
+      - "data/derived/sgg2025/codebook.csv"
+      - ".github/workflows/layers.yml"
+
+jobs:
+  manifests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check layer manifests
+        run: node scripts/layers/check-manifests.mjs
+
+      - name: Check the sigungu indicator list against the codebook
+        run: python3 scripts/sgg2025/build_layer_indicators.py --check

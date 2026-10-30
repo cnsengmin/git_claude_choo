@@ -1,0 +1,8 @@
+{
+  "id": "walk-access",
+  "group": "mobility",
+  "label": "보행 접근성",
+  "description": "생활시설까지의 보행 네트워크 접근성",
+  "status": "planned",
+  "source": "도로망 + Network analysis"
+}

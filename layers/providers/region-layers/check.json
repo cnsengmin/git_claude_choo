@@ -1,0 +1,63 @@
+{
+  "timeoutSeconds": 60,
+  "requests": [
+    {
+      "path": "sgg/metadata",
+      "expect": [
+        {
+          "path": "level",
+          "equals": "sgg"
+        },
+        {
+          "path": "maxZoom",
+          "min": 12
+        },
+        {
+          "path": "tileCompression",
+          "equals": "Gzip"
+        }
+      ]
+    },
+    {
+      "path": "sgg/10/873/396.pbf",
+      "expect": [
+        {
+          "minBytes": 1000
+        },
+        {
+          "contains": "1111000000"
+        },
+        {
+          "contains": "d202610"
+        }
+      ]
+    },
+    {
+      "path": "lgu/10/872/396.pbf",
+      "expect": [
+        {
+          "contains": "부천시"
+        }
+      ]
+    },
+    {
+      "path": "admdong/12/3492/1588.pbf",
+      "expect": [
+        {
+          "contains": "부림동"
+        }
+      ]
+    },
+    {
+      "path": "sido/7/109/49.pbf",
+      "expect": [
+        {
+          "contains": "서울특별시"
+        },
+        {
+          "contains": "1100000000"
+        }
+      ]
+    }
+  ]
+}

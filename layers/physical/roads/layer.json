@@ -1,0 +1,10 @@
+{
+  "id": "roads",
+  "group": "physical",
+  "label": "도로",
+  "description": "도로 및 가로망 구조",
+  "status": "partial",
+  "source": "OSM 즉시 보기 + 국가공간정보(예정)",
+  "provider": "osm-overpass",
+  "license": "ODbL"
+}

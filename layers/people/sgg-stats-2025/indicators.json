@@ -1,0 +1,726 @@
+[
+  {
+    "variable": "pop_total",
+    "label": "주민등록인구 총계",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_male",
+    "label": "주민등록인구 남자",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_female",
+    "label": "주민등록인구 여자",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "households_rr",
+    "label": "주민등록 세대수",
+    "unit": "세대",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_00_04",
+    "label": "주민등록인구 0세~4세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_05_09",
+    "label": "주민등록인구 5세~9세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_10_14",
+    "label": "주민등록인구 10세~14세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_15_19",
+    "label": "주민등록인구 15세~19세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_20_24",
+    "label": "주민등록인구 20세~24세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_25_29",
+    "label": "주민등록인구 25세~29세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_30_34",
+    "label": "주민등록인구 30세~34세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_35_39",
+    "label": "주민등록인구 35세~39세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_40_44",
+    "label": "주민등록인구 40세~44세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_45_49",
+    "label": "주민등록인구 45세~49세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_50_54",
+    "label": "주민등록인구 50세~54세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_55_59",
+    "label": "주민등록인구 55세~59세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_60_64",
+    "label": "주민등록인구 60세~64세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_65_69",
+    "label": "주민등록인구 65세~69세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_70_74",
+    "label": "주민등록인구 70세~74세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_75_79",
+    "label": "주민등록인구 75세~79세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_80_84",
+    "label": "주민등록인구 80세~84세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_85_89",
+    "label": "주민등록인구 85세~89세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_90_94",
+    "label": "주민등록인구 90세~94세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_95_99",
+    "label": "주민등록인구 95세~99세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_100p",
+    "label": "주민등록인구 100세~ (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_0_14",
+    "label": "주민등록인구 0세~14세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_15_64",
+    "label": "주민등록인구 15세~64세 (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_65p",
+    "label": "주민등록인구 65세~ (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_75p",
+    "label": "주민등록인구 75세~ (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_age_85p",
+    "label": "주민등록인구 85세~ (1세별 합산)",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_male_age_0_14",
+    "label": "주민등록인구 남자 0세~14세",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_male_age_15_64",
+    "label": "주민등록인구 남자 15세~64세",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_male_age_65p",
+    "label": "주민등록인구 남자 65세~",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_male_age_75p",
+    "label": "주민등록인구 남자 75세~",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_male_age_85p",
+    "label": "주민등록인구 남자 85세~",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_female_age_0_14",
+    "label": "주민등록인구 여자 0세~14세",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_female_age_15_64",
+    "label": "주민등록인구 여자 15세~64세",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_female_age_65p",
+    "label": "주민등록인구 여자 65세~",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_female_age_75p",
+    "label": "주민등록인구 여자 75세~",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "pop_female_age_85p",
+    "label": "주민등록인구 여자 85세~",
+    "unit": "명",
+    "kind": "count",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "aged_share_65p",
+    "label": "고령인구 비율",
+    "unit": "%",
+    "kind": "derived",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "youth_share_0_14",
+    "label": "유소년인구 비율",
+    "unit": "%",
+    "kind": "derived",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "old_age_dependency",
+    "label": "노년부양비",
+    "unit": "%",
+    "kind": "derived",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "sex_ratio",
+    "label": "성비",
+    "unit": "여자 100명당 남자",
+    "kind": "derived",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "persons_per_household_rr",
+    "label": "세대당 인구",
+    "unit": "명/세대",
+    "kind": "derived",
+    "group": "주민등록 인구·연령",
+    "source": "행정안전부 「주민등록인구현황」(KOSIS)",
+    "reference": "2025-12-31"
+  },
+  {
+    "variable": "migr_in",
+    "label": "총전입",
+    "unit": "명",
+    "kind": "count",
+    "group": "인구이동",
+    "source": "통계청 「국내인구이동통계」(KOSIS)",
+    "reference": "2025-01-01~2025-12-31"
+  },
+  {
+    "variable": "migr_out",
+    "label": "총전출",
+    "unit": "명",
+    "kind": "count",
+    "group": "인구이동",
+    "source": "통계청 「국내인구이동통계」(KOSIS)",
+    "reference": "2025-01-01~2025-12-31"
+  },
+  {
+    "variable": "migr_net",
+    "label": "순이동(전입-전출)",
+    "unit": "명",
+    "kind": "count",
+    "group": "인구이동",
+    "source": "통계청 「국내인구이동통계」(KOSIS)",
+    "reference": "2025-01-01~2025-12-31"
+  },
+  {
+    "variable": "births",
+    "label": "출생아수",
+    "unit": "명",
+    "kind": "count",
+    "group": "출생·사망",
+    "source": "통계청 「인구동향조사」 출생(KOSIS)",
+    "reference": "2025-01-01~2025-12-31"
+  },
+  {
+    "variable": "tfr",
+    "label": "합계출산율",
+    "unit": "가임여자 1명당 명",
+    "kind": "rate",
+    "group": "출생·사망",
+    "source": "통계청 「인구동향조사」 출생(KOSIS)",
+    "reference": "2025-01-01~2025-12-31"
+  },
+  {
+    "variable": "deaths",
+    "label": "사망자수(성별 계)",
+    "unit": "명",
+    "kind": "count",
+    "group": "출생·사망",
+    "source": "통계청 「인구동향조사」 사망(KOSIS)",
+    "reference": "2025-01-01~2025-12-31"
+  },
+  {
+    "variable": "establishments",
+    "label": "사업체수(등록기반)",
+    "unit": "개",
+    "kind": "count",
+    "group": "사업체·종사자 (2024)",
+    "source": "통계청 「전국사업체조사」 등록기반 지표(KOSIS e-지방지표)",
+    "reference": "2024-12-31"
+  },
+  {
+    "variable": "employees",
+    "label": "종사자수(등록기반) 계",
+    "unit": "명",
+    "kind": "count",
+    "group": "사업체·종사자 (2024)",
+    "source": "통계청 「전국사업체조사」 등록기반 지표(KOSIS e-지방지표)",
+    "reference": "2024-12-31"
+  },
+  {
+    "variable": "employees_male",
+    "label": "종사자수(등록기반) 남자",
+    "unit": "명",
+    "kind": "count",
+    "group": "사업체·종사자 (2024)",
+    "source": "통계청 「전국사업체조사」 등록기반 지표(KOSIS e-지방지표)",
+    "reference": "2024-12-31"
+  },
+  {
+    "variable": "employees_female",
+    "label": "종사자수(등록기반) 여자",
+    "unit": "명",
+    "kind": "count",
+    "group": "사업체·종사자 (2024)",
+    "source": "통계청 「전국사업체조사」 등록기반 지표(KOSIS e-지방지표)",
+    "reference": "2024-12-31"
+  },
+  {
+    "variable": "employees_mfg",
+    "label": "제조업 종사자수(등록기반)",
+    "unit": "명",
+    "kind": "count",
+    "group": "사업체·종사자 (2024)",
+    "source": "통계청 「전국사업체조사」 등록기반 지표(KOSIS e-지방지표)",
+    "reference": "2024-12-31"
+  },
+  {
+    "variable": "employees_retail",
+    "label": "도소매업 종사자수(등록기반)",
+    "unit": "명",
+    "kind": "count",
+    "group": "사업체·종사자 (2024)",
+    "source": "통계청 「전국사업체조사」 등록기반 지표(KOSIS e-지방지표)",
+    "reference": "2024-12-31"
+  },
+  {
+    "variable": "lfs_pop15p_k",
+    "label": "15세이상인구",
+    "unit": "천명",
+    "kind": "survey",
+    "group": "지역별고용조사",
+    "source": "통계청 「지역별고용조사」 2025년 하반기(KOSIS)",
+    "reference": "2025-10 조사(하반기)"
+  },
+  {
+    "variable": "lfs_labor_force_k",
+    "label": "경제활동인구",
+    "unit": "천명",
+    "kind": "survey",
+    "group": "지역별고용조사",
+    "source": "통계청 「지역별고용조사」 2025년 하반기(KOSIS)",
+    "reference": "2025-10 조사(하반기)"
+  },
+  {
+    "variable": "lfs_employed_k",
+    "label": "취업자",
+    "unit": "천명",
+    "kind": "survey",
+    "group": "지역별고용조사",
+    "source": "통계청 「지역별고용조사」 2025년 하반기(KOSIS)",
+    "reference": "2025-10 조사(하반기)",
+    "rseFlag": "lfs_employed_rse25"
+  },
+  {
+    "variable": "lfs_unemployed_k",
+    "label": "실업자",
+    "unit": "천명",
+    "kind": "survey",
+    "group": "지역별고용조사",
+    "source": "통계청 「지역별고용조사」 2025년 하반기(KOSIS)",
+    "reference": "2025-10 조사(하반기)",
+    "rseFlag": "lfs_unemployed_rse25"
+  },
+  {
+    "variable": "lfs_lfpr",
+    "label": "경제활동참가율",
+    "unit": "%",
+    "kind": "rate",
+    "group": "지역별고용조사",
+    "source": "통계청 「지역별고용조사」 2025년 하반기(KOSIS)",
+    "reference": "2025-10 조사(하반기)"
+  },
+  {
+    "variable": "lfs_emp_rate",
+    "label": "고용률(15세 이상)",
+    "unit": "%",
+    "kind": "rate",
+    "group": "지역별고용조사",
+    "source": "통계청 「지역별고용조사」 2025년 하반기(KOSIS)",
+    "reference": "2025-10 조사(하반기)",
+    "rseFlag": "lfs_emp_rate_rse25"
+  },
+  {
+    "variable": "lfs_emp_rate_15_64",
+    "label": "고용률(15~64세)",
+    "unit": "%",
+    "kind": "rate",
+    "group": "지역별고용조사",
+    "source": "통계청 「지역별고용조사」 2025년 하반기(KOSIS)",
+    "reference": "2025-10 조사(하반기)"
+  },
+  {
+    "variable": "lfs_unemp_rate",
+    "label": "실업률",
+    "unit": "%",
+    "kind": "rate",
+    "group": "지역별고용조사",
+    "source": "통계청 「지역별고용조사」 2025년 하반기(KOSIS)",
+    "reference": "2025-10 조사(하반기)",
+    "rseFlag": "lfs_unemp_rate_rse25"
+  },
+  {
+    "variable": "lfs_emp_rate_65p",
+    "label": "고용률(65세 이상)",
+    "unit": "%",
+    "kind": "rate",
+    "group": "지역별고용조사",
+    "source": "통계청 「지역별고용조사」 2025년 하반기(KOSIS)",
+    "reference": "2025-10 조사(하반기)"
+  },
+  {
+    "variable": "census_pop",
+    "label": "총인구(내·외국인)",
+    "unit": "명",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "census_pop_male",
+    "label": "총인구 남자",
+    "unit": "명",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "census_pop_female",
+    "label": "총인구 여자",
+    "unit": "명",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "census_foreigners",
+    "label": "외국인",
+    "unit": "명",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "census_households",
+    "label": "가구 계",
+    "unit": "가구",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "census_households_general",
+    "label": "일반가구",
+    "unit": "가구",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "housing_total",
+    "label": "주택 계",
+    "unit": "호",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "housing_detached",
+    "label": "단독주택",
+    "unit": "호",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "housing_apartment",
+    "label": "아파트",
+    "unit": "호",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "housing_rowhouse",
+    "label": "연립주택",
+    "unit": "호",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "housing_multiplex",
+    "label": "다세대주택",
+    "unit": "호",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "housing_in_nonres",
+    "label": "비주거용 건물 내 주택",
+    "unit": "호",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "dwellings_non_housing",
+    "label": "주택 이외의 거처",
+    "unit": "호",
+    "kind": "count",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  },
+  {
+    "variable": "apartment_share",
+    "label": "아파트 비율",
+    "unit": "%",
+    "kind": "derived",
+    "group": "인구주택총조사 (등록센서스)",
+    "source": "통계청 「인구주택총조사」 등록센서스(KOSIS)",
+    "reference": "2025-11-01"
+  }
+]

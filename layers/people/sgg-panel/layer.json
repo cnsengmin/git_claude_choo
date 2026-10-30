@@ -1,0 +1,10 @@
+{
+  "id": "sgg-panel",
+  "group": "people",
+  "label": "시군구 시계열 (2008–2025)",
+  "description": "기초 단위 229개의 연도별 인구이동·출생·사망·주민등록인구·등록센서스를 2025 경계로 맞춰 연도별로 칠함",
+  "status": "partial",
+  "source": "KOSIS (행정안전부·통계청), data/derived/sgg-panel",
+  "provider": "sgg-stats",
+  "license": "KOSIS 이용약관(출처표시)"
+}

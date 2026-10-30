@@ -1,0 +1,8 @@
+{
+  "id": "food-cafe",
+  "group": "places",
+  "label": "음식·카페",
+  "description": "음식점·카페·베이커리 탐색",
+  "status": "partial",
+  "source": "Kakao / Naver / Google"
+}

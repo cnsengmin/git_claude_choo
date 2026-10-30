@@ -1,0 +1,2039 @@
+{
+  "requests": {
+    "births_2008": {
+      "series": "births",
+      "year": 2008,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2008",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 277,
+      "periods_returned": [
+        "2008"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2008.json",
+      "sha256": "c8bf0aaf076f9aae0ae434b47e92543e69abb435c8b66f22e12395006ac0c629",
+      "fetched_at": "2026-10-28T17:18:40+00:00"
+    },
+    "births_2009": {
+      "series": "births",
+      "year": 2009,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2009",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 277,
+      "periods_returned": [
+        "2009"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2009.json",
+      "sha256": "426423034fc3557769668caef6ad99e4617e851f8d05bd08a22fbaf5befe20e2",
+      "fetched_at": "2026-10-28T17:18:41+00:00"
+    },
+    "births_2010": {
+      "series": "births",
+      "year": 2010,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2010",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 280,
+      "periods_returned": [
+        "2010"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2010.json",
+      "sha256": "74221abdf596f3d40656b118ea103246f7d5f7797a05cfe48885aa7beec0150a",
+      "fetched_at": "2026-10-28T17:18:42+00:00"
+    },
+    "births_2011": {
+      "series": "births",
+      "year": 2011,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2011",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 280,
+      "periods_returned": [
+        "2011"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2011.json",
+      "sha256": "61451fa04f8ebd8d5a67361fc0019d6e729e4c939136881a814cc153fb9bf182",
+      "fetched_at": "2026-10-28T17:18:43+00:00"
+    },
+    "births_2012": {
+      "series": "births",
+      "year": 2012,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2012",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 281,
+      "periods_returned": [
+        "2012"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2012.json",
+      "sha256": "c618bd1ceaca9d8bd64a18670ad2baf7fc6626a0c2cbcca9dcc3355081c25e63",
+      "fetched_at": "2026-10-28T17:18:43+00:00"
+    },
+    "births_2013": {
+      "series": "births",
+      "year": 2013,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2013",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 281,
+      "periods_returned": [
+        "2013"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2013.json",
+      "sha256": "59bfbd0c4167d53ea9c0f30098d2a00434ef54e6c0ab8723eed78ad5a03a68bb",
+      "fetched_at": "2026-10-28T17:18:44+00:00"
+    },
+    "births_2014": {
+      "series": "births",
+      "year": 2014,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2014",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 282,
+      "periods_returned": [
+        "2014"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2014.json",
+      "sha256": "8001ec32d89742f9df2bd0509d003a46d4a4b6b3c886b428ac94a124ebe955ef",
+      "fetched_at": "2026-10-28T17:18:45+00:00"
+    },
+    "births_2015": {
+      "series": "births",
+      "year": 2015,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2015",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 282,
+      "periods_returned": [
+        "2015"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2015.json",
+      "sha256": "783b207a0ba2f461e2b95d8a2350e73586cd84cb70ecf01d012ca23775d48095",
+      "fetched_at": "2026-10-28T17:18:46+00:00"
+    },
+    "births_2016": {
+      "series": "births",
+      "year": 2016,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2016",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2016"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2016.json",
+      "sha256": "4baa5a2d1f33629f21c8388cc0a799d31ebea803eef300cef550a8f051690e26",
+      "fetched_at": "2026-10-28T17:18:48+00:00"
+    },
+    "births_2017": {
+      "series": "births",
+      "year": 2017,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2017",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2017"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2017.json",
+      "sha256": "bd5d0a44a00a91c52dc399ef0c59bac6dd858c65b327d6a7e01bb03cb88ac3a7",
+      "fetched_at": "2026-10-28T17:18:48+00:00"
+    },
+    "births_2018": {
+      "series": "births",
+      "year": 2018,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2018",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2018"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2018.json",
+      "sha256": "fff25c505985172194e62bd761e7ca82bbc9f173461b69642744b247f769108f",
+      "fetched_at": "2026-10-28T17:18:49+00:00"
+    },
+    "births_2019": {
+      "series": "births",
+      "year": 2019,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2019",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2019"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2019.json",
+      "sha256": "e9f8d921a1edae1676ec9955d7a0c50612533413de9169a7a59f82c043b331e4",
+      "fetched_at": "2026-10-28T17:18:51+00:00"
+    },
+    "births_2020": {
+      "series": "births",
+      "year": 2020,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2020",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2020"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2020.json",
+      "sha256": "4c8777aa9e4c78584fd488821fb146df58eb254ffbde9f7b0dff4819d43ce012",
+      "fetched_at": "2026-10-28T17:18:51+00:00"
+    },
+    "births_2021": {
+      "series": "births",
+      "year": 2021,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2021",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2021"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2021.json",
+      "sha256": "521b97b07ef5098267991a069f721ea0dc9f420334b1e6ed90239c3f69a1c4a3",
+      "fetched_at": "2026-10-28T17:18:53+00:00"
+    },
+    "births_2022": {
+      "series": "births",
+      "year": 2022,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2022",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2022"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2022.json",
+      "sha256": "b86301a996fb1d2073a36ff7c8618627654c6c8e3f32cec3869ab1356f2ceb10",
+      "fetched_at": "2026-10-28T17:18:54+00:00"
+    },
+    "births_2023": {
+      "series": "births",
+      "year": 2023,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2023",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2023"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2023.json",
+      "sha256": "d8b6709705a4076ecd3cc7d8f22ec9e52ee206cf0c89d67409f49fdbd099c45a",
+      "fetched_at": "2026-10-28T17:18:55+00:00"
+    },
+    "births_2024": {
+      "series": "births",
+      "year": 2024,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2024",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 282,
+      "periods_returned": [
+        "2024"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2024.json",
+      "sha256": "f48ccea69bcb6ad91d193ec9e5d6ff9f05b33d1cb990f36247f50cee8b6d84af",
+      "fetched_at": "2026-10-28T17:18:57+00:00"
+    },
+    "births_2025": {
+      "series": "births",
+      "year": 2025,
+      "org_id": "101",
+      "tbl_id": "DT_1B81A23",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 282,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg-panel/births_2025.json",
+      "sha256": "236509d30fda81d600dfd50e8c50f8931d1e01f62548dcde7eddff6f9c8fcd35",
+      "fetched_at": "2026-10-28T17:18:58+00:00"
+    },
+    "census_2015": {
+      "series": "census",
+      "year": 2015,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2015",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 15276,
+      "periods_returned": [
+        "2015"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2015.json",
+      "sha256": "a5067bb97c4098025f1097e947c7cd8609ca09d985f7396a3c198eecaf81eb45",
+      "fetched_at": "2026-10-28T17:20:01+00:00"
+    },
+    "census_2016": {
+      "series": "census",
+      "year": 2016,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2016",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 1296,
+      "periods_returned": [
+        "2016"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2016.json",
+      "sha256": "4538a718ea2d43bd0409f88e79bf1c04cd5e9a627496c6fdd9a09724e408e442",
+      "fetched_at": "2026-10-28T17:20:16+00:00"
+    },
+    "census_2017": {
+      "series": "census",
+      "year": 2017,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2017",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 1296,
+      "periods_returned": [
+        "2017"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2017.json",
+      "sha256": "b8e85a044ab55ea4976a57d2a41ff3cbb35c9ee0232df0c9e11f6f8e5c74613c",
+      "fetched_at": "2026-10-28T17:20:19+00:00"
+    },
+    "census_2018": {
+      "series": "census",
+      "year": 2018,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2018",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 1296,
+      "periods_returned": [
+        "2018"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2018.json",
+      "sha256": "72ab692ac0c8732b43cb597d1f9eef44743524b65b96215380b1843bb1ec5211",
+      "fetched_at": "2026-10-28T17:20:22+00:00"
+    },
+    "census_2019": {
+      "series": "census",
+      "year": 2019,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2019",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 1296,
+      "periods_returned": [
+        "2019"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2019.json",
+      "sha256": "d8402014cf306bae67549df6e94ea10b3c702009252bdbd92efa624d389e25d6",
+      "fetched_at": "2026-10-28T17:20:24+00:00"
+    },
+    "census_2020": {
+      "series": "census",
+      "year": 2020,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2020",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 15256,
+      "periods_returned": [
+        "2020"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2020.json",
+      "sha256": "7377af46cf3f71b20025b78c7ddabafc0c8703c8f9f4c782d8613ae1f4317f8f",
+      "fetched_at": "2026-10-28T17:20:29+00:00"
+    },
+    "census_2021": {
+      "series": "census",
+      "year": 2021,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2021",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 1296,
+      "periods_returned": [
+        "2021"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2021.json",
+      "sha256": "fafdb49f3d56b71747803ff510f5a5b063d471ac1e3aef7e34d2e442998bc922",
+      "fetched_at": "2026-10-28T17:20:31+00:00"
+    },
+    "census_2022": {
+      "series": "census",
+      "year": 2022,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2022",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 1296,
+      "periods_returned": [
+        "2022"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2022.json",
+      "sha256": "b2c6cb4fd565bb41d1b237a8849dea3e56346d1875ff6559504e49d14845b05f",
+      "fetched_at": "2026-10-28T17:20:34+00:00"
+    },
+    "census_2023": {
+      "series": "census",
+      "year": 2023,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2023",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 1296,
+      "periods_returned": [
+        "2023"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2023.json",
+      "sha256": "3ebe948108f343ff6d65c887edd9edb863723b69a43ef38dd3c7fc66e5c9d4cc",
+      "fetched_at": "2026-10-28T17:20:36+00:00"
+    },
+    "census_2024": {
+      "series": "census",
+      "year": 2024,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2024",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 1308,
+      "periods_returned": [
+        "2024"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2024.json",
+      "sha256": "0a342f1f0f42ba5ff3ea0cbcb35a51dae4bb82f8656575f7c249a15a05aec67a",
+      "fetched_at": "2026-10-28T17:20:38+00:00"
+    },
+    "census_2025": {
+      "series": "census",
+      "year": 2025,
+      "org_id": "101",
+      "tbl_id": "DT_1IN1502",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 15536,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg-panel/census_2025.json",
+      "sha256": "4a2ef7bb2f47e1d8930ea7e3d311bb672927d02295f497b9dfbf94f1f46f672f",
+      "fetched_at": "2026-10-28T17:20:45+00:00"
+    },
+    "deaths_2008": {
+      "series": "deaths",
+      "year": 2008,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2008",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 277,
+      "periods_returned": [
+        "2008"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2008.json",
+      "sha256": "0390890e2131d0603763a43f4e89ee4e85efd6c4eab285871d96b6c0d9b81cfa",
+      "fetched_at": "2026-10-28T17:18:59+00:00"
+    },
+    "deaths_2009": {
+      "series": "deaths",
+      "year": 2009,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2009",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 277,
+      "periods_returned": [
+        "2009"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2009.json",
+      "sha256": "8d823cf1f9dc410ce5102bc3d1fd5f236b08966bae2f0dea7eeb520a4a194eef",
+      "fetched_at": "2026-10-28T17:19:00+00:00"
+    },
+    "deaths_2010": {
+      "series": "deaths",
+      "year": 2010,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2010",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 280,
+      "periods_returned": [
+        "2010"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2010.json",
+      "sha256": "2403594ecf7e39e408086889f20c5d8926f3dfba98d6948f4c3c9f2509a65f27",
+      "fetched_at": "2026-10-28T17:19:02+00:00"
+    },
+    "deaths_2011": {
+      "series": "deaths",
+      "year": 2011,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2011",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 280,
+      "periods_returned": [
+        "2011"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2011.json",
+      "sha256": "cd82babda1bd3c99ba7709c87205088c6cbfb021ff48fe815795e83807d55f05",
+      "fetched_at": "2026-10-28T17:19:03+00:00"
+    },
+    "deaths_2012": {
+      "series": "deaths",
+      "year": 2012,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2012",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 281,
+      "periods_returned": [
+        "2012"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2012.json",
+      "sha256": "40492a8acebe083f2ec68e12c807c92f727b18e83e321a1ee301ab9564bfe094",
+      "fetched_at": "2026-10-28T17:19:04+00:00"
+    },
+    "deaths_2013": {
+      "series": "deaths",
+      "year": 2013,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2013",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 281,
+      "periods_returned": [
+        "2013"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2013.json",
+      "sha256": "a61e998f7269ff0a5bb4e22ab0a156eb3fa9b86b7a46c57190473baf5980a213",
+      "fetched_at": "2026-10-28T17:19:05+00:00"
+    },
+    "deaths_2014": {
+      "series": "deaths",
+      "year": 2014,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2014",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 282,
+      "periods_returned": [
+        "2014"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2014.json",
+      "sha256": "34998a154259821a4735a176fbdb5ba1f9ac1e602d9cdc5e9e73a2d3d6b93953",
+      "fetched_at": "2026-10-28T17:19:07+00:00"
+    },
+    "deaths_2015": {
+      "series": "deaths",
+      "year": 2015,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2015",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 282,
+      "periods_returned": [
+        "2015"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2015.json",
+      "sha256": "49fa9428eecd7c8a3768e36571e888a89be9e069f09f0e0ed1ab5b6c92ccec89",
+      "fetched_at": "2026-10-28T17:19:07+00:00"
+    },
+    "deaths_2016": {
+      "series": "deaths",
+      "year": 2016,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2016",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2016"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2016.json",
+      "sha256": "3cb9ed9f62eb4de6003b2dee1f36c570c8440e80ef3492a18aa93850fbe28096",
+      "fetched_at": "2026-10-28T17:19:08+00:00"
+    },
+    "deaths_2017": {
+      "series": "deaths",
+      "year": 2017,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2017",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2017"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2017.json",
+      "sha256": "904c8ce98847cf9faa5606b8dcd283c510bbf86502595ca0bb925852008213f1",
+      "fetched_at": "2026-10-28T17:19:09+00:00"
+    },
+    "deaths_2018": {
+      "series": "deaths",
+      "year": 2018,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2018",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2018"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2018.json",
+      "sha256": "6f78e4cfeb7035eb03f426321e566f1be1e8f652c5ef8fdd59ef843ee9c3ce5d",
+      "fetched_at": "2026-10-28T17:19:10+00:00"
+    },
+    "deaths_2019": {
+      "series": "deaths",
+      "year": 2019,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2019",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2019"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2019.json",
+      "sha256": "4355121312d70d4afbfae4a46cd857cb550353729ecc0cb4e9e96f2eb956f528",
+      "fetched_at": "2026-10-28T17:19:11+00:00"
+    },
+    "deaths_2020": {
+      "series": "deaths",
+      "year": 2020,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2020",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2020"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2020.json",
+      "sha256": "5f2c2f40113427dd63eda23d9f0c2b948b4187c51c88213f058df8c62f6a5828",
+      "fetched_at": "2026-10-28T17:19:12+00:00"
+    },
+    "deaths_2021": {
+      "series": "deaths",
+      "year": 2021,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2021",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2021"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2021.json",
+      "sha256": "75a9447a60228883828f3a01ff5f751a18952c2b8239e3b3a8343899a0c7ba6a",
+      "fetched_at": "2026-10-28T17:19:12+00:00"
+    },
+    "deaths_2022": {
+      "series": "deaths",
+      "year": 2022,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2022",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2022"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2022.json",
+      "sha256": "4c6e280dfdd6c67872d243d7a374d4070b5d9c0dc4f1cf0f65def8e62d59644e",
+      "fetched_at": "2026-10-28T17:19:13+00:00"
+    },
+    "deaths_2023": {
+      "series": "deaths",
+      "year": 2023,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2023",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 279,
+      "periods_returned": [
+        "2023"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2023.json",
+      "sha256": "2d641f1e95db95e5c0911e1193319201b7be0915091a8ae1bbb22e1d37ff9a56",
+      "fetched_at": "2026-10-28T17:19:15+00:00"
+    },
+    "deaths_2024": {
+      "series": "deaths",
+      "year": 2024,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2024",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 282,
+      "periods_returned": [
+        "2024"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2024.json",
+      "sha256": "cd0cf919570988fc739f6d34bf71b6582ea8ec1d6c1d64a736bc9438f42bcdd0",
+      "fetched_at": "2026-10-28T17:19:16+00:00"
+    },
+    "deaths_2025": {
+      "series": "deaths",
+      "year": 2025,
+      "org_id": "101",
+      "tbl_id": "DT_1B82A01",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "rows": 282,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg-panel/deaths_2025.json",
+      "sha256": "15ffd17763fe9c8e4de2da773aa4418396c06260d5e7dc81da69aca30ebcba6b",
+      "fetched_at": "2026-10-28T17:19:17+00:00"
+    },
+    "households_2011": {
+      "series": "households",
+      "year": 2011,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "201112",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 280,
+      "periods_returned": [
+        "201112"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2011.json",
+      "sha256": "aaf94ba030101269b7835036d3a9dc4057a80f1435c86f54fcb4cd1d24b08d8f",
+      "fetched_at": "2026-10-28T17:19:34+00:00"
+    },
+    "households_2012": {
+      "series": "households",
+      "year": 2012,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "201212",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 281,
+      "periods_returned": [
+        "201212"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2012.json",
+      "sha256": "b2767f253dde9bb111e5d9e050c77c2e58a086faee297646db1e1dbc12c3447e",
+      "fetched_at": "2026-10-28T17:19:35+00:00"
+    },
+    "households_2013": {
+      "series": "households",
+      "year": 2013,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "201312",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 281,
+      "periods_returned": [
+        "201312"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2013.json",
+      "sha256": "d7bf1b1358026615121821664e86cdae229272062b633d55278149e3844fcb50",
+      "fetched_at": "2026-10-28T17:19:36+00:00"
+    },
+    "households_2014": {
+      "series": "households",
+      "year": 2014,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "201412",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 282,
+      "periods_returned": [
+        "201412"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2014.json",
+      "sha256": "4b0e57ce1041e0e7cccb26ebfaecafad35aa755b1a8585da75a74a11446b0fa3",
+      "fetched_at": "2026-10-28T17:19:37+00:00"
+    },
+    "households_2015": {
+      "series": "households",
+      "year": 2015,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "201512",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 282,
+      "periods_returned": [
+        "201512"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2015.json",
+      "sha256": "a0819881578dc7a16e9ae8a23924a314b805ea5fda8ee9b8b6b65ad9c5011c9b",
+      "fetched_at": "2026-10-28T17:19:38+00:00"
+    },
+    "households_2016": {
+      "series": "households",
+      "year": 2016,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "201612",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "201612"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2016.json",
+      "sha256": "db45ae42080c6195dcbf6a55d0215b42f263fa3b35d82c11bdb917a63dbc3ea9",
+      "fetched_at": "2026-10-28T17:19:38+00:00"
+    },
+    "households_2017": {
+      "series": "households",
+      "year": 2017,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "201712",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "201712"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2017.json",
+      "sha256": "b871fcef49ab11b806626637b781bf341021861332f314823c5306251a3d3a8a",
+      "fetched_at": "2026-10-28T17:19:39+00:00"
+    },
+    "households_2018": {
+      "series": "households",
+      "year": 2018,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "201812",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "201812"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2018.json",
+      "sha256": "8a0380796358459fe7d98a9b11ddb1e25f886531184bd82b4860713f5e818dc6",
+      "fetched_at": "2026-10-28T17:19:40+00:00"
+    },
+    "households_2019": {
+      "series": "households",
+      "year": 2019,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "201912",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "201912"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2019.json",
+      "sha256": "8251f70165502c1635e6a76772ab14538a65b86f5b8711802179e57aafd5a570",
+      "fetched_at": "2026-10-28T17:19:41+00:00"
+    },
+    "households_2020": {
+      "series": "households",
+      "year": 2020,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "202012",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 292,
+      "periods_returned": [
+        "202012"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2020.json",
+      "sha256": "bb2a9724d84b0c0c25dc8d4d2cd24ed5a49516382d1b16c2156ba39260f9dd28",
+      "fetched_at": "2026-10-28T17:19:42+00:00"
+    },
+    "households_2021": {
+      "series": "households",
+      "year": 2021,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "202112",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "202112"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2021.json",
+      "sha256": "1c7181b8050a95212860e56761f1501cfe120276df85cf23cb90f679f59cb027",
+      "fetched_at": "2026-10-28T17:19:43+00:00"
+    },
+    "households_2022": {
+      "series": "households",
+      "year": 2022,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "202212",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 292,
+      "periods_returned": [
+        "202212"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2022.json",
+      "sha256": "6273300fe562a00a98816f27d4a4089c488de98494ad998199caa09570b68514",
+      "fetched_at": "2026-10-28T17:19:44+00:00"
+    },
+    "households_2023": {
+      "series": "households",
+      "year": 2023,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "202312",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 290,
+      "periods_returned": [
+        "202312"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2023.json",
+      "sha256": "6518c0c343c30e7219c73ac17386eba1f144d4ed1901df617ca62262e7095b89",
+      "fetched_at": "2026-10-28T17:19:45+00:00"
+    },
+    "households_2024": {
+      "series": "households",
+      "year": 2024,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "202412",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 293,
+      "periods_returned": [
+        "202412"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2024.json",
+      "sha256": "bd0213cfabe925453fed5610ceb06cb50b70a4017fd21518e7a251e00a4af3ed",
+      "fetched_at": "2026-10-28T17:19:47+00:00"
+    },
+    "households_2025": {
+      "series": "households",
+      "year": 2025,
+      "org_id": "101",
+      "tbl_id": "DT_1B040B3",
+      "prd_se": "M",
+      "period": "202512",
+      "itm_id": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 293,
+      "periods_returned": [
+        "202512"
+      ],
+      "path": "data/raw/kosis/sgg-panel/households_2025.json",
+      "sha256": "4c499dc4342915adff34ddf96255a312527e21b5e93b02861c50f87cd78debc8",
+      "fetched_at": "2026-10-28T17:19:47+00:00"
+    },
+    "migration_2008": {
+      "series": "migration",
+      "year": 2008,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2008",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 753,
+      "periods_returned": [
+        "2008"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2008.json",
+      "sha256": "febd7e440b479186011f46dbc84abf392a0b2cfeb376db99f8e59dec20cf26da",
+      "fetched_at": "2026-10-28T17:18:19+00:00"
+    },
+    "migration_2009": {
+      "series": "migration",
+      "year": 2009,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2009",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 747,
+      "periods_returned": [
+        "2009"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2009.json",
+      "sha256": "6f3ea9fea9fc0e31fa0a497e157d3ff13b981afb1c43f4ce7d61edfaddb6a0c8",
+      "fetched_at": "2026-10-28T17:18:20+00:00"
+    },
+    "migration_2010": {
+      "series": "migration",
+      "year": 2010,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2010",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 798,
+      "periods_returned": [
+        "2010"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2010.json",
+      "sha256": "c3d869c05235de06fb66087411d6e275cdc0aaf3a29388708e6264f75f7f5308",
+      "fetched_at": "2026-10-28T17:18:22+00:00"
+    },
+    "migration_2011": {
+      "series": "migration",
+      "year": 2011,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2011",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 798,
+      "periods_returned": [
+        "2011"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2011.json",
+      "sha256": "4d23513199bd8e3f1884164d90ea3a416de98bc445c4bf9b8b85c5f51209fee7",
+      "fetched_at": "2026-10-28T17:18:23+00:00"
+    },
+    "migration_2012": {
+      "series": "migration",
+      "year": 2012,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2012",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 807,
+      "periods_returned": [
+        "2012"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2012.json",
+      "sha256": "6c882f438a6946734bc097aa5a82594ea16e1d786e7703adeaf4a23895e29d5d",
+      "fetched_at": "2026-10-28T17:18:24+00:00"
+    },
+    "migration_2013": {
+      "series": "migration",
+      "year": 2013,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2013",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 810,
+      "periods_returned": [
+        "2013"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2013.json",
+      "sha256": "e354aa271e499e03b5ca20b79ef04963bbbd2e556136d51a4924c5747ff437e2",
+      "fetched_at": "2026-10-28T17:18:25+00:00"
+    },
+    "migration_2014": {
+      "series": "migration",
+      "year": 2014,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2014",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 810,
+      "periods_returned": [
+        "2014"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2014.json",
+      "sha256": "99f82e6ff64b9a6b0e85471df300fc0a21966b951a01bbd235bde2c14aa9d037",
+      "fetched_at": "2026-10-28T17:18:26+00:00"
+    },
+    "migration_2015": {
+      "series": "migration",
+      "year": 2015,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2015",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 810,
+      "periods_returned": [
+        "2015"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2015.json",
+      "sha256": "1b2c481c0c6ee665e93773577df4811ae3707d30e6873afe62cca717856197c7",
+      "fetched_at": "2026-10-28T17:18:28+00:00"
+    },
+    "migration_2016": {
+      "series": "migration",
+      "year": 2016,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2016",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 810,
+      "periods_returned": [
+        "2016"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2016.json",
+      "sha256": "5280082f6314c3a39abeee7b44bfb2daf9012ed469021092d4e597012c63711b",
+      "fetched_at": "2026-10-28T17:18:29+00:00"
+    },
+    "migration_2017": {
+      "series": "migration",
+      "year": 2017,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2017",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 810,
+      "periods_returned": [
+        "2017"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2017.json",
+      "sha256": "c93e4d4bdbd662707039548a7f43e37e69def9da029373bbb360c08009989c9f",
+      "fetched_at": "2026-10-28T17:18:30+00:00"
+    },
+    "migration_2018": {
+      "series": "migration",
+      "year": 2018,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2018",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 813,
+      "periods_returned": [
+        "2018"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2018.json",
+      "sha256": "413988babe51ebe4d722817a7565c73d8136ffffa9c4d9bc5ea037fd265ad275",
+      "fetched_at": "2026-10-28T17:18:31+00:00"
+    },
+    "migration_2019": {
+      "series": "migration",
+      "year": 2019,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2019",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 813,
+      "periods_returned": [
+        "2019"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2019.json",
+      "sha256": "7448219a4f611b262c42df3679e9ae29d10520b7041f46ec184db9922a1054ff",
+      "fetched_at": "2026-10-28T17:18:32+00:00"
+    },
+    "migration_2020": {
+      "series": "migration",
+      "year": 2020,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2020",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 813,
+      "periods_returned": [
+        "2020"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2020.json",
+      "sha256": "daa14a4ede8f840c057726b1cbb75a23f315618ffed27bad41c937a4f2024be8",
+      "fetched_at": "2026-10-28T17:18:33+00:00"
+    },
+    "migration_2021": {
+      "series": "migration",
+      "year": 2021,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2021",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 813,
+      "periods_returned": [
+        "2021"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2021.json",
+      "sha256": "43792a17c979884777716630024711957d6d7cc757ec82b81d30ea80161786cc",
+      "fetched_at": "2026-10-28T17:18:34+00:00"
+    },
+    "migration_2022": {
+      "series": "migration",
+      "year": 2022,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2022",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 813,
+      "periods_returned": [
+        "2022"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2022.json",
+      "sha256": "38a927acb55dbeedcd8903c9708a2c6ff944b71e0833ea06254edbe22421d9ec",
+      "fetched_at": "2026-10-28T17:18:36+00:00"
+    },
+    "migration_2023": {
+      "series": "migration",
+      "year": 2023,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2023",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 816,
+      "periods_returned": [
+        "2023"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2023.json",
+      "sha256": "263d1440300aaa1f5bc444dbe575740f21e7b4214080a4c65a6de087910d59f0",
+      "fetched_at": "2026-10-28T17:18:37+00:00"
+    },
+    "migration_2024": {
+      "series": "migration",
+      "year": 2024,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2024",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 816,
+      "periods_returned": [
+        "2024"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2024.json",
+      "sha256": "870a4330810dabe01d372e3d9b9370ce1b45429b33db206cf5c2a49032365bb1",
+      "fetched_at": "2026-10-28T17:18:38+00:00"
+    },
+    "migration_2025": {
+      "series": "migration",
+      "year": 2025,
+      "org_id": "101",
+      "tbl_id": "DT_1B26001_A01",
+      "prd_se": "Y",
+      "period": "2025",
+      "itm_id": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 816,
+      "periods_returned": [
+        "2025"
+      ],
+      "path": "data/raw/kosis/sgg-panel/migration_2025.json",
+      "sha256": "c9020600d144ba968f9ae247f81f6723769da040e50cc3115e14c6f19b332279",
+      "fetched_at": "2026-10-28T17:18:40+00:00"
+    },
+    "pop_2011": {
+      "series": "pop",
+      "year": 2011,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "201112",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 280,
+      "periods_returned": [
+        "201112"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2011.json",
+      "sha256": "04a41ab995d080f1056253c6f60a0abc63aa9a0e2b763e6958109c4754562741",
+      "fetched_at": "2026-10-28T17:19:18+00:00"
+    },
+    "pop_2012": {
+      "series": "pop",
+      "year": 2012,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "201212",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 281,
+      "periods_returned": [
+        "201212"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2012.json",
+      "sha256": "64d1194094985748f7633e26156c9109a0a3761b0641f195561aa44c85136f13",
+      "fetched_at": "2026-10-28T17:19:20+00:00"
+    },
+    "pop_2013": {
+      "series": "pop",
+      "year": 2013,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "201312",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 281,
+      "periods_returned": [
+        "201312"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2013.json",
+      "sha256": "460750201ff7e22a17b212fcd7c4d086af6025586b1c61cf9f2afecf3ffa3ece",
+      "fetched_at": "2026-10-28T17:19:21+00:00"
+    },
+    "pop_2014": {
+      "series": "pop",
+      "year": 2014,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "201412",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 282,
+      "periods_returned": [
+        "201412"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2014.json",
+      "sha256": "05193f687cf934ab3fa0c7002c2d46f8d4c7d2836a86323ff648d00790326ba8",
+      "fetched_at": "2026-10-28T17:19:22+00:00"
+    },
+    "pop_2015": {
+      "series": "pop",
+      "year": 2015,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "201512",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 282,
+      "periods_returned": [
+        "201512"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2015.json",
+      "sha256": "cee8ffc190155dab8b39b69c2e37f05c47d1d831d69f6ebaa3c41b23d6935ee2",
+      "fetched_at": "2026-10-28T17:19:24+00:00"
+    },
+    "pop_2016": {
+      "series": "pop",
+      "year": 2016,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "201612",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "201612"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2016.json",
+      "sha256": "5373c915d740f2be7cb5ff58fcdae2f05cb4186bf7f4b148dceceb154b624bac",
+      "fetched_at": "2026-10-28T17:19:24+00:00"
+    },
+    "pop_2017": {
+      "series": "pop",
+      "year": 2017,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "201712",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "201712"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2017.json",
+      "sha256": "d4510494abea396a2d59dde72a25712c405a4b23690b43996e621e6a54bd8c13",
+      "fetched_at": "2026-10-28T17:19:25+00:00"
+    },
+    "pop_2018": {
+      "series": "pop",
+      "year": 2018,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "201812",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "201812"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2018.json",
+      "sha256": "11626041afbebfdd54a8630be8a46825e7da1c7d209458f2ad7e5a8059af91c2",
+      "fetched_at": "2026-10-28T17:19:26+00:00"
+    },
+    "pop_2019": {
+      "series": "pop",
+      "year": 2019,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "201912",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "201912"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2019.json",
+      "sha256": "8354e30683b3996f0038e3c6d1eca30d029f097378721727402308912c2d5690",
+      "fetched_at": "2026-10-28T17:19:27+00:00"
+    },
+    "pop_2020": {
+      "series": "pop",
+      "year": 2020,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "202012",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 292,
+      "periods_returned": [
+        "202012"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2020.json",
+      "sha256": "060675561ef2c6a2b5a39e15e7c89ef42218e5f67608bd75d78e406ba4390bd0",
+      "fetched_at": "2026-10-28T17:19:28+00:00"
+    },
+    "pop_2021": {
+      "series": "pop",
+      "year": 2021,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "202112",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 279,
+      "periods_returned": [
+        "202112"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2021.json",
+      "sha256": "f8cc4f6fc175c1b4e241eb690c01cae43e000c445fd2dc7d9351db5fe81a07a8",
+      "fetched_at": "2026-10-28T17:19:29+00:00"
+    },
+    "pop_2022": {
+      "series": "pop",
+      "year": 2022,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "202212",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 292,
+      "periods_returned": [
+        "202212"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2022.json",
+      "sha256": "8bf14d76da16b7695a05889715544f63e312c0722054953af9b6af2c0518fdef",
+      "fetched_at": "2026-10-28T17:19:30+00:00"
+    },
+    "pop_2023": {
+      "series": "pop",
+      "year": 2023,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "202312",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 290,
+      "periods_returned": [
+        "202312"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2023.json",
+      "sha256": "b3d12f9b527a61e989f28485dc092c4305f81e357d6318fc5025cb34bdcc2b45",
+      "fetched_at": "2026-10-28T17:19:30+00:00"
+    },
+    "pop_2024": {
+      "series": "pop",
+      "year": 2024,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "202412",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 293,
+      "periods_returned": [
+        "202412"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2024.json",
+      "sha256": "698a5d12c7c05e963a46c9382847e68b7b5dc2cd9148da66b25fc4a1acc69275",
+      "fetched_at": "2026-10-28T17:19:31+00:00"
+    },
+    "pop_2025": {
+      "series": "pop",
+      "year": 2025,
+      "org_id": "101",
+      "tbl_id": "DT_1B040A3",
+      "prd_se": "M",
+      "period": "202512",
+      "itm_id": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "rows": 293,
+      "periods_returned": [
+        "202512"
+      ],
+      "path": "data/raw/kosis/sgg-panel/pop_2025.json",
+      "sha256": "d5cda0e47f2b18ad7213baeee41b939f126c4dfda221f8e77c87f4114ad58636",
+      "fetched_at": "2026-10-28T17:19:32+00:00"
+    }
+  },
+  "schema_version": "0.1.0",
+  "source_id": "kosis",
+  "endpoint": "openapi/Param/statisticsParameterData.do",
+  "series": {
+    "migration": {
+      "tbl": "DT_1B26001_A01",
+      "prd": "Y",
+      "month": "",
+      "itm": "T10+T20+T25",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "years": [
+        2008,
+        2025
+      ],
+      "items": {
+        "T10": "migr_in",
+        "T20": "migr_out",
+        "T25": "migr_net"
+      }
+    },
+    "births": {
+      "tbl": "DT_1B81A23",
+      "prd": "Y",
+      "month": "",
+      "itm": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "years": [
+        2008,
+        2025
+      ],
+      "items": {
+        "T1": "births"
+      }
+    },
+    "deaths": {
+      "tbl": "DT_1B82A01",
+      "prd": "Y",
+      "month": "",
+      "itm": "T1",
+      "objs": {
+        "objL1": "ALL",
+        "objL2": "0"
+      },
+      "code_system": "KOSTAT5",
+      "years": [
+        2008,
+        2025
+      ],
+      "items": {
+        "T1": "deaths"
+      }
+    },
+    "pop": {
+      "tbl": "DT_1B040A3",
+      "prd": "M",
+      "month": "12",
+      "itm": "T20",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "years": [
+        2011,
+        2025
+      ],
+      "items": {
+        "T20": "pop_total"
+      }
+    },
+    "households": {
+      "tbl": "DT_1B040B3",
+      "prd": "M",
+      "month": "12",
+      "itm": "T1",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "MOIS5",
+      "years": [
+        2011,
+        2025
+      ],
+      "items": {
+        "T1": "households_rr"
+      }
+    },
+    "census": {
+      "tbl": "DT_1IN1502",
+      "prd": "Y",
+      "month": "",
+      "itm": "T100+T140+T200+T310",
+      "objs": {
+        "objL1": "ALL"
+      },
+      "code_system": "KOSTAT5",
+      "years": [
+        2015,
+        2025
+      ],
+      "items": {
+        "T100": "census_pop",
+        "T140": "census_foreigners",
+        "T200": "census_households",
+        "T310": "housing_total"
+      }
+    }
+  },
+  "storage": {
+    "kind": "local-gitignored",
+    "path": "data/raw/kosis/sgg-panel"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "timeoutSeconds": 30,
+  "requests": [
+    {
+      "path": "2025",
+      "expect": [
+        {
+          "path": "boundaryDate",
+          "equals": "2025-12-31"
+        },
+        {
+          "path": "units",
+          "minLength": 229
+        },
+        {
+          "path": "units.0.code5",
+          "equals": "11110"
+        },
+        {
+          "path": "units.0.values.pop_total",
+          "equals": 137048
+        }
+      ]
+    },
+    {
+      "path": "panel",
+      "expect": [
+        {
+          "path": "years",
+          "minLength": 18
+        },
+        {
+          "path": "units",
+          "minLength": 229
+        },
+        {
+          "path": "boundaryDate",
+          "equals": "2025-12-31"
+        },
+        {
+          "path": "units.0.code5",
+          "equals": "11110"
+        },
+        {
+          "path": "units.0.values.births.0",
+          "equals": 1176
+        }
+      ]
+    }
+  ]
+}

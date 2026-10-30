@@ -1,0 +1,8 @@
+{
+  "id": "building-use",
+  "group": "physical",
+  "label": "건물 용도",
+  "description": "주용도 및 건축물 용도 분포",
+  "status": "planned",
+  "source": "건축물대장"
+}

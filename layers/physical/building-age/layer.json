@@ -1,0 +1,8 @@
+{
+  "id": "building-age",
+  "group": "physical",
+  "label": "건축 연대",
+  "description": "사용승인일 기반 건축연대",
+  "status": "planned",
+  "source": "건축물대장"
+}

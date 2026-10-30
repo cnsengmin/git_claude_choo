@@ -1,0 +1,8 @@
+{
+  "id": "transit",
+  "group": "mobility",
+  "label": "지하철·버스",
+  "description": "역·정류장 및 대중교통 시설",
+  "status": "planned",
+  "source": "국가/지자체 교통 OpenAPI"
+}

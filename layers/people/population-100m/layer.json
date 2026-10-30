@@ -1,0 +1,10 @@
+{
+  "id": "population-100m",
+  "group": "people",
+  "label": "100m 격자",
+  "description": "100m 격자 인구(2015–2024)와 가구·주택·사업체·종사자(2015·2020·2024), z11부터 표시",
+  "status": "available",
+  "source": "SGIS 자료제공 격자 통계 (인구주택총조사·전국사업체조사)",
+  "provider": "sgis-grid",
+  "license": "공공누리 제1유형"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "convenience",
+  "group": "places",
+  "label": "편의점·소매",
+  "description": "편의점 및 생활 소매시설",
+  "status": "partial",
+  "source": "Kakao / Naver / Google + 공공자료"
+}

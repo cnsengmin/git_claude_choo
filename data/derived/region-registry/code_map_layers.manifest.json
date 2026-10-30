@@ -1,0 +1,42 @@
+{
+  "layers": 38,
+  "sgg_pairs": 4768,
+  "not_one_to_one": 0,
+  "admdong_pairs": 66521,
+  "admdong_not_one_to_one": 0,
+  "linkage_check": {
+    "kr-admdong@2025-12-31": {
+      "revision": "2025-10-01",
+      "official": 3553,
+      "ours": 3557,
+      "same": 3543,
+      "ours_only": 12,
+      "no_polygon_unit": 5,
+      "official_only": 3,
+      "kostat_code_differs": 2
+    },
+    "kr-sgg@2025-12-31": {
+      "revision": "2025-10-01",
+      "official": 252,
+      "ours": 252,
+      "same": 252
+    },
+    "kr-admdong@2026-10-01": {
+      "revision": "2026-10-01",
+      "official": 3556,
+      "ours": 3559,
+      "same": 3291,
+      "kostat_code_differs": 257,
+      "ours_only": 11,
+      "no_polygon_unit": 5,
+      "official_only": 3
+    },
+    "kr-sgg@2026-10-01": {
+      "revision": "2026-10-01",
+      "official": 256,
+      "ours": 256,
+      "same": 244,
+      "kostat_code_differs": 12
+    }
+  }
+}

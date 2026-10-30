@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "0.2.0",
+  "snapshotDate": "2026-07-20",
+  "verifiedAt": "2026-08-24",
+  "source": {
+    "admin": {
+      "file": "KIKcd_H.20260720",
+      "sha256": "fb596ea31c9d9b309d6db2bb0a02b294b71a5a14bfa546c2134e0f73add2a410",
+      "rows": 3924
+    },
+    "legal": {
+      "file": "KIKcd_B.20260720",
+      "sha256": "904c3d24d6b0d56dfb22d102af3cd5c4a2d124adcbac131a432c7329be94a284",
+      "rows": 20570
+    },
+    "crosswalk": {
+      "file": "KIKmix.20260720",
+      "sha256": "7d10b46ef3de80a5875930adf973fb4799fb2429f49bcff2276570205e73897c",
+      "rows": 21836
+    }
+  },
+  "output": {
+    "adminRegions": 3924,
+    "activeAdminRegions": 3924,
+    "legalRegions": 20570,
+    "activeLegalRegions": 20570,
+    "adminCodesWithCrosswalk": 3924,
+    "standardRootSidoCount": 16,
+    "reportedAdminOrphans": [
+      { "code": "4110500000", "name": "북부출장소" },
+      { "code": "5110500000", "name": "동해출장소" }
+    ]
+  },
+  "hierarchyValidation": {
+    "anyangBurim": ["4100000000", "4117000000", "4117300000", "4117356600"],
+    "sejongGoun": ["3600000000", "3611000000", "3611055000"],
+    "yeosuDolsanBranch": ["1200000000", "1213000000", "1213025000", "1213025100"]
+  },
+  "notes": [
+    "Native codes are preserved as strings.",
+    "KIKmix is a relation table, not a permanent merge into region entities.",
+    "The 2026-07-20 snapshot contains no non-empty abolition dates in the supplied files, so historical change tracking still needs older snapshots or official change notices.",
+    "Boundary geometry is not inferred from KIK code files and must come from a separately versioned spatial boundary source."
+  ]
+}

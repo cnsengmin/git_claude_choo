@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.1.0",
+  "generated_at": "2026-08-25T02:26:39.089944+00:00",
+  "source": "SGIS",
+  "region": {
+    "sido": {
+      "name": "경기도",
+      "code": "31",
+      "zip": "25년 센서스용 행정구역경계(시도).zip"
+    },
+    "sigungu": {
+      "name": "안양시 동안구",
+      "code": "31042",
+      "zip": "25년 센서스용 행정구역경계(시군구).zip"
+    },
+    "dong": {
+      "name": "부림동",
+      "code": "31042580",
+      "base_date": "20250630",
+      "zip": "2025년 센서스용 행정구역경계(읍면동).zip",
+      "stem": "bnd_dong_00_2025_2Q",
+      "record_index": 1323,
+      "encoding": "utf-8"
+    }
+  },
+  "source_crs": "EPSG:5179",
+  "geojson_crs": "EPSG:4326",
+  "boundary_reference_year": 2025,
+  "grid_reference_year": 2025,
+  "statistics_reference_year": 2024,
+  "grid_size_m": 100,
+  "indicator": {
+    "code": "to_in_001",
+    "title": "총인구"
+  },
+  "selection_rule": "include every grid polygon whose geometry intersects the selected administrative-dong polygon",
+  "grid_partitions": [
+    {
+      "partition": "다사",
+      "zip": "_grid_border_grid_2025_grid_다사_grid_다사.zip",
+      "stem": "grid_다사_100M",
+      "selected_grid_count": 120
+    }
+  ],
+  "statistic_sources": [
+    {
+      "partition": "다사",
+      "zip": "24년 격자통계(인구)_100m.zip",
+      "member": "2024년_인구_다사_100M.csv",
+      "encoding": "cp949",
+      "indicator": "to_in_001",
+      "matched_rows": 72
+    }
+  ],
+  "selected_grid_count": 120,
+  "explicit_statistic_row_count": 72,
+  "no_stat_row_count": 48,
+  "sum_explicit_intersecting_grid_values": 28308,
+  "warnings": [
+    "The intersecting-grid sum is not an official administrative-dong population total because edge cells may cross the administrative boundary.",
+    "Cells without a statistics row are preserved as null/no-stat-row; Atlas does not silently coerce them to zero in normalized output.",
+    "SGIS native codes are preserved and are not derived from KIK codes by truncation."
+  ],
+  "outputs": {
+    "csv": "sgis-2024-100m-31042580.csv",
+    "geojson": "sgis-2024-100m-31042580.geojson"
+  }
+}

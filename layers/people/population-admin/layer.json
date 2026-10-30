@@ -1,0 +1,8 @@
+{
+  "id": "population-admin",
+  "group": "people",
+  "label": "행정동 인구",
+  "description": "지도 중심 행정동의 총인구·평균연령·인구밀도·가구",
+  "status": "available",
+  "source": "SGIS 총조사 주요지표 API"
+}

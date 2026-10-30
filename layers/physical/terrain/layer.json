@@ -1,0 +1,8 @@
+{
+  "id": "terrain",
+  "group": "physical",
+  "label": "지형·등고선",
+  "description": "DEM 기반 지형과 등고선",
+  "status": "planned",
+  "source": "국토정보플랫폼 DEM"
+}
